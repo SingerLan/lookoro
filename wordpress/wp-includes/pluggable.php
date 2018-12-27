@@ -2511,6 +2511,16 @@ function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args =
 
 	$url = $args['url'];
 
+	if (filter_var($id_or_email, FILTER_VALIDATE_EMAIL)) {
+		$array=explode('@', $id_or_email);
+	} else {
+		$array=explode('@', $id_or_email->comment_author_email);
+	}
+
+	$qqavatar = file_get_contents('http://ptlogin2.qq.com/getface?appid=1006102&imgtype=3&uin='.$array[0]);
+    preg_match('/https:(.*?)&t/',$qqavatar,$m);
+    $url = stripslashes($m[1]);
+
 	if ( ! $url || is_wp_error( $url ) ) {
 		return false;
 	}
@@ -2530,9 +2540,10 @@ function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args =
 	}
 
 	$avatar = sprintf(
-		"<img alt='%s' src='%s' srcset='%s' class='%s' height='%d' width='%d' %s/>",
+		"<img alt='%s' src='%s' onerror='%s' srcset='%s' class='%s' height='%d' width='%d' %s/>",
 		esc_attr( $args['alt'] ),
 		esc_url( $url ),
+		esc_url( $args['url'] ),
 		esc_url( $url2x ) . ' 2x',
 		esc_attr( join( ' ', $class ) ),
 		(int) $args['height'],
