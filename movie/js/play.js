@@ -32,7 +32,7 @@ var jxAapi="http://www.lookoro.cn/player/spare.php?url=";
 var jxBapi="http://www.lookoro.cn/m3u8.php?url=";
 var jxCapi="http://jiexi.92fz.cn/player/jiexi.php?url=";
 var jxDapi="http://kpg3.cn/?url=";
-var jxEapi="https://lirongyao.com/player/spare.php?url=";
+var jxEapi="http://g.alicdn.com/de/prismplayer-flash/1.2.16/PrismPlayer.swf?vurl=";
 
 function IsPC() {
     var userAgentInfo = navigator.userAgent;

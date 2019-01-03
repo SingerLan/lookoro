@@ -26,9 +26,13 @@ function wpjam_option_page($option_name, $args=array()){
 			wpjam_admin_add_error('设置已保存。');
 		}
 		wpjam_display_errors();
-		echo '<form action="'.add_query_arg(array('settings-updated'=>'true'), wpjam_get_current_page_url()).'" method="POST">';
+		echo '<form action="'.add_query_arg(['settings-updated'=>'true'], wpjam_get_current_page_url()).'" method="POST">';
 	}else{
-		echo '<form action="options.php" method="POST" id="wpjam_option">';
+		if($ajax){
+			echo '<form action="options.php" method="POST" id="wpjam_option">';
+		}else{
+			echo '<form action="options.php" method="POST">';
+		}
 	}
 
 	settings_fields($option_group);

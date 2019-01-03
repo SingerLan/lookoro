@@ -2,10 +2,13 @@
 do_action('wpjam_term_list_page_file', $taxonomy);
 
 $taxonomy_fields = wpjam_get_term_options($taxonomy);
-if(empty($taxonomy_fields)) return;
+if(empty($taxonomy_fields)) {
+	return;
+}
 
 // 添加 Term Meta 添加表单
 add_action($taxonomy.'_add_form_fields', function($taxonomy){
+
 	$taxonomy_fields = wpjam_get_term_options($taxonomy);
 
 	wpjam_fields($taxonomy_fields, array(

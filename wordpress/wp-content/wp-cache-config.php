@@ -5,11 +5,11 @@ WP-Cache Config Sample File
 See wp-cache.php for author details.
 */
 
+$wp_cache_debug_username = 'cc9b6ab3777689964b0eae18187478e8';
 $wp_cache_mobile_groups = '';
-$wp_cache_debug_username = '2e02bf2f83bd81cc9d57cebbb35538c1';
 $wp_cache_home_path = '/';
 $wp_cache_slash_check = 0;
-$cache_page_secret = '6d36dc8f62aa676b66175ed0c1b29b3d';
+$cache_page_secret = 'e200d31c8e69034172f5d503d5c38a69';
 $cache_time_interval = 600;
 if ( ! defined('WPCACHEHOME') )
 	define( 'WPCACHEHOME', WP_CONTENT_DIR . "/plugins/wp-super-cache/" );
@@ -24,9 +24,9 @@ $file_prefix = 'wp-cache-';
 $ossdlcdn = 0;
 
 // Array of files that have 'wp-' but should still be cached
-$cache_acceptable_files = array ( 0 => 'wp-comments-popup.php', 1 => 'wp-links-opml.php', 2 => 'wp-locations.php', );
+$cache_acceptable_files = array( 'wp-comments-popup.php', 'wp-links-opml.php', 'wp-locations.php' );
 
-$cache_rejected_uri = array ( 0 => 'wp-.*\\.php', 1 => 'index\\.php', );
+$cache_rejected_uri = array('wp-.*\\.php', 'index\\.php');
 $cache_rejected_user_agent = array ( 0 => 'bot', 1 => 'ia_archive', 2 => 'slurp', 3 => 'crawl', 4 => 'spider', 5 => 'Yandex' );
 
 $cache_rebuild_files = 1;
@@ -62,12 +62,12 @@ $wp_super_cache_front_page_notification = '0';
 
 $wp_cache_object_cache = 0;
 $wp_cache_anon_only = 0;
-$wp_supercache_cache_list = 1;
+$wp_supercache_cache_list = 0;
 $wp_cache_debug_to_file = 0;
 $wp_super_cache_debug = 0;
 $wp_cache_debug_level = 5;
 $wp_cache_debug_ip = '';
-$wp_cache_debug_log = '00d6e68e52d92481051f50e41a55130f.php';
+$wp_cache_debug_log = '5dd1d1c0f30a96ec67427741f41c09f2.php';
 $wp_cache_debug_email = '';
 $wp_cache_pages[ "search" ] = 0;
 $wp_cache_pages[ "feed" ] = 0;
@@ -84,7 +84,7 @@ $wp_cache_not_logged_in = 0;
 $wp_cache_clear_on_post_edit = 1;
 $wp_cache_hello_world = 0;
 $wp_cache_mobile_enabled = 1;
-$wp_cache_cron_check = 0;
+$wp_cache_cron_check = 1;
 $wp_cache_mfunc_enabled = 0;
 $wp_cache_make_known_anon = 0;
 $wp_cache_refresh_single_only = 1;

@@ -87,6 +87,11 @@ function wpjam_strip_invalid_text($str){
 	return WPJAM_API::strip_invalid_text($str);
 }
 
+// 去掉 4字节 字符
+function wpjam_strip_4_byte_chars($chars){
+	return WPJAM_API::strip_4_byte_chars($chars);
+}
+
 // 去掉控制字符
 function wpjam_strip_control_characters($text){
 	return WPJAM_API::strip_control_characters($text);
@@ -356,21 +361,11 @@ function wpjam_set_cookie($key, $value, $expire){
 function wpjam_basic_get_default_settings(){
 	return [
 		'diable_revision'				=> 1,
-		'disable_autoembed'				=> 1,
-		'disable_trackbacks'			=> 1,
-		'disable_xml_rpc'				=> 1,
 		'disable_emoji'					=> 1,
-		'disable_post_embed'			=> 1,
 		'disable_privacy'				=> 1,
-		'disable_auto_update'			=> 1,
-		'disable_widgets'				=> 1,
 		
 		'remove_head_links'				=> 1,
-		'remove_admin_bar'				=> 1,
-		'remove_dashboard_widgets'		=> 1,
 		'remove_capital_P_dangit'		=> 1,
-		'no_admin'						=> 0,
-		'locale'						=> 1,
 
 		'order_by_registered'			=> 1,
 		'excerpt_optimization'			=> 1,

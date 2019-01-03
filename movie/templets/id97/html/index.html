@@ -5,8 +5,40 @@
     <title>{seacms:sitename} - 一起分享电影给我们带来的快乐</title>
 	<meta name="keywords" content="{seacms:sitename}" />
 	{seacms:load head_include.html}
+<style type="text/css">
+*{margin:0; padding:0;}
+a{text-decoration: none;}
+img{max-width: 100%; height: auto;width: 100%;}
+.weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;}
+.weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
+</style>
 </head>
 <body>
+<div class="weixin-tip">
+	<p>
+		<img src="/wap/templets/aikanV1/html/live_weixin.png" alt="微信打开"/>
+	</p>
+</div>
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+		function is_weixin() {
+		    var ua = navigator.userAgent.toLowerCase();
+		    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
+		var isWeixin = is_weixin();
+		if(isWeixin){
+			$(".weixin-tip").css("height",winHeight);
+            $(".weixin-tip").show();
+			$("header").hide();
+			$(".container").hide();
+		}
+    })
+</script>
 	{seacms:top}
 <div class="container">
     <div class="announcement alert-success"><span class="glyphicon glyphicon-comment"></span>公众号：大饼影视，另有任何想看的电影点击群号加群：<a href="https://jq.qq.com/?_wv=1027&k=5RuLzaJ">874801718</a>免费更新</div>
@@ -89,7 +121,6 @@
 
 		<a class="btn btn-primary btn-block" style="margin-top:20px;" href="/list/?1.html"><i class="glyphicon glyphicon-fire"> </i> 更多热门影片  </a>
 	</div>
-
 	{seacms:foot}
 </body>
 </html>

@@ -967,12 +967,19 @@ function wp_clear_auth_cookie() {
 	setcookie( PASS_COOKIE, ' ', time() - YEAR_IN_SECONDS, COOKIEPATH,     COOKIE_DOMAIN );
 	setcookie( USER_COOKIE, ' ', time() - YEAR_IN_SECONDS, SITECOOKIEPATH, COOKIE_DOMAIN );
 	setcookie( PASS_COOKIE, ' ', time() - YEAR_IN_SECONDS, SITECOOKIEPATH, COOKIE_DOMAIN );
+
+	// Post password cookie
+	setcookie( 'wp-postpass_' . COOKIEHASH, ' ', time() - YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
 }
 endif;
 
 if ( !function_exists('is_user_logged_in') ) :
 /**
- * Checks if the current visitor is a logged in user.
+ * Determines whether the current visitor is a logged in user.
+ *
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.0.0
  *
@@ -2510,7 +2517,7 @@ function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args =
 	$args = get_avatar_data( $id_or_email, $args );
 
 	$url = $args['url'];
-
+	
 	if (filter_var($id_or_email, FILTER_VALIDATE_EMAIL)) {
 		$array=explode('@', $id_or_email);
 	} else {
@@ -2518,8 +2525,8 @@ function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args =
 	}
 
 	$qqavatar = file_get_contents('http://ptlogin2.qq.com/getface?appid=1006102&imgtype=3&uin='.$array[0]);
-    preg_match('/https:(.*?)&t/',$qqavatar,$m);
-    $url = stripslashes($m[1]);
+	preg_match('/https:(.*?)&t/',$qqavatar,$m);
+	$url = stripslashes($m[1]);
 
 	if ( ! $url || is_wp_error( $url ) ) {
 		return false;

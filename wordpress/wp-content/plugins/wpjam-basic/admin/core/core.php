@@ -29,7 +29,7 @@ add_action('current_screen', function($current_screen){
 		include(WPJAM_BASIC_PLUGIN_DIR.'admin/core/term.php');
 	}elseif($pagenow == 'edit-tags.php') {
 		$taxonomy	= $current_screen->taxonomy;
-
+		
 		include(WPJAM_BASIC_PLUGIN_DIR.'admin/core/term-list.php');
 	}
 });

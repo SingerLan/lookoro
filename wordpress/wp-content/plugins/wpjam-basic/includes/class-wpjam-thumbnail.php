@@ -103,13 +103,75 @@ class WPJAM_Thumbnail{
 		$thumbnail_url	= '';
 		if(has_post_thumbnail($post)){
 			$thumbnail_url	= wp_get_attachment_image_url(get_post_thumbnail_id($post), $thumbnail_size);
-		}elseif(wpjam_cdn_get_setting('use_first')){
-			$thumbnail_url	= self::get_post_first_image($post->post_content);
+		}else{
+			$thumbnail_url	= self::get_post_thumbnail_by_orders($post);
 		}
 
 		$thumbnail_url	= apply_filters_deprecated('wpjam_post_thumbnail_uri', [$thumbnail_url, $post], 'WPJAM Basic 3.2', 'wpjam_post_thumbnail_url');
 		$thumbnail_url	= apply_filters('wpjam_post_thumbnail_url', $thumbnail_url, $post);
 		$thumbnail_url	= $thumbnail_url ?: self::get_default_thumbnail();
+
+		if($thumbnail_url){
+			return self::get_thumbnail($thumbnail_url, $size, $crop, $retina);
+		}else{
+			return '';
+		}
+	}
+
+	public static function get_post_thumbnail_by_orders($post){
+		$post	= get_post($post);
+
+		$thumbnail_orders	= wpjam_cdn_get_setting('post_thumbnail_orders') ?: [];
+
+		if(!$thumbnail_orders){
+			return '';
+		}
+
+		$term_thumbnail_type		= wpjam_cdn_get_setting('term_thumbnail_type') ?: '';
+		$term_thumbnail_taxonomies	= wpjam_cdn_get_setting('term_thumbnail_taxonomies') ?: [];
+		$post_taxonomies			= get_post_taxonomies($post);
+
+		foreach ($thumbnail_orders as $thumbnail_order) {
+			if($thumbnail_order['type'] == 'first'){
+				if($post_first_image = self::get_post_first_image($post)){
+					return $post_first_image;
+				}
+			}elseif($thumbnail_order['type'] == 'post_meta'){
+				if($post_meta 	= $thumbnail_order['post_meta']){
+					if($post_meta_url = get_post_meta($post->ID, $post_meta, true)){
+						return $post_meta_url;
+					}
+				}
+			}elseif($thumbnail_order['type'] == 'term'){
+				$taxonomy	= $thumbnail_order['taxonomy'];
+
+				if($term_thumbnail_type && $taxonomy && $term_thumbnail_taxonomies && in_array($taxonomy, $term_thumbnail_taxonomies)){
+					if($post_taxonomies && in_array($taxonomy, $post_taxonomies)){
+						if($terms = get_the_terms($post,$taxonomy)){
+							foreach ($terms as $term) {
+								if($term_thumbnail = self::get_term_thumbnail_url($term)){
+									return $term_thumbnail;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public static function get_term_thumbnail_url($term=null, $size='full', $crop=1, $retina=1){
+		$term	= ($term)?:get_queried_object();
+		$term	= get_term($term);
+
+		if(!$term) {
+			return false;
+		}
+
+		$thumbnail_url	= '';
+
+		$thumbnail_url	= get_term_meta($term->term_id, 'thumbnail', true);
+		$thumbnail_url	= apply_filters('wpjam_term_thumbnail_url', $thumbnail_url, $term);
 
 		if($thumbnail_url){
 			return self::get_thumbnail($thumbnail_url, $size, $crop, $retina);

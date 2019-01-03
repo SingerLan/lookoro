@@ -338,6 +338,11 @@ abstract Class WPJAM_API{
 		return preg_replace($regex, '$1', $str);
 	}
 
+	public static function strip_4_byte_chars($chars){
+		return preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $chars);
+		// return preg_replace('/[\x{10000}-\x{10FFFF}]/u', "\xEF\xBF\xBD", $chars);
+	}
+
 	//获取纯文本
 	public static function get_plain_text($text){
 

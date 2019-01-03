@@ -269,6 +269,37 @@ add_filter('wpjam_post_options', function ($wpjam_options){
 	return $wpjam_options;
 });
 
+add_filter('wpjam_term_options', function($term_options){
+	$term_thumbnail_type		= wpjam_cdn_get_setting('term_thumbnail_type') ?: '';
+	$term_thumbnail_taxonomies	= wpjam_cdn_get_setting('term_thumbnail_taxonomies') ?: [];
+
+	if($term_thumbnail_type && $term_thumbnail_taxonomies){
+		$term_options['thumbnail'] = [
+			'title'				=> '缩略图', 
+			'taxonomies'		=> $term_thumbnail_taxonomies, 
+			'show_admin_column'	=> true,	
+			'column_callback'	=> function($term_id){
+				return wpjam_get_term_thumbnail($term_id, [50,50]);
+			}
+		];
+
+		if($term_thumbnail_type == 'img'){
+			$width	= wpjam_cdn_get_setting('term_thumbnail_width') ?: 200;
+			$height	= wpjam_cdn_get_setting('term_thumbnail_height') ?: 200;
+
+			$term_options['thumbnail']['type']			= 'img';
+			$term_options['thumbnail']['item_type']		= 'url';
+			$term_options['thumbnail']['size']			= $width.'x'.$height;
+			$term_options['thumbnail']['description']	= '尺寸：'.$width.'x'.$height;
+
+		}else{
+			$term_options['thumbnail']['type']	= 'image';
+		}
+	}
+
+	return $term_options;
+});
+
 if(wpjam_basic_get_setting('timestamp_file_name')){
 	add_filter('wp_handle_upload_prefilter', function($file){	// 防止重名造成大量的 SQL 请求
 		if(strlen($file['name'])<=15){

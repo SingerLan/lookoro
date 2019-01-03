@@ -2,13 +2,10 @@
 // 为了实现多个页面使用通过 option 存储。
 // 注册设置选项，选用的是：'admin_action_' . $_REQUEST['action'] 的filter，
 // 因为在这之前的 admin_init 检测 $plugin_page 的合法性
-
-
-
 add_action('admin_action_update', function(){
 	global $plugin_page, $current_tab, $current_option, $current_page_file;
 
-	$current_option	= $_POST['option_page']??'';
+	$current_option		= $_POST['option_page']??'';
 	$current_page_file	= $_POST['current_page_file']??'';
 	if($current_page_file){
 		include(WP_CONTENT_DIR.$current_page_file);	
@@ -51,7 +48,7 @@ function wpjam_register_settings(){
 			$value	= wpjam_validate_fields_value($fields, $value);
 			$value	= wp_parse_args($value, wpjam_get_option($option_name));
 
-			if($field_validate	= ($wpjam_setting['field_validate'])??''){
+			if($field_validate	= $wpjam_setting['field_validate'] ?? ''){
 				$value	= call_user_func($field_validate, $value);
 			}
 

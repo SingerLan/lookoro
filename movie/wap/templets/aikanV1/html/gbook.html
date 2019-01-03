@@ -16,6 +16,13 @@
 <link rel="stylesheet" href="images/stui_custom.css" type="text/css"/>
 <link  rel="stylesheet" href="templets/id97/html/css/main.css" />
 <link rel="stylesheet" type="text/css" href="templets/id97/html/css/sinaFaceAndEffec.css" />
+<style type="text/css">
+*{margin:0; padding:0;}
+a{text-decoration: none;}
+img{max-width: 100%; height: auto;}
+.weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;}
+.weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
+</style>
 <script type="text/javascript" src="images/jquery.min.js"></script>
 <script type="text/javascript" src="images/stui_default.js"></script>
 <script type="text/javascript">var sitePath='{seacms:sitepath}', siteUrl='{seacms:siteurl}', sitepath='{seacms:sitepath}'</script>
@@ -32,6 +39,31 @@
 <![endif]-->
 </head>
 <body>
+<div class="weixin-tip">
+	<p>
+		<img src="/wap/templets/aikanV1/html/live_weixin.png" alt="微信打开"/>
+	</p>
+</div>
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+		function is_weixin() {
+		    var ua = navigator.userAgent.toLowerCase();
+		    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
+		var isWeixin = is_weixin();
+		if(isWeixin){
+			$(".weixin-tip").css("height",winHeight);
+            $(".weixin-tip").show();
+			$("#header-top").hide();
+			$(".container").hide();
+		}
+    })
+</script>
 {seacms:top}
 		<div class="container">
 			<div class="row">	

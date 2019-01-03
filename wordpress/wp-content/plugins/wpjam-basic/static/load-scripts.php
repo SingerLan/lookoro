@@ -36,6 +36,7 @@ $out = '';
 
 $wp_scripts = new WP_Scripts();
 wp_default_scripts( $wp_scripts );
+
 if(function_exists('wp_default_packages_vendor')){
 	wp_default_packages_vendor( $wp_scripts );
 	wp_default_packages_scripts( $wp_scripts );

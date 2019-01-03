@@ -24,7 +24,7 @@ function wpjam_verify_page(){
 
 	$fields	= [
 		'qrcode'	=> ['title'=>'二维码',	'type'=>'view'],
-		'code'		=> ['title'=>'验证码',	'type'=>'text',	'description'=>'验证码10分钟内有效！'],
+		'code'		=> ['title'=>'验证码',	'type'=>'number',	'class'=>'all-options',	'description'=>'验证码10分钟内有效！'],
 		'scene'		=> ['title'=>'scene',	'type'=>'hidden']
 	];
 
@@ -36,7 +36,7 @@ function wpjam_verify_page(){
 
 		return;
 	}else{
-		echo '<p>1. 使用微信扫描下面的二维码获取验证码。<br />2. 将获取验证码输入提交即可！</p>';
+		echo '<p>1. 使用微信扫描下面的二维码获取验证码。<br />2. 将获取验证码输入提交即可！<br />3. 如果验证不通过，请使用 Chrome 浏览器验证。</p>';
 	}
 
 	$qrcode = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.$response['ticket'];

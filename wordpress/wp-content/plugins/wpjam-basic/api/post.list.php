@@ -103,7 +103,7 @@ if(!$is_sub){
 }
 
 // 同时支持 $_GET 参数 和 $args 参数
-foreach (['posts_per_page','post_status','order','orderby','meta_key','meta_value','meta_query','meta_compare','post__in'] as $key) {
+foreach (['posts_per_page','post_status','order','orderby','meta_key','meta_value','meta_query','meta_compare','post__in','post__not_in'] as $key) {
 	$value = $args[$key]??null;
 
 	if(!$is_sub && ($get = wpjam_get_parameter($key))){

@@ -102,6 +102,11 @@ add_action('send_headers', function ($wp){
 
 		if(strpos($action, 'mag.') === 0){
 			global $wpjam_json;
+			
+			$wpjam_json	= str_replace('mag.', '', $action);
+
+			do_action('wpjam_api_template_redirect', $wpjam_json);
+
 			include(WPJAM_BASIC_PLUGIN_DIR.'api/route.php');
 		}
 	}

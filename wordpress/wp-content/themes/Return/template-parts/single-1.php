@@ -37,9 +37,9 @@
 				<?php if( wpjam_get_setting('wpjam_theme', 'single_share') ) : ?>
 				<div class="fxxxxx">
 					<ul class="social bdsharebuttonbox">
-						<li><a class="weibo" rel="nofollow" target="_blank" href="https://service.weibo.com/share/share.php?url=<?php the_permalink(); ?>&amp;type=button&amp;language=zh_cn&amp;title=<?php the_title_attribute(); ?>&amp;pic=<?php the_post_thumbnail_url(); ?>&amp;searchPic=true"><i class="fa fa-weibo"></i></a></li>
+						<li><a class="weibo" rel="nofollow" target="_blank" href="https://service.weibo.com/share/share.php?url=<?php the_permalink(); ?>&type=button&language=zh_cn&title=<?php the_title_attribute(); ?>&pic=<?php the_post_thumbnail_url(); ?>&searchPic=true"><i class="fa fa-weibo"></i></a></li>
 						<li><a data-module="miPopup" data-selector="#post_qrcode" class="weixin" rel="nofollow" href="javascript:;"><i class="fa fa-weixin"></i></a></li>
-						<li><a class="qq" rel="nofollow" target="_blank" href="https://connect.qq.com/widget/shareqq/index.html?url=<?php the_permalink(); ?>&amp;title=<?php the_title_attribute(); ?>&amp;pics=<?php the_post_thumbnail_url(); ?>&amp;summary=<?php echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content)), 0, 200,"……"); ?>"><i class="fa fa-qq"></i></a></li>
+						<li><a class="qq" rel="nofollow" target="_blank" href="https://connect.qq.com/widget/shareqq/index.html?url=<?php the_permalink(); ?>&title=<?php the_title_attribute(); ?>&pics=<?php the_post_thumbnail_url(); ?>&summary=<?php echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content)), 0, 200,"……"); ?>"><i class="fa fa-qq"></i></a></li>
 						<?php wpjam_theme_postlike();?>
 					</ul>
 					<div class="dialog-xintheme" id="post_qrcode">
@@ -65,7 +65,7 @@
 					if(!empty($prev_post)):?>
 					<div class="nav-previous">
 						<a href="<?php echo get_permalink($prev_post->ID);?>" rel="prev">
-						<span class="nav-link-thumbnail"><img src="<?php echo wpjam_get_post_thumbnail_src($prev_post, '160x160'); ?>" alt="<?php echo $prev_post->post_title;?>"></span>
+						<span class="nav-link-thumbnail"><img src="<?php echo wpjam_get_post_thumbnail_src($prev_post, '160x160'); ?>" onerror="this.onerror='';src='https://ws2.sinaimg.cn/large/007gTPK8gy1fyl9tpibl9j30g40endfp.jpg'" alt="<?php echo $prev_post->post_title;?>"></span>
 						<span class="nav-link-meta">
 						<span class="meta-nav" aria-hidden="true">上一篇</span>
 						<span class="post-title"><?php echo $prev_post->post_title;?></span>
@@ -82,7 +82,7 @@
 						<span class="meta-nav" aria-hidden="true">下一篇</span>
 						<span class="post-title"><?php echo $next_post->post_title;?></span>
 						</span>
-						<span class="nav-link-thumbnail"><img src="<?php echo wpjam_get_post_thumbnail_src($next_post, '160x160'); ?>" alt="<?php echo $next_post->post_title;?>"></span>
+						<span class="nav-link-thumbnail"><img src="<?php echo wpjam_get_post_thumbnail_src($next_post, '160x160'); ?>" onerror="this.onerror='';src='https://ws2.sinaimg.cn/large/007gTPK8gy1fyl9tpibl9j30g40endfp.jpg'" alt="<?php echo $next_post->post_title;?>"></span>
 						</a>
 					</div>
 				<?php endif;?>

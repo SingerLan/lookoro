@@ -84,14 +84,8 @@ class WPJAM_PostType{
 				$post_json['content']	= apply_filters('the_content', $post->post_content);
 			}
 		}
-
-		if(post_type_supports($post_type, 'thumbnail')){
-			if($post_thumbnail_id = get_post_thumbnail_id($post_id)){
-				$post_json['thumbnail']	= wpjam_get_thumbnail(wp_get_attachment_url($post_thumbnail_id), $thumbnail_size);
-			}else{
-				$post_json['thumbnail']	= '';
-			}
-		}
+		
+		$post_json['thumbnail']	= wpjam_get_post_thumbnail_url($post_id, $thumbnail_size);
 
 		if($taxonomies = get_object_taxonomies($post_type)){
 			foreach ($taxonomies as $taxonomy) {

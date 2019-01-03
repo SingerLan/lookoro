@@ -216,7 +216,60 @@ function wpjam_get_post_first_image($post_content='', $size='full'){
 	return WPJAM_Thumbnail::get_post_first_image($post_content, $size);
 }
 
+/* term thumbnail */
+function wpjam_has_term_thumbnail(){
+	return wpjam_get_term_thumbnail_url()? true : false;
+}
 
+function wpjam_term_thumbnail($size='thumbnail', $crop=1, $class="wp-term-image", $retina=2){
+	echo  wpjam_get_term_thumbnail(null, $size, $crop, $class);
+}
+
+function wpjam_get_term_thumbnail($term=null, $size='thumbnail', $crop=1, $class="wp-term-image", $retina=2){
+	if($term_thumbnail_url = wpjam_get_term_thumbnail_url($term, $size, $crop, $retina)){
+		return  '<img src="'.$term_thumbnail_url.'" class="'.$class.'"'.wpjam_image_hwstring($size).' />';
+	}else{
+		return '';
+	}
+}
+
+function wpjam_get_term_thumbnail_url($term=null, $size='full', $crop=1, $retina=1){
+	return WPJAM_Thumbnail::get_term_thumbnail_url($term, $size, $crop, $retina);
+}
+
+/* tag thumbnail */
+function wpjam_has_tag_thumbnail(){
+	return wpjam_has_term_thumbnail();
+}
+
+function wpjam_get_tag_thumbnail_url($term=null, $size='full', $crop=1, $retina=1){
+	return wpjam_get_term_thumbnail_url($term, $size, $crop, $retina);
+}
+
+function wpjam_get_tag_thumbnail($term=null, $size='thumbnail', $crop=1, $class="wp-tag-image", $retina=2){
+	return wpjam_get_term_thumbnail($term, $size, $crop, $class, $retina);
+}
+
+function wpjam_tag_thumbnail($size='thumbnail', $crop=1, $class="wp-tag-image", $retina=2){
+	wpjam_term_thumbnail($size, $crop, $class, $retina);
+}
+
+/* category thumbnail */
+function wpjam_has_category_thumbnail(){
+	return wpjam_has_term_thumbnail();
+}
+
+function wpjam_get_category_thumbnail_url($term=null, $size='full', $crop=1, $retina=1){
+	return wpjam_get_term_thumbnail_url($term, $size, $crop, $retina);
+}
+
+function wpjam_get_category_thumbnail($term=null, $size='thumbnail', $crop=1, $class="wp-category-image", $retina=2){
+	return wpjam_get_term_thumbnail($term, $size, $crop, $class, $retina);
+}
+
+function wpjam_category_thumbnail($size='thumbnail', $crop=1, $class="wp-category-image", $retina=2){
+	wpjam_term_thumbnail($size, $crop, $class, $retina);
+}
 
 // add_filter('pre_option_wpjam-cdn', function($value){
 // 	if($old_value = get_option('wpjam-qiniutek')){

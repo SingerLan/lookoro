@@ -139,6 +139,11 @@ add_filter('wpjam_basic_setting', function(){
 			'type'			=>'checkbox',	
 			'description'	=>'在网站底部显示：Optimized by WPJAM Basic。'
 		],
+		'x-frame-options'	=>[
+			'title'			=>'Frame 嵌入支持',	
+			'type'			=>'select',	
+			'options'		=>[''=>'所有网页', 'DENY'=>'不允许其他网页嵌入本网页', 'SAMEORIGIN'=>'只能是同源域名下的网页']
+		],
 		'image_default_link_type'	=>[
 			'title'			=>'媒体文件默认链接到：',	
 			'type'			=>'select',	

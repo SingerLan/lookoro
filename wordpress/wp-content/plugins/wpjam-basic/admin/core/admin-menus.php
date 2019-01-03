@@ -10,9 +10,12 @@ function wpjam_admin_menu() {
 		return;
 	}
 
+	global $wpjam_pages;
+	$wpjam_pages	= $wpjam_pages ?? [];
+
 	// 获取后台菜单
 	if(is_multisite() && is_network_admin()){
-		$wpjam_pages	=  apply_filters('wpjam_network_pages', []);
+		$wpjam_pages	=  apply_filters('wpjam_network_pages', $wpjam_pages);
 
 		$builtin_parent_pages	= [
 			'settings'	=> 'settings.php',
@@ -23,7 +26,7 @@ function wpjam_admin_menu() {
 			'sites'		=> 'sites.php',
 		];
 	}else{
-		$wpjam_pages	= apply_filters('wpjam_pages', []);
+		$wpjam_pages	= apply_filters('wpjam_pages', $wpjam_pages);
 
 		$builtin_parent_pages	= [
 			'management'=> 'tools.php',

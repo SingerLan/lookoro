@@ -111,11 +111,11 @@ function wpjam_get_referer(){
 }
 
 // 显示字段
-function wpjam_fields($fieds, $args=array()){
+function wpjam_fields($fieds, $args=[]){
 	WPJAM_Form::fields_callback($fieds, $args);
 }
 
-function wpjam_column_callback($column_name, $args=array()){
+function wpjam_column_callback($column_name, $args=[]){
 	return WPJAM_Form::column_callback($column_name, $args);
 }
 
@@ -211,7 +211,7 @@ function wpjam_form($fields, $form_url, $nonce_action='', $submit_text=''){
 // 逐步放弃
 function wpjam_get_form_fields($admin_column = false){
 	global $plugin_page;
-	$form_fields = apply_filters($plugin_page.'_fields', array());
+	$form_fields = apply_filters($plugin_page.'_fields', []);
 
 	if($form_fields){
 		foreach($form_fields as $key => $field){

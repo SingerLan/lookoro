@@ -1,8 +1,10 @@
 <?php
-header('X-Frame-Options: deny');
-
 function wpjam_basic_get_setting($setting_name){
 	return wpjam_get_setting('wpjam-basic', $setting_name);
+}
+
+if(wpjam_basic_get_setting('x-frame-options')){
+	header('X-Frame-Options: '.wpjam_basic_get_setting('x-frame-options'));
 }
 
 function wpjam_include_extends($admin=false){

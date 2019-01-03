@@ -1,22 +1,7 @@
 <?php
 do_action('wpjam_post_page_file', $post_type);
 
-if(function_exists('use_block_editor_for_post_type') && use_block_editor_for_post_type($post_type)){
-	$post_fields	= wpjam_get_post_fields($post_type);
-	$post_fields	= array_filter($post_fields, function($post_field){
-		return empty($post_field['show_admin_column']) || ($post_field['show_admin_column'] != 'only');
-	});
-
-	if(!empty($post_fields)){
-		add_filter('use_block_editor_for_post_type', '__return_false');
-	}
-}
-
-add_action('edit_form_advanced', function($post){
-	if(function_exists('use_block_editor_for_post') && use_block_editor_for_post($post)){
-		return;
-	}
-	
+function wpjam_edit_form_advanced($post){
 	global $pagenow;
 
 	$current_screen	= get_current_screen();
@@ -26,10 +11,20 @@ add_action('edit_form_advanced', function($post){
 
 	if(empty($post_options)) return;
 
+	$meta_box_count 	= 0;
+
 	// 输出日志自定义字段表单
 	foreach($post_options as $meta_key => $post_option){
-		extract($post_option);
-		add_meta_box($meta_key, $title, '', $post_type, 'wpjam', $priority, array('fields'=>$fields));
+		$post_option = wp_parse_args($post_option, [
+			'priority'		=> 'high',
+			'title'			=> '',
+			'fields'		=> []
+		]);
+		
+		if($post_option['title']){
+			$meta_box_count++;
+			add_meta_box($meta_key, $post_option['title'], '', $post_type, 'wpjam', $post_option['priority'], ['fields'=>$post_option['fields']]);
+		}
 	}
 
 	// 下面代码 copy 自 do_meta_boxes
@@ -46,22 +41,32 @@ add_action('edit_form_advanced', function($post){
 		if (isset($wp_meta_boxes[$page][$context][$priority])){
 			foreach ((array) $wp_meta_boxes[$page][$context][$priority] as $box ) {
 				if($box['id'] && $box['title']){
-					$i++;
-					$class	= ($i == 1)?'nav-tab nav-tab-active':'nav-tab';
-					$nav_tab_title	.= '<a class="'.$class.'" href="javascript:;" id="tab_title_'.$box['id'].'">'.$box['title'].'</a>';
+					if($meta_box_count == 1){
+						$nav_tab_title	= $box['title'];
+					}else{
+						$i++;
+						$class	= ($i == 1)?'nav-tab nav-tab-active':'nav-tab';
+						$nav_tab_title	.= '<a class="'.$class.'" href="javascript:;" id="tab_title_'.$box['id'].'">'.$box['title'].'</a>';
+					}
 				}
 			}
 		}
 	}
 
 	if(empty($nav_tab_title))	return;
-	
+
 	echo '<div id="'.htmlspecialchars($context).'-sortables" class="meta-box-sortables">';
 	echo '<div id="'.$context.'" class="postbox">' . "\n";
 	
-	echo '<h2 class="nav-tab-wrapper">';
-	echo $nav_tab_title;
-	echo '</h2>';
+	if($meta_box_count == 1){	
+		echo '<h2 class="hndle">';
+		echo $nav_tab_title;
+		echo '</h2>';
+	}else{
+		echo '<h2 class="nav-tab-wrapper">';
+		echo $nav_tab_title;
+		echo '</h2>';
+	}	
 
 	$i	= 0; 
 
@@ -70,10 +75,13 @@ add_action('edit_form_advanced', function($post){
 		if (isset( $wp_meta_boxes[$page][$context][$priority]) ) {
 			foreach ((array) $wp_meta_boxes[$page][$context][$priority] as $box) {
 				if($box['id'] && $box['title']){
-					$i++;
-					$class	= ($i == 1)?'div-tab':'div-tab hidden';
+					if($meta_box_count > 1){
+						$i++;
+						$class	= ($i == 1)?'div-tab':'div-tab hidden';
 
-					echo '<div id="tab_'.$box['id'].'" class="'.$class.'">';
+						echo '<div id="tab_'.$box['id'].'" class="'.$class.'">';
+					}
+					
 					if(isset($post_options[$box['id']])){
 						wpjam_fields($post_options[$box['id']]['fields'], array(
 							'data_type'		=> 'post_meta',
@@ -84,7 +92,10 @@ add_action('edit_form_advanced', function($post){
 					}else{
 						call_user_func($box['callback'], $post, $box);
 					}
-					echo "</div>\n";
+					
+					if($meta_box_count > 1){
+						echo "</div>\n";
+					}
 				}
 			}
 		}
@@ -93,7 +104,21 @@ add_action('edit_form_advanced', function($post){
 
 	echo "</div>\n";
 	echo "</div>";
-}, 99);
+}
+
+if(function_exists('use_block_editor_for_post_type') && use_block_editor_for_post_type($post_type)){
+	$post_fields	= wpjam_get_post_fields($post_type);
+	$post_fields	= array_filter($post_fields, function($post_field){
+		return empty($post_field['show_admin_column']) || ($post_field['show_admin_column'] != 'only');
+	});
+
+	if(!empty($post_fields)){
+		add_filter('use_block_editor_for_post_type', '__return_false');
+		add_action('edit_form_advanced', 'wpjam_edit_form_advanced', 99);
+	}
+}else{
+	add_action('edit_form_advanced', 'wpjam_edit_form_advanced', 99);
+}
 
 // 保存日志自定义字段
 add_action('save_post', function ($post_id, $post){

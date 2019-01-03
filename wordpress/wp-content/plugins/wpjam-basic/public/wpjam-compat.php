@@ -81,3 +81,33 @@ function wpjam_get_default_thumbnail_uri(){
 	_deprecated_function(__FUNCTION__, 'WPJAM Basic 3.2', 'wpjam_get_default_thumbnail_url');
 	return wpjam_get_default_thumbnail_url('full');
 }
+
+function wpjam_get_category_thumbnail_src($term=null, $size='thumbnail', $crop=1, $retina=1){
+	_deprecated_function(__FUNCTION__, 'WPJAM Basic 3.2', 'wpjam_get_term_thumbnail_url');
+	return wpjam_get_term_thumbnail_url($term, $size, $crop, $retina);	
+}
+
+function wpjam_get_category_thumbnail_uri($term=null){
+	_deprecated_function(__FUNCTION__, 'WPJAM Basic 3.2', 'wpjam_get_term_thumbnail_url');
+	return wpjam_get_term_thumbnail_url($term, 'full');
+}
+
+function wpjam_get_tag_thumbnail_src($term=null, $size='thumbnail', $crop=1, $retina=1){
+	_deprecated_function(__FUNCTION__, 'WPJAM Basic 3.2', 'wpjam_get_term_thumbnail_url');
+	return wpjam_get_term_thumbnail_url($term, $size, $crop, $retina);	
+}
+
+function wpjam_get_tag_thumbnail_uri($term=null){
+	_deprecated_function(__FUNCTION__, 'WPJAM Basic 3.2', 'wpjam_get_term_thumbnail_url');
+	return wpjam_get_term_thumbnail_url($term, 'full');
+}
+
+function wpjam_get_term_thumbnail_src($term=null, $size='thumbnail', $crop=1, $retina=1){
+	_deprecated_function(__FUNCTION__, 'WPJAM Basic 3.2', 'wpjam_get_term_thumbnail_url');
+	return wpjam_get_term_thumbnail_url($term, $size, $crop, $retina);	
+}
+
+function wpjam_get_term_thumbnail_uri($term=null){
+	_deprecated_function(__FUNCTION__, 'WPJAM Basic 3.2', 'wpjam_get_term_thumbnail_url');
+	return wpjam_get_term_thumbnail_url($term, 'full');
+}

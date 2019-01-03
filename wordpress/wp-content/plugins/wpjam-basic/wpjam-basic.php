@@ -3,10 +3,11 @@
 Plugin Name: WPJAM BASIC
 Plugin URI: https://blog.wpjam.com/project/wpjam-basic/
 Description: WPJAM 常用的函数和 Hook，屏蔽所有 WordPress 所有不常用的功能。
-Version: 3.4.1
+Version: 3.4.2
 Author: Denis
 Author URI: http://blog.wpjam.com/
 */
+
 if (version_compare(PHP_VERSION, '7.2.0') < 0) {
 	include plugin_dir_path(__FILE__).'old/wpjam-basic.php';
 }else{
@@ -40,3 +41,5 @@ if (version_compare(PHP_VERSION, '7.2.0') < 0) {
 
 	do_action('wpjam_loaded');
 }
+
+
