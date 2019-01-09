@@ -11,6 +11,7 @@
 	<script src="/{seacms:sitepath}js/common.js"></script>
 	<script src="/{seacms:sitepath}js/function.js"></script>
 	<script src="/{seacms:sitepath}js/play.js"></script>
+	<script src="images/js/main.js?v=1.3.9"></script>
 	<script>var playn='{playpage:name}', playp='{playpage:part}';</script>
 	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="images/css/jquery.allofthelights.css">
     <script src="images/js/jquery.allofthelights.js"></script>
@@ -32,7 +33,6 @@
 				<div class="col-xs-12"><div id="player-box">{playpage:playurlinfo}{playpage:player}</div></div>
 				
 				<div class="col-xs-12">
-					{if:{playpage:typename}=="电视剧"}
 					<div style="padding:15px 0;text-align:right;">
 						<a class="btn btn-js-action btn-sm" href="javascript:;" onclick="$('#jsModal').modal('show');"><span class="glyphicon glyphicon-list"></span> 选集</a>
 						<a onclick="return parent.video_jump(-1)" href="javascript:void()" class="btn btn-js-action btn-sm"><span class="glyphicon glyphicon-step-backward"></span> 上一集</a>
@@ -45,7 +45,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">�</span></button>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									<h4 class="modal-title" id="welcomeModalLabel">请选择：</h4>
 								</div>
 								<div class="modal-body" style="overflow:auto;max-height:350px;">
@@ -72,7 +72,6 @@
 							</div>
 						</div>
 					</div>
-					{end if}
 					<div class="alert-x alert-warning" style="line-height:28px;padding:5px 10px;">按键 Ctrl+D 把 <b>{seacms:sitename}</b> 加入收藏夹，下次找电影更方便！！<div style="float:right;"><div style="height:28px;">
 						<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
 							<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
