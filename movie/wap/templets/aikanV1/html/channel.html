@@ -40,25 +40,25 @@
 					<ul class="stui-screen__list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按分类</span></li>
 						{seacms:menulist type={seacms:currenttypeid}}{seacms:smallmenulist type=[menulist:upid]}
-						<li {subif:{seacms:currenttypeid}==[smallmenulist:typeid]}class="active"{end subif}><a href="[smallmenulist:link]">[smallmenulist:typename]</a></li>
+						<li {subif:{seacms:currenttypeid}==[smallmenulist:typeid]}class="active"{end subif}><a href="/wap[smallmenulist:link]">[smallmenulist:typename]</a></li>
 						{/seacms:smallmenulist}{/seacms:menulist}
 					</ul>{else}
 					<ul class="stui-screen__list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按分类</span></li>
 						{seacms:smallmenulist type={seacms:currenttypeid}}
-						<li><a href="[smallmenulist:link]">[smallmenulist:typename]</a></li>
+						<li><a href="/wap[smallmenulist:link]">[smallmenulist:typename]</a></li>
 						{/seacms:smallmenulist}
 					</ul>{end if}
 					<ul class="stui-screen__list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按地区</span></li>
 						{seacms:areacaslist}
-						<li><a href="[areacaslist:link]" title="[areacaslist:value]">[areacaslist:value]</a></li>
+						<li><a href="/wap[areacaslist:link]" title="[areacaslist:value]">[areacaslist:value]</a></li>
 						{/seacms:areacaslist}
 					</ul>
 					<ul class="stui-screen__list type-slide clearfix">
 						<li><span class="text-muted">按年份</span></li>
 						{seacms:yearcaslist}
-						<li><a href="[yearcaslist:link]" title="[yearcaslist:value]">[yearcaslist:value]</a></li>
+						<li><a href="/wap[yearcaslist:link]" title="[yearcaslist:value]">[yearcaslist:value]</a></li>
 						{/seacms:yearcaslist}
 					</ul>
 				</div>

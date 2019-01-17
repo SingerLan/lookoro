@@ -29,37 +29,37 @@
 			<div class="stui-pannel-box">
 				<div class="stui-pannel_hd">
 					<div class="stui-pannel__head active bottom-line clearfix">
-						<a class="more text-muted pull-right" href="/{seacms:sitepath}search.php?searchtype=5&tid={searchpage:type}"><i class="icon iconfont icon-refresh font-14"></i> 重置条件</a>
+						<a class="more text-muted pull-right" href="/wap/{seacms:sitepath}search.php?searchtype=5&tid={searchpage:type}"><i class="icon iconfont icon-refresh font-14"></i> 重置条件</a>
 						<h3 class="title"><img src="images/icon_27.png"/>{searchpage:typename}</h3>
 					</div>
 					<ul class="stui-screen__list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按剧情</span></li>
 						{seacms:jqitemlist}
-						<li {if:[jqitemlist:value]=={searchpage:jq}}class="active"{end if}><a href="[jqitemlist:link]" title="[jqitemlist:value]">[jqitemlist:value]</a></li>
+						<li {if:[jqitemlist:value]=={searchpage:jq}}class="active"{end if}><a href="/wap[jqitemlist:link]" title="[jqitemlist:value]">[jqitemlist:value]</a></li>
 						{/seacms:jqitemlist}
 					</ul>
 					<ul class="stui-screen__list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按地区</span></li>
 						{seacms:areaitemlist}
-						<li {if:[areaitemlist:value]=={searchpage:area}}class="active"{end if}><a href="[areaitemlist:link]" title="[areaitemlist:value]">[areaitemlist:value]</a></li>
+						<li {if:[areaitemlist:value]=={searchpage:area}}class="active"{end if}><a href="/wap[areaitemlist:link]" title="[areaitemlist:value]">[areaitemlist:value]</a></li>
 						{/seacms:areaitemlist}
 					</ul>
 					<ul class="stui-screen__list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按年份</span></li>
 						{seacms:yearitemlist}
-						<li {if:[yearitemlist:value]=={searchpage:year}}class="active"{end if}><a href="[yearitemlist:link]" title="[yearitemlist:value]">[yearitemlist:value]</a></li>
+						<li {if:[yearitemlist:value]=={searchpage:year}}class="active"{end if}><a href="/wap[yearitemlist:link]" title="[yearitemlist:value]">[yearitemlist:value]</a></li>
 						{/seacms:yearitemlist}
 					</ul>
 					<ul class="stui-screen__list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按语言</span></li>
 						{seacms:langitemlist}
-						<li {if:[langitemlist:value]=={searchpage:lang}}class="active"{end if}><a href="[langitemlist:link]" title="[langitemlist:value]">[langitemlist:value]</a></li>
+						<li {if:[langitemlist:value]=={searchpage:lang}}class="active"{end if}><a href="/wap[langitemlist:link]" title="[langitemlist:value]">[langitemlist:value]</a></li>
 						{/seacms:langitemlist}
 					</ul>
 					<ul class="stui-screen__list letter-list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按字母</span></li>
 						{seacms:letteritemlist}
-						<li {if:[letteritemlist:value]=={searchpage:letter}}class="active"{end if}><a href="[letteritemlist:link]" title="[letteritemlist:value]">[letteritemlist:value]</a></li>
+						<li {if:[letteritemlist:value]=={searchpage:letter}}class="active"{end if}><a href="/wap[letteritemlist:link]" title="[letteritemlist:value]">[letteritemlist:value]</a></li>
 						{/seacms:letteritemlist}
 					</ul>
 				</div>
