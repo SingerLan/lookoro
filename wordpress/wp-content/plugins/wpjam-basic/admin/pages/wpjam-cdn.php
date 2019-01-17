@@ -12,8 +12,8 @@ add_filter('wpjam_cdn_setting', function(){
 	</div>';
 
 	$detail = '
-	<p>UCloud Ufile用户：请点击这里注册和申请<a href="http://wpjam.com/go/ucloud/" target="_blank">UCloud</a>，每月20GB/月的对象存储下载流量，UCloud UFile<strong><a href="https://blog.wpjam.com/m/ucloud-ufile-cdn/" target="_blank">详细使用指南</a></strong>。</p>
-	<p>七牛云存储用户：充值可以使用插件用户专属的优惠码：“<span style="color:red; font-weight:bold;">d706b222</span>”（<strong><a title="如何使用七牛云存储的优惠码" class="thickbox" href="#TB_inline?width=600&height=480&inlineId=qiniu_coupon">详细使用指南</a></strong>），七牛云存储<strong><a href="https://blog.wpjam.com/m/qiniu-cdn/" target="_blank">详细使用指南</a></strong>。</p>
+	<p>UCloud 用户：每月20GB对象存储下载流量，注册<a href="http://wpjam.com/go/ucloud/" target="_blank">UCloud</a>账号7天内，使用优惠券「<span style="color:red; font-weight:bold;">PW28JAM</span>」可以免费兑换100GBCDN流量，UCloud UFile<strong><a href="https://blog.wpjam.com/m/ucloud-ufile-cdn/" target="_blank">详细使用指南</a></strong>。</p>
+	<p>七牛云存储用户：充值可以使用插件用户专属的优惠码：「<span style="color:red; font-weight:bold;">d706b222</span>」（<strong><a title="如何使用七牛云存储的优惠码" class="thickbox" href="#TB_inline?width=600&height=480&inlineId=qiniu_coupon">详细使用指南</a></strong>），七牛云存储<strong><a href="https://blog.wpjam.com/m/qiniu-cdn/" target="_blank">详细使用指南</a></strong>。</p>
 	<p>阿里云OSS用户：请点击这里注册和申请<a href="http://wpjam.com/go/aliyun/" target="_blank">阿里云</a>可获得代金券，阿里云OSS<strong><a href="https://blog.wpjam.com/m/aliyun-oss-cdn/" target="_blank">详细使用指南</a></strong>。</p>
 	<p>腾讯云COS用户：请点击这里注册和申请<a href="http://wpjam.com/go/qcloud/" target="_blank">腾讯云</a>可获得优惠券。</p>
 	'
@@ -32,10 +32,30 @@ add_filter('wpjam_cdn_setting', function(){
 		'locals'	=> ['title'=>'其他域名',	'type'=>'mu-text',	'item_type'=>'url'],
 	];
 
-	$remote_fields = [
-		'remote'	=> ['title'=>'保存远程图片',	'type'=>'checkbox',	'description'=>'自动将远程图片镜像到云存储。'],
-		'exceptions'=> ['title'=>'例外',			'type'=>'textarea',	'class'=>'regular-text',	'description'=>'如果远程图片的链接中包含以上字符串或者域名，就不会被保存并镜像到云存储。'],
-	];
+	global $wp_rewrite;
+
+	if($wp_rewrite->using_mod_rewrite_permalinks() && extension_loaded('gd')){
+		$remote_fields = [
+			'remote'	=> ['title'=>'保存远程图片',	'type'=>'checkbox',	'description'=>'自动将远程图片镜像到云存储。'],
+			'exceptions'=> ['title'=>'例外',			'type'=>'textarea',	'class'=>'regular-text',	'description'=>'如果远程图片的链接中包含以上字符串或者域名，就不会被保存并镜像到云存储。'],
+		];
+	}elseif(!got_url_rewrite()){
+		$remote_fields = [
+			'remote'	=> ['title'=>'保存远程图片',	'type'=>'view',	'value'=>'你服务器不支持伪静态']
+		];
+	}elseif(!$wp_rewrite->using_permalinks()){
+		$remote_fields = [
+			'remote'	=> ['title'=>'保存远程图片',	'type'=>'view',	'value'=>'你服务器没有开启固定链接']
+		];
+	}elseif($wp_rewrite->using_index_permalinks()){
+		$remote_fields = [
+			'remote'	=> ['title'=>'保存远程图片',	'type'=>'view',	'value'=>'你的固定链接中有 index.php']
+		];
+	}elseif(extension_loaded('gd')){
+		$remote_fields = [
+			'remote'	=> ['title'=>'保存远程图片',	'type'=>'view',	'value'=>'PHP没有加载GD扩展库']
+		];
+	}
 
 	$image_fields	= [
 		'interlace'	=> ['title'=>'渐进显示',	'type'=>'checkbox',	'description'=>'是否JPEG格式图片渐进显示。'],
@@ -66,7 +86,12 @@ add_filter('wpjam_cdn_setting', function(){
 	
 	$sections['cdn']		= ['title'=>'CDN设置',		'fields'=>$cdn_fields,		'summary'=>'<p>*使用之前，请一定认真阅读 WPJAM Basic 的<a href="https://blog.wpjam.com/m/wpjam-basic-cdn/" target="_blank">CDN 加速的使用说明</a>，这里几乎可以解决你所有的问题。</p>'];
 	$sections['local']		= ['title'=>'本地设置',		'fields'=>$local_fields];
+
+	
+
+	
 	$sections['remote']		= ['title'=>'远程图片设置',	'fields'=>$remote_fields,	'summary'=>'<p>*自动将远程图片镜像到云存储需要你的博客支持固定链接。<br />*如果前面设置的静态文件域名和博客域名不一致，该功能也可能出问题。<br />*远程 GIF 图片保存到云存储将失去动画效果，所以目前不支持 GIF 图片。</p>'];
+	
 	$sections['image']		= ['title'=>'图片设置',		'fields'=>$image_fields];
 	$sections['watermark']	= ['title'=>'水印设置',		'fields'=>$watermark_fields];
 	

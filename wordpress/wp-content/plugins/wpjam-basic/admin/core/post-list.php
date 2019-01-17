@@ -1,19 +1,7 @@
 <?php
 include(WPJAM_BASIC_PLUGIN_DIR.'admin/includes/class-wpjam-post-list-table.php');
 
-function wpjam_get_post_list_table($post_type){
-	$wpjam_list_table_args	= apply_filters(wpjam_get_filter_name($post_type, 'list_table'), []);
-	
-	if(empty($wpjam_list_table_args)){
-		return false;
-	}else{
-		return new WPJAM_Post_List_Table($wpjam_list_table_args);
-	}
-}
-
 do_action('wpjam_post_list_page_file', $post_type);
-
-$post_type_list_table =  wpjam_get_post_list_table($post_type);
 
 $post_fields	= wpjam_get_post_fields($post_type);
 if(empty($post_fields)) return;

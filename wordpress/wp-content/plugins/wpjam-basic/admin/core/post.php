@@ -163,6 +163,8 @@ add_action('save_post', function ($post_id, $post){
 
 	if(empty($post_fields)) return;
 
+	$post_fields	= apply_filters('wpjam_save_post_fields', $post_fields, $post_id);
+
 	// check_admin_referer('update-post_' .$post_id);
 	
 	if($value = wpjam_validate_fields_value($post_fields)){

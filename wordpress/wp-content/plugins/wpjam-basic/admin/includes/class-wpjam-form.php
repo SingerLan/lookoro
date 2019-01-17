@@ -23,6 +23,7 @@ class WPJAM_Form{
 			return $data[$key]??$value;
 		}elseif($data_type == 'post_meta'){
 			if($id && metadata_exists('post', $id, $key)){
+
 				return get_post_meta($id, $key, true);
 			}else{
 				return $value;

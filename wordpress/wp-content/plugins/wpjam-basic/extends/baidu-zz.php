@@ -8,7 +8,12 @@ Version: 1.0
 
 add_action( 'wp_enqueue_scripts', function(){
 	if(is_404()) return;
-	wp_enqueue_script( 'baidu_zz_push', '//push.zhanzhang.baidu.com/push.js', '', '', true );
+
+	if(is_ssl()){
+		wp_enqueue_script( 'baidu_zz_push', 'https://zz.bdstatic.com/linksubmit/push.js', '', '', true );
+	}else{
+		wp_enqueue_script( 'baidu_zz_push', 'http://push.zhanzhang.baidu.com/push.js', '', '', true );
+	}
 });
 
 function wpjam_notify_baidu_zz($urls, $update=false){

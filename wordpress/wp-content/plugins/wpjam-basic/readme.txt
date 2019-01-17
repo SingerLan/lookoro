@@ -3,7 +3,7 @@ Contributors: denishua
 Donate link: http://wpjam.com/
 Tags: WPJAM,性能优化
 Requires at least: 4.0
-Tested up to: 5.0
+Tested up to: 5.0.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,16 +16,7 @@ WPJAM Basic 是<a href="http://blog.wpjam.com/">我爱水煮鱼博客</a>多年�
 
 WPJAM Basic 主要功能，就是去掉 WordPress 当中一些不常用的功能，比如日志修订等，还有就是提供一些经常使用的函数，比如获取日志中第一张图，获取日志摘要等。如果你的主机安装了 Memcacached 等这类内存缓存组件和对应的 WordPress 插件，这个插件也针对提供一些针对一些常用的插件和函数提供了对象缓存的优化版本。
 
-详细介绍： <a href="http://blog.wpjam.com/project/wpjam-basic/">http://blog.wpjam.com/project/wpjam-basic/</a>，点击这里查看<a href="http://blog.wpjam.com/m/wpjam-basic-3-installation-instructions/">详细的安装说明</a>。
-
-最新版本已集成<a href="https://wordpress.org/plugins/wpjam-qiniu/">七牛插件</a>, 并兼容1.4.5及以上版本七牛插件。
-
-如果启用该版本插件，请先停用七牛插件1.4.5以下版本。
-
-WPJAM Basic 自2.6版本开始，只作为开发基础库。「微信机器人」和「七牛镜像存储插件」均基于此基础库开发。原有各个功能已拆分成组件，默认不启用。
-
-使用上有问题，请加入<a href="http://97866.com/s/zsxq/">WordPress果酱知识星球</a >
-
+详细介绍和安装说明： <a href="http://blog.wpjam.com/project/wpjam-basic/">http://blog.wpjam.com/project/wpjam-basic/</a>。
 
 == Installation ==
 
@@ -34,11 +25,11 @@ WPJAM Basic 自2.6版本开始，只作为开发基础库。「微信机器人�
 
 == Changelog ==
 
-= 3.4.2 =
-* 5.0 之前版本兼容处理
+= 3.4.4 =
+* 5.0 版本兼容处理
 * 添加百度站长提交扩展
 * 将高级缩略图集成到缩略图设置
-
+* 优化「去掉分类目录 URL 中的 category」功能
 
 = 3.4 =
 * 支持 UCLOUD 对象存储

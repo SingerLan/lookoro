@@ -10,7 +10,7 @@ Version: 1.0
 if(!function_exists('the_views')){
 	//显示浏览次数
 	function the_views(){
-		$views = wpjam_get_post_total_view(get_the_ID()) ?: 0;
+		$views = wpjam_get_post_total_views(get_the_ID()) ?: 0;
 		echo '<span class="view">浏览：'.$views.'</span>';
 	}
 
@@ -28,12 +28,11 @@ function wpjam_get_post_total_views($post_id){
 	return $post_views + $feed_views + apply_filters('wpjam_post_views_addon', 0);
 }
 
+add_action('init',function(){
+	global $wp_rewrite;
 
-
-add_filter('wpjam_rewrite_rules', function($wpjam_rewrite_rules){
-	$wpjam_rewrite_rules['feedviews/([0-9]+)\.png$']	= 'index.php?module=postviews&action=feed&p=$matches[1]';
-	$wpjam_rewrite_rules['postviews/([0-9]+)\.png$']	= 'index.php?module=postviews&action=post&p=$matches[1]';
-	return $wpjam_rewrite_rules;
+	add_rewrite_rule($wp_rewrite->root.'feedviews/([0-9]+)\.png?$', 'index.php?module=postviews&action=feed&p=$matches[1]', 'top');
+	add_rewrite_rule($wp_rewrite->root.'postviews/([0-9]+)\.png?$', 'index.php?module=postviews&action=post&p=$matches[1]', 'top');
 });
 
 add_filter('wpjam_template', function($wpjam_template, $module, $action){

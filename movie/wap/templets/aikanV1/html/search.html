@@ -49,7 +49,7 @@
 							<div class="detail">
 								<h3 class="title"><a href="[searchlist:link]">[searchlist:name]</a></h3>
 								<p><span class="text-muted">导演：</span>[searchlist:director]</p>
-								<p><span class="text-muted">主演：</span>[searchlist:actor]</p>
+								<p><span class="text-muted">主演：</span><span class="actor">[searchlist:actor len=60]</span></p>
 								<p>
 									<span class="text-muted">类型：</span>[searchlist:typename]<span class="lineh"> </span><span class="text-muted">地区：</span>[searchlist:publisharea]<span class="hidden-xs"><span class="lineh"> </span><span class="text-muted">年份：</span>[searchlist:publishtime]</span>
 								</p>
@@ -117,4 +117,14 @@
 </div>
 {seacms:foot}
 </body>
+<script type="text/javascript">
+window.onload = function(){
+var str=document.getElementsByClassName("actor")
+for(var i=0;i<str.length;i++){
+c=str[i].innerHTML
+c = c.replace(/search.php/g,'wap/search.php');
+document.getElementsByClassName("actor")[i].innerHTML=c;
+}
+    }
+</script>
 </html>

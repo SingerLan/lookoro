@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $cfg_runmode = '1';
 $cfg_stoptime = '3';
 $cfg_makemode = 'dir1';
@@ -97,7 +97,7 @@ var _hmt = _hmt || [];
 })();
 </script>
 ';
-$cfg_description = '';
-$cfg_site_notice = '';
-$cfg_powerby = 'Copyright � 2015-2018  All Rights Reserved';
+$cfg_description = '大饼影视_影视_电视剧_电影_影院_VIP电影电视剧免费在线播放';
+$cfg_site_notice = '大饼影视,免费在线播放,VIP电影,VIP电视剧,综艺,高清,视频,在线观看,P2P';
+$cfg_powerby = 'Copyright \u0026\u0023\u0031\u0036\u0039\u003b 2015-2019  All Rights Reserved';
 ?>

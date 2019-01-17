@@ -21,6 +21,17 @@ add_action('generate_rewrite_rules', function ($wp_rewrite){
 
 });
 
+add_action('init',function(){
+	if($wpjam_rewrites	= wpjam_basic_get_setting('rewrites')){
+		foreach ($wpjam_rewrites as $wpjam_rewrite) {
+			if($wpjam_rewrite['regex'] && $wpjam_rewrite['query']){
+				add_rewrite_rule($wpjam_rewrite['regex'], $wpjam_rewrite['query'], 'top');
+			}
+		}
+	}
+});
+
+
 function wpjam_remove_rewrite_rules($rules){
 
 	$unuse_rewrite_keys = ['comment-page','comment','author','type/','feed=','attachment'];
@@ -35,7 +46,9 @@ function wpjam_remove_rewrite_rules($rules){
 		if($unuse_rewrite_keys){
 			foreach ($unuse_rewrite_keys as $unuse_rewrite_key) {
 				if( strpos($key, $unuse_rewrite_key) !== false || strpos($rule, $unuse_rewrite_key) !== false){
-					unset($rules[$key]);
+					if($rule != 'index.php?&feed=$matches[1]'){
+						unset($rules[$key]);
+					}
 				}
 			}
 		}

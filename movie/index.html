@@ -2,10 +2,10 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <title>大饼影视 - </title>
-	<meta name="keywords" content="大饼影视" />
+    <title>大饼影视 - 一起分享电影给我们带来的快乐</title>
+    <meta name="keywords" content="腾讯视频,爱奇艺视频,电影,电视剧,综艺,高清,视频,在线观看,全网搜,搜全网,P2P" />
+    <meta name="description" content="大饼影视官网-www.lookoro.cn专注影视电视剧大饼影视网站_大饼影视电影_大饼影视影院在线免费电影电视剧无需下载播放器即可播放" />
 	<link href="/favicon.ico" type="image/x-icon" rel="icon">
-<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <link rel="stylesheet" href="/templets/id97/images/css/bootstrap.min.css">
 <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="/templets/id97/images/css/style.css">
 <script src="/templets/id97/images/js/jquery.min.js"></script>
@@ -13,8 +13,8 @@
 try {
 var urlhash = window.location.hash;
 if (!urlhash.match("fromapp")) {
-if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i))) {
-window.location = "http://m.yfmovie.top/wap";
+if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i)) && !(navigator.userAgent.match(/(MicroMessenger)/i))) {
+window.location = "http://www.lookoro.cn/wap";
 }
 }
 }
@@ -27,8 +27,40 @@ catch (err) {
 <script src="/templets/id97/images/js/html5shiv.min.js"></script>
 <script src="/templets/id97/images/js/respond.min.js"></script>
 <![endif]-->
+<style type="text/css">
+*{margin:0; padding:0;}
+a{text-decoration: none;}
+img{max-width: 100%; height: auto;width: 100%;}
+.weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;}
+.weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
+</style>
 </head>
 <body>
+<div class="weixin-tip">
+	<p>
+		<img src="/wap/templets/aikanV1/html/live_weixin.png" alt="微信打开"/>
+	</p>
+</div>
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+		function is_weixin() {
+		    var ua = navigator.userAgent.toLowerCase();
+		    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
+		var isWeixin = is_weixin();
+		if(isWeixin){
+			$(".weixin-tip").css("height",winHeight);
+            $(".weixin-tip").show();
+			$("header").hide();
+			$(".container").hide();
+		}
+    })
+</script>
 	<header style="background:#FFF;">
 
 <div style="padding:5px 0;border-bottom:1px solid #DDD;">
@@ -36,7 +68,7 @@ catch (err) {
         <span class="header-help">欢迎来到大饼影视，我们因为电影而相聚。</span>
         <div class="pull-right">
             <a class="header-help" href="javascript:alert('快捷键Ctrl+D可以快速添加到收藏夹。');">Ctrl+D 加入收藏夹</a> -
-            <a class="header-help" style="color:red;" href="/desktop.php?url=http://http://m.yfmovie.top&name=大饼影视">保存到桌面</a>
+            <a class="header-help" style="color:red;" href="/desktop.php?url=http://http://www.lookoro.cn&name=大饼影视">保存到桌面</a>
         </div>
     </div>
 </div>
@@ -55,7 +87,7 @@ catch (err) {
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <ul class="nav navbar-nav">
-			<li class="active"><a href="/">首页</a></li>
+			<li id="index1" class="active"><a href="/">首页</a></li>
 			
 			<li ><a target="_self" href="/list/?1.html">电影</a></li>
 			
@@ -65,6 +97,7 @@ catch (err) {
 			
 			<li ><a target="_self" href="/list/?4.html">动漫</a></li>
 			
+<li id="index2"><a target="_self" href="/gbook.php">留言求片</a></li>
         </ul>
 		<div class="pull-right">
 			<ul class="nav navbar-nav">
@@ -92,31 +125,31 @@ catch (err) {
 			</ol>
 		
 			<!-- Wrapper for slides -->
-			<div class="carousel-inner" role="listbox">
+			<div class="carousel-inner" role="listbox" style="width: 100%;height: 450px;overflow: hidden;">
 			
 				<div  class="item active" >
-					<a target="_blank" href="/detail/?35.html"><img width="100%" src="http://img1.xmspc.com/uploads/images/molwiw5acl5z.jpg" alt="江湖儿女"></a>
-					<div class="carousel-caption">江湖儿女</div>
+					<a target="_blank" href="/detail/?597.html"><img width="100%" src="https://ws1.sinaimg.cn/large/007uZWsrly1fyw13v6azjj32jv19yb2a.jpg" alt="知否知否应是绿肥红瘦"></a>
+					<div class="carousel-caption">知否知否应是绿肥红瘦</div>
 				</div>
 			
 				<div  class="item" >
-					<a target="_blank" href="/detail/?34.html"><img width="100%" src="http://img1.xmspc.com/uploads/images/pdfz2ygc1n7l.jpg" alt="蚁人2：黄蜂女现身"></a>
-					<div class="carousel-caption">蚁人2：黄蜂女现身</div>
+					<a target="_blank" href="/detail/?562.html"><img width="100%" src="https://gitee.com/SingerLan/picture_bed/raw/master/0199635bee710fa8012092526252b9.jpg@1280w_1l_0o_100sh.jpg" alt="无名之辈"></a>
+					<div class="carousel-caption">无名之辈</div>
 				</div>
 			
 				<div  class="item" >
-					<a target="_blank" href="/detail/?26.html"><img width="100%" src="http://img1.xmspc.com/uploads/images/w94lyyzkn8fc.jpg" alt="碟中谍6：全面瓦解"></a>
-					<div class="carousel-caption">碟中谍6：全面瓦解</div>
+					<a target="_blank" href="/detail/?617.html"><img width="100%" src="http://img1.xmspc.com/uploads/images/bm7dmab67kpg.jpg" alt="李茶的姑妈"></a>
+					<div class="carousel-caption">李茶的姑妈</div>
 				</div>
 			
 				<div  class="item" >
-					<a target="_blank" href="/detail/?33.html"><img width="100%" src="http://img1.xmspc.com/uploads/images/xxltptq7uj67.jpg" alt="风语咒"></a>
-					<div class="carousel-caption">风语咒</div>
+					<a target="_blank" href="/detail/?584.html"><img width="100%" src="https://gitee.com/SingerLan/picture_bed/raw/master/01343d59784fb3a8012193a321f01d.jpg@1280w_1l_2o_100sh.jpg" alt="大黄蜂"></a>
+					<div class="carousel-caption">大黄蜂</div>
 				</div>
 			
 				<div  class="item" >
-					<a target="_blank" href="/detail/?31.html"><img width="100%" src="http://img1.xmspc.com/uploads/images/u26hak1taec1.jpg" alt="一出好戏"></a>
-					<div class="carousel-caption">一出好戏</div>
+					<a target="_blank" href="/detail/?322.html"><img width="100%" src="http://img1.xmspc.com/uploads/images/p5s7gmgs88cm.jpg" alt="无双"></a>
+					<div class="carousel-caption">无双</div>
 				</div>
 			
 			</div>
@@ -138,70 +171,70 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="进击的巨人2" target="_blank" href="/detail/?1.html">
-								<img title="进击的巨人2" alt="进击的巨人2" src="/uploads/allimg/181010/5eedaeebdd73b035.png">
-								<span class="qtag">更新至12集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="进击的巨人2" class="movie-name" href="/detail/?1.html">进击的巨人2<em> - 0分</em></a></div>
-								<em>浏览次数：26</em>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="Running Man" target="_blank" href="/detail/?123.html">
-								<img title="Running Man" alt="Running Man" src="/uploads/allimg/181014/4efb3f9b5a46bc25.jpg">
-								<span class="qtag">更新至20181007集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="Running Man" class="movie-name" href="/detail/?123.html">Running Man<em> - 0分</em></a></div>
-								<em>浏览次数：10</em>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="西行纪" target="_blank" href="/detail/?3.html">
-								<img title="西行纪" alt="西行纪" src="/uploads/allimg/181010/3b10fe08716123b4.">
+							<a style="position:relative;display:block;" title="无名之辈" target="_blank" href="/detail/?562.html">
+								<img title="无名之辈" alt="无名之辈" src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=bb89d65bd92a283443a6310d638eaed7/50da81cb39dbb6fd89b623600424ab18962b3783.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="西行纪" class="movie-name" href="/detail/?3.html">西行纪<em> - 0分</em></a></div>
-								<em>浏览次数：3</em>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="无名之辈" class="movie-name" href="/detail/?562.html">无名之辈<em> - 0分</em></a></div>
+								<em>浏览次数：36</em>
 							</div>
 						</div>
 					</div>
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="你迟到的许多年" target="_blank" href="/detail/?24.html">
-								<img title="你迟到的许多年" alt="你迟到的许多年" src="https://puui.qpic.cn/vcover_vt_pic/0/h63qdcto0gja4dp1538127133/260">
-								<span class="qtag">更新至18集</span>
+							<a style="position:relative;display:block;" title="神奇动物：格林德沃之罪" target="_blank" href="/detail/?578.html">
+								<img title="神奇动物：格林德沃之罪" alt="神奇动物：格林德沃之罪" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1604135399,3526763739&fm=58&s=AF22E1067ADE5FED574120D60100D0E2">
+								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="你迟到的许多年" class="movie-name" href="/detail/?24.html">你迟到的许多年<em> - 0分</em></a></div>
-								<em>浏览次数：3</em>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="神奇动物：格林德沃之罪" class="movie-name" href="/detail/?578.html">神奇动物：格林德沃之罪<em> - 0分</em></a></div>
+								<em>浏览次数：31</em>
 							</div>
 						</div>
 					</div>
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="名侦探柯南" target="_blank" href="/detail/?40.html">
-								<img title="名侦探柯南" alt="名侦探柯南" src="/uploads/allimg/181010/87a022a22df12f1f.jpg">
-								<span class="qtag">更新至971集</span>
+							<a style="position:relative;display:block;" title="大黄蜂" target="_blank" href="/detail/?584.html">
+								<img title="大黄蜂" alt="大黄蜂" src="http://img5.mtime.cn/mg/2018/12/04/160519.43555325_270X405X4.jpg">
+								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="名侦探柯南" class="movie-name" href="/detail/?40.html">名侦探柯南<em> - 0分</em></a></div>
-								<em>浏览次数：3</em>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="大黄蜂" class="movie-name" href="/detail/?584.html">大黄蜂<em> - 0分</em></a></div>
+								<em>浏览次数：30</em>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="海王" target="_blank" href="/detail/?583.html">
+								<img title="海王" alt="海王" src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3542027998,910174279&fm=58&s=BF7A7F834C3389FD008DE51A01001092">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="海王" class="movie-name" href="/detail/?583.html">海王<em> - 0分</em></a></div>
+								<em>浏览次数：28</em>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="悲伤逆流成河" target="_blank" href="/detail/?552.html">
+								<img title="悲伤逆流成河" alt="悲伤逆流成河" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3697088580,988578816&fm=58&s=02955E845C434ACC7D8EB551030050F9">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="悲伤逆流成河" class="movie-name" href="/detail/?552.html">悲伤逆流成河<em> - 0分</em></a></div>
+								<em>浏览次数：18</em>
 							</div>
 						</div>
 					</div>
@@ -215,13 +248,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="Running Man" target="_blank" href="/detail/?123.html">
-								<img alt="Running Man" title="Running Man" class="hotimg" src="/uploads/allimg/181014/4efb3f9b5a46bc25.jpg">
-								<span class="qtag">更新至20181007集</span>
+							<a style="position:relative;display:block;" title="全职高手特别篇" target="_blank" href="/detail/?628.html">
+								<img alt="全职高手特别篇" title="全职高手特别篇" class="hotimg" src="/uploads/allimg/190110/15b6a10b38dd2f4f.jpg">
+								<span class="qtag">更新至3集</span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="Running Man" href="/detail/?123.html" class="movie-name">Running Man</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="全职高手特别篇" href="/detail/?628.html" class="movie-name">全职高手特别篇</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -229,41 +262,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="进击的巨人2" target="_blank" href="/detail/?1.html">
-								<img alt="进击的巨人2" title="进击的巨人2" class="hotimg" src="/uploads/allimg/181010/5eedaeebdd73b035.png">
-								<span class="qtag">更新至12集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="进击的巨人2" href="/detail/?1.html" class="movie-name">进击的巨人2</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="奔跑吧 第2季" target="_blank" href="/detail/?121.html">
-								<img alt="奔跑吧 第2季" title="奔跑吧 第2季" class="hotimg" src="https://puui.qpic.cn/vcolumn_vt_pic/0/t8vde41523612713/0">
-								<span class="qtag">更新至20181012集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="奔跑吧 第2季" href="/detail/?121.html" class="movie-name">奔跑吧 第2季</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="全职法师" target="_blank" href="/detail/?122.html">
-								<img alt="全职法师" title="全职法师" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/dl1er4929x4jr2dt1470810610.jpg/260">
+							<a style="position:relative;display:block;" title="哥谭 第二季" target="_blank" href="/detail/?626.html">
+								<img alt="哥谭 第二季" title="哥谭 第二季" class="hotimg" src="/uploads/allimg/190110/72c1f27218028ba9.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="全职法师" href="/detail/?122.html" class="movie-name">全职法师</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="哥谭 第二季" href="/detail/?626.html" class="movie-name">哥谭 第二季</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -271,167 +276,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="最好的遇见" target="_blank" href="/detail/?25.html">
-								<img alt="最好的遇见" title="最好的遇见" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/ecv3kc99vjazdz71538030746/260">
-								<span class="qtag">更新至22集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="最好的遇见" href="/detail/?25.html" class="movie-name">最好的遇见</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="倾世妖颜" target="_blank" href="/detail/?60.html">
-								<img alt="倾世妖颜" title="倾世妖颜" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/qub8kghk2xn8xsc1537424176/260">
-								<span class="qtag">更新至36集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="倾世妖颜" href="/detail/?60.html" class="movie-name">倾世妖颜</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="幸福三重奏悠享版" target="_blank" href="/detail/?57.html">
-								<img alt="幸福三重奏悠享版" title="幸福三重奏悠享版" class="hotimg" src="https://puui.qpic.cn/vcolumn_vt_pic/0/lyue4o1530856914/0">
-								<span class="qtag">更新至20180907集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="幸福三重奏悠享版" href="/detail/?57.html" class="movie-name">幸福三重奏悠享版</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="远方的家" target="_blank" href="/detail/?113.html">
-								<img alt="远方的家" title="远方的家" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/0nzwrxnttj086ui1535938604/260">
-								<span class="qtag">更新至34集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="远方的家" href="/detail/?113.html" class="movie-name">远方的家</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="少年包青天第3部" target="_blank" href="/detail/?116.html">
-								<img alt="少年包青天第3部" title="少年包青天第3部" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/mh3nvjoygijii68t1444921463.jpg/260">
-								<span class="qtag">更新至45集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="少年包青天第3部" href="/detail/?116.html" class="movie-name">少年包青天第3部</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="少年包青天第2部" target="_blank" href="/detail/?117.html">
-								<img alt="少年包青天第2部" title="少年包青天第2部" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/dr3c8xvt49yw73yt1444819091.jpg/260">
-								<span class="qtag">更新至40集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="少年包青天第2部" href="/detail/?117.html" class="movie-name">少年包青天第2部</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="少年包青天第1部" target="_blank" href="/detail/?118.html">
-								<img alt="少年包青天第1部" title="少年包青天第1部" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/7l6tnk9p73smfmbt1444753379.jpg/260">
-								<span class="qtag">更新至40集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="少年包青天第1部" href="/detail/?118.html" class="movie-name">少年包青天第1部</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="东方华尔街" target="_blank" href="/detail/?119.html">
-								<img alt="东方华尔街" title="东方华尔街" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/f7q4utz4ns1e80g1525743390/260">
-								<span class="qtag">更新至5集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="东方华尔街" href="/detail/?119.html" class="movie-name">东方华尔街</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="那抹属于我的星光" target="_blank" href="/detail/?114.html">
-								<img alt="那抹属于我的星光" title="那抹属于我的星光" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/0qb64epiabojep61537254070/260">
-								<span class="qtag">更新至20集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="那抹属于我的星光" href="/detail/?114.html" class="movie-name">那抹属于我的星光</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="三生三世十里桃花" target="_blank" href="/detail/?115.html">
-								<img alt="三生三世十里桃花" title="三生三世十里桃花" class="hotimg" src="/uploads/allimg/181013/244a5079a9591aee.jpg">
-								<span class="qtag">更新至58集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="三生三世十里桃花" href="/detail/?115.html" class="movie-name">三生三世十里桃花</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="好久不见" target="_blank" href="/detail/?2.html">
-								<img alt="好久不见" title="好久不见" class="hotimg" src="http://t3.baidu.com/it/u=1276507972,552773788&fm=20">
-								<span class="qtag">更新至20180905集</span>
-								<div class="item-hover"></div>
-							</a>
-							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="好久不见" href="/detail/?2.html" class="movie-name">好久不见</a><span class="otherinfo"> - 0分</span></div>
-								<div class="otherinfo">类型：</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-xs-1-5 movie-item">
-						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="后天" target="_blank" href="/detail/?76.html">
-								<img alt="后天" title="后天" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/y60o6957ucc46qot1444941410.jpg/260">
+							<a style="position:relative;display:block;" title="哥谭第五季" target="_blank" href="/detail/?627.html">
+								<img alt="哥谭第五季" title="哥谭第五季" class="hotimg" src="/uploads/allimg/190110/e05b7a5d315ab9d0.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="后天" href="/detail/?76.html" class="movie-name">后天</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="哥谭第五季" href="/detail/?627.html" class="movie-name">哥谭第五季</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -439,13 +290,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="赤道" target="_blank" href="/detail/?85.html">
-								<img alt="赤道" title="赤道" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/pv1noxn2wtgzasht1444957124.jpg/260">
+							<a style="position:relative;display:block;" title="哥谭 第四季" target="_blank" href="/detail/?625.html">
+								<img alt="哥谭 第四季" title="哥谭 第四季" class="hotimg" src="/uploads/allimg/190110/a8e7841ddcbcef57.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="赤道" href="/detail/?85.html" class="movie-name">赤道</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="哥谭 第四季" href="/detail/?625.html" class="movie-name">哥谭 第四季</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -453,13 +304,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="银行匪帮" target="_blank" href="/detail/?84.html">
-								<img alt="银行匪帮" title="银行匪帮" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/uup5g1srxyp48klt1445501015.jpg/260">
+							<a style="position:relative;display:block;" title="哥谭 第一季" target="_blank" href="/detail/?624.html">
+								<img alt="哥谭 第一季" title="哥谭 第一季" class="hotimg" src="/uploads/allimg/190110/5d698c962253bc06.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="银行匪帮" href="/detail/?84.html" class="movie-name">银行匪帮</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="哥谭 第一季" href="/detail/?624.html" class="movie-name">哥谭 第一季</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -467,13 +318,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="跨国银行" target="_blank" href="/detail/?83.html">
-								<img alt="跨国银行" title="跨国银行" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/jjtgm1gt79s0u1rt1448074823.jpg/260">
+							<a style="position:relative;display:block;" title="哥谭第三季" target="_blank" href="/detail/?623.html">
+								<img alt="哥谭第三季" title="哥谭第三季" class="hotimg" src="/uploads/allimg/190110/540c04cec30080e0.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="跨国银行" href="/detail/?83.html" class="movie-name">跨国银行</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="哥谭第三季" href="/detail/?623.html" class="movie-name">哥谭第三季</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -481,13 +332,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="敢死队1" target="_blank" href="/detail/?81.html">
-								<img alt="敢死队1" title="敢死队1" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/xex6po9q55akzsrt1444933541.jpg/260">
+							<a style="position:relative;display:block;" title="我是江小白第二季" target="_blank" href="/detail/?528.html">
+								<img alt="我是江小白第二季" title="我是江小白第二季" class="hotimg" src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=1a55d01c5a4e9258a63481e8a4b9b665/a8ec8a13632762d0e4759cc7acec08fa513dc67a.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="敢死队1" href="/detail/?81.html" class="movie-name">敢死队1</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="我是江小白第二季" href="/detail/?528.html" class="movie-name">我是江小白第二季</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -495,13 +346,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="保持通话" target="_blank" href="/detail/?87.html">
-								<img alt="保持通话" title="保持通话" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/dsak9rbxle1rk6dt1444819446.jpg/260">
+							<a style="position:relative;display:block;" title="火王之千里同风" target="_blank" href="/detail/?586.html">
+								<img alt="火王之千里同风" title="火王之千里同风" class="hotimg" src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=2b5cfa78306d55fbc5c6712055192877/a686c9177f3e6709c4f6d35936c79f3df9dc55a5.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="保持通话" href="/detail/?87.html" class="movie-name">保持通话</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="火王之千里同风" href="/detail/?586.html" class="movie-name">火王之千里同风</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -509,13 +360,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="饥饿游戏" target="_blank" href="/detail/?93.html">
-								<img alt="饥饿游戏" title="饥饿游戏" class="hotimg" src="http://puui.qpic.cn/vcover_vt_pic/0/gbh8y2vu2cqd2sjt1444846349.jpg/0">
+							<a style="position:relative;display:block;" title="知否知否应是绿肥红瘦" target="_blank" href="/detail/?597.html">
+								<img alt="知否知否应是绿肥红瘦" title="知否知否应是绿肥红瘦" class="hotimg" src="http://puui.qpic.cn/vcover_vt_pic/0/xmw2gfef226jygj1545625229/0">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="饥饿游戏" href="/detail/?93.html" class="movie-name">饥饿游戏</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="知否知否应是绿肥红瘦" href="/detail/?597.html" class="movie-name">知否知否应是绿肥红瘦</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -523,13 +374,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="天将雄师" target="_blank" href="/detail/?92.html">
-								<img alt="天将雄师" title="天将雄师" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/3au50sy4i90heiot1445584355.jpg/260">
+							<a style="position:relative;display:block;" title="大帅哥国语" target="_blank" href="/detail/?609.html">
+								<img alt="大帅哥国语" title="大帅哥国语" class="hotimg" src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=46a337c3be119313c743f8b65d036bea/c995d143ad4bd11366104e3356afa40f4afb05d5.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="天将雄师" href="/detail/?92.html" class="movie-name">天将雄师</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="大帅哥国语" href="/detail/?609.html" class="movie-name">大帅哥国语</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -537,13 +388,13 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="敢死队2" target="_blank" href="/detail/?91.html">
-								<img alt="敢死队2" title="敢死队2" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/yetppr64a8gwrgzt1445584893.jpg/260">
+							<a style="position:relative;display:block;" title="格子间女人" target="_blank" href="/detail/?612.html">
+								<img alt="格子间女人" title="格子间女人" class="hotimg" src="https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=10a9804f7bc6a7efb926af20c5c1c86c/8ad4b31c8701a18b706e37df932f07082938fe9d.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="敢死队2" href="/detail/?91.html" class="movie-name">敢死队2</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="格子间女人" href="/detail/?612.html" class="movie-name">格子间女人</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -551,13 +402,195 @@ catch (err) {
 					
 					<div class="col-xs-1-5 movie-item">
 						<div class="movie-item-in">
-							<a style="position:relative;display:block;" title="伦敦陷落" target="_blank" href="/detail/?95.html">
-								<img alt="伦敦陷落" title="伦敦陷落" class="hotimg" src="https://puui.qpic.cn/vcover_vt_pic/0/n5c7q1bdr2ucwn3t1458295243.jpg/260">
+							<a style="position:relative;display:block;" title="古董局中局" target="_blank" href="/detail/?613.html">
+								<img alt="古董局中局" title="古董局中局" class="hotimg" src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=b317d3746fd9f2d3201123e991d7ed2e/810a19d8bc3eb135fb195b2eab1ea8d3fc1f444d.jpg">
 								<span class="qtag"></span>
 								<div class="item-hover"></div>
 							</a>
 							<div class="meta">
-								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="伦敦陷落" href="/detail/?95.html" class="movie-name">伦敦陷落</a><span class="otherinfo"> - 0分</span></div>
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="古董局中局" href="/detail/?613.html" class="movie-name">古董局中局</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="回到未来1985" target="_blank" href="/detail/?621.html">
+								<img alt="回到未来1985" title="回到未来1985" class="hotimg" src="https://bj.bcebos.com/v1/issue-enterprise/reyYk96-20190109162907-EnBOyJ.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="回到未来1985" href="/detail/?621.html" class="movie-name">回到未来1985</a><span class="otherinfo"> - 8.5分</span></div>
+								<div class="otherinfo">类型：<a href='/search.php?searchtype=5&jq=%E7%A7%91%E5%B9%BB'>科幻</a>&nbsp;<a href='/search.php?searchtype=5&jq=%E5%96%9C%E5%89%A7'>喜剧</a>&nbsp;</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="第六日" target="_blank" href="/detail/?622.html">
+								<img alt="第六日" title="第六日" class="hotimg" src="/uploads/allimg/190108/51b7a58a22f31877.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="第六日" href="/detail/?622.html" class="movie-name">第六日</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="无名之辈" target="_blank" href="/detail/?562.html">
+								<img alt="无名之辈" title="无名之辈" class="hotimg" src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=bb89d65bd92a283443a6310d638eaed7/50da81cb39dbb6fd89b623600424ab18962b3783.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="无名之辈" href="/detail/?562.html" class="movie-name">无名之辈</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="原生之罪" target="_blank" href="/detail/?620.html">
+								<img alt="原生之罪" title="原生之罪" class="hotimg" src="/uploads/allimg/190107/7a0be5adf4458721.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="原生之罪" href="/detail/?620.html" class="movie-name">原生之罪</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="侧耳倾听" target="_blank" href="/detail/?619.html">
+								<img alt="侧耳倾听" title="侧耳倾听" class="hotimg" src="/uploads/allimg/190107/0b56bae6501b8924.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="侧耳倾听" href="/detail/?619.html" class="movie-name">侧耳倾听</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="不期而爱[泰剧]" target="_blank" href="/detail/?618.html">
+								<img alt="不期而爱[泰剧]" title="不期而爱[泰剧]" class="hotimg" src="/uploads/allimg/190107/07757ec87d3cacb5.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="不期而爱[泰剧]" href="/detail/?618.html" class="movie-name">不期而爱[泰剧]</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="妖神记之影妖篇" target="_blank" href="/detail/?486.html">
+								<img alt="妖神记之影妖篇" title="妖神记之影妖篇" class="hotimg" src="http://puui.qpic.cn/vcover_vt_pic/0/psigi8ihauekx1d1537514156/260">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="妖神记之影妖篇" href="/detail/?486.html" class="movie-name">妖神记之影妖篇</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="大江大河" target="_blank" href="/detail/?572.html">
+								<img alt="大江大河" title="大江大河" class="hotimg" src="http://img5.mtime.cn/mg/2017/12/19/102837.84607734_270X405X4.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="大江大河" href="/detail/?572.html" class="movie-name">大江大河</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="斗罗大陆 第1季" target="_blank" href="/detail/?550.html">
+								<img alt="斗罗大陆 第1季" title="斗罗大陆 第1季" class="hotimg" src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=0e704acdaa86c9170803553ff10617f2/0df3d7ca7bcb0a4669a5250c6663f6246b60af04.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="斗罗大陆 第1季" href="/detail/?550.html" class="movie-name">斗罗大陆 第1季</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="海贼王" target="_blank" href="/detail/?493.html">
+								<img alt="海贼王" title="海贼王" class="hotimg" src="http://puui.qpic.cn/vcover_vt_pic/0/sdp001pd7uh6khh1542172185/260">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="海贼王" href="/detail/?493.html" class="movie-name">海贼王</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="妖精的尾巴 最终季" target="_blank" href="/detail/?496.html">
+								<img alt="妖精的尾巴 最终季" title="妖精的尾巴 最终季" class="hotimg" src="http://puui.qpic.cn/vcover_vt_pic/0/wwpst03t5lmd3m41537410756/0">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="妖精的尾巴 最终季" href="/detail/?496.html" class="movie-name">妖精的尾巴 最终季</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="刀剑神域3" target="_blank" href="/detail/?500.html">
+								<img alt="刀剑神域3" title="刀剑神域3" class="hotimg" src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=68de515baa1ea8d38a227302af315773/42166d224f4a20a41d07da279c529822720ed031.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="刀剑神域3" href="/detail/?500.html" class="movie-name">刀剑神域3</a><span class="otherinfo"> - 0分</span></div>
+								<div class="otherinfo">类型：</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-1-5 movie-item">
+						<div class="movie-item-in">
+							<a style="position:relative;display:block;" title="天空之城" target="_blank" href="/detail/?579.html">
+								<img alt="天空之城" title="天空之城" class="hotimg" src="https://ws1.sinaimg.cn/large/007uZWsrly1fycbbx9d3wj308w0co75r.jpg">
+								<span class="qtag"></span>
+								<div class="item-hover"></div>
+							</a>
+							<div class="meta">
+								<div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="天空之城" href="/detail/?579.html" class="movie-name">天空之城</a><span class="otherinfo"> - 0分</span></div>
 								<div class="otherinfo">类型：</div>
 							</div>
 						</div>
@@ -567,9 +600,8 @@ catch (err) {
 			</div>
 		</div>
 
-		<a class="btn btn-primary btn-block" style="margin-top:20px;" href="/list/?1.html"><i class="glyphicon glyphicon-fire"> </i> 更多热门影片 &raquo; </a>
+		<a class="btn btn-primary btn-block" style="margin-top:20px;" href="/list/?1.html"><i class="glyphicon glyphicon-fire"> </i> 更多热门影片  </a>
 	</div>
-
 	<footer class="footer">
 	<div class="container">
 		<div class="row">
@@ -579,14 +611,23 @@ catch (err) {
 			</div>
 			<div class="col-xs-4">
 				<p>联系方式：</p>
-				<p>邮箱：kgo@163.com</p>
+				<p>QQ：2189154548</p>
 			</div>
 			<div class="col-xs-4">
-				<em>♥ <a href="/">大饼影视</a> · </em>
+				<em>♥ <a href="/">大饼影视</a> - </em>
 			</div>
 		</div>
 	</div>
 </footer>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d723a58bef748365633cf4a41c94bbf9";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 </body>
 </html>

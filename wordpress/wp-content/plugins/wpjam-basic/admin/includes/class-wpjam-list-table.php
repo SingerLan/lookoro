@@ -324,18 +324,18 @@ class WPJAM_List_Table extends WP_List_Table {
 		if(!empty($action['direct'])) return[];
 		if(!empty($action['overall'])) return[];
 
-		$fields	= $this->_args['fields'];
-
-		$primary_key	= $this->_args['primary_key'];
-		if($key != 'add' && isset($fields[$primary_key])){
-			$fields[$primary_key]['type']	= 'view';
-		}
-
 		$model = $this->_args['model'];
 
 		if($model && method_exists($model, 'get_fields')){
 			$fields	= $model::get_fields($key, $id);
 		}else{
+			$fields	= $this->_args['fields'];
+
+			$primary_key	= $this->_args['primary_key'];
+			if($key != 'add' && isset($fields[$primary_key])){
+				$fields[$primary_key]['type']	= 'view';
+			}
+		
 			$fields	= apply_filters($this->get_postfix().'_'.$key.'_fields', $fields, $id);
 			$fields	= apply_filters($this->get_postfix().'_fields', $fields, $id, $key);
 		}

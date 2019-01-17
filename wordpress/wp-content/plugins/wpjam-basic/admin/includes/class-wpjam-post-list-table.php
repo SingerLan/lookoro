@@ -9,7 +9,7 @@ class WPJAM_Post_List_Table{
 		]);
 
 		$model		= $args['model'];
-		$actions	= $model::get_actions();
+		$actions	= apply_filters('wpjam_posts_actions', $model::get_actions());
 
 		$bulk_actions	= [];
 		if($actions){
@@ -46,14 +46,12 @@ class WPJAM_Post_List_Table{
 	}
 
 	public function get_actions(){
-		$model	= $this->get_model();
-
-		return $model::get_actions();
+		return $this->_args['actions'];
 	}
 
 	public function get_action($key){
 		$actions	= $this->get_actions();
-		return $actions[$key]??[];
+		return $actions[$key] ?? [];
 	}
 
 	public function get_action_capability($key){
@@ -62,6 +60,123 @@ class WPJAM_Post_List_Table{
 			return $action['capability']??$this->_args['capability'];
 		}else{
 			return $this->_args['capability'];
+		}
+	}
+
+	public function get_row_action($action_key, $args=[]){
+		extract(wp_parse_args($args, [
+			'id'		=> 0,
+			'data'		=> [],
+			'class'		=> '',
+			'style'		=> '',
+			'title'		=> '',
+			'tag'		=> 'a'
+		]));
+
+		if(empty($id)){
+			return '';
+		}
+
+		$action	= $this->get_action($action_key);
+		if(!$action) {
+			return '';
+		}
+
+		$capability	= $this->get_action_capability($action_key);
+		if(!current_user_can($capability)) {
+			return '';
+		}
+
+		$title			= $title?:$action['title'];
+		$page_title		= $action['page_title'] ?? $action['title'];
+
+		$class			= $class ?: '';
+		$class			= 'post-list-table-action '.$class;
+
+		$data_attr		= 'data-title="'.$page_title.'" data-action="'.$action_key.'"';
+	
+		$nonce			= $this->create_nonce($action_key, $id);
+		$direct			= $action['direct'] ?? '';
+		$confirm		= $action['confirm'] ?? '';
+
+		$data_values	= compact('nonce', 'id', 'direct', 'confirm');
+
+		foreach ($data_values as $data_key=>$value) {
+			if($value){
+				$data_attr	.= ' data-'.$data_key.'="'.$value.'"';
+			}
+		}
+
+		if($tag == 'a'){
+			return '<a href="javascript:;" title="'.$page_title.'" class="'.$class.'" '.$style.' '.$data_attr.'>'.$title.'</a>';
+		}else{
+			return '<'.$tag.' title="'.$page_title.'" class="'.$class.'" '.$style.' '.$data_attr.'>'.$title.'</'.$tag.'>';
+		}
+	}
+
+	public function get_fields($action_key='', $id=0){
+		$model	= $this->get_model();
+		return apply_filters('wpjam_posts_fields', $model::get_fields($action_key, $id), $action_key, $id);
+	}
+
+	public function list_action($list_action='', $id=0, $data=null){
+		$result	= null;
+		$bulk	= false;
+
+		if(is_array($id)){
+			$ids			= $id;
+			$bulk			= true;
+			$bulk_action	= 'bulk_'.$list_action;
+		}
+
+		$model	= $this->get_model();
+
+		if(is_null($data)){
+			if($bulk){
+				if(method_exists($model, $bulk_action)){
+					$result	= $model::$bulk_action($ids);
+				}else{
+					if(method_exists($model, $list_action)){
+						foreach($ids as $_id) {
+							$result	= $model::$list_action($_id);
+							if(is_wp_error($result)){
+								return $result;
+							}
+						}
+					}
+				}
+			}else{
+				if(method_exists($model, $list_action)){
+					$result	= $model::$list_action($id);
+				}
+			}	
+		}else{
+			if($bulk){
+				if(method_exists($model,$bulk_action)){
+					$result	= $model::$bulk_action($ids, $data);
+				}else{
+					if(method_exists($model, $list_action)){
+						foreach($ids as $_id) {
+							$result	= $model::$list_action($_id, $data);
+							if(is_wp_error($result)){
+								return $result;
+							}
+						}
+					}
+				}
+			}else{
+				if(method_exists($model, $list_action)){
+					$result	= $model::$list_action($id, $data);
+				}
+			}
+		}
+
+		$result	= apply_filters('wpjam_posts_list_action', $result, $list_action, $id, $data);
+
+		if($result){
+			return $result;
+		}else{
+			return new WP_Error('empty_list_action', '没有定义该操作');
 		}
 	}
 
@@ -119,15 +234,9 @@ class WPJAM_Post_List_Table{
 
 		if($list_action_type == 'direct'){
 			if($bulk){
-				if(method_exists($model, $bulk_action)){
-					$result	= $model::$bulk_action($ids);
-				}else{
-					foreach($ids as $id) {
-						$result	= $model::$list_action($id);
-					}
-				}
+				$result	= $this->list_action($list_action, $ids); 
 			}else{
-				$result	= $model::$list_action($id);
+				$result	= $this->list_action($list_action, $id);
 			}	
 		}else{
 			$data	= isset($_POST['data'])?wp_parse_args($_POST['data']):[];
@@ -138,14 +247,15 @@ class WPJAM_Post_List_Table{
 			$page_title		= $action['page_title']??$action['title'];
 
 			if($bulk){
-				$fields	= $model::get_fields($list_action, $ids);
+				$fields	= $this->get_fields($list_action, $ids);
 				$nonce	= $this->create_nonce($bulk_action, $id);
 			}else{
-				$fields	= $model::get_fields($list_action, $id);
+				$fields	= $this->get_fields($list_action, $id);
 				$nonce	= $this->create_nonce($list_action, $id);
 			}
 
 			WPJAM_AJAX::form([
+				'data_type'		=> $action['data_type'] ?? 'form',
 				'fields'		=> $fields,
 				'data'			=> $data,
 				'bulk'			=> $bulk,
@@ -166,18 +276,9 @@ class WPJAM_Post_List_Table{
 			}
 
 			if($bulk){
-				if(method_exists($model,$bulk_action)){
-					$result	= $model::$bulk_action($ids, $data);
-				}else{
-					foreach($ids as $id) {
-						$result	= $model::$list_action($id, $data);
-						if(is_wp_error($result)){
-							wpjam_send_json($result);
-						}
-					}
-				}
+				$result	= $this->list_action($list_action, $ids, $data); 
 			}else{
-				$result	= $model::$list_action($id, $data);
+				$result	= $this->list_action($list_action, $id, $data);
 			}	
 		}
 
@@ -215,36 +316,10 @@ class WPJAM_Post_List_Table{
 
 	public function row_actions($row_actions, $post){
 		$id			= $post->ID;
-
 		$actions	= $this->get_actions();
 
 		foreach ($actions as $action_key => $action){
-			$page_title		= $action['page_title']??$action['title'];
-			$direct			= $action['direct']??'';
-			$confirm		= $action['confirm']??'';
-			$class			= $action['class']??'';
-
-			$class			= $class?' '.$class:'';
-			$class			= 'post-list-table-action '.$class;
-
-			$data_attr		= 'data-title="'.$page_title.'" data-action="'.$action_key.'"';
-
-			// if($bulk){
-				// $nonce	= $this->create_nonce('bulk_'.$action_key);
-				// $ids	= $ids?http_build_query($ids):'';
-			// }else{
-				$nonce	= $this->create_nonce($action_key, $id);
-			// }
-
-			$data_values	= compact('nonce', 'id', 'direct', 'confirm');
-
-			foreach ($data_values as $data_key=>$value) {
-				if($value){
-					$data_attr	.= ' data-'.$data_key.'="'.$value.'"';
-				}
-			}
-
-			$row_actions[$action_key] = '<a href="javascript:;" title="'.$page_title.'" class="'.$class.'" '.$data_attr.'>'.$action['title'].'</a>';
+			$row_actions[$action_key] = $this->get_row_action($action_key, compact('id'));
 		}
 
 		return $row_actions;
@@ -275,6 +350,12 @@ class WPJAM_Post_List_Table{
 		</script>
 
 		<?php } 
+
+		$model	= $this->get_model();
+
+		if(method_exists($model, 'admin_head')){
+			$model::admin_head();
+		}
 	}
 
 	public function create_nonce($key, $id=0){

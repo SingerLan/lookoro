@@ -94,8 +94,10 @@ if(wpjam_basic_get_setting('remove_admin_bar')){
 
 //禁用 XML-RPC 接口
 if(wpjam_basic_get_setting('disable_xml_rpc')){
-	add_filter( 'xmlrpc_enabled', '__return_false' );
-	remove_action( 'xmlrpc_rsd_apis', 'rest_output_rsd' );
+	if(wpjam_basic_get_setting('diable_block_editor')){
+		add_filter( 'xmlrpc_enabled', '__return_false' );
+		remove_action( 'xmlrpc_rsd_apis', 'rest_output_rsd' );
+	}
 }
 
 if(wpjam_basic_get_setting('disable_trackbacks')){
@@ -113,6 +115,21 @@ if(wpjam_basic_get_setting('disable_trackbacks')){
 	remove_action( 'publish_post','_publish_post_hook',5 );
 }
 
+// 禁止使用 admin 用户名尝试登录
+if(wpjam_basic_get_setting('no_admin')){
+	add_filter( 'wp_authenticate',  function ($user){
+		if($user == 'admin') exit;
+	});
+
+	add_filter('sanitize_user', function ($username, $raw_username, $strict){
+		if($raw_username == 'admin' || $username == 'admin'){
+			exit;
+		}
+		return $username;
+	}, 10, 3);
+	
+}
+
 
 add_action('init',function(){
 	
@@ -124,6 +141,12 @@ add_action('init',function(){
 	wp_embed_unregister_handler('tudou');
 	wp_embed_unregister_handler('youku');
 	wp_embed_unregister_handler('56com');
+
+	global $wp_rewrite;
+
+	add_rewrite_rule($wp_rewrite->root.'api/([^/]+)\.json?$', 'index.php?module=json&action=$matches[1]', 'top');
+	// add_rewrite_tag('%json%', '([^/]+)', "module=json&action=");
+	// add_permastruct('json', 'api/%json%.json', ['with_front'=>false, 'paged'=>false, 'feed'=>false]);
 
 	if(is_admin()) return;
 
@@ -139,23 +162,13 @@ add_action('init',function(){
 		@header("Connection: Close");
 		@exit;
 	}
+
+	
 });
 
-
-// 禁止使用 admin 用户名尝试登录
-if(wpjam_basic_get_setting('no_admin')){
-	add_filter( 'wp_authenticate',  function ($user){
-		if($user == 'admin') exit;
-	});
-
-	add_filter('sanitize_user', function ($username, $raw_username, $strict){
-		if($raw_username == 'admin' || $username == 'admin'){
-			exit;
-		}
-		return $username;
-	}, 10, 3);
-	
-}
+add_filter('rewrite_rules_array', function($rules){
+	return array_merge(apply_filters('wpjam_rewrite_rules', []), $rules);
+});
 
 add_filter('cron_schedules', function(){
 	return [
@@ -224,26 +237,27 @@ if(wpjam_basic_get_setting('disable_emoji')){
 
 // 屏蔽 REST API
 if(wpjam_basic_get_setting('disable_rest_api')){
-	remove_action( 'init',          'rest_api_init' );
-	remove_action( 'rest_api_init', 'rest_api_default_filters', 10 );
-	remove_action( 'parse_request', 'rest_api_loaded' );
+	if(wpjam_basic_get_setting('disable_post_embed') && wpjam_basic_get_setting('diable_block_editor')){
+		remove_action( 'init',          'rest_api_init' );
+		remove_action( 'rest_api_init', 'rest_api_default_filters', 10 );
+		remove_action( 'parse_request', 'rest_api_loaded' );
 
-	add_filter('rest_enabled', '__return_false');
-	add_filter('rest_jsonp_enabled', '__return_false');
+		add_filter('rest_enabled', '__return_false');
+		add_filter('rest_jsonp_enabled', '__return_false');
 
-	// 移除头部 wp-json 标签和 HTTP header 中的 link 
-	remove_action('wp_head', 'rest_output_link_wp_head', 10 );
-	remove_action('template_redirect', 'rest_output_link_header', 11 );
+		// 移除头部 wp-json 标签和 HTTP header 中的 link 
+		remove_action('wp_head', 'rest_output_link_wp_head', 10 );
+		remove_action('template_redirect', 'rest_output_link_header', 11 );
 
+		remove_action( 'xmlrpc_rsd_apis',            'rest_output_rsd' );
 
-	remove_action( 'xmlrpc_rsd_apis',            'rest_output_rsd' );
-
-	remove_action( 'auth_cookie_malformed',      'rest_cookie_collect_status' );
-	remove_action( 'auth_cookie_expired',        'rest_cookie_collect_status' );
-	remove_action( 'auth_cookie_bad_username',   'rest_cookie_collect_status' );
-	remove_action( 'auth_cookie_bad_hash',       'rest_cookie_collect_status' );
-	remove_action( 'auth_cookie_valid',          'rest_cookie_collect_status' );
-	remove_filter( 'rest_authentication_errors', 'rest_cookie_check_errors', 100 );
+		remove_action( 'auth_cookie_malformed',      'rest_cookie_collect_status' );
+		remove_action( 'auth_cookie_expired',        'rest_cookie_collect_status' );
+		remove_action( 'auth_cookie_bad_username',   'rest_cookie_collect_status' );
+		remove_action( 'auth_cookie_bad_hash',       'rest_cookie_collect_status' );
+		remove_action( 'auth_cookie_valid',          'rest_cookie_collect_status' );
+		remove_filter( 'rest_authentication_errors', 'rest_cookie_check_errors', 100 );
+	}
 }
 
 //禁用 Auto OEmbed
@@ -338,18 +352,42 @@ if(wpjam_basic_get_setting('404_optimization')){
 	}, 1);
 }
 
+if(wpjam_basic_get_setting('no_category_base')){
+	add_filter('pre_term_link', function($term_link, $term){
+		global $wp_rewrite;
 
-add_filter('pre_option_category_base',function($value){
-	if(wpjam_basic_get_setting('no_category_base')){ 
-		return '.';
-	}else{
-		if($value == '.'){
-			return 'category';
-		}else{
-			return $value;
+		if($wp_rewrite->use_verbose_page_rules){
+			return $term_link;
 		}
-	}
-});
+		
+		if($term->taxonomy == 'category'){
+			return '%category%';
+		}
+
+		return $term_link;
+	}, 10, 2);
+
+	add_filter('request', function($query_vars) {
+		global $wp_rewrite;
+
+		if($wp_rewrite->use_verbose_page_rules){
+			return $query_vars;
+		}
+		
+		if(!isset($query_vars['module']) && !isset($_GET['page_id']) && !isset($_GET['pagename']) && !empty($query_vars['pagename'])){
+			$pagename	= $query_vars['pagename'];
+			$categories	= get_categories(['hide_empty'=>false]);
+			$categories	= wp_list_pluck($categories, 'slug');
+
+			if(in_array($pagename, $categories)){
+				$query_vars['category_name']	= $query_vars['pagename'];
+				unset($query_vars['pagename']);
+			}
+		}
+		
+		return $query_vars;
+	});
+}
 
 if(wpjam_basic_get_setting('excerpt_optimization')){ 
 	remove_filter('get_the_excerpt', 'wp_trim_excerpt');

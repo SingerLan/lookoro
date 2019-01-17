@@ -3,11 +3,6 @@ add_filter('default_option_wpjam-basic', 'wpjam_basic_get_default_settings');
 
 add_filter('wpjam_basic_setting', function(){
 	$disabled_fields	= [
-		'diable_block_editor'	=> [
-			'title'			=>'屏蔽Gutenberg',
-			'type'			=>'checkbox',
-			'description'	=>'Gutenberg编辑器很酷，不过很多人不习惯，并且对自定义字段支持不够完善，WPJAM Basic 会在使用了自定义字段的文章类型恢复默认编辑器，当然也可以直接彻底<a target="_blank" href="http://blog.wpjam.com/m/disable-gutenberg/">屏蔽Gutenberg编辑器</a>。'
-		],
 		'diable_revision'		=> [
 			'title'			=>'屏蔽文章修订',
 			'type'			=>'checkbox',
@@ -17,16 +12,6 @@ add_filter('wpjam_basic_setting', function(){
 			'title'			=>'屏蔽Trackbacks',
 			'type'			=>'checkbox',
 			'description'	=>'Trackbacks协议被滥用，会给博客产生大量垃圾留言，建议<a target="_blank" href="http://blog.wpjam.com/m/bye-bye-trackbacks/">彻底关闭Trackbacks</a>。'
-		],
-		'disable_xml_rpc'		=> [
-			'title'			=>'屏蔽XML-RPC',
-			'type'			=>'checkbox',
-			'description'	=>'XML-RPC协议用于客户端发布文章，如果你只是在后台发布，可以<a target="_blank" href="http://blog.wpjam.com/m/disable-xml-rpc/">关闭XML-RPC功能</a>。'
-		],
-		'disable_rest_api'		=> [
-			'title'			=>'屏蔽REST API',
-			'type'			=>'checkbox',
-			'description'	=>'REST API可以生成接口制作小程序或者APP，如果你没有这方面的需求，建议<a target="_blank" href="http://blog.wpjam.com/m/disable-wordpress-rest-api/">屏蔽REST API功能</a>。WPJAM 出品的小程序或者APP，没有使用该功能。'
 		],
 		'disable_emoji'			=> [
 			'title'			=>'屏蔽Emoji图片',
@@ -57,7 +42,22 @@ add_filter('wpjam_basic_setting', function(){
 			'title'			=>'屏蔽文章Embed',
 			'type'			=>'checkbox',
 			'description'	=>'文章Embed功能让你可以在WordPress站点用嵌入的方式插入本站或者其他站点的WordPress文章。如果你不需要，可以<a target="_blank" href="http://blog.wpjam.com/m/diable-wordpress-post-embed/">屏蔽文章Embed功能</a>。'
-		]
+		],
+		'diable_block_editor'	=> [
+			'title'			=>'屏蔽Gutenberg',
+			'type'			=>'checkbox',
+			'description'	=>'Gutenberg编辑器很酷，不过很多人不习惯，并且对自定义字段支持不够完善，WPJAM Basic 会在使用了自定义字段的文章类型恢复默认编辑器，当然也可以直接彻底<a target="_blank" href="http://blog.wpjam.com/m/disable-gutenberg/">屏蔽Gutenberg编辑器</a>。'
+		],
+		'disable_xml_rpc'		=> [
+			'title'			=>'屏蔽XML-RPC',
+			'type'			=>'checkbox',
+			'description'	=>'XML-RPC协议用于客户端发布文章，如果你只是在后台发布，可以<a target="_blank" href="http://blog.wpjam.com/m/disable-xml-rpc/">关闭XML-RPC功能</a>。'
+		],
+		'disable_rest_api'		=> [
+			'title'			=>'屏蔽REST API',
+			'type'			=>'checkbox',
+			'description'	=>'REST API可以生成接口制作小程序或者APP，<strong>Gutenberg编辑器</strong>和<strong>文章Embed</strong>也需要这方面的功能，如果你没有使用这些功能，建议<a target="_blank" href="http://blog.wpjam.com/m/disable-wordpress-rest-api/">屏蔽REST API功能</a>。WPJAM 出品的小程序或者APP，没有使用该功能。'
+		],
 	];
 
 	$remove_fields		= [
@@ -151,6 +151,13 @@ add_filter('wpjam_basic_setting', function(){
 		]
 	];
 
+	global $wp_rewrite;
+
+	if($wp_rewrite->use_verbose_page_rules){
+		$enhance_fields['no_category_base']['type']		= 'view';
+		$enhance_fields['no_category_base']['value']	= '你的固定链接设置使得无法去掉分类目录 URL 中的 category，请先修改固定链接。';
+	}
+
 	$sections	= [ 
 		'disabled'	=>[
 			'title'		=>'功能屏蔽', 
@@ -167,33 +174,23 @@ add_filter('wpjam_basic_setting', function(){
 		],
 	];
 
-	return compact('sections');
+	$field_validate	= function($value){
+		update_option('image_default_link_type',$value['image_default_link_type']);
+
+		if(!empty($value['disable_auto_update'])){
+			wp_clear_scheduled_hook('wp_version_check');
+			wp_clear_scheduled_hook('wp_update_plugins');
+			wp_clear_scheduled_hook('wp_update_themes');
+			wp_clear_scheduled_hook('wp_maybe_auto_update');
+		}
+
+		flush_rewrite_rules();
+
+		return $value;
+	};
+
+	return compact('sections','field_validate');
 });
-
-add_action('updated_option',function($option, $old_value, $value){
-	if($option == 'wpjam-basic'){
-		wpjam_basic_updated($value);
-	}
-},10,3);
-
-add_action('added_option', function($option, $value){
-	if($option == 'wpjam-basic'){
-		wpjam_basic_updated($value);
-	}
-},10,2);
-
-function wpjam_basic_updated($value){
-	update_option('image_default_link_type',$value['image_default_link_type']);
-
-	if($value['disable_auto_update']){
-		wp_clear_scheduled_hook('wp_version_check');
-		wp_clear_scheduled_hook('wp_update_plugins');
-		wp_clear_scheduled_hook('wp_update_themes');
-		wp_clear_scheduled_hook('wp_maybe_auto_update');
-	}
-
-	flush_rewrite_rules();
-}
 
 add_action('admin_head', function(){
 	?>
@@ -202,5 +199,30 @@ add_action('admin_head', function(){
 	table.form-table td a{text-decoration: none;}
 
 	</style>
+	<script type="text/javascript">
+	jQuery(function ($){
+		function wpjam_basic_init(){
+			if($('#diable_block_editor').is(':checked') && $('#disable_post_embed').is(':checked')){
+				$("#disable_rest_api").attr('disabled', false);
+			}else{
+				$("#disable_rest_api").attr('disabled', true).attr('checked',false);
+			}
+
+			if($('#diable_block_editor').is(':checked')){
+				$("#disable_xml_rpc").attr('disabled', false);
+			}else{
+				$("#disable_xml_rpc").attr('disabled', true).attr('checked',false);
+			}
+		}
+
+		wpjam_basic_init();
+
+		$('#diable_block_editor').on('change', wpjam_basic_init);
+		$('#disable_post_embed').on('change', wpjam_basic_init);
+	});
+	
+
+	// 'disable_rest_api'
+	</script>
 	<?php
 });

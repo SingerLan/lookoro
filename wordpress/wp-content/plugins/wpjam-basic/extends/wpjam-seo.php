@@ -1,13 +1,12 @@
 <?php
 /*
-Plugin Name: SEO 搜索引擎优化
+Plugin Name: 简单 SEO
 Plugin URI: https://blog.wpjam.com/project/wpjam-basic/
 Description: 设置简单快捷，功能强大的 WordPress SEO 功能。
 Version: 1.0
 */
 
-add_action("wp_head","wpjam_seo_head");
-function wpjam_seo_head(){
+add_action('wp_head', function (){
 	// global $wpjam_seo_options;
 	// if(!$wpjam_seo_options){
 	// 	$wpjam_seo_options = get_option('wpjam_seo_options');
@@ -95,7 +94,8 @@ function wpjam_seo_head(){
 	//if ( !empty( $meta_revised ) ){
 	//	echo "<meta name='revised' content='{$meta_revised}' />\n";
 	//}
-}
+});
+
 
 add_filter('wp_title', function ($title){
 	global $paged;
@@ -136,12 +136,20 @@ add_filter('robots_txt', function ($output, $public){
 	}
 },10,2);
 
+add_action('init',function(){
+	global $wp_rewrite;
 
-add_filter('wpjam_rewrite_rules', function ($wpjam_rewrite_rules){
-	$wpjam_rewrite_rules['sitemap\.xml$']				= 'index.php?module=sitemap';
-	$wpjam_rewrite_rules['sitemap-(.*?)\.xml$']	= 'index.php?module=sitemap&action=$matches[1]';
-	return $wpjam_rewrite_rules;
+	add_rewrite_rule($wp_rewrite->root.'sitemap\.xml?$', 'index.php?module=sitemap', 'top');
+	add_rewrite_rule($wp_rewrite->root.'sitemap-(.*?)\.xml?$', 'index.php?module=sitemap&action=$matches[1]', 'top');
 });
+
+// add_filter('wpjam_rewrite_rules', function ($wpjam_rules){
+// 	global $wp_rewrite;
+
+// 	$wpjam_rules[$wp_rewrite->root .'sitemap\.xml$']		= 'index.php?module=sitemap';
+// 	$wpjam_rules[$wp_rewrite->root .'sitemap-(.*?)\.xml$']	= 'index.php?module=sitemap&action=$matches[1]';
+// 	return $wpjam_rules;
+// });
 
 
 add_filter('wpjam_template', function ($wpjam_template, $module, $action){

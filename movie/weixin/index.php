@@ -113,7 +113,7 @@ class wechatCallbackapiTest
 									if ($itemCount==(sql_num-1) ) {
 																				
 							         $title='更多请点击>>';
-								     $url="".url."/search.php?searchword=".$keyword."";
+								     $url="".url."/wap/search.php?searchword=".$keyword."";
 							   																	
 								   }
 								$contentStr .= sprintf($newsTplItem, $title, $des, $picUrl1, $url);																													

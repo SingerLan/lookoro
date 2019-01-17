@@ -289,8 +289,17 @@ class WPJAM_Thumbnail{
 	}
 
 	public static function can_remote_image($img_url=''){
-		if(get_option('permalink_structure') == false)	return false;	//	没开启固定链接
-		if(wpjam_cdn_get_setting('remote') == false)	return false;	//	没开启选项
+		if(!apache_mod_loaded('mod_rewrite', true) && empty($GLOBALS['is_nginx']) && !iis7_supports_permalinks()){
+			return false;
+		}
+		
+		if(!extension_loaded('gd') || get_option('permalink_structure') == false){
+			return false;
+		}
+
+		if(wpjam_cdn_get_setting('remote') == false){
+			return false;	//	没开启选项
+		}
 
 		if($img_url){
 			$exceptions	= explode("\n", wpjam_cdn_get_setting('exceptions'));	// 后台设置不加载的远程图片

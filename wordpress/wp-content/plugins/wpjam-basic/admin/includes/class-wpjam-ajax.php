@@ -51,6 +51,8 @@ class WPJAM_AJAX{
 		global $plugin_page;
 
 		extract(wp_parse_args($args, [
+			'data_type'		=> 'form',
+			'fields_type'	=> 'table',
 			'fields'		=> [],
 			'data'			=> [],
 			'bulk'			=> false,
@@ -68,7 +70,7 @@ class WPJAM_AJAX{
 			return;
 		}
 
-		$nonce	= $nonce?:wp_create_nonce($plugin_page.'-'.$action);
+		$nonce	= $nonce ?: wp_create_nonce($plugin_page.'-'.$action);
 
 		if($fields){
 			echo '<div class="'.$notice_class.' notice inline is-dismissible" style="display:none; margin:5px 0px 2px;"></div>';
@@ -80,7 +82,7 @@ class WPJAM_AJAX{
 				echo '<form method="post" action="#" id="'.$form_id.'" data-id="'.$id.'" data-action="'.$action.'" data-nonce="'.$nonce.'" data-title="'.$submit_text.'">';
 			}
 			
-			wpjam_fields($fields, compact('data'));
+			WPJAM_Form::fields_callback($fields, compact('data','data_type','id'));
 		}
 
 		if($submit_text){

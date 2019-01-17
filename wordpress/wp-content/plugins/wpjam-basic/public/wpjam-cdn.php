@@ -42,11 +42,7 @@ add_action('wp_loaded', function(){	// HTML 替换，镜像 CDN 主函数
 		}, 10, 2);
 	
 		if(WPJAM_Thumbnail::can_remote_image()){
-			// 远程图片的 Rewrite 规则，第三方插件需要 flush rewrite
-			add_filter('wpjam_rewrite_rules', function ($rules){
-				$rules[CDN_NAME.'/([0-9]+)/image/([^/]+)?$']	= 'index.php?p=$matches[1]&'.CDN_NAME.'=$matches[2]';
-				return $rules;
-			});
+			add_rewrite_rule(CDN_NAME.'/([0-9]+)/image/([^/]+)?$', 'index.php?p=$matches[1]&'.CDN_NAME.'=$matches[2]', 'top');
 
 			// 远程图片的 Query Var
 			add_filter('query_vars', function($query_vars) {

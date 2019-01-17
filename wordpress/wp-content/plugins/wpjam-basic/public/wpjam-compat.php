@@ -35,7 +35,59 @@ if(!function_exists('wp_cache_cas')){
 	}
 }
 
+function wpjam_api_set_response(&$response){
+	global $wp_query;
 
+	if($wp_query->have_posts()){
+
+		if(isset($_GET['s'])){
+			$response['total_pages']	= (int)$wp_query->max_num_pages;
+			$response['current_page']	= (int)(isset($_GET['paged'])?$_GET['paged']:1);
+		}else{
+			$response['has_more']	= ($wp_query->max_num_pages>1)?1:0;
+
+			$first_post_time = (int)strtotime(get_gmt_from_date($wp_query->posts[0]->post_date)); 
+			$post = end($wp_query->posts);
+			$last_post_time = (int)strtotime(get_gmt_from_date($post->post_date));
+
+			$first_time	= isset($_GET['first_time'])?(int)$_GET['first_time']:'';
+			$last_time	= isset($_GET['last_time'])?(int)$_GET['last_time']:'';
+
+			if(!$first_time && !$last_time){								//第一次加载，需要返回first_time和最后last_time
+				$response['first_time']	= $first_post_time;
+				$response['last_time'] 	= $last_post_time;
+			}elseif($first_time && $wp_query->max_num_pages > 1){			//下拉刷新，数据超过一页：需要返回fist_time和last_time，客户端需要把所有数据清理
+				$response['first_time']	= $first_post_time;
+				$response['last_time'] 	= $last_post_time;
+			}elseif($first_time && $wp_query->max_num_pages < 2){			//下拉刷新，数据不超过一页：需要返回first_time，不需要last_time
+				$response['first_time']	= $first_post_time;
+			}elseif($last_time){											//加载更多：不需要first_time，需要返回last_time
+				$response['last_time']	= $last_post_time;
+			}
+
+			$response['total_pages']	= (int)$wp_query->max_num_pages;
+			$response['current_page']	= (int)(isset($_GET['paged'])?$_GET['paged']:1);
+		}
+	}
+}
+
+function wpjam_api_signon(){
+	$user = $_SERVER['PHP_AUTH_USER'] ?? '';
+	$pass = $_SERVER['PHP_AUTH_PW'] ?? '';
+
+	if(empty($user) || empty($pass))	return false;
+
+	$wp_user = wp_signon(array(
+		'user_login'	=> $user,
+		'user_password'	=> $pass,
+	));
+
+	if(is_wp_error($wp_user))	return false;
+
+	if(current_user_can('mamage_options'))	return true;
+	
+	return false;
+}
 
 function wpjam_cdn_content($content){
 	_deprecated_function(__FUNCTION__, 'WPJAM Basic 3.2', 'wpjam_content_images');
