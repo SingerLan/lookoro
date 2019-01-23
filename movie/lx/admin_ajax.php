@@ -101,6 +101,7 @@ elseif($action=="checkuser")
 elseif($action=="updatecache")
 {
 	cache_clear(sea_ROOT.'/data/cache');
+	cache_clear(sea_ROOT.'/wap/data/cache');
 	echo "ok";
 }
 elseif($action=="clearColHis")
