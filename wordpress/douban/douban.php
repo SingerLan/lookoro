@@ -76,7 +76,7 @@ class DoubanAPI
                                           array("", "", "", "", ""),$t->getPlainText()));
                 $movie_img  = $v->find("div.pic a img", 0)->getAttr("src");
                 $movie_url  = $t->find("a", 0)->getAttr("href");
-                $data[] = array("name" => $movie_name, "img" => $movie_img, "url" => $movie_url);
+                $data[] = array("name" => $movie_name, "img" => 'https://images.weserv.nl/?url='.$movie_img, "url" => $movie_url);
             }
             $url = $doc->find("span.next a", 0);
             if ($url) {

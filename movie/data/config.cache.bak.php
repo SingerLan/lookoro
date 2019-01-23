@@ -91,7 +91,7 @@ $cfg_banwords = '';
 $cfg_sitekeywords = '热门标签1|热门标签2|热门标签3|热门标签4|热门标签5|热门标签6';
 $cfg_cli_time = '8';
 $cfg_sitevisitejs = '';
-$cfg_description = '大饼影视_影视_电视剧_电影_影院_VIP电影电视剧免费在线播放';
-$cfg_site_notice = '大饼影视,免费在线播放,VIP电影,VIP电视剧,综艺,高清,视频,在线观看,P2P';
+$cfg_description = '大饼影视_大饼影视网站_大饼影视在线_影视_电视剧_电影_影院_VIP电影电视剧免费在线播放';
+$cfg_site_notice = '大饼影视,大饼影视网站,大饼影视在线,免费在线播放,VIP电影,VIP电视剧,综艺,高清,视频,在线观看,P2P';
 $cfg_powerby = 'Copyright \u0026\u0023\u0031\u0036\u0039\u003b 2015-2019  All Rights Reserved';
 ?>

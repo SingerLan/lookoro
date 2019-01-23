@@ -59,7 +59,7 @@ $cfg_webname = '大饼影视手机版';
 $cfg_basehost = 'http://www.lookoro.cn/wap';
 $cfg_cmspath = '';
 $cfg_cookie_encode = '';
-$cfg_gatherset = '3';
+$cfg_gatherset = '2,3';
 $cfg_gatherpicset = '1';
 $cfg_df_style = 'aikanV1';
 $cfg_df_html = 'html';
@@ -97,7 +97,7 @@ var _hmt = _hmt || [];
 })();
 </script>
 ';
-$cfg_description = '大饼影视_影视_电视剧_电影_影院_VIP电影电视剧免费在线播放';
-$cfg_site_notice = '大饼影视,免费在线播放,VIP电影,VIP电视剧,综艺,高清,视频,在线观看,P2P';
+$cfg_description = '大饼影视_大饼影视网站_大饼影视在线_影视_电视剧_电影_影院_VIP电影电视剧免费在线播放';
+$cfg_site_notice = '大饼影视,大饼影视网站,大饼影视在线,免费在线播放,VIP电影,VIP电视剧,综艺,高清,视频,在线观看,P2P';
 $cfg_powerby = 'Copyright \u0026\u0023\u0031\u0036\u0039\u003b 2015-2019  All Rights Reserved';
 ?>
