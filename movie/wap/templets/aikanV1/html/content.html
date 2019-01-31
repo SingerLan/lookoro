@@ -34,7 +34,7 @@
 					<div class="col-md-wide-75 col-xs-1">
 						<div class="stui-content clearfix">
 							<div class="stui-content__thumb">
-								<a class="stui-vodlist__thumb v-thumb lazyload" href="{playpage:playlink}" title="{playpage:name}" data-original="{playpage:pic}"><span class="play active hidden-xs"></span><span class="pic-text text-right">{if:{playpage:state}<1}{playpage:note}{elseif:{playpage:state}<1000 and {playpage:state}>0}更新至{playpage:state}集{elseif:{playpage:state}>1000}第{playpage:state}期{elseif:{playpage:state}=0 and "{playpage:note}"=""}{playpage:note}{end if}</span></a>
+								<a class="stui-vodlist__thumb v-thumb lazyload" href="{playpage:playlink}" title="{playpage:name}" data-original="{playpage:pic}"><span class="play active hidden-xs"></span></a>
 							</div>
 							<div class="stui-content__detail">
 								<h3 class="title">{playpage:name}</h3>
@@ -99,7 +99,7 @@
 					{seacms:videolist num=6 order=weekhit type={seacms:currenttypeid}}
 						<li class="col-md-6 col-sm-4 col-xs-3">
 						<div class="stui-vodlist__box">
-							<a class="stui-vodlist__thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]"><span class="play hidden-xs"></span><span class="pic-text text-right">{if:[videolist:state]<1}[videolist:note]{elseif:[videolist:state]<1000 and [videolist:state]>0}更新至第[videolist:state]集{elseif:[videolist:state]>1000}第[videolist:state]期{elseif:[videolist:state]=0 and "[videolist:note]"=""}[videolist:note]{end if}</span></a>
+							<a class="stui-vodlist__thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]"><span class="play hidden-xs"></span><span class="qtag">{if:{playpage:state}==0}{playpage:ver}{else}更新至{playpage:state}集{end if}</span></a>
 							<div class="stui-vodlist__detail padding-0">
 								<h4 class="title text-overflow"><a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></h4>
 								<p class="text text-overflow text-muted hidden-xs">[videolist:nolinkactor]</p>

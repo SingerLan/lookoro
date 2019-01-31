@@ -36,7 +36,7 @@
 							<li>{if:{channellist:page}=={channellist:pagecount}}<a><i class="icon iconfont icon-more"></i></a>{else}<a href="{channellist:nextlink}"><i class="icon iconfont icon-more"></i></a>{end if}</i></a></li>
 						</ul>
 						<span class="more text-muted pull-right hidden-xs">共有{channellist:recordcount}部影片，当前第{channellist:page}页</span>
-					</div>{if:{seacms:currenttypeid}>4}
+					</div>{if:{seacms:currenttypeid}>2}
 					<ul class="stui-screen__list type-slide bottom-line-dot clearfix">
 						<li><span class="text-muted">按分类</span></li>
 						{seacms:menulist type={seacms:currenttypeid}}{seacms:smallmenulist type=[menulist:upid]}
@@ -67,7 +67,7 @@
 					{seacms:channellist size=30 order=time}
 						<li class="col-md-6 col-sm-4 col-xs-3">
 						<div class="stui-vodlist__box">
-							<a class="stui-vodlist__thumb lazyload" href="[channellist:link]" title="[channellist:name]" data-original="[channellist:pic]"><span class="play hidden-xs"></span><span class="pic-text text-right">{if:[channellist:state]<1}[channellist:note]{elseif:[channellist:state]<1000 and [channellist:state]>0}更新至第[channellist:state]集{elseif:[channellist:state]>1000}第[channellist:state]期{elseif:[channellist:state]=0 and "[channellist:note]"=""}[channellist:note]{end if}</span></a>
+							<a class="stui-vodlist__thumb lazyload" href="[channellist:link]" title="[channellist:name]" data-original="[channellist:pic]"><span class="play hidden-xs"></span><span class="qtag">{if:[channellist:state]==0}[channellist:ver]{else}更新至[channellist:state]集{end if}</span></a>
 							<div class="stui-vodlist__detail">
 								<h4 class="title text-overflow"><a href="[channellist:link]" title="[channellist:name]">[channellist:name]</a></h4>
 								<p class="text text-overflow text-muted hidden-xs">[channellist:nolinkactor]</p>
