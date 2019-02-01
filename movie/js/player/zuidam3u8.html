@@ -65,6 +65,9 @@ onload=initAd;
   
 parent.video_diy();
 var playerh=parent.playerh-60;
+if(parent.playerh=='100%'){
+playerh ='70%'
+}
 document.getElementById('player').innerHTML  = '<div style="height:26px; background-color:#2E2E2E; line-height:26px; color:#FFF;">&nbsp;&nbsp;线路切换：&nbsp;&nbsp;<a target="zzapi"  href="'+parent.jxAapi+parent.now+'" ><font style="color:#fff">'+parent.jxAname+'</font></a> &nbsp;&nbsp;<a target="zzapi"  href="'+parent.jxBapi+parent.now+'" ><font style="color:#fff">'+parent.jxBname+'</font></a>&nbsp;&nbsp;<a target="zzapi"  href="'+parent.jxCapi+parent.now+'" ><font style="color:#fff">'+parent.jxCname+'</font></a> &nbsp;&nbsp;<a target="zzapi"  href="'+parent.jxDapi+parent.now+'" ><font style="color:#fff">'+parent.jxDname+'</font></a> &nbsp;&nbsp;<a target="zzapi"  href="'+parent.jxEapi+parent.now+'" ><font style="color:#fff">'+parent.jxEname+'</font></a> </div><iframe name="zzapi" id="zzapi" src="'+parent.jxAapi+parent.now+'" scrolling="0" frameborder="0" width="100%" height="'+playerh+'" allowfullscreen></iframe>';
 </script>   
 </body>

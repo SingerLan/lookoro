@@ -113,7 +113,7 @@
 						<div style="padding:0 10px;">
 							<div class="col-xs-2 movie-recommened">
 								<a style="position:relative;display:block;" target="_blank" title="[videolist:name]" href="[videolist:link]"><img width="100%" src="[videolist:pic]" />
-									<span class="qtag">{if:{playpage:state}==0}{playpage:ver}{else}更新至{playpage:state}集{end if}</span>
+									<span class="qtag">{if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]集{end if}</span>
 									<div class="item-hover"></div>
 								</a>
 								<a target="_blank" title="[videolist:name]" href="[videolist:link]"><h5>[videolist:name]</h5></a>
