@@ -32,6 +32,7 @@ if($action=="edit")
 	$player=preg_replace("/jxCapi=(.*?)\";/is","jxCapi=\"".$jxCapi."\";",$player);
 	$player=preg_replace("/jxDapi=(.*?)\";/is","jxDapi=\"".$jxDapi."\";",$player);
 	$player=preg_replace("/jxEapi=(.*?)\";/is","jxEapi=\"".$jxEapi."\";",$player);
+	$player=preg_replace("/forcejx=(.*?)\";/is","forcejx=\"".$forcejx."\";",$player);
 	$fp = fopen($m_file,'w');
 	flock($fp,3);
 	fwrite($fp,$player);
@@ -218,6 +219,8 @@ else
 	$jxCapi=getrulevalue($player,"jxCapi=\"","\";");
 	$jxDapi=getrulevalue($player,"jxDapi=\"","\";");
 	$jxEapi=getrulevalue($player,"jxEapi=\"","\";");
+	
+	$forcejx=getrulevalue($player,"forcejx=\"","\";");
 	
 	include(sea_ADMIN.'/templets/admin_player.htm');
 	exit();

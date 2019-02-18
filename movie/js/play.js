@@ -280,6 +280,10 @@ setTimeout(appendFrm(pn),1000);
 }
 function appendFrm(pn) {
 	var pn=pn;
+	var forcejx1=forcejx;
+	var forcejx2="yes";
+	var forcejx3="jiexi";
+	if(forcejx1==forcejx2){pn=forcejx3;}
 	document.getElementById("cciframe").width = playerw;
 	document.getElementById("cciframe").height = playerh;
     document.getElementById("cciframe").src = '/js/player/'+ pn + '.html';

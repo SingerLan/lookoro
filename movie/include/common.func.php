@@ -339,7 +339,7 @@ function ShowMsg($msg,$gourl,$onlymsg=0,$limittime=0,$extraJs='')
       }\r\n";
 		$rmsg = $func;
 		$rmsg .= "document.write(\"<br /><div style='width:450px;padding:0px;border:1px solid #3388b6;'>";
-		$rmsg .= "<div style='padding:6px;font-size:12px;border-bottom:1px solid #3388b6;background:#d0e6f9 url({$GLOBALS['cfg_phpurl']}images/wbg.gif)';'><b>提示信息！</b></div>\");\r\n";
+	    $rmsg .= "<div style='padding:6px;font-size:12px;border-bottom:1px solid #3388b6;background:#d0e6f9 ';'><b>提示信息！</b></div>\");\r\n";
 		$rmsg .= "document.write(\"<div style='height:130px;font-size:10pt;background:#ffffff'><br />\");\r\n";
 		$rmsg .= "document.write(\"".str_replace("\"","“",$msg)."\");\r\n";
 		$rmsg .= "document.write(\"";

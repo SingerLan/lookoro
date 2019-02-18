@@ -22,7 +22,6 @@ $str = str_replace(';', "", $str);
 $str = str_replace('*', "", $str);
 $str = str_replace('#', "", $str);
 $str = str_replace('@', "", $str);
-$str = str_replace('-', "", $str);
 $str = str_replace('_', "", $str);
 $str = str_replace('+', "", $str);
 $str = str_replace('.', "", $str);
@@ -128,7 +127,7 @@ function check_str($str,$key){
  return false;
 }
 
-$key = array('{','}','(',')','=',',',';','"','<','>','script','iframe','@','&','%','$','#','*',':','-','_','.','if','/','\\');
+$key = array('{','}','(',')','=',',',';','"','<','>','script','iframe','@','&','%','$','#','*',':','_','.','if','/','\\');
 $page=intval($page);
 $tid=intval($tid);
 if(check_str($searchword,$key)){ShowMsg('请勿输入危险字符！','index.php','0',$cfg_search_time*1000);exit;}

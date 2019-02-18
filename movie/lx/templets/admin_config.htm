@@ -315,7 +315,12 @@
           <input type="radio" name="edit___cfg_gatherpicset" value="1" <?php if ($cfg_gatherpicset=='1') echo "checked";?> class="radio" />
           关闭：
           <input type="radio" name="edit___cfg_gatherpicset" value="0" <?php if ($cfg_gatherpicset=='0') echo "checked";?> class="radio" />
-          &nbsp;开启该功能比较消耗系统资源</td>
+          &nbsp;&nbsp;&nbsp;开启该功能比较消耗系统资源</td>
+      </tr>
+	  <tr>
+        <td>采集时间间隔：</td>
+        <td ><input type="text" name="edit___cfg_cjtime" size="3" value="<?php echo $cfg_cjtime;?>"> 秒&nbsp;&nbsp;&nbsp;
+          请根据服务器配置性能合理设置，太快可能造成服务器资源耗尽导致中断</td>
       </tr>
       <tr class="thead">
         <td colspan="2"><strong>模板与路径设置</strong></td>

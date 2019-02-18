@@ -23,7 +23,7 @@ function initAd(){
         adDiv.visibility ="show";
         if(randAd==1) showAd();
 		document.getElementById("zzzif").src=parent.adsPage; 
-		document.getElementById("zzzif").height=parent.playerh + 10;
+		document.getElementById("zzzif").height=parent.playerh;
 		document.getElementById("zzzif").width=parent.playerw; 		
 }
 function showAd(){
@@ -68,11 +68,11 @@ var str = parent.now;
 if(str.indexOf("http://")>=0)
 {
 var substr = str.match(/([^/]*).html/)[1];
-document.getElementById('player').innerHTML  = '<iframe width="100%" height="'+playerh+'" src="http://www.nxflv.com/?url='+parent.now+'" allowfullscreen="true" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+document.getElementById('player').innerHTML  = '<embed src="http://i1.hunantv.com/ui/swf/share/player.swf?play_type=1&video_id='+parent.now+'" allowFullScreen="true" quality="high" width="100%" height="'+playerh+'" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
 }
 else
 {
-document.getElementById('player').innerHTML  = '<iframe width="100%" height="'+playerh+'" src="http://www.nxflv.com/?url='+parent.now+'" allowfullscreen="true" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+document.getElementById('player').innerHTML  = '<embed src="http://i1.hunantv.com/ui/swf/share/player.swf?play_type=1&video_id='+parent.now+'" allowFullScreen="true" quality="high" width="100%" height="'+playerh+'" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>';
 }
 </script>   
 </body>

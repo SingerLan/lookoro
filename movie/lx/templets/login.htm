@@ -52,8 +52,8 @@ input {
 $cdir = dirname(__FILE__); 
 if(strstr($cdir,'admin'))
 {
-	echo '<div style="width:365px; float:left; margin-left:5px;color:#DC143C;font-size:14px; font-weight:bold;">错误！后台管理目录名含有字符“admin” 请修改。';
-	echo '<script> alert("禁止登录！因为您的后台管理目录名含有禁用字符“admin” 这会造成严重的安全问题。请修改后台目录为不含有“admin”的名称后再登录。")</script>';
+	echo '<div style="width:365px; float:left; margin-left:5px;color:#DC143C;font-size:14px; font-weight:bold;">错误！后台管理目录名含有不安全字符“admin” 请修改并使用修改后的文件夹名访问。';
+	echo '<script> alert("禁止登录！因为您的后台管理目录名含有禁用字符“admin” 这会造成严重的安全问题。请修改后台目录为不含有“admin”的名称后，再使用修改后的新目录登陆后台。")</script>';
 }
 else
 {

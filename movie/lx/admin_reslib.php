@@ -18,7 +18,7 @@ if(!empty($rid))
 }
 $rid=strip_tags($rid);
 $isref=1;//是否使用sock采集 0为不是用,1为使用
-$gatherWaitTime=3; //资源库采集每页数据间隔时间
+$gatherWaitTime=$cfg_cjtime; //资源库采集每页数据间隔时间
 $reslibMainSite="";
 $backurl=isset($backurl)?$backurl:"admin_reslib.php";
 $var_url=$url;

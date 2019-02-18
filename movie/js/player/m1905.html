@@ -23,7 +23,7 @@ function initAd(){
         adDiv.visibility ="show";
         if(randAd==1) showAd();
 		document.getElementById("zzzif").src=parent.adsPage; 
-		document.getElementById("zzzif").height=parent.playerh + 10;
+		document.getElementById("zzzif").height=parent.playerh;
 		document.getElementById("zzzif").width=parent.playerw; 		
 }
 function showAd(){
@@ -68,11 +68,11 @@ var str = parent.now;
 if(str.indexOf("http://")>=0)
 {
 var substr = str.match(/([^/]*).shtml/)[1];
-document.getElementById('player').innerHTML  = '<iframe width="100%" height="'+playerh+'" src="http://vip.qqnu.net/video/?url='+parent.now+'" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+document.getElementById('player').innerHTML  = '<embed type="application/x-shockwave-flash" src="http://static.m1905.com/v/20140716/v.swf" width="100%" height="'+playerh+'" style="" id="__M1905FlashPlayer__" name="__M1905FlashPlayer__" bgcolor="#00000" quality="high" allowscriptaccess="always" allownetworking="all" allowfullscreen="true" wmode="Opaque" flashvars="configUrl=http://static.m1905.com/profile/vod/'+substr.substring(0,1)+'/'+substr.substring(1,2)+'/'+substr+'_1.xml&LoGo=false&wide=false&hd=true&light=true&playAd=false&autoPlay=true&cdn=false">';
 }
 else
 {
-document.getElementById('player').innerHTML  = '<iframe width="100%" height="'+playerh+'" src="http://vip.qqnu.net/video/?url='+parent.now+'" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+document.getElementById('player').innerHTML  = '<embed type="application/x-shockwave-flash" src="http://static.m1905.com/v/20140716/v.swf" width="100%" height="'+playerh+'" style="" id="__M1905FlashPlayer__" name="__M1905FlashPlayer__" bgcolor="#00000" quality="high" allowscriptaccess="always" allownetworking="all" allowfullscreen="true" wmode="Opaque" flashvars="configUrl=http://static.m1905.com/profile/vod/'+parent.now.substring(0,1)+'/'+parent.now.substring(1,2)+'/'+parent.now+'_1.xml&LoGo=false&wide=false&hd=true&light=true&playAd=false&autoPlay=true&cdn=false">';
 }
 </script>   
 </body>

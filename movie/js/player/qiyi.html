@@ -23,7 +23,7 @@ function initAd(){
         adDiv.visibility ="show";
         if(randAd==1) showAd();
 		document.getElementById("zzzif").src=parent.adsPage; 
-		document.getElementById("zzzif").height=parent.playerh + 10;
+		document.getElementById("zzzif").height=parent.playerh;
 		document.getElementById("zzzif").width=parent.playerw; 		
 }
 function showAd(){
@@ -68,8 +68,8 @@ var playerh=parent.playerh-33;
 var a=parent.now.split(",");
 	var u1=a[0];
 	var u2=a[1];
-
-document.getElementById('player').innerHTML  = '<iframe width="100%" height="'+playerh+'" src="http://api.nohacks.cn/?url='+parent.now+'" frameborder="0" border="0" allowfullscreen="true" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+	
+document.getElementById('player').innerHTML  = '<embed width="100%" height="'+playerh+'" align="middle" id="flash" pluginspage="http://www.macromedia.com/go/getflashplayer" src="http://dispatcher.video.qiyi.com/disp/shareplayer.swf" type="application/x-shockwave-flash" allowscriptaccess="always" flashvars="vid='+u1+'&&tvid='+u2+'&coop=coop_qire&cid=qc_100001_10001111&bd=1&autoPlay=1" bgcolor="#000000" menu="true" allowfullscreen="true" devicefont="false" scale="showall" quality="hight" play="true" loop="true"/>';
 
 </script>   
 </body>

@@ -23,7 +23,7 @@ function initAd(){
         adDiv.visibility ="show";
         if(randAd==1) showAd();
 		document.getElementById("zzzif").src=parent.adsPage; 
-		document.getElementById("zzzif").height=parent.playerh + 10;
+		document.getElementById("zzzif").height=parent.playerh;
 		document.getElementById("zzzif").width=parent.playerw; 		
 }
 function showAd(){
@@ -64,7 +64,7 @@ onload=initAd;
 <script>
 parent.video_diy();
 var playerh=parent.playerh-33;
-document.getElementById('player').innerHTML  = '<iframe width="100%" height="'+playerh+'" src="http://api.nohacks.cn/?url='+parent.now+'" allowfullscreen="true" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+document.getElementById('player').innerHTML  = '<embed type="application/x-shockwave-flash" src="http://tv.sohu.com/upload/swf/20101021/Main.swf?autoplay=true&vid='+parent.now+'" width="100%" height="'+playerh+'" type="application/x-shockwave-flash" allowFullScreen="true" allownetworking="internal" allowscriptaccess="never" wmode="opaque">';
 </script>   
 </body>
 </html>

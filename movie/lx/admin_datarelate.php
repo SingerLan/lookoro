@@ -302,6 +302,16 @@ elseif($action=="fileperms")
 	include(sea_ADMIN.'/templets/admin_datarelate_fileperms.htm');
 	exit();	
 }
+elseif($action=="randomsetscore")
+{
+	include(sea_ADMIN.'/templets/admin_datarelate_randomsetscore.htm');
+	exit();	
+}
+elseif($action=="randomsetscorenum")
+{
+	include(sea_ADMIN.'/templets/admin_datarelate_randomsetscorenum.htm');
+	exit();	
+}
 elseif($action=="repeat")
 {
 	include(sea_ADMIN.'/templets/admin_reapeat.htm');
@@ -554,6 +564,47 @@ elseif($action=="delByDown")
 	}
 	echo "<br>暂停".$wtime."秒后继续<script language=\"javascript\">setTimeout(\"transNextPage();\",".$wtime."*1000);function transNextPage(){location.href='?action=delByDown&page=".($page+1)."&TotalPage=".$TotalPage."&wtime=".$wtime."&from=".$from."&domain=".$domain."';}</script>";
 }
+
+elseif($action=="dorandomsetscore"){
+	$pagesize = 30;
+	$sql = " select v_id,v_name,v_score from `sea_data`";
+	$dsql->SetQuery($sql);
+	$dsql->Execute('totalnum');
+	$num = $dsql->GetTotalRow('totalnum');
+	if ($num%$pagesize) {
+		$zongye=ceil($num/$pagesize);
+	}elseif($num%$pagesize==0){
+		$zongye=$num/$pagesize;
+	}
+	if($pageval<=1)$pageval=1;
+	if($_GET['page']){
+		$pageval=$_GET['page'];
+		$page=($pageval-1)*$pagesize; 
+		$page.=',';
+	}
+	if($pageval>$zongye)
+	{
+		echo "<script>alert('修改成功！');location.href='admin_datarelate.php?action=randomsetscore'</script>";
+	}
+	$sql = "select v_id,v_name,v_score from `sea_data` order by v_id ASC limit $page $pagesize";
+	$dsql->SetQuery($sql);
+	$dsql->Execute('randomsetscore');
+	echo "<div style='font-size:13px'>正在更新。。。<br>";
+	while($row = $dsql->GetArray('randomsetscore'))
+	{
+		$score=rand($minscore, $maxscore);
+		$upSql = "update `sea_data` set v_score=".$score.",v_scorenum=1 where v_id =".$row[v_id];
+		$dsql->ExecNoneQuery($upSql);
+		echo '<body>成功更新&nbsp;ID:'.$row[v_id];
+		echo '&nbsp;<font color=red>'.$row[v_name].'</font>';
+		echo '&nbsp;评分:&nbsp;'.$score.'<br>';
+	}
+	echo "请等待".($time/1000)."秒更新下一页</div>";
+	echo "<script>function urlto(){location.href='admin_datarelate.php?action=dorandomsetscore&time=".$time."&minscore=".$minscore."&maxscore=".$maxscore."&page=".($pageval+1)."';}
+	setTimeout ('urlto()',".$time.");</script>";
+	exit();	
+}
+
 elseif($action=="delByFrom")
 {
 	

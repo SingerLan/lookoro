@@ -160,7 +160,7 @@ if($action=="set")
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
 展示数目：<input name="sql_num" size="6"   value="<?php echo sql_num;?>">
- * 相关内容展示数量，建议为5，过多内容会严重影响系统效率
+ * 相关内容展示数量，建议不超过30，过多内容会严重影响系统效率
 </td>
 </tr>
 
@@ -177,12 +177,17 @@ if($action=="set")
 </tr>
 <tr>
 <td width="90%" align="left" height="30" class="td_border">
-* 当用户输入<font color="red"><strong>中文</strong></font>时搜索影片；<font color="red"><strong>纯数字</strong></font>时获取观看密码；输入<font color="red"><strong>英文</strong></font>时触发帮助。
+* 当用户输入<font color="red"><strong>中文</strong></font>或<font color="red"><strong>英文</strong></font>时搜索影片；<font color="red"><strong>纯数字</strong></font>时获取观看密码。
 </td>
 </tr>
 <tr>
 <td width="90%" align="left" height="30" class="td_border">
 * 默认的帮助触发关键词为<font color="red"><strong>h</strong></font>，留言板触发关键词为<strong><font color="red">g</strong></font>。
+</td>
+</tr>
+<tr>
+<td width="90%" align="left" height="30" class="td_border">
+* 当用户发送以<font color="red"><strong>http</strong></font>或<font color="red"><strong>https</strong></font>开头的网址时，自动调用解析接口进行解析播放。
 </td>
 </tr>
 <tr>

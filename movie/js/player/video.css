@@ -2,10 +2,14 @@
 #play_header{width:100%;height:33px;line-height:33px;background:#000;border-bottom:1px solid #222;color:#fff;font-size:14px;font-family:Microsoft YaHei,'宋体',arial;overflow:hidden;}
 #play_header a{display:block;font-size:inherit;font-family:inherit;color:#fff;text-decoration:none;}
 #play_header a:hover{text-decoration:underline;}
-#header1{float:left;display:inline;width:20%;text-align:center; }
-#header2{float:left;display:inline;width:51%;text-align:center;}
-#header3{float:right;display:inline;width:28%;text-align:center;border-left:1px solid #222;}
-#header1 a{border-right:1px solid #222;width:49%;float:left;}
+
+
+
+
+#header1{float:left;display:inline;width:30%;text-align:center; }
+#header1 a{border-right:1px solid #222;width:40%;float:left;}
+#header2{float:left;display:inline;width:40%;text-align:center;}
+#header3{float:right;display:inline;width:25%;text-align:center;border-left:1px solid #222;}
 
 #play_box{overflow:hidden;}
 #video_menu{float:left;width:0;height:407px;background: #000;overflow-x:hidden; overflow-y:auto;SCROLLBAR-BASE-COLOR:#1F1F1F;SCROLLBAR-TRACK-COLOR:#000;SCROLLBAR-3DLIGHT-COLOR:#000;SCROLLBAR-SHADOW-COLOR:#000;SCROLLBAR-FACE-COLOR:#1F1F1F;SCROLLBAR-HIGHLIGHT-COLOR:#000;font-family:Microsoft YaHei,'宋体',arial;}

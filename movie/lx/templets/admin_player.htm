@@ -252,6 +252,17 @@ if($action=="boardsource")
 <td><input type="text" name="adtimebeforeplay" size="15" value="<?php echo $playerBeforeTime;?>"onkeyup="value=value.replace(/[^1234567890]+/g,'');if(this.value==''){this.value=1};"/> (秒)</td>
 </tr>
 
+<tr>
+<td >强制使用解析</td>
+<td>
+关闭
+<input type="radio" name="forcejx" value="no" <?php if($forcejx=="no") echo 'checked';?>>
+&nbsp;&nbsp;
+开启<input type="radio" name="forcejx" value="yes" <?php if($forcejx=="yes") echo 'checked';?>>
+&nbsp;&nbsp;&nbsp;&nbsp;
+开启后强制所有播放器使用解析播放</td>
+</tr>
+
 <tr class="thead"><td colspan="2" class="td_title">解析接口配置</td></tr>
 <tr>
 <td >解析接口A：</td>

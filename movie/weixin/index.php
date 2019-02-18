@@ -61,33 +61,29 @@ class wechatCallbackapiTest
 						}
 						break;
 					case 'text':
-						if(preg_match('/[\x{4e00}-\x{9fa5}]+/u',$keyword))
+						if(preg_match('/[\x{4e00}-\x{9fa5}]+/u',$keyword) OR ($keyword !="g" and $keyword !="h" and !is_numeric($keyword) and substr($keyword , 0 , 4) !="http"))
 						{	
-							$newsTplHeader = "<xml>
+							$newsTpl = "<xml>
 							<ToUserName><![CDATA[%s]]></ToUserName>
 							<FromUserName><![CDATA[%s]]></FromUserName>
 							<CreateTime>%s</CreateTime>
 							<MsgType><![CDATA[news]]></MsgType>
-							<ArticleCount>%s</ArticleCount>
-							<Articles>";
-							$newsTplItem = "<item>
+							<ArticleCount>1</ArticleCount>
+							<Articles>
+							<item>
 							<Title><![CDATA[%s]]></Title> 
 							<Description><![CDATA[%s]]></Description>
 							<PicUrl><![CDATA[%s]]></PicUrl>
 							<Url><![CDATA[%s]]></Url>
-							</item>";
-							$newsTplFooter="</Articles>
+							</item>							
+							</Articles>
 							</xml>";
 									
-									//$con = mysql_connect(sql_url,sql_name,sql_pass);								
-									//$this->dsql->SetQuery("SET NAMES UTF8");
-									//$this->dsql->SetQuery("set character_set_client=utf8"); 
-									//$this->dsql->SetQuery("set character_set_results=utf8");
-									//mysql_select_db(sql_db, $con);
+
 									$sql = "SELECT * FROM `sea_data` WHERE `v_name` like '%".$keyword."%'  LIMIT 0 ,".sql_num."";
 							        $this->dsql->SetQuery($sql);
 						            $this->dsql->Execute('zz');
-									$itemCount = 0;
+									//$itemCount = 0;
 									$aa=$this->dsql->GetTotalRow('zz');
 
 								if($aa>0){
@@ -110,17 +106,24 @@ class wechatCallbackapiTest
 										$picUrl1 =url."/".$row['v_pic'];
 										}
 									// 添加更多链接									
-									if ($itemCount==(sql_num-1) ) {
+									//if ($itemCount==(sql_num-1) ) {
 																				
-							         $title='更多请点击>>';
-								     $url="".url."/wap/search.php?searchword=".$keyword."";
+							         //$title='更多请点击>>';
+								     //$url="".url."/search.php?searchword=".$keyword."";
 							   																	
-								   }
-								$contentStr .= sprintf($newsTplItem, $title, $des, $picUrl1, $url);																													
-									++$itemCount;	
+								   //}
+								//$contentStr .= sprintf($newsTplItem, $title, $des, $picUrl1,$url);
+									$txt .= "<a href='".$url."'>·".$title."</a>\n";					
+									//++$itemCount;	
 								}							
-								$newsTplHeader = sprintf($newsTplHeader, $fromUsername, $toUsername, $time, $itemCount);
-								$resultStr =  $newsTplHeader. $contentStr. $newsTplFooter;
+								//$newsTplHeader = sprintf($newsTplHeader, $fromUsername, $toUsername, $time, $itemCount);
+								//$resultStr =  $newsTplHeader. $contentStr. $newsTplFooter;
+								
+								$contentStr = $txt."<a href='".url."/search.php?searchword=".$keyword."'>【搜索更多...】</a>";
+
+								$msgType = 'text';
+								$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+							
 								echo $resultStr; 
 								}
 								else

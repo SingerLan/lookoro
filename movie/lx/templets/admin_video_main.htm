@@ -2,8 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta name="robots" content="noindex,nofollow">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="expires" content="0" />
-<meta http-equiv="pragma" content="no-cache" />
+
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+<META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT"> 
+<META HTTP-EQUIV="expires" CONTENT="0"> 
+
 <link  href="img/style.css" rel="stylesheet" type="text/css" />
 <title>影片管理</title>
 <script src="js/common.js" type="text/javascript"></script>
@@ -145,6 +149,7 @@ select {
             &nbsp;&nbsp;&nbsp;<a onclick="location.href='admin_datarelate.php?action=downpic&downtype=all';return false;" href="#"><font color="red">同步图片</font></a>
             <?php }?>
             &nbsp;&nbsp;&nbsp;<a href="admin_datarelate.php?action=checkpic" style="color:green">图片管理</a>
+			&nbsp;&nbsp;&nbsp;【提示：如出现SQL错误提示，请尝试清空您的浏览器缓存！如果MySQL开启了严格模式，请关闭】
 			<?php
 			if($page==1)
 			{

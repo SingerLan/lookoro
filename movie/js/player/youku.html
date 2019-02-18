@@ -23,7 +23,7 @@ function initAd(){
         adDiv.visibility ="show";
         if(randAd==1) showAd();
 		document.getElementById("zzzif").src=parent.adsPage; 
-		document.getElementById("zzzif").height=parent.playerh + 10;
+		document.getElementById("zzzif").height=parent.playerh;
 		document.getElementById("zzzif").width=parent.playerw; 		
 }
 function showAd(){
@@ -68,11 +68,11 @@ var str = parent.now;
 if(str.indexOf("http://")>=0)
 {
 var substr = str.match(/id_(\S*).html/)[1];
-document.getElementById('player').innerHTML  = '<iframe width="100%" height="'+playerh+'" src="http://api.nohacks.cn/?url='+parent.now+'" allowfullscreen="true" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+document.getElementById('player').innerHTML  = '<embed type="application/x-shockwave-flash" src="http://static.youku.com/v1.0.0242/v/swf/qplayer.swf" id="Player" bgcolor="#FFFFFF" quality="high" allowfullscreen="true" allowNetworking="internal" allowscriptaccess="never" wmode="transparent" menu="false" always="false" flashvars="isShowRelatedVideo=false&showAd=0&show_pre=1&show_next=1&VideoIDS='+substr+'&isAutoPlay=true&isDebug=false&UserID=&winType=adshow&playMovie=true&MMControl=false&MMout=false&RecordCode=1001,1002,1003,1004,1005,1006,2001,3001,3002,3003,3004,3005,3007,3008,9999" pluginspage="http://www.macromedia.com/go/getflashplayer" width="100%" height="'+playerh+'">';
 }
 else
 {
-document.getElementById('player').innerHTML  = '<iframe width="100%" height="'+playerh+'" src="http://api.nohacks.cn/?url='+parent.now+'" allowfullscreen="true" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+document.getElementById('player').innerHTML  = '<embed type="application/x-shockwave-flash" src="http://static.youku.com/v1.0.0242/v/swf/qplayer.swf" id="Player" bgcolor="#FFFFFF" quality="high" allowfullscreen="true" allowNetworking="internal" allowscriptaccess="never" wmode="transparent" menu="false" always="false" flashvars="isShowRelatedVideo=false&showAd=0&show_pre=1&show_next=1&VideoIDS='+parent.now+'&isAutoPlay=true&isDebug=false&UserID=&winType=adshow&playMovie=true&MMControl=false&MMout=false&RecordCode=1001,1002,1003,1004,1005,1006,2001,3001,3002,3003,3004,3005,3007,3008,9999" pluginspage="http://www.macromedia.com/go/getflashplayer" width="100%" height="'+playerh+'">';
 }
 </script> 
 </body>
