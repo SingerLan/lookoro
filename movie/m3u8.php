@@ -24,7 +24,7 @@ body,html{width:100%;height:100%;background:#000;padding:0;margin:0;overflow-x:h
 <body>
 <div id="dplayer"></div>
 <div id="stats"></div>
-<script type="text/javascript" src="dplayer/p2p-hls.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cdnbye@latest"></script>
 <script type="text/javascript" src="dplayer/p2p-dplayer.min.js"></script>
 <script>
 	var webdata = {
@@ -52,17 +52,17 @@ body,html{width:100%;height:100%;background:#000;padding:0;margin:0;overflow-x:h
         	pic: 'dplayer/loading.gif',
         },
           volume: 6.0,
-		  logo: 'dplayer/logo.png',
+//		  logo: 'dplayer/logo.png',
           preload: 'auto',
           screenshot: true,
           theme: '#7CFC00',
-		danmaku: {
-				id: '<?php echo $_GET['url'];?>',
-				api: 'https://api.prprpr.me/dplayer/',
-				maximum: 1000,
-				bottom: '20%',
-				unlimited: true
-        },
+//		danmaku: {
+//				id: m3u8url,
+//				api: 'https://api.prprpr.me/dplayer/',
+//				maximum: 1000,
+//				bottom: '20%',
+//				unlimited: true
+//        },
         hlsjsConfig: {
 //            debug: false,
             // Other hlsjsConfig options provided by hls.js

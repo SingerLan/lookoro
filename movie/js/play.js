@@ -30,8 +30,8 @@ var jxDname="线路4";
 var jxEname="线路5";
 var jxAapi="http://www.lookoro.cn/player/spare.php?url=";
 var jxBapi="http://www.lookoro.cn/m3u8.php?url=";
-var jxCapi="http://jiexi.92fz.cn/player/jiexi.php?url=";
-var jxDapi="http://kpg3.cn/?url=";
+var jxCapi="http://www.lookoro.cn/player/P2P-DPlayer.php?url=";
+var jxDapi="http://www.lookoro.cn/player/TCPlayer.php?url=";
 var jxEapi="http://g.alicdn.com/de/prismplayer-flash/1.2.16/PrismPlayer.swf?vurl=";
 
 function IsPC() {

@@ -42,7 +42,7 @@ var vfed = {
 							hls.loadSource(video.src);
 							hls.attachMedia(video);
 							var engine = new P2PEngine(hls, {
-								wsSignalerAddr: 'wss://free.freesignal.net',
+								wsSignalerAddr: 'wss://signal.cdnbye.com/wss',
 								maxBufSize: 1073741824
 							});
 							engine.on('peerId', function(peerId) {

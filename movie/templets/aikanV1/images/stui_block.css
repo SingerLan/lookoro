@@ -382,7 +382,7 @@ textarea.form-control{ height: auto;}
 	/* vod-list */
 	.stui-vodlist__thumb .tag{ padding: 0 5px;}
 	.stui-vodlist__thumb .silde-title{ font-size: 12px;}
-	.stui-vodlist__detail .title,.stui-vodlist__detail .title.active{margin-bottom: 0; font-size: 12px;}	
+	.stui-vodlist__detail .title,.stui-vodlist__detail .title.active{margin-bottom: 0; font-size: 12px;text-align: center;}	
 	
 	/* media-list */
 	.stui-vodlist__media li .thumb .v-thumb{ width: 80px;}
