@@ -1,6 +1,6 @@
 <?php
 require_once('common.php');
-
+ 
 AjaxHead();
 $action = isset($action) ? trim($action) : '';
 $id = (isset($id) && is_numeric($id)) ? $id : 0;

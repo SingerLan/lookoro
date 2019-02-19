@@ -22,7 +22,7 @@
     <script src="dplay/dplayer.js" type="text/javascript" charset="utf-8"></script>
     <script>var urls = '<?php echo $_GET['url'];?>';
       var apis = "1";
-      var jump = "";
+      var jump = '<?php echo $_GET['next'];?>';
       var cookie = apis ? vfed.cookie.put(urls) : "";</script>
     <script>function delayed() {
         vfed.player.dplayer(true, urls, jump);

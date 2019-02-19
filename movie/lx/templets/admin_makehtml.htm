@@ -29,9 +29,10 @@
         </tr>
         <tr id="tr_make_zt" style="display:none;">
           <td><form action="?action=topic" method="post" target="msg">
-              <?php echo makeTopicSelect("topic","请选择专题","");?>
-              <input type="submit"  class="rb1"  value="生成专题页" >
-              <input type="button"  class="rb1"  value="生成全部专题页" onClick="javascript:window.open('?action=alltopic','msg');">
+              <?php echo makeTopicSelect("topic","请选择要生成的专题","");?>
+              <input type="submit"  class="rb1"  value="生成专题" >
+              <input type="button"  class="rb1"  value="生成全部专题" onClick="javascript:window.open('?action=alltopic','msg');">
+			  <input type="button"  class="rb1"  value="生成专题列表" onClick="javascript:window.open('?action=topicindex','msg');">
             </form></td>
         </tr>
         <tr id="tr_make_type">

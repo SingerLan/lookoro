@@ -1,5 +1,10 @@
 <?php
 require_once(dirname(__FILE__)."/../include/common.php");
+//前置跳转start
+$cs=$_SERVER["REQUEST_URI"];
+if($GLOBALS['cfg_mskin']==3 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost$cs");}
+if($GLOBALS['cfg_mskin']==4 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
+//前置跳转end
 require_once(sea_INC."/main.class.php");
 
 if($GLOBALS['cfg_runmode']==2||$GLOBALS['cfg_paramset']==0){
@@ -20,6 +25,8 @@ if($GLOBALS['cfg_runmode']==2||$GLOBALS['cfg_paramset']==0){
 	$tid = isset($tid) && is_numeric($tid) ? $tid : 0;
 	$page = isset($page) && is_numeric($page) ? $page : 1;
 }
+$tid=intval($tid);
+$page=intval($page);
 if($tid==0){
 	showmsg('参数丢失，请返回！', -1);
 	exit;
@@ -33,9 +40,11 @@ function echoChannel($typeId)
 	$channelTmpName=getTypeTemplate($typeId);
 	$channelTmpName=empty($channelTmpName) ? "channel.html" : $channelTmpName;
 	$channelTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/".$channelTmpName;
+	if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+	{$channelTemplatePath = "/templets/".$GLOBALS['cfg_df_mstyle']."/".$GLOBALS['cfg_df_html']."/".$channelTmpName;}
 	if (strpos(" ,".getHideTypeIDS().",",",".$typeId.",")>0) exit("<font color='red'>视频列表为空或被隐藏</font><br>");
 	if ($cfg_user == 1){
-        if (!getUserAuth($typeId, "list")){exit("<font color='red'>您没有权限浏览此内容!</font><script>function JumpUrl(){history.go(-1);}setTimeout('JumpUrl()',1000);</script>");}
+        if (!getUserAuth($typeId, "list")){ShowMsg("您当前的会员级别没有权限浏览此内容！","../member.php",0,20000);exit();}
     }
 	$pSize = getPageSizeOnCache($channelTemplatePath,"channel",$channelTmpName);
 	if (empty($pSize)) $pSize=12;
@@ -57,7 +66,7 @@ function echoChannel($typeId)
 	}
 	$pCount = ceil($TotalResult/$pSize);
 	$currentTypeId = $typeId;
-	$cacheName = "parse_channel_".$currentTypeId;
+	$cacheName = "parse_channel_".$currentTypeId.$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 	if($cfg_iscache){
 		if(chkFileCache($cacheName)){
 			$content = getFileCache($cacheName);

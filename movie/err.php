@@ -16,14 +16,15 @@ $row1 = $dsql->GetOne("SELECT v_name FROM `sea_data` WHERE `v_id` = '$id' ORDER 
 			showMsg('请勿恶意提交报错数据','index.php');
 			exit();
 		}
-
+$errtxt2=$_GET['errtxt'];
+$id2=$_GET['id'];
 if(empty($action)) $action = '';
 if($action=='add')
 {
 	$ip = GetIP();
 	$sendtime = time();
 	
-	//检查验证码是否正确
+	//检查验证码是否正确 
 if($cfg_feedback_ck=='1')
 {	
 	$validate = empty($validate) ? '' : strtolower(trim($validate));
@@ -47,8 +48,7 @@ if($cfg_feedback_ck=='1')
 	}
 	
 	
-$id=$_SERVER['HTTP_REFERER'];
-$id=getSubStrByFromAndEnd($id,"?id=","","start");
+$id=$_POST['vid'];
 $id = !empty($id) && is_numeric($id) ? $id : 0;
 $ip = GetIP();
 $author = HtmlReplace($author);
@@ -88,11 +88,12 @@ if($author=='' || $errtxt=='') {
     </head>
     <body  style="font-size:12px;background-color:#D7EDFA;height:22px;line-height:22px;">
         <form id="reporterr" action="?id=<?php echo $id ?>&action=add" method="post" onSubmit="return checkReportErr()">
+		<input type="hidden" id="vid" name="vid"  value="<?php echo $id2 ?>">
             <div class="err">
 			<h2>失效影片，我们会在第一时间内修正</h2>
                <p style="padding-bottom:5px;">昵称:<input type="text" id="author" name="author"  value="匿名"  size="15"><font color="#FF0000">*必填</font></p>
 			
-                <p>详情:<textarea id="errtxt"  name="errtxt" style="width:270px;height:88px" rows=5 cols=30></textarea>
+                <p>详情:<textarea id="errtxt"  name="errtxt" style="width:270px;height:88px" rows=5 cols=30><?php echo $errtxt2 ?></textarea>
                 <font color="#FF0000">*必填</font></p>
 				<?php
 				$vcode="<p>验证：<input name=\"validate\" type=\"text\" id=\"vdcode\" style=\"width:50px;text-transform:uppercase;\" class=\"text\" tabindex=\"3\"/> <img id=\"vdimgck\" src=\"include/vdimgck.php\" alt=\"看不清？点击更换\"  align=\"absmiddle\"  style=\"cursor:pointer\" onClick=\"this.src=this.src+'?get=' + new Date()\"/><span class=\"red\"></span></p>";

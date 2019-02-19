@@ -71,14 +71,18 @@ elseif($ac=='clear')
 elseif($ac=='editsave')
 {
 	$gid = intval($gid);
-	$upoints = intval($upoints);
+	$upoints = intval($upoints);	
+
+	$vipendtime2=strtotime($vipendtime);
+
+
 	$ustate = intval($ustate);
 		if($psd =="")
-			{$sql="update sea_member set gid=$gid,points=$upoints,state=$ustate where id=$id";}
+			{$sql="update sea_member set gid=$gid,points=$upoints,email='$email',nickname='$nickname',state=$ustate,vipendtime='$vipendtime2',acode='$acode' where id=$id";}
 		else
 			{
 				$psd=substr(md5($psd),5,20);
-				$sql="update sea_member set gid=$gid,points=$upoints,state=$ustate,password='$psd' where id=$id";}
+				$sql="update sea_member set gid=$gid,points=$upoints,email='$email',nickname='$nickname',state=$ustate,password='$psd',vipendtime='$vipendtime2',acode='$acode' where id=$id";}
 	if($dsql->ExecuteNoneQuery($sql))
 	{
 		ShowMsg("更新成功",'-1');

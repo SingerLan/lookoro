@@ -143,10 +143,10 @@ function hide(){
                   是的，使用SOCK</label>
                 <span class="red">使用SOCK可以有效的突破各种防盗链</span></td>
             </tr>
-            <tr>
+            <tr <?php if($cofrom==1){echo 'style=display:none;';} ?>>
               <td class="label">播放器来源：</td>
               <?php if($cofrom==1) {?>
-              <td><input name='playfrom' value="seacms"/></td>
+              <td><input name='playfrom' value="seacms"/> </td>
               <?php }else{?>
               <td><select name='playfrom'>
                   <option value=''>暂没有数据</option>
@@ -155,7 +155,7 @@ function hide(){
               <?php }?>
             </tr>
             
-            <tr>
+            <tr <?php if($cofrom==1){echo 'style=display:none;';} ?>>
               <td class="label">下载来源：</td>
               <td><select name='downfrom'>
                   <option value=''>暂没有数据</option>
@@ -163,7 +163,7 @@ function hide(){
                 </select></td>
             </tr>
             <tr>
-              <td class="label red">分类设置：</td>
+              <td>分类设置：</td>
               <td><input type="radio" class="radio" name="autocls" value="0" onclick="show('selcls');" checked/>
                 固定分类
                 <input type="radio" class="radio" name="autocls" value="1" onclick="hide('selcls');"/>

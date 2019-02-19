@@ -31,9 +31,8 @@ var vfed = {
 			var type = urls.indexOf('.m3u8') > -1 ? 'customHls' : 'auto';
 			var player = new DPlayer({
 				container: document.getElementById('video'),
-				autoplay: auto,
+				autoplay: true,
 				video: {
-                    
 					url: urls,
 					type: type,
 					customType: {

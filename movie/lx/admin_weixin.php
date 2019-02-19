@@ -14,6 +14,19 @@ if($action=="set")
 	$help = htmlspecialchars($_POST['help']);
 	$topage = $_POST['topage'];
 	$sql_num = intval($_POST['sql_num']);
+	$dwz = $_POST['dwz'];
+	$dwztoken = $_POST['dwztoken'];
+	
+	$msg1a = $_POST['msg1a'];
+	$msg1b = $_POST['msg1b'];
+	$msg2a = $_POST['msg2a'];
+	$msg2b = $_POST['msg2b'];
+	$msg3a = $_POST['msg3a'];
+	$msg3b = $_POST['msg3b'];
+	$msg4a = $_POST['msg4a'];
+	$msg4b = $_POST['msg4b'];
+	$msg5a = $_POST['msg5a'];
+	$msg5b = $_POST['msg5b'];
 	
 	$open=fopen("../data/admin/weixin.php","w" );
 	$str='<?php ';
@@ -54,13 +67,58 @@ if($action=="set")
 	$str.="$topage";
 	$str.='"); ';
 	
+	$str.='define("dwz", "';
+	$str.="$dwz";
+	$str.='"); ';
+	
+	$str.='define("dwztoken", "';
+	$str.="$dwztoken";
+	$str.='"); ';
+	
 	$str.='define("sql_num", "';
 	$str.="$sql_num";
+	$str.='"); ';
+	
+	$str.='define("msg1a", "';
+	$str.="$msg1a";
+	$str.='"); ';
+	$str.='define("msg1b", "';
+	$str.="$msg1b";
+	$str.='"); ';
+	
+	$str.='define("msg2a", "';
+	$str.="$msg2a";
+	$str.='"); ';
+	$str.='define("msg2b", "';
+	$str.="$msg2b";
+	$str.='"); ';
+	
+	$str.='define("msg3a", "';
+	$str.="$msg3a";
+	$str.='"); ';
+	$str.='define("msg3b", "';
+	$str.="$msg3b";
+	$str.='"); ';
+	
+	$str.='define("msg4a", "';
+	$str.="$msg4a";
+	$str.='"); ';
+	$str.='define("msg4b", "';
+	$str.="$msg4b";
+	$str.='"); ';
+	
+	$str.='define("msg5a", "';
+	$str.="$msg5a";
+	$str.='"); ';
+	$str.='define("msg5b", "';
+	$str.="$msg5b";
 	$str.='"); ';
 
 	$str.=" ?>";
 	fwrite($open,$str);
 	fclose($open);
+	ShowMsg("成功保存设置!","admin_weixin.php");
+	exit;
 }
 
 ?>
@@ -90,7 +148,7 @@ if($action=="set")
 功能开关：<input type="radio" name="isopen" value="y" <?php if(isopen=="y") echo 'checked';?>>开启
 &nbsp;&nbsp;
 <input type="radio" name="isopen" value="n" <?php if(isopen=="n") echo 'checked';?>>关闭
-&nbsp;&nbsp;*  选择是否开启微信公共平台功能
+&nbsp;&nbsp;  选择是否开启微信公共平台功能
 
 </td>
 </tr>
@@ -99,49 +157,49 @@ if($action=="set")
 <td width="80%" align="left" height="30" class="td_border">
 
 微信域名：<input  name="url" size="40" value="<?php echo url;?>">
- * 网址结尾不要加 / 符号，如域名被微信屏蔽，修改此处即可
+  网址结尾不要加 / 符号，如域名被微信屏蔽，修改此处即可
 </td>
 </tr>
 
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
 微信名称：<input name="title" size="40"  value="<?php echo title;?>">
- * 显示的公众号名称，可以自定义任意内容
+  显示的公众号名称，可以自定义任意内容
 </td>
 </tr>
 
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
 解析接口：<input name="ckmov_url" size="40"  value="<?php echo ckmov_url;?>">
- * 注意此处非海洋cms播放器，而是微信用户发送视频网址时调用的解析接口
+  注意此处非海洋cms播放器，而是微信用户发送视频网址时调用的解析接口
 </td>
 </tr>
 
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
 默认封面：<input name="dpic"  size="40"  value="<?php echo dpic;?>">
- * 消息默认封面图片地址
+  图文消息默认封面图片地址
 </td>
 </tr>
 
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
-关注回复：<input name="follow"  size="40"  value="<?php echo follow;?>">
- * 用户关注后自动回复内容
+关注回复：<textarea name="follow" style="width:500px;height:50px;"><?php echo follow;?></textarea>
+  用户关注后自动回复内容
 </td>
 </tr>
 
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
-无内容时：<input name="noc"  size="40"  value="<?php echo noc;?>">
- * 无对应内容时回复内容
+无内容时：<textarea name="noc" style="width:500px;height:50px;"><?php echo noc;?></textarea>
+  无对应内容时回复内容
 </td>
 </tr>
 
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
-帮助信息：<input name="help"  size="40"  value="<?php echo help;?>">
- * 自定义帮助信息，输入g触发此回复
+帮助信息：<textarea name="help" style="width:500px;height:50px;"><?php echo help;?></textarea>
+  自定义帮助信息
 </td>
 </tr>
 
@@ -149,18 +207,64 @@ if($action=="set")
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
 跳转页面：
-<input type="radio" name="topage" value="d" <?php if(topage=="d") echo 'checked';?>>内容页
+<input type="radio" name="topage" value="d" <?php if(topage=="d") echo 'checked';?>>内容
 &nbsp;&nbsp;
-<input type="radio" name="topage" value="v" <?php if(topage=="v") echo 'checked';?>>播放页
-&nbsp;&nbsp;* 选择默认链接地址，播放页或者内容页
+<input type="radio" name="topage" value="v" <?php if(topage=="v") echo 'checked';?>>播放
+&nbsp;&nbsp;&nbsp; 选择默认链接地址，播放页或者内容页
 </td>
 </tr>
 
+<tr>
+<td width="80%" align="left" height="30" class="td_border">
+网址缩短：
+<input type="radio" name="dwz" value="y" <?php if(dwz=="y") echo 'checked';?>>开启
+&nbsp;&nbsp;
+<input type="radio" name="dwz" value="n" <?php if(dwz!="y") echo 'checked';?>>关闭
+&nbsp;&nbsp;&nbsp;
+授权码：<input name="dwztoken"  size="20"  value="<?php echo dwztoken;?>">
+&nbsp;&nbsp; 新浪授权码，访问open.weibo.com获取
+</td>
+</tr>
 
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
 展示数目：<input name="sql_num" size="6"   value="<?php echo sql_num;?>">
- * 相关内容展示数量，建议不超过30，过多内容会严重影响系统效率
+  相关内容展示数量，建议不超过30，过多内容会严重影响系统效率
+</td>
+</tr>
+
+<tr class="thead">
+<td colspan="5" class="td_title">自定义关键词回复</td>
+</tr>
+
+<tr>
+<td width="80%" align="left" height="30" class="td_border">
+【1】关键词:<input name="msg1a"  size="10"  value="<?php echo msg1a;?>">
+&nbsp;&nbsp;回复内容：<textarea name="msg1b" style="width:500px;height:50px;"><?php echo msg1b;?></textarea>
+</td>
+</tr>
+<tr>
+<td width="80%" align="left" height="30" class="td_border">
+【2】关键词:<input name="msg2a"  size="10"  value="<?php echo msg2a;?>">
+&nbsp;&nbsp;回复内容：<textarea name="msg2b" style="width:500px;height:50px;"><?php echo msg2b;?></textarea>
+</td>
+</tr>
+<tr>
+<td width="80%" align="left" height="30" class="td_border">
+【3】关键词:<input name="msg3a"  size="10"  value="<?php echo msg3a;?>">
+&nbsp;&nbsp;回复内容：<textarea name="msg3b" style="width:500px;height:50px;"><?php echo msg3b;?></textarea>
+</td>
+</tr>
+<tr>
+<td width="80%" align="left" height="30" class="td_border">
+【4】关键词:<input name="msg4a"  size="10"  value="<?php echo msg4a;?>">
+&nbsp;&nbsp;回复内容：<textarea name="msg4b" style="width:500px;height:50px;"><?php echo msg4b;?></textarea>
+</td>
+</tr>
+<tr>
+<td width="80%" align="left" height="30" class="td_border">
+【5】关键词:<input name="msg5a"  size="10"  value="<?php echo msg5a;?>">
+&nbsp;&nbsp;回复内容：<textarea name="msg5b" style="width:500px;height:50px;"><?php echo msg5b;?></textarea>
 </td>
 </tr>
 
@@ -172,32 +276,37 @@ if($action=="set")
 
 <tr>
 <td width="90%" align="left" height="30" class="td_border">
-* 注意：token：<font color="red"><strong>weixin</strong></font>，服务器地址：<font color="red"><strong>http://你的网址/weixin/</strong></font>，末尾有/。
+ 注意：token：<font color="red"><strong>weixin</strong></font>，服务器地址：<font color="red"><strong>http://你的网址/weixin/</strong></font>，末尾有/。
 </td>
 </tr>
 <tr>
 <td width="90%" align="left" height="30" class="td_border">
-* 当用户输入<font color="red"><strong>中文</strong></font>或<font color="red"><strong>英文</strong></font>时搜索影片；<font color="red"><strong>纯数字</strong></font>时获取观看密码。
+ 当用户输入<font color="red"><strong>中文</strong></font>或<font color="red"><strong>英文</strong></font>时搜索影片；<font color="red"><strong>纯数字</strong></font>时获取观看密码。
 </td>
 </tr>
 <tr>
 <td width="90%" align="left" height="30" class="td_border">
-* 默认的帮助触发关键词为<font color="red"><strong>h</strong></font>，留言板触发关键词为<strong><font color="red">g</strong></font>。
+ 默认的帮助触发关键词为<font color="red"><strong>帮助</strong></font>，留言板触发关键词为<strong><font color="red">留言</strong></font>。
 </td>
 </tr>
 <tr>
 <td width="90%" align="left" height="30" class="td_border">
-* 当用户发送以<font color="red"><strong>http</strong></font>或<font color="red"><strong>https</strong></font>开头的网址时，自动调用解析接口进行解析播放。
+ 当用户发送以<font color="red"><strong>http</strong></font>或<font color="red"><strong>https</strong></font>开头的网址时，自动调用解析接口进行解析播放。
 </td>
 </tr>
 <tr>
 <td width="90%" align="left" height="30" class="td_border">
-* 请在微信公众平台：https://mp.weixin.qq.com中正确填写开发者选项。
+ 自定义回复内容支持链接，格式：<font color="red"><strong>&lta href='xxx'&gt文字&lt/a&gt</strong></font> 注意单引号。
 </td>
 </tr>
 <tr>
 <td width="90%" align="left" height="30" class="td_border">
-* 如果修改无效，请检查/data/admin/weixin.php文件权限是否可写。
+ 请在微信公众平台：https://mp.weixin.qq.com中正确填写开发者选项。
+</td>
+</tr>
+<tr>
+<td width="90%" align="left" height="30" class="td_border">
+ 如果修改无效，请检查/data/admin/weixin.php文件权限是否可写。
 </td>
 </tr>
 </tbody></table>	

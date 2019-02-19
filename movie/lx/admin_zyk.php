@@ -109,7 +109,7 @@ $aid=$row->id;
 
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
-资源库描述：<input name="zinfo" style="width:400px;">
+资源库描述：<input name="zinfo" value="暂无描述" style="width:400px;">
  * 简单描述资源库的基本资料
 </td>
 </tr>

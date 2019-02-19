@@ -33,6 +33,7 @@ if($action=="edit")
 	$player=preg_replace("/jxDapi=(.*?)\";/is","jxDapi=\"".$jxDapi."\";",$player);
 	$player=preg_replace("/jxEapi=(.*?)\";/is","jxEapi=\"".$jxEapi."\";",$player);
 	$player=preg_replace("/forcejx=(.*?)\";/is","forcejx=\"".$forcejx."\";",$player);
+	$player=preg_replace("/unforcejx=(.*?)\";/is","unforcejx=\"".$unforcejx."\";",$player);
 	$fp = fopen($m_file,'w');
 	flock($fp,3);
 	fwrite($fp,$player);
@@ -172,9 +173,22 @@ elseif($action=="addnew")
 	
 	$doc -> save($playerKindsfile);
 
-	
-	
-	echo("<script>location.href='admin_player.php?action=boardsource'</script>");
+	if(empty($trail)){
+		ShowMsg("请填写文件名","-1");
+		exit;
+	}
+	$defaultfolder="../js/player";
+	if(empty($filedir)) $filedir=$defaultfolder;
+	if($filedir!=$defaultfolder){
+		ShowMsg("只能把模板添加在{$defaultfolder}文件夹","admin_player.php?action=boardsource");
+		exit;
+	}
+	if(file_exists($filedir."/".$trail.".html")){
+		ShowMsg("已存在该文件请更换名称","-1");
+		exit;
+	}
+	createTextFile($content,$filedir."/".$trail.".html");
+	ShowMsg("操作成功！","admin_player.php?action=boardsource");
 	exit();
 }
 elseif($action=="delete")
@@ -191,8 +205,11 @@ elseif($action=="delete")
 			}
 	
 	}
+	
+	$filedir='../js/player/'.$playerfile.'.html';
 
-	echo("<script>location.href='admin_player.php?action=boardsource'</script>");
+	unlink($filedir);
+	ShowMsg("操作成功！","admin_player.php?action=boardsource");
 	exit();
 
 }
@@ -221,6 +238,7 @@ else
 	$jxEapi=getrulevalue($player,"jxEapi=\"","\";");
 	
 	$forcejx=getrulevalue($player,"forcejx=\"","\";");
+	$unforcejx=getrulevalue($player,"unforcejx=\"","\";");
 	
 	include(sea_ADMIN.'/templets/admin_player.htm');
 	exit();

@@ -31,7 +31,7 @@
       	if(isset($srow[0]))
         {
        ?>
-      <tr height="30" bgcolor="#f5fafe"><td class="td_border">&nbsp;</td><td class="td_border">UID</td><td class="td_border">用户名</td><td class="td_border">邮箱</td><td class="td_border">注册时间</td><td class="td_border">注册IP</td><td class="td_border">用户组</td><td class="td_border">用户点数</td><td class="td_border">会员状态</td><td class="td_border">操作</td></tr>
+      <tr height="30" bgcolor="#f5fafe"><td class="td_border">&nbsp;</td><td class="td_border">UID</td><td class="td_border">用户名</td><td class="td_border">邮箱</td><td class="td_border">注册时间</td><td class="td_border">注册IP</td><td class="td_border">用户组</td><td class="td_border">用户积分</td><td class="td_border">会员状态</td><td class="td_border">操作</td></tr>
       <?php
       	}
       	foreach($srow as $row)
@@ -47,7 +47,7 @@
             echo '<td class="td_border" height="30" >'.$rs['gname'].'</td>';
             echo '<td class="td_border" height="30" >'.$row['points'].'</td>';
             echo '<td class="td_border" height="30" >'.($row['state']?'正常':'禁止').'</td>';
-            echo '<td class="td_border" height="30" ><a href="?ac=edit&id='.$row['id'].'">编辑</a>&nbsp;<a href="?ac=del&id='.$row['id'].'" onclick="if(confirm(\'确定删除？操作不可恢复\')){return true;}else{return false;}">删除</a></td>';
+            echo '<td class="td_border" height="30" ><a href="?ac=edit&id='.$row['id'].'">编辑</a>&nbsp;<a href="sendmail.php?smtprmail='.$row['email'].'&username='.$row['username'].'">发邮件</a>&nbsp;<a href="sendmsg.php?username='.$row['username'].'">发消息</a>&nbsp;<a href="?ac=del&id='.$row['id'].'" onclick="if(confirm(\'确定删除？操作不可恢复\')){return true;}else{return false;}">删除</a></td>';
       		echo '</tr>';
       	}
         unset($rs);
@@ -55,11 +55,11 @@
         {
       ?>
       <tr>
-      <td class="td_border" colspan="10">
+      <td class="td_border" colspan="10" height="30">
       <input class="checkbox" type="checkbox" onclick="checkAll(this.checked,'input','uidarray[]')" name="chkall">
 删? &nbsp;
 <input id="submit_submit" class="rb1" type="submit" value="提 交" title="按 Enter 键可随时提交你的修改" name="submit">
-      <td></tr>
+      </td></tr>
       <?php 
       	}
       ?>
@@ -98,8 +98,30 @@
         <td class="td_border" width="11%" height="30">&nbsp;密码：</td>
         <td class="td_border"><input id="psd" type="text" value="" size="20" name="psd" /> *不修改请留空</td>
       </tr>
+	  <tr>
+        <td class="td_border" width="11%" height="30">&nbsp;邮箱：</td>
+        <td class="td_border"><input id="email" type="text" value="<?php echo $row['email'] ?>" size="20" name="email" /> </td>
+      </tr>
+	  <tr>
+        <td class="td_border" width="11%" height="30">&nbsp;联系：</td>
+        <td class="td_border"><input id="nickname" type="text" value="<?php echo $row['nickname'] ?>" size="20" name="nickname" /> </td>
+      </tr>
+	  <tr>
+        <td class="td_border" width="11%" height="30">&nbsp;会员到期时间：</td>
+        <td class="td_border"><input id="vipendtime" type="text" value="<?php echo  date("Y-m-d h:i:s",$row['vipendtime']); ?>" size="20" name="vipendtime" /> </td>
+      </tr>
+	  <tr>
+        <td class="td_border" width="11%" height="30">&nbsp;邮箱激活状态：</td>
+        <td class="td_border">
+            <label>
+              <input type="radio" name="acode" value="<?php echo md5($row['username']); ?>" <?php if($row['acode']!='y') echo 'checked' ?> id="ustate_0" />
+              未激活</label>
+            <label>
+              <input type="radio" name="acode" value="y" <?php if($row['acode']=='y') echo 'checked' ?> id="ustate_1" />
+            已激活</label></td>
+      </tr>
       <tr>
-        <td class="td_border" width="11%" height="30">&nbsp;用户状态：</td>
+        <td class="td_border" width="11%" height="30">&nbsp;账户状态：</td>
         <td class="td_border">
             <label>
               <input type="radio" name="ustate" value="0" <?php if($row['state']==0) echo 'checked' ?> id="ustate_0" />
@@ -141,7 +163,7 @@
               &nbsp;多个值之间用半角逗号 "," 隔开。</td>
           </tr>
           <tr>
-            <td class="td_border">&nbsp;
+            <td height="30" class="td_border">&nbsp;
               <input type="submit" name="Submit"  value="搜 索" class="rb1" /> </td>
           </tr>
         </form>

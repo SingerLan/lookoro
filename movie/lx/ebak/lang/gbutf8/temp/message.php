@@ -9,42 +9,20 @@ if(!defined('InEmpireBak'))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>信息提示</title>
-<link href="<?=$a?>images/css.css" rel="stylesheet" type="text/css">
-<SCRIPT language=javascript>
-var secs=3;//3秒
-for(i=1;i<=secs;i++) 
-{ window.setTimeout("update(" + i + ")", i * 1000);} 
-function update(num) 
-{ 
-if(num == secs) 
-{ <?=$gotourl_js?>; } 
-else 
-{ } 
-}
-</SCRIPT>
+<style>body{background:#f9fafd;color:#818181}.mac_msg_jump{width:90%;max-width:624px;min-height:60px;padding:20px 50px 50px;margin:5% auto 0;font-size:14px;line-height:24px;border:1px solid #cdd5e0;border-radius:10px;background:#fff;box-sizing:border-box;text-align:center}.mac_msg_jump .title{margin-bottom:11px}.mac_msg_jump .text{margin-bottom:11px}.msg_jump_tit{width:100%;height:35px;margin:25px 0 10px;text-align:center;font-size:25px;color:#0099CC;letter-spacing:5px}</style>
 </head>
 
-<body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<table width="500" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <tr class="header"> 
-    <td height="25"><div align="center">信息提示</div></td>
-  </tr>
-  <tr bgcolor="#FFFFFF"> 
-    <td height="80"> 
-      <div align="center">
-	  <br>
-        <b><?=$error?></b>
-        <br>
-        <br><a href="<?=$gotourl?>">如果您的浏览器没有自动跳转，请点击这里</a>
-<br><br>
-	  </div></td>
-  </tr>
-</table>
+
+<body leftmargin="0" topmargin="0">
+<center>
+<script>
+      var pgo=0;
+      function JumpUrl(){
+        if(pgo==0){ location='<?=$gotourl?>'; pgo=1; }
+      }
+document.write("<br /><div class='mac_msg_jump'><div class='msg_jump_tit'>系统提示</div><div class='text'>");
+document.write("<?=$error?>");
+document.write("<br /><br /><a href='<?=$gotourl?>'><font style='color:#777777;'>点击这里手动跳转</font></a><br/></div></div>");
+setTimeout('JumpUrl()',3000);</script>
+</center>
 </body>
-</html>

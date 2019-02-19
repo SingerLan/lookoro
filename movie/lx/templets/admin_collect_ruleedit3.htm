@@ -164,22 +164,7 @@ function hide(){
               <input type="button" class="rb1" name="button" id="button" value="常用规则" onclick="SelTrim('name_trim')" /></td>
           </tr>
             </tbody>
-<tbody id="doubanbody">
-          <input type='hidden' name='item[]' checked  value='douban'/>
-          <tr>
-            <td class="label">豆瓣开始代码：</td>
-            <td><textarea name="doubana" rows="4" cols="80" wrap="off"><?php echo getrulevalueh($itemloopstr,"doubana");?></textarea></td>
-          </tr>
-          <tr>
-            <td class="label">豆瓣结束代码：</td>
-            <td><textarea name="doubanb" rows="4" cols="80" wrap="off"><?php echo getrulevalueh($itemloopstr,"doubanb");?></textarea></td>
-          </tr>
-          <tr>
-            <td class="label">豆瓣替换规则：</td>
-            <td><textarea name="douban_trim" id="name_trim" rows="3" cols="50" wrap="off"><?php echo getrulevalueh($itemloopstr,"douban_trim");?></textarea>
-              <input type="button" class="rb1" name="button" id="button" value="常用规则" onclick="SelTrim('douban_trim')" /></td>
-          </tr>
-      </tbody>
+          
           <?php if($picmode==0){?>
           <tbody id="picbody">
           <input type='hidden' name='item[]' checked  value='pic'/>

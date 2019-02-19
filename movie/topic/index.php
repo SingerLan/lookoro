@@ -1,23 +1,28 @@
 <?php
 require_once(dirname(__FILE__)."/../include/common.php");
+//前置跳转start
+$cs=$_SERVER["REQUEST_URI"];
+if($GLOBALS['cfg_mskin']==3 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost$cs");}
+if($GLOBALS['cfg_mskin']==4 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
+//前置跳转end
 require_once(sea_INC."/main.class.php");
 
-
+ 
 $paras=str_replace(getfileSuffix(),'',$_SERVER['QUERY_STRING']);
 $page=$paras;
 $page = (isset($page) && is_numeric($page) ? $page : 0);
+$page=intval($page);
 if($page<1)$page=1;
 echoTopicIndex();
 function echoTopicIndex()
 {
 	global $mainClassObj,$cfg_iscache,$t1,$cfg_filesuffix2,$dsql,$page;
-	if($GLOBALS['cfg_runmode']=='0'){
-		header("Location:/".$GLOBALS['cfg_cmspath'].$GLOBALS['cfg_album_name']."/index".$cfg_filesuffix2);
-	}else{
-		$cacheName="parse_topic_index";
+		$cacheName="parse_topic_index".$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 		$templatePath="/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/topicindex.html";
+		if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+		{$templatePath="/templets/".$GLOBALS['cfg_df_mstyle']."/".$GLOBALS['cfg_df_html']."/topicindex.html";}
 		$content = parseTopicIndexPart($templatePath,$page);
-	}
+
 	$content=$mainClassObj->parseIf($content);
 	$content=str_replace("{seacms:member}",front_member(),$content);
 	echo str_replace("{seacms:runinfo}",getRunTime($t1),$content) ;

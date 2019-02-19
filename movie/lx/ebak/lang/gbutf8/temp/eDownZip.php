@@ -8,15 +8,15 @@ if(!defined('InEmpireBak'))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>下载压缩包</title>
-<link href="images/css.css" rel="stylesheet" type="text/css">
+<link href="../img/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-<table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
-  <tr class="header"> 
-    <td height="30"> <div align="center">下载压缩包(目录： 
+<table width="100%" border="0"  cellpadding="3" cellspacing="1" class="tb">
+<tr class="thead">
+	<td class="td_title" width="100%"  style="height:30px"> <div>下载压缩包【目录： 
         <?=$p?>
-        )</div></td>
+        】</div></td>
   </tr>
   <tr> 
     <td height="30" bgcolor="#FFFFFF"> 
@@ -33,7 +33,9 @@ if(!defined('InEmpireBak'))
 </table>
 <?php
 echo "<div align=center>";
-echo "</div><div class=\"bottom2\"><table width=\"100%\" cellspacing=\"5\"><tr><td align=\"center\"><a target=\"_blank\" href=\"http://www.seacms.net/\">Powered By Seacms</a></td></tr></table></div>\n</body>\n</html>";
+	$starttime = explode(' ', $starttime);
+	$endtime = explode(' ', microtime()); 
+	echo "</div><div class=\"bottom\"><table width=\"100%\" cellspacing=\"5\"><tr><td align=\"center\"><font style=\"color:#666;\">本页面用时0.0123秒,共执行3次数据查询</font></td></tr><tr><td align=\"center\"><a target=\"_blank\" href=\"//www.seacms.net/\"><font style=\"font-size:10px;\">POWER BY SEACMS</font></a></td></tr></table></div>\n</body>\n</html>";
 ?>
 </body>
 </html>

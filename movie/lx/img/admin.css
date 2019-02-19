@@ -87,7 +87,7 @@ table.tdk th,table.tdk td{border:none}
 .divboxbody{padding:8px;line-height:25px;overflow:auto;font-size:12px}
 .divboxbottom{text-align:center;height:22px;line-height:22px;font-size:12px;background-color:#1b76b7;color:#FFFFFF}
 
-.footer{height:33px;overflow:hidden;position:absolute;z-index:10;left:5px;bottom:3px;padding-top:3px;border-top:1px dashed #DDD;text-align:left;line-height:150%;font-family:Tahoma;font-size:11px}
+.footer{width:151px;overflow:hidden;position:absolute;z-index:10;left:10px;bottom:3px;padding-top:3px;border-top:1px dashed #DDD;text-align:center;line-height:150%;font-family:Tahoma;font-size:10px;color:#AAA;}
 
 /*-------------header-----------*/
 .header{position:relative;overflow:hidden;text-align:left;height:90px; background-color:#e6f2fb; border-bottom:solid 1px #B5CFD9; }

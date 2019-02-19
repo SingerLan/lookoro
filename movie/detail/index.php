@@ -1,5 +1,10 @@
 <?php
 require_once(dirname(__FILE__)."/../include/common.php");
+//前置跳转start
+$cs=$_SERVER["REQUEST_URI"];
+if($GLOBALS['cfg_mskin']==3 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost$cs");}
+if($GLOBALS['cfg_mskin']==4 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
+//前置跳转end
 require_once(sea_INC."/main.class.php");
 
 
@@ -9,7 +14,9 @@ if($GLOBALS['cfg_runmode']==2||$GLOBALS['cfg_paramset']==0){
 	$id = (isset($id) && is_numeric($id) ? $id : 0);
 }else{
 	$id=$$GLOBALS['cfg_paramid'];
+	$id=intval($id);
 }
+$id=intval($id);
 if($id==0){
 	showmsg('参数丢失，请返回！', -1);
 	exit;
@@ -21,27 +28,26 @@ function echoContent($vId)
 {
 	global $dsql,$cfg_iscache,$mainClassObj,$t1,$cfg_user;
 	$row=$dsql->GetOne("Select d.*,p.body as v_playdata,p.body1 as v_downdata,c.body as v_content From `sea_data` d left join `sea_playdata` p on p.v_id=d.v_id left join `sea_content` c on c.v_id=d.v_id where d.v_id='$vId'");
-	if(!is_array($row)){
-		echo "<font color='red'>影片ID:".$vId." 该影片不存在!</font><br>";
-		return false;
-	}
+	if(!is_array($row)){ShowMsg("该内容已被删除或者隐藏","../index.php",0,10000);exit();}
 	$vType=$row['tid'];
 	$vtag=$row['v_name'];
 	$contentTmpName=getContentTemplateOnCache($vType);
 	$contentTmpName=empty($contentTmpName) ? "content.html" : $contentTmpName;
 	$contentTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/".$contentTmpName;
+	if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+	{$contentTemplatePath = "/templets/".$GLOBALS['cfg_df_mstyle']."/".$GLOBALS['cfg_df_html']."/".$contentTmpName;}
 	$vExtraType = $row['v_extratype'];
-	if (strpos(" ,".getHideTypeIDS().",",",".$vType.",")>0) exit("<font color='red'>该视频被删除或隐藏</font><br>");
-	if ($row['v_recycled']==1) exit("<font color='red'>该视频被删除或隐藏</font><br>");
+	if (strpos(" ,".getHideTypeIDS().",",",".$vType.",")>0){ShowMsg("该内容已被删除或者隐藏","../index.php",0,10000);exit();}
+	if ($row['v_recycled']==1){ShowMsg("该内容已被删除或者隐藏","../index.php",0,10000);exit();};
 	if ($cfg_user == 1){
-        if (!getUserAuth($vType, "detail")){ exit("<font color='red'>您没有权限浏览此内容!</font><script>function JumpUrl(){history.go(-1);}setTimeout('JumpUrl()',1000);</script>"); }
+        if (!getUserAuth($vType, "detail")){ShowMsg("您当前的会员级别没有权限浏览此内容！","../member.php",0,20000);exit();}
 	}
 	$contentLink=getContentLink($vType,$vId,"link",date('Y-n',$row['v_addtime']),$row['v_enname']);
 	$typeText = getTypeText($vType);
 	$currentTypeId=$vType;
 	$GLOBALS[tid]=$currentTypeId;
 	$typeFlag = "parse_content_" ;
-	$cacheName = $typeFlag.$vType;
+	$cacheName = $typeFlag.$vType.$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 	if($cfg_iscache){
 		if(chkFileCache($cacheName)){
 			$content = getFileCache($cacheName);
@@ -157,6 +163,8 @@ function echoContent($vId)
 	$content = parseLabelHaveLen($content,$row['v_name'],"name");
 	$content = parseLabelHaveLen($content,$row['v_note'],"note");
 	$content = $mainClassObj->paresPreNextVideo($content,$vId,$typeFlag,$vType);
+	$content = $mainClassObj->paresPreVideo($content,$vId,$typeFlag,$vType);
+	$content = $mainClassObj->paresNextVideo($content,$vId,$typeFlag,$vType);
 	$content = str_replace("{playpage:textlink}",$typeText."&nbsp;&nbsp;&raquo;&nbsp;&nbsp;".$row['v_name'],$content);
 	$content=$mainClassObj->parseIf($content);
 	$content=str_replace("{seacms:member}",front_member(),$content);

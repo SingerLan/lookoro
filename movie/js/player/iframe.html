@@ -2,7 +2,6 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="./video.css" rel="stylesheet">
 <SCRIPT LANGUAGE="JavaScript1.2">
 adTime=parent.adsTime;  
 
@@ -50,21 +49,10 @@ onload=initAd;
 <div id="sponsorAdDiv" style="visibility:hidden; z-index:999; height:105%; width:100%;">
 <iframe id="zzzif" name="zzzif" src="" scrolling="no" frameborder="0"></iframe>
 </div>
-
-<div id="play_header">
-    <div id="header3"></div>
-	<div id="header1"></div>
-    <div id="header2"></div>
-</div>
-
-<div id="play_box">
-	<div id="player"></div>
-    <div id="video_menu"></div>
-</div>
+<div id="player"></div>
 <script>
-parent.video_diy();
-var playerh=parent.playerh-33;
-document.getElementById('player').innerHTML  = '<iframe src="'+parent.now+'" scrolling="0" frameborder="0" width="100%" height="'+playerh+'" allowfullscreen></iframe>';
+var playerh=parent.playerh;
+document.getElementById('player').innerHTML  = '<iframe src="'+parent.now+'" scrolling="0" frameborder="0" width="100%" height="'+playerh+'" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>';
 </script>   
 </body>
 </html>

@@ -4,7 +4,7 @@
 */
 ob_implicit_flush();
 require_once(dirname(__FILE__)."/config.php");
-require_once(sea_INC.'/main.class.php');
+require_once(sea_INC.'/main2.class.php');
 set_time_limit(0);
 
 //CheckPurview(); //如需要禁止编辑员生成权限，去掉此注释即可。
@@ -408,7 +408,6 @@ elseif($action=="topic")
 	}
 	echoHead();
 	makeTopicById($topic);
-	makeTopicIndex();
 	echoFoot();
 }
 elseif($action=="alltopic")
@@ -416,6 +415,12 @@ elseif($action=="alltopic")
 	checkRunMode();
 	echoHead();
 	makeAllTopic();
+	echoFoot();
+}
+elseif($action=="topicindex")
+{
+	checkRunMode();
+	echoHead();
 	makeTopicIndex();
 	echoFoot();
 }

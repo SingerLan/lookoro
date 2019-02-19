@@ -1,5 +1,5 @@
 <?php 
-//获取视频首页链接
+//获取视频首页链接 
 function getIndexLink()
 {
 	switch ($GLOBALS['cfg_runmode2'])

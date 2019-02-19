@@ -62,7 +62,7 @@ elseif($action=="nohide")
 elseif($action=="del")
 {
 	delVideoTypeById($id);
-	header("Location:admin_type.php");
+	ShowMsg("成功删除一个分类！","admin_type.php");
 	exit;
 }
 elseif($action=="delall")

@@ -9,7 +9,7 @@ class Collect
 {
 	/*
 	 * 官方资源库采集入库
-	 * $video xml单个simplexml数据
+	 * $video xml单个simplexml数据 
 	 * $localId 入库后本地id
 	 * */
 	public function xml_db($video,$localId)
@@ -121,8 +121,7 @@ class Collect
 				$v_data['v_enname']=Pinyin($v_data['v_name']);
 				$v_data['v_name'] =  htmlspecialchars($v_data['v_name']);
 				$v_data['v_name'] = str_replace(array('\\','()','\''),'/',$v_data['v_name']);
-				$v_data['v_douban']=getAreaValue($loopstr,"douban",$html,$listconf["removecode"]);
-                                $v_data['v_douban'] =  htmlspecialchars($v_data['v_douban']);
+				
 			    
 			    $v_data['v_letter'] = strtoupper(substr( $v_data['v_enname'],0,1));
 			    $v_data['v_state']=getAreaValue($loopstr,"state",$html,$listconf["removecode"]);
@@ -302,7 +301,15 @@ class Collect
 	
 	public function _insert_database($v_data)
 	{
-		global $dsql;
+		global $dsql,$cfg_cj_rq,$cfg_cj_rq_s,$cfg_cj_rq_e,$cfg_cj_dc,$cfg_cj_dc_s,$cfg_cj_pf,$cfg_cj_pf_s,$cfg_cj_pf_e;
+		
+		//pf
+		if($cfg_cj_pf=='1'){$v_data['v_scorenum'] = 1; $v_data['v_score'] = rand($cfg_cj_pf_s,$cfg_cj_pf_e);}
+		//dc
+		if($cfg_cj_dc=='1'){$v_data['v_digg'] = rand($cfg_cj_dc_s,$cfg_cj_dc_e); $v_data['v_tread'] = rand($cfg_cj_dc_s,$cfg_cj_dc_e);}
+		//rq
+		if($cfg_cj_rq=='1'){$v_data['v_hit'] = rand($cfg_cj_rq_s,$cfg_cj_rq_e);}
+		
 		$v_data['v_pic'] = gatherPicHandle($v_data['v_pic']);
 		$v_des = $v_data['v_des'];
 		$v_playdata = $v_data['v_playdata'];
@@ -373,26 +380,17 @@ class Collect
 					{
 						return $autocol_str.'数据<font color=red>'.$v_data['v_name'].'</font>地址无变化,无需更新<br>';
 					}
-					//if 勾选[只更新影片地址]
-				   if(strpos($cfg_gatherset,'2')!==false)
-				   {
-				       return $autocol_str.$this->update_playdata_only($rs1,$v_data);
-				   }
-				   elseif(strpos($cfg_gatherset,'4')!==false)
-					 {
-						return $autocol_str.$this->update_movie_info_pic($rs1,$v_data);
-					 }
-				   //else 不勾选[只更新影片地址]
-				   else
-				   {
-				   	   return $autocol_str.$this->update_movie_info($rs1,$v_data);
-				   }
+					else
+					{
+						return $autocol_str.$this->update_movie_info($rs1,$v_data);
+					}
+
 				}else
 				{
 					//if 勾选[开启不添加新影片]
 				   if(strpos($cfg_gatherset,'1')!==false)
 				   {
-					  return $autocol_str."数据<font color=red>".$v_data['v_name']."</font>您开启了不添加新影片功能，跳过<br>";
+					  return $autocol_str."数据<font color=red>".$v_data['v_name']."</font>跳过，您开启了不添加新影片功能<br>";
 				   }
 				   //else 不勾选[开启不添加新影片]
 				   return $autocol_str.$this->_insert_database($v_data);
@@ -405,29 +403,14 @@ class Collect
 				{
 					return "数据<font color=red>".$v_data['v_name']."</font>处于锁定状态,不更新数据<br>";
 				}
-			//$actarr1 = explode(' ',$v_data['v_actor']);
-			//$actarr2 = explode(' ',str_replace(array(',','/','，'),' ',$rs['v_actor']));
-			//有相同演员时更新该影片
-			//if(array_intersect($actarr1,$actarr2))
-			//{
 				if($v_data['v_downdata']==$rs['v_downdata']&&$v_data['v_playdata']==$rs['v_playdata'] && (strpos($cfg_gatherset,'3')!==false))
 				{
 					return $autocol_str.'数据<font color=red>'.$v_data['v_name'].'</font>地址无变化,无需更新<br>';
 				}
-				//if 勾选[只更新影片地址]
-				 if(strpos($cfg_gatherset,'2')!==false)
-				 {
-					return $autocol_str.$this->update_playdata_only($rs,$v_data);
-				 }
-				 //else 不勾选[只更新影片地址]
-				 elseif(strpos($cfg_gatherset,'4')!==false)
-				 {
-					return $autocol_str.$this->update_movie_info_pic($rs,$v_data);
-				 }
-				 else
-				 {
+				else{
 					return $autocol_str.$this->update_movie_info($rs,$v_data);
-				 }
+				}
+
 			}
 		}//else 不 同名
 		else{
@@ -494,19 +477,48 @@ class Collect
 	
 	function update_movie_info($rs,$v_data)
 	{
-		
+		global $cfg_gatherset;
 		$v_des = $v_data['v_des'];
 		$v_playdata = $v_data['v_playdata'];
-		$v_downdata = $v_data['v_downdata'];
+		$v_downdata = $v_data['v_downdata'];	
+		unset($v_data['tid']);
+		unset($v_data['v_hit']);	
+		if(strpos($cfg_gatherset,'C')!==false){}else{unset($v_data['v_pic']);}
+		if(strpos($cfg_gatherset,'D')!==false){}else{unset($v_data['v_state']);}
+		if(strpos($cfg_gatherset,'E')!==false){}else{unset($v_data['v_lang']);}
+		if(strpos($cfg_gatherset,'F')!==false){}else{unset($v_data['v_publisharea']);}
+		if(strpos($cfg_gatherset,'G')!==false){}else{unset($v_data['v_publishyear']);}
+		if(strpos($cfg_gatherset,'H')!==false){}else{unset($v_data['v_note']);}
+		if(strpos($cfg_gatherset,'I')!==false){}else{unset($v_data['v_tags']);}
+		if(strpos($cfg_gatherset,'J')!==false){}else{unset($v_data['v_nickname']);}
+		if(strpos($cfg_gatherset,'K')!==false){}else{unset($v_data['v_reweek']);}
+		if(strpos($cfg_gatherset,'L')!==false){}else{unset($v_data['v_douban']);}
+		if(strpos($cfg_gatherset,'M')!==false){}else{unset($v_data['v_mtime']);}
+		if(strpos($cfg_gatherset,'N')!==false){}else{unset($v_data['v_imdb']);}
+		if(strpos($cfg_gatherset,'O')!==false){}else{unset($v_data['v_tvs']);}
+		if(strpos($cfg_gatherset,'P')!==false){}else{unset($v_data['v_company']);}
+		if(strpos($cfg_gatherset,'Q')!==false){}else{unset($v_data['v_ver']);}
+		if(strpos($cfg_gatherset,'R')!==false){}else{unset($v_data['v_longtxt']);}
+		if(strpos($cfg_gatherset,'S')!==false){}else{unset($v_data['v_actor']);}
+		if(strpos($cfg_gatherset,'T')!==false){}else{unset($v_data['v_director']);}
+		if(strpos($cfg_gatherset,'V')!==false){}else{unset($v_data['v_total']);}
+		if(strpos($cfg_gatherset,'W')!==false){}else{unset($v_data['v_len']);}
+		if(strpos($cfg_gatherset,'X')!==false){}else{unset($v_data['v_jq']);}
+		if(strpos($cfg_gatherset,'Y')!==false){unset($v_data['v_addtime']);}
+		
 		unset($v_data['v_des']);
-		unset($v_data['v_pic']);
 		unset($v_data['v_playdata']);
 		unset($v_data['v_downdata']);
 		update_record('sea_data',"where v_id=".$rs['v_id'],$v_data);
-		update_record('sea_data',"where v_id=".$rs['v_id'],array('v_ismake'=>'0','v_addtime'=>time()));
-		update_record('sea_playdata',"where v_id=".$rs['v_id'],array('body'=>$v_playdata,'body1'=>$v_downdata));
-		update_record('sea_content',"where v_id=".$rs['v_id'],array('body'=>$v_des));
-		return "数据<font color=red>".$v_data['v_name']."</font>已存在,更新数据，不更新图片<br>";
+		update_record('sea_data',"where v_id=".$rs['v_id'],array('v_ismake'=>'0'));
+		if(strpos($cfg_gatherset,'Y')!==false){unset($v_data['v_addtime']);}else{update_record('sea_data',"where v_id=".$rs['v_id'],array('v_addtime'=>time()));}
+		if(strpos($cfg_gatherset,'A')!==false)
+		{update_record('sea_playdata',"where v_id=".$rs['v_id'],array('body'=>$v_playdata));}
+		if(strpos($cfg_gatherset,'B')!==false)
+		{update_record('sea_playdata',"where v_id=".$rs['v_id'],array('body1'=>$v_downdata));}
+		if(strpos($cfg_gatherset,'U')!==false)
+		{update_record('sea_content',"where v_id=".$rs['v_id'],array('body'=>$v_des));}
+		return "数据<font color=red>".$v_data['v_name']."</font>已存在,更新数据<br>";
 	}
 	
 	function update_movie_info_pic($rs,$v_data)

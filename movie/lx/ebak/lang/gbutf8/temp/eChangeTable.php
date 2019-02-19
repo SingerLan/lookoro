@@ -8,7 +8,7 @@ if(!defined('InEmpireBak'))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>选择数据表</title>
-<link href="images/css.css" rel="stylesheet" type="text/css">
+<link href="../img/style.css" rel="stylesheet" type="text/css">
 <script language="JavaScript">
 function CheckAll(form)
   {
@@ -111,14 +111,13 @@ function check()
 <body>
 <script type="text/JavaScript">if(parent.$('admincpnav')) parent.$('admincpnav').innerHTML='后台首页&nbsp;&raquo;&nbsp;工具&nbsp;&raquo;&nbsp;数据库备份 ';</script>
 
-  <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" class="tableborder">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0"  class="tb">
   <form name="ebakchangetb" method="post" action="phomebak.php" onsubmit="return check();">
-    <tr class="header"> 
-      <td height="25">备份参数设置：<font color="green">【备份文件存储位置：admin/ebak/bdata,压缩文件存储位置：admin/ebak/zip】</font>
+     <tr class="thead"><td class="td_title"  style="height:30px">备份数据
         <input name="phome" type="hidden" id="phome" value="DoEbak">        <input name="mydbname" type="hidden" id="mydbname" value="<?=$mydbname?>">        </td>
     </tr>
     <tr> 
-      <td height="25" bgcolor="#FFFFFF"> <!---<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
+      <td height="30" bgcolor="#FFFFFF"> <!---<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#DBEAF5">
 
           <tr id="showsave" style="display:none">
             <td>&nbsp;</td>
@@ -137,7 +136,7 @@ function check()
             </td>
           </tr>
         </table>-->
-        <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
+        <table width="100%" class="tb">
           <tr> 
             <td width="22%" ><input style="display:none;" type="radio" name="baktype" value="0"<?=$dbaktype==0?' checked':''?>> 
               文件大小设置：</td>
@@ -211,35 +210,27 @@ function check()
         </table>
       </td>
     </tr>
-    <tr class="header"> 
-      <td height="25">
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="50%"><font color="#FFFFFF">选择要备份的表：( <a href="#ebak" onclick="SelectCheckAll(document.ebakchangetb)"><font color="#FFFFFF"><u>全选</u></font></a> 
-              | <a href="#ebak" onclick="reverseCheckAll(document.ebakchangetb);"><font color="#FFFFFF"><u>反选</u></font></a> )</font></td>
-            <td><!--<div align="right"><font color="#FFFFFF">查询: 
-                <input name="keyboard" type="text" id="keyboard" value="<?=$keyboard?>">
-                <input type="button" name="Submit32" value="显示数据表" onclick="self.location.href='ChangeTable.php?sear=1&mydbname=<?=$mydbname?>&keyboard='+document.ebakchangetb.keyboard.value;">
-              </font></div>--></td>
-          </tr>
-        </table></td>
-    </tr>
+
+<tr>
+<td width="100%">选择要备份的表：( <a href="#ebak" onclick="SelectCheckAll(document.ebakchangetb)"><u>全选</u></a> | <a href="#ebak" onclick="reverseCheckAll(document.ebakchangetb);"><u>反选</u></a> )</td>
+ </tr>
+
     <tr>
-      <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" align="center" cellpadding="3" cellspacing="1">
+      <td height="25" bgcolor="#FFFFFF"><table width="100%" border="0" align="left" cellpadding="3" cellspacing="1">
           <tr bgcolor="#DBEAF5"> 
-            <td width="5%" height="23"> <div align="center">选择</div></td>
+            <td width="5%" height="23"> <div align="left">选择</div></td>
             <td width="27%" height="23" bgcolor="#DBEAF5"> 
-              <div align="center">表名(点击查看字段)</div></td>
+              <div align="left">表名</div></td>
             <td width="13%" height="23" bgcolor="#DBEAF5"> 
-              <div align="center">类型</div></td>
+              <div align="left">类型</div></td>
             <td width="15%" bgcolor="#DBEAF5">
-<div align="center">编码</div></td>
+<div align="left">编码</div></td>
             <td width="15%" height="23"> 
-              <div align="center">记录数</div></td>
+              <div align="left">记录数</div></td>
             <td width="14%" height="23"> 
-              <div align="center">大小</div></td>
+              <div align="left">大小</div></td>
             <td width="11%" height="23"> 
-              <div align="center">碎片</div></td>
+              <div align="left">碎片</div></td>
           </tr>
           <?php
 		  $tbchecked=' checked';
@@ -271,52 +262,38 @@ function check()
 			$collation=$r[Collation]?$r[Collation]:'---';
 		  ?>
           <tr id=tb<?=$r[Name]?>> 
-            <td height="23"> <div align="center"> 
+            <td height="23"> <div align="left"> 
                 <input name="tablename[]" type="checkbox" id="tablename[]" value="<?=$r[Name]?>" onclick="if(this.checked){tb<?=$r[Name]?>.style.backgroundColor='#F1F7FC';}else{tb<?=$r[Name]?>.style.backgroundColor='#ffffff';}"<?=$tbchecked?>>
               </div></td>
-            <td height="23"> <div align="left"><a href="#ebak" onclick="window.open('ListField.php?mydbname=<?=$mydbname?>&mytbname=<?=$r[Name]?>','','width=660,height=500,scrollbars=yes');" title="点击查看表字段列表"> 
+            <td height="23"> <div align="left">
                 <?=$r[Name]?>
-                </a></div></td>
-            <td height="23"> <div align="center">
+</div></td>
+            <td height="23"> <div align="left">
                 <?=$r[Type]?$r[Type]:$r[Engine]?>
               </div></td>
-            <td><div align="center">
+            <td><div align="left">
 				<?=$collation?>
               </div></td>
-            <td height="23"> <div align="right">
+            <td height="23"> <div align="left">
                 <?=$r[Rows]?>
               </div></td>
-            <td height="23"> <div align="right">
+            <td height="23"> <div align="left">
                 <?=Ebak_ChangeSize($datasize)?>
               </div></td>
-            <td height="23"> <div align="right">
+            <td height="23"> <div align="left">
                 <?=Ebak_ChangeSize($r[Data_free])?>
               </div></td>
           </tr>
           <?
 		  }
 		  ?>
-          <tr bgcolor="#DBEAF5"> 
-            <td height="23"> <div align="center">
-                <input type=checkbox name=chkall value=on onclick="CheckAll(this.form)"<?=$check==0?' checked':''?>>
-              </div></td>
-            <td height="23"> <div align="center"> 
-                <?=$tablenum?>
-              </div></td>
-            <td height="23"> <div align="center">---</div></td>
-            <td><div align="center">---</div></td>
-            <td height="23"> <div align="center">
-                <?=$rownum?>
-              </div></td>
-            <td height="23" colspan="2"> <div align="center">
-                <?=Ebak_ChangeSize($totaldatasize)?>
-              </div></td>
-          </tr>
+          
         </table></td>
-    </tr>
+    </tr><tr>
+            <td height="23">总表数:<?=$tablenum?>&nbsp;&nbsp;&nbsp;&nbsp;总数据条目:<?=$rownum?>&nbsp;&nbsp;&nbsp;&nbsp;空间占用:<?=Ebak_ChangeSize($totaldatasize)?></td></tr>
     <tr class="header"> 
       <td height="25">
-<div align="center" id="go">
+<div id="go">
           <input type="submit" name="Submit" value="开始备份" onclick="document.ebakchangetb.phome.value='DoEbak';document.ebakchangetb.action='phomebak.php';">
           &nbsp;&nbsp; &nbsp;&nbsp;
           <input type="submit" name="Submit2" value="修复数据表" onclick="document.ebakchangetb.phome.value='DoRep';document.ebakchangetb.action='phome.php';">
@@ -342,7 +319,10 @@ if($ckmaxinputnum)
 ?>
 <?php
 echo "<div align=center>";
-echo "</div><div class=\"bottom2\"><table width=\"100%\" cellspacing=\"5\"><tr><td align=\"center\"><a target=\"_blank\" href=\"http://www.seacms.net/\">Powered By Seacms</a></td></tr></table></div>\n</body>\n</html>";
+	$starttime = explode(' ', $starttime);
+	$endtime = explode(' ', microtime()); 
+	echo "</div><div class=\"bottom\"><table width=\"100%\" cellspacing=\"5\"><tr><td align=\"center\"><font style=\"color:#666;\">本页面用时0.0123秒,共执行3次数据查询</font></td></tr><tr><td align=\"center\"><a target=\"_blank\" href=\"//www.seacms.net/\"><font style=\"font-size:10px;\">POWER BY SEACMS</font></a></td></tr></table></div>\n</body>\n</html>";
 ?>
+
 </body>
 </html>

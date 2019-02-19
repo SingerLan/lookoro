@@ -73,7 +73,7 @@ function echoTagPage()
 }
 
 function parseSearchPart($templatePath)
-{
+{ 
 	global $mainClassObj;
 	$content=loadFile(sea_ROOT.$templatePath);
 	$content=$mainClassObj->parseTopAndFoot($content);

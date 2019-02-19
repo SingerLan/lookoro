@@ -1,4 +1,5 @@
 <?php
+if(function_exists("opcache_reset")){opcache_reset();} 
 require_once(dirname(__FILE__)."/config.php");
 CheckPurview();
 
@@ -13,6 +14,7 @@ $publishyuyantxt=sea_DATA."/admin/publishyuyan.txt";
 $iplisttxt=sea_DATA."/admin/iplist.txt";
 $vertxt=sea_DATA."/admin/verlist.txt";
 $m_file = sea_ROOT."/js/play.js";
+$jump_file = sea_ROOT."/js/seajump.js";
 
 //保存配置的改动
 if($dopost=="save")
@@ -189,6 +191,18 @@ if($dopost=="save")
 		@fwrite($fp,$ver."\r\n");
 	}
 	@fclose($fp);
+	
+	$fp = fopen($jump_file,'r');
+	$player = fread($fp,filesize($jump_file));
+	fclose($fp);	
+	$player=preg_replace("/mskin='(.*?)';/is","mskin='".$edit___cfg_mskin."';",$player);
+	$player=preg_replace("/host='(.*?)';/is","host='".$edit___cfg_basehost."';",$player);
+	$player=preg_replace("/mhost='(.*?)';/is","mhost='".$edit___cfg_mhost."';",$player);
+	$fp = fopen($jump_file,'w');
+	flock($fp,3);
+	fwrite($fp,$player);
+	fclose($fp);
+	
 	ShowMsg("成功更改站点配置！","admin_config.php");
 	exit();
 }

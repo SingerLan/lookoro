@@ -5,7 +5,7 @@ session_start();
 $rndstring = '';
 for($i=0; $i<4; $i++) $rndstring .= chr(mt_rand(65,90));
 
-//如果支持GD，则绘图
+//如果支持GD，则绘图 
 if(function_exists("imagecreate"))
 {
 	//Firefox部份情况会多次请求的问题，5秒内刷新页面将不改变session

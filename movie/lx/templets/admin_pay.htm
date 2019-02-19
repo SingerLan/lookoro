@@ -154,7 +154,7 @@ $dsql->Execute('key_list');
 while($row=$dsql->GetObject('key_list'))
 {
 $id=$row->id;
-$copy.=$row->ckey."<br>"
+$copy.=$row->ckey."\n"
 ?>
 
 
@@ -200,7 +200,7 @@ $copy.=$row->ckey."<br>"
     </div>
   </div>
 </div>
-<div id="copy" name="copy" style="display:none;"><?php echo $copy; ?></div>
+<div id="copy" name="copy" style="display:none;"><textarea style="width:400px;height:500px;"><?php echo $copy; ?></textarea></div>
 <?php
 viewFoot();
 ?>

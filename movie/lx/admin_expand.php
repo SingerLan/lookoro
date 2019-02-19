@@ -24,7 +24,7 @@ if($action=='modifyside')
 		$xml->asXML($m_file);		
 		}
 	}
-	echo "<script>alert('修改成功！');</script>";
+	ShowMsg("成功保存设置!","admin_expand.php");
 	exit();
 }
 //删除
@@ -35,8 +35,8 @@ if($action=='delside')
 	$item = $xml->item;
 	unset($item[$id-1]);
 	$xml->asXML($m_file);
-	echo "<script>alert('删除成功！');location.href='admin_expand.php';</script>";
-	exit();			
+	ShowMsg("成功保存设置!","admin_expand.php");
+	exit;		
 }
 //批量修改
 if($action=='modifyallside')
@@ -56,8 +56,8 @@ if($action=='modifyallside')
 			$xml->asXML($m_file);
 			}
 	}
-	echo "<script>alert('修改成功！');location.href='admin_expand.php';</script>";
-	exit();
+	ShowMsg("成功保存设置!","admin_expand.php");
+	exit;
 }
 if($action=='addside')
 {
@@ -69,8 +69,8 @@ if($action=='addside')
 	$item->addAttribute('title',$title);
 	$item->addAttribute('desc',$desc);	
 	$xml->asXML($m_file);
-	echo "<script>alert('添加成功！');location.href='admin_expand.php';</script>";
-	exit();
+	ShowMsg("成功保存设置!","admin_expand.php");
+	exit;
 }
 include(sea_ADMIN.'/templets/admin_expand.htm');
 exit();

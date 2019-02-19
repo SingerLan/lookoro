@@ -172,7 +172,7 @@ if($action=="boardsource")
             	echo "隐藏";
             else
             	echo "<font color=\"red\">显示</font>";
-        ?></a>&nbsp;&nbsp;<!--<a href="javascript://" onclick="upformone(<?php echo $id ?>)">修改</a>&nbsp;&nbsp;--><a href="?action=delete&id=<?php echo $id ?>" onclick="return confirm('确定要删除吗')">删除</a>
+        ?></a>&nbsp;&nbsp;<a href="admin_editplayer.php?action=edit&filedir=../js/player/<?php  echo gbutf8($player['postfix']); ?>.html">修改播放代码</a>&nbsp;&nbsp;<a href="?action=delete&id=<?php echo $id ?>&playerfile=<?php echo gbutf8($player['postfix']); ?>" onclick="return confirm('确定要删除吗')">删除</a>
 		</td>
 	</tr>
  	<?php
@@ -260,7 +260,13 @@ if($action=="boardsource")
 &nbsp;&nbsp;
 开启<input type="radio" name="forcejx" value="yes" <?php if($forcejx=="yes") echo 'checked';?>>
 &nbsp;&nbsp;&nbsp;&nbsp;
-开启后强制所有播放器使用解析播放</td>
+开启后强制除下面排除列表外的所有播放器使用解析</td>
+</tr>
+
+<tr>
+<td >强制解析排除：</td>
+<td><input type="text" name="unforcejx" size="60" value="<?php echo $unforcejx;?>"/><br>
+不使用强制解析的播放器，请填写播放器后缀，如多个播放器请用英文 # 隔开,如：youku#letv#yunpan</td>
 </tr>
 
 <tr class="thead"><td colspan="2" class="td_title">解析接口配置</td></tr>

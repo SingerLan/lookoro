@@ -8,6 +8,8 @@ if($action=="set")
 	$open=fopen("../data/admin/isapi.txt","w" );
 	fwrite($open,$v2);
 	fclose($open);
+	ShowMsg("成功保存设置!","admin_isapi.php");
+	exit;
 }
 
 ?>

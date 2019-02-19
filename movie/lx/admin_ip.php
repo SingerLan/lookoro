@@ -17,6 +17,8 @@ if($action=="set")
 	$str.=" ?>";
 	fwrite($open,$str);
 	fclose($open);
+	ShowMsg("成功保存设置!","admin_ip.php");
+	exit;
 }
 
 ?>

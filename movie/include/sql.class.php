@@ -5,7 +5,7 @@ if(!defined('sea_INC'))
 }
 //包含函数库
 require_once( dirname(__FILE__).'/inc/mysql.php' );
-//调用这个类前,请先设定这些外部变量
+//调用这个类前,请先设定这些外部变量 
 /*----------------------------
 $GLOBALS['cfg_dbhost'];
 $GLOBALS['cfg_dbuser'];

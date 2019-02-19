@@ -8,6 +8,8 @@ if($action=="set")
 	$open=fopen("../data/admin/s.txt","w" );
 	fwrite($open,$v2);
 	fclose($open);
+	ShowMsg("成功保存设置!","admin_s.php");
+	exit;
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 /*
-	[seacms1.0] (C)2011-2012 seacms.net
+	[seacms1.0] (C)2011-2012 seacms.net 
 */
 if(!defined('sea_INC'))
 {
@@ -165,7 +165,6 @@ function getTestItemRule($tid,$previewurl,$previewpic='')
 	$html = ChangeCode($html,$coding);
 	echo "<font color='red'>测试地址</font>：".$previewurl."<br>";
 	getTestAreaValue($loopstr,"name","影片名称",$html,$removecode);
-        getTestAreaValue($loopstr,"douban","影片豆瓣",$html,$removecode);
 	if(trim($previewpic)!=''){
 		echo "<font color='red'>图片地址</font>：".$previewpic."<br>";
 	}else{
@@ -740,13 +739,19 @@ function FillUrl($refurl,$surl)
 			{
 				$okurl = m_eregi_replace('^http://','',$surl);
 			}
+			else if( strtolower(substr($surl,0,8))=='https://' )
+			{
+				$okurl = m_eregi_replace('^https://','',$surl);
+			}
 			else
 			{
 				$okurl = $BaseUrlPath.'/'.$surl;
 			}
 		}
 		$okurl = m_eregi_replace('/{1,}','/',$okurl);
-		return 'http://'.$okurl;
+
+		if( strtolower(substr($refurl,0,8))=='https://' ){$httpx='https://';}else{$httpx='http://';}
+		return $httpx.$okurl;
 }
 
 //编码转换

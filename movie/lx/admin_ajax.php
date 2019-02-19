@@ -101,7 +101,12 @@ elseif($action=="checkuser")
 elseif($action=="updatecache")
 {
 	cache_clear(sea_ROOT.'/data/cache');
-	cache_clear(sea_ROOT.'/wap/data/cache');
+	require_once(sea_ROOT.'/data/config.cache.inc.php');
+	if($cfg_cachetype=='redis'){
+	$redis = new Redis();
+	$redis->connect('127.0.0.1', 6379);
+	$redis->flushall();
+	}
 	echo "ok";
 }
 elseif($action=="clearColHis")

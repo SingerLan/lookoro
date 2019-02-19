@@ -2,7 +2,7 @@
 if(!defined('sea_INC'))
 {
 	exit("Request Error!");
-}
+} 
 session_start();
 function CheckPurview()
 {

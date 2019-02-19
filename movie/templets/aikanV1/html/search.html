@@ -44,12 +44,12 @@
 						{seacms:searchlist size=11 order=time}
 							<li class="active top-line-dot clearfix">
 							<div class="thumb">
-								<a class="v-thumb stui-vodlist__thumb lazyload" href="[searchlist:playlink]" title="[searchlist:name]" data-original="[searchlist:pic]"><span class="play hidden-xs"></span><span class="pic-text text-right">{if:[searchlist:state]<1}[searchlist:note]{elseif:[searchlist:state]<1000 and [searchlist:state]>0}更新至第[searchlist:state]集{elseif:[searchlist:state]>1000}第[searchlist:state]期{elseif:[searchlist:state]=0 and "[searchlist:note]"=""}[searchlist:note]{end if}</span></a>
+								<a class="v-thumb stui-vodlist__thumb lazyload" href="[searchlist:playlink]" title="[searchlist:name]" data-original="[searchlist:pic]"><span class="play hidden-xs"></span><span class="qtag">{if:[searchlist:state]==0}[searchlist:ver]{else}更新至[searchlist:state]集{end if}</span></a>
 							</div>
 							<div class="detail">
 								<h3 class="title"><a href="[searchlist:link]">[searchlist:name]</a></h3>
 								<p><span class="text-muted">导演：</span>[searchlist:director]</p>
-								<p><span class="text-muted">主演：</span>[searchlist:actor]</p>
+								<p><span class="text-muted">主演：</span><span class="actor">[searchlist:actor len=60]</span></p>
 								<p>
 									<span class="text-muted">类型：</span>[searchlist:typename]<span class="lineh"> </span><span class="text-muted">地区：</span>[searchlist:publisharea]<span class="hidden-xs"><span class="lineh"> </span><span class="text-muted">年份：</span>[searchlist:publishtime]</span>
 								</p>
@@ -117,4 +117,14 @@
 </div>
 {seacms:foot}
 </body>
+<script type="text/javascript">
+window.onload = function(){
+var str=document.getElementsByClassName("actor")
+for(var i=0;i<str.length;i++){
+c=str[i].innerHTML
+c = c.replace(/search.php/g,'search.php');
+document.getElementsByClassName("actor")[i].innerHTML=c;
+}
+    }
+</script>
 </html>

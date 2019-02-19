@@ -4,6 +4,34 @@ require_once('../include/main.class.php');
 require_once('../include/link.func.php');
 require_once('../data/admin/weixin.php');
 require_once('../data/common.inc.php');
+//////////////////////////////////
+define('SINA_APPKEY', dwztoken);
+function curlQuery($url) {
+    $addHead = array(
+        "Content-type: application/json"
+    );
+    $curl_obj = curl_init();
+    curl_setopt($curl_obj, CURLOPT_URL, $url);
+    curl_setopt($curl_obj, CURLOPT_HTTPHEADER, $addHead);
+    curl_setopt($curl_obj, CURLOPT_HEADER, 0);
+    curl_setopt($curl_obj, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl_obj, CURLOPT_TIMEOUT, 15);
+    $result = curl_exec($curl_obj);
+    curl_close($curl_obj);
+    return $result;
+}
+function sinaShortenUrl($long_url) {
+   
+    $url = 'http://api.t.sina.com.cn/short_url/shorten.json?source=' . SINA_APPKEY . '&url_long=' . $long_url;
+    $result = curlQuery($url);
+    $json = json_decode($result);
+    if (isset($json->error) || !isset($json[0]->url_short) || $json[0]->url_short == '')
+        return $long_url;
+    else
+        return $json[0]->url_short;
+}
+
+////////////////////////////////
 
 if(isopen=="n"){die('ERROR');}
 define("TOKEN", "weixin");	 
@@ -26,6 +54,7 @@ class wechatCallbackapiTest
            }
     }
 	
+   
     public function responseMsg()
     {
 		global $dsql;
@@ -61,7 +90,7 @@ class wechatCallbackapiTest
 						}
 						break;
 					case 'text':
-						if(preg_match('/[\x{4e00}-\x{9fa5}]+/u',$keyword) OR ($keyword !="g" and $keyword !="h" and !is_numeric($keyword) and substr($keyword , 0 , 4) !="http"))
+						if($keyword !="帮助" and $keyword !="留言" and $keyword !=msg1a  and $keyword !=msg2a  and $keyword !=msg3a  and $keyword !=msg4a  and $keyword !=msg5a and !is_numeric($keyword) and substr($keyword , 0 , 4) !="http")
 						{	
 							$newsTpl = "<xml>
 							<ToUserName><![CDATA[%s]]></ToUserName>
@@ -113,13 +142,15 @@ class wechatCallbackapiTest
 							   																	
 								   //}
 								//$contentStr .= sprintf($newsTplItem, $title, $des, $picUrl1,$url);
+									if(dwz=='y'){$url=sinaShortenUrl($url);}
 									$txt .= "<a href='".$url."'>·".$title."</a>\n";					
 									//++$itemCount;	
 								}							
 								//$newsTplHeader = sprintf($newsTplHeader, $fromUsername, $toUsername, $time, $itemCount);
 								//$resultStr =  $newsTplHeader. $contentStr. $newsTplFooter;
-								
-								$contentStr = $txt."<a href='".url."/search.php?searchword=".$keyword."'>【搜索更多...】</a>";
+								$url2=url."/search.php?searchword=".urlencode($keyword);
+								if(dwz=='y'){$url2=sinaShortenUrl($url2);}
+								$contentStr = $txt."<a href='".$url2."'>【搜索更多...】</a>";
 
 								$msgType = 'text';
 								$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
@@ -149,6 +180,7 @@ class wechatCallbackapiTest
 										$des1 ="";										
 										$picUrl1 =dpic;										
 										$url="".url."/gbook.php";
+										if(dwz=='y'){$url=sinaShortenUrl($url);}
 										$resultStr= sprintf($newsTpl, $fromUsername, $toUsername, $time, $title, $des1, $picUrl1, $url) ;
 									    echo $resultStr; 	
 
@@ -208,21 +240,52 @@ class wechatCallbackapiTest
 							</Articles>
 							</xml>";	
  						
-						
-						if($keyword=="h")
-						
-						{
-			
-						 $contentStr = help;
-
+						if($keyword==msg1a)						
+						{			
+						 $contentStr = msg1b;
 						 $msgType = 'text';
 						 $textTpl = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 						 echo $textTpl;
-
+						}
+						if($keyword==msg2a)						
+						{			
+						 $contentStr = msg2b;
+						 $msgType = 'text';
+						 $textTpl = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						 echo $textTpl;
+						}
+						if($keyword==msg3a)						
+						{			
+						 $contentStr = msg3b;
+						 $msgType = 'text';
+						 $textTpl = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						 echo $textTpl;
+						}
+						if($keyword==msg4a)						
+						{			
+						 $contentStr = msg4b;
+						 $msgType = 'text';
+						 $textTpl = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						 echo $textTpl;
+						}
+						if($keyword==msg5a)						
+						{			
+						 $contentStr = msg5b;
+						 $msgType = 'text';
+						 $textTpl = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						 echo $textTpl;
+						}
 						
+						if($keyword=="帮助")
+						
+						{			
+						 $contentStr = help;
+						 $msgType = 'text';
+						 $textTpl = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+						 echo $textTpl;						
 						}						
 						
-						if($keyword=="g")
+						if($keyword=="留言")
 						{
 										$title = '点击进入留言本';
 										
@@ -231,6 +294,7 @@ class wechatCallbackapiTest
 										$picUrl1 =dpic;
 										//跳转链接
 										$url="".url."/gbook.php";
+										if(dwz=='y'){$url=sinaShortenUrl($url);}
 										$resultStr= sprintf($newsTpl, $fromUsername, $toUsername, $time, $title, $des1, $picUrl1, $url) ;
 									
 										echo $resultStr; 	

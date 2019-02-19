@@ -11,4 +11,4 @@ URL={$url}
 header("Content-type: application/octet-stream"); 
 header("Content-Disposition: attachment; filename=".str_replace(" ","",$name).".url;"); 
 echo $Shortcut;
-?>
+?> 

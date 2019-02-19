@@ -9,7 +9,7 @@ if(isset($_FILES['GLOBALS']))
 	exit('Request not allow!');
 }
 
-//为了防止用户通过注入的可能性改动了数据库
+//为了防止用户通过注入的可能性改动了数据库 
 //这里强制限定的某些文件类型禁止上传
 $cfg_not_allowall = "php|pl|cgi|asp|asa|cer|aspx|jsp|php3|shtm|shtml";
 $keyarr = array('name','type','tmp_name','size');

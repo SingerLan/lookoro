@@ -27,7 +27,7 @@ CheckPurview();
 if(RWCache('collect_xml'))
 echo "<script>openCollectWin(400,'auto','上次采集未完成，继续采集？','".RWCache('collect_xml')."')</script>";
 ?>
-<div class="S_info">&nbsp;资源库列表</div>
+<div class="S_info">&nbsp;资源库列表&nbsp;&nbsp;&nbsp;&nbsp;【如果分类绑定过多，某些情况下可能会导致采集错误，请先清除分类绑定】</div>
 <table width="98%"  align="left" cellpadding="0" cellspacing="0" border="0" bgcolor="#fff" style="margin-top:15px; margin-left:10px;" id="list" class="list">
 <?php
 $sqlStr="select * from `sea_zyk` order by zid ASC";

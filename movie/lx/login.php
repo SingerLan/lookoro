@@ -1,4 +1,8 @@
 <?php
+//彻底禁止蜘蛛抓取
+if(preg_match("/(googlebot|baiduspider|sogou|360spider|bingbot|Yahoo|spider|bot)/i", $_SERVER['HTTP_USER_AGENT']))
+{header('HTTP/1.1 403 Forbidden'); header("status: 403 Forbidden");}
+
 require_once(dirname(__FILE__).'/../include/common.php');
 require_once(sea_INC."/check.admin.php");
 if(empty($dopost))
@@ -160,6 +164,7 @@ if($dopost=='login' AND $v==0)
 		}
 
 }
+$cdir = $_SERVER['PHP_SELF']; 
 include('templets/login.htm');
 
 ?>

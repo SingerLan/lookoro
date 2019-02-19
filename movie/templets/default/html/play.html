@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-{seacms:strip}
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		{seacms:load block_header.html}		
@@ -9,10 +9,6 @@
 		<link href="images/css/xunlei.css" rel="stylesheet"  />
         <script src="images/js/xunlei.js"></script>
         <script src="/{seacms:sitepath}js/play.js"></script>
-		<script>
-			var playn = '{playpage:name}',
-				playp = '{playpage:part}';
-		</script>
 	</head>
 	<body>
 		{seacms:top}
@@ -26,14 +22,13 @@
 								{playpage:playurlinfo}{playpage:player}								
 							</div>
 							<div class="footer clearfix">
-								<ul class="cleafix hidden-sm hidden-xs">										
-									<li><a class="btn btn-sm btn-default" onclick="return parent.video_jump(-1)" href="javascript:void()"><i class="icon iconfont icon-rewind1"></i> 上一集</a></li>
-									<li class=""><a class="btn btn-sm btn-default" onclick="return parent.video_jump(1)" href="javascript:void()">下一集 <i class="icon iconfont icon-fastforward"></i></a></li>
-																		
-									<li><a class="btn btn-sm btn-default" href="javascript:AddFav('{playpage:id}','')"> <i class="icon iconfont icon-film"></i> 收藏</a></li>
-									
-									<li><a class="btn btn-sm btn-default" href="{playpage:desktopurl}"><i class="icon iconfont icon-file"></i>  桌面</a></li>
-								</ul>
+						<ul class="cleafix hidden-sm hidden-xs">										
+						<li class="btn btn-sm btn-default" style="margin-top:10px;"><i class="icon iconfont icon-rewind1"></i><a href="{playpage:preplaylink}">上一集</a></li>
+						<li class="btn btn-sm btn-default" style="margin-top:10px;"><a href="{playpage:nextplaylink}">下一集</a><i class="icon iconfont icon-fastforward"></i> </li>
+							<li class="btn btn-sm btn-default" style="margin-top:10px;"><i class="icon iconfont icon-cion3"></i><a href="/{seacms:sitepath}err.php?id={playpage:id}&errtxt=《{playpage:name} {playpage:part}》无法播放，请修复！"> 报错</a></li>	
+							<li class="btn btn-sm btn-default" style="margin-top:10px;"><i class="icon iconfont icon-icon_special"></i><a href="javascript:AddFav('{playpage:id}','')"> 收藏</a></li>
+							<li class="btn btn-sm btn-default" style="margin-top:10px;"><i class="icon iconfont icon-file"></i> <a href="{playpage:desktopurl}"> 桌面</a></li>
+						</ul>
 								
 								<span class="text-muted">正在播放：</span><a href="{playpage:link}" title="{playpage:name}">{playpage:name}</a>【{playpage:part}】																																							
 						    </div>
@@ -73,7 +68,7 @@
 							<ul class="nav nav-tabs">	
 								<li class="active"><a href="#list3" data-toggle="tab">剧情介绍</a></li>	
 								{playpage:downlist}	
-								{if:[downlist:s]==0}
+								{if:[downlist:i]==1}
 								<li><a href="#list2" data-toggle="tab" title="影片下载">影片下载</a></li>							
 								{end if}
 								{/playpage:downlist}																											
@@ -104,7 +99,7 @@
 															<label><input type="checkbox"  name="checkall" onclick="CheckAll([downlist:i])" id="allcheck[downlist:i]"/> &nbsp; 全选</label>
 												        </td>													    
 												        <td class="text-muted hidden-xs">
-															使用迅雷下载前请<a href="//dl.xunlei.com/" rel="nofollow">《安装迅雷》</a>和查看<a href="//www.seacms.net">《使用帮助》</a>。
+															使用迅雷下载前请<a href="//dl.xunlei.com/" rel="nofollow">《安装迅雷》</a>和查看<a href="#">《使用帮助》</a>。
 														</td>	
 														<td align="right">
 														    <a class="btn btn-sm btn-primary" href="javascript:;" onclick="zhongxz([downlist:i])">迅雷下载选中文件</a>												    																	
@@ -257,4 +252,3 @@
 		<div style="display:none;">{playpage:hit}</div>
     </body>
 </html>
-{/seacms:strip}

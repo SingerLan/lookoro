@@ -16,7 +16,7 @@ if($action=="add")
 		exit();
 	}
 	
-	$in_query = "insert into `sea_jqtype`(tid,tname,ishidden) Values('','$tname',0)";
+	$in_query = "insert into `sea_jqtype`(tid,upid,tname,ishidden) Values('','$upid','$tname',0)";
 	if(!$dsql->ExecuteNoneQuery($in_query))
 	{
 		ShowMsg("增加分类失败，请检查您的输入是否存在问题！","-1");
@@ -73,12 +73,13 @@ elseif($action=="edit")
 	foreach($e_id as $id)
 	{
 		$tname=$_POST["tname$id"];
+		$upid=$_POST["upid$id"];
 	if(empty($tname))
 	{
 		ShowMsg("分类名称没有填写，请返回检查","-1");
 		exit();
 	}
-	$dsql->ExecuteNoneQuery("update sea_jqtype set tname='$tname' where tid=".$id);
+	$dsql->ExecuteNoneQuery("update sea_jqtype set tname='$tname',upid= '$upid' where tid=".$id);
 	clearTypeCache();
 	}
 	header("Location:admin_jqtype.php");
@@ -152,25 +153,26 @@ function getjqnumber($tname)
 function typeList($topId,$separateStr,$span="")
 {
 	$tlist=getjqTypeListsOnCache();
-	if ($topId!=0){$span.=$separateStr;}else{$span="";}
 	foreach($tlist as $row)
 	{
-		if($row->upid==$topId)
-		{
-			if(!$row->tptype){
+
 ?>
 	<tr>
             <td height="30" bgcolor="#FFFFFF" class="td_border"><?php echo $span;?>&nbsp;<input type="checkbox" name="e_id[]" id="E_ID"  value="<?php echo $row->tid;?>" class="checkbox"/><?php echo $row->tid;?>.<a href="admin_video.php?jqtype=<?php echo $row->tname;?>"><?php echo $row->tname;?></a>(<font color="red"><?php echo getjqnumber($row->tname);?></font>)</td>
             <td height="30" align="left" bgcolor="#FFFFFF"  class="td_border"><input size="13" type="text" name="tname<?php echo $row->tid;?>" value="<?php echo $row->tname;?>"></td>
+			 <td height="30" align="left" bgcolor="#FFFFFF"  class="td_border">
+			 <select name="upid<?php echo $row->tid;?>" id="v_type">
+                <option value="0">顶级分类</option>
+                <?php makeTypeOptionSelected(0,"&nbsp;|&nbsp;&nbsp;","",$row->upid,0);?>
+              </select>
+			 </td>
             <td height="30" align="center" bgcolor="#FFFFFF" class="td_border"><?php if($row->ishidden==0){?><input type="button" value="隐藏"  onClick="location.href='?action=hide&id=<?php echo $row->tid;?>';" class="rb1"><?php }else{?> <input type="button" value="取消隐藏"  onClick="location.href='?action=nohide&id=<?php echo $row->tid;?>';" class="rb1"><?php }?> <input type="button" value="删除" onclick="del(<?php echo $row->tid;?>)" class="rb1"></td>
 	</tr>
 <?php
-		typeList($row->tid,$separateStr,$span);
-			}
-		}
+		
+
 	}
     
-if (!empty($span)){$span=substr($span,(strlen($span)-strlen($separateStr)));}
 }
 
 ?>

@@ -41,7 +41,12 @@ if($action=="delall")
 </tr>
 <tr>
 <td width="80%" align="left" height="30" class="td_border">
-使用此功能可以一键清除所有资源库的分类绑定，请谨慎操作。清除绑定后，无法采集入库。
+如果系统绑定的资源库分类过多，某些情况下会出现绑定失败的情况，需要清除多余的绑定数据。
+</td>
+</tr>
+<tr>
+<td width="80%" align="left" height="30" class="td_border">
+使用此功能可以一键清除所有资源库的分类绑定，请谨慎操作。
 </td>
 </tr>
 

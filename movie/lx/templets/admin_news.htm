@@ -48,26 +48,9 @@ if ($n_recycled=="ok") $sqlStr="select d.n_id,d.n_title,d.n_hit,0,d.tid,d.n_addt
 <div class="r_content">
 	<div class="r_content_1"><span class="td_border" style="text-align:center"><?php echo $n_id;?></span>
 <table class="tb_style" border="0" cellspacing="0" cellpadding="0">
-<tr><td colspan="15" class="td_title">&nbsp;新闻管理<?php if($n_recycled=="ok"){?>-回收站<?php }else{?>&nbsp;&nbsp;&nbsp;<a onclick="location.href='admin_datarelate.php?action=downnewspic&downtype=all';return false;" href="#"><font color="red">同步图片</font></a><?php }?>
-<?php
- 
-	if($page==1)
-	{
-	require_once(sea_DATA."/config.ftp.php");
-	echo "<div id='updatepic' style='float:right;'>远程图片<font color='red'>";
-	$row=$dsql->GetOne("select count(*) as dd from sea_news where instr(n_pic,'#err')=0".($app_ftp==0?"":" and instr(n_pic,'$app_ftpurl')=0")." and instr(n_pic,'http')<>0");
-	$num=$row['dd'];
-	echo $num;
-	echo "</font>张</div>";
-	}
-			
-			?>
-</td></tr>	
 <tr>
 <form action="?" method="post" >
-<td height="40" align="left" colspan="10">  
-
-&nbsp;关键字&nbsp;<input  name="keyword" type="text" id="keyword" size="20">
+<tr class="thead"><th colspan="15">新闻管理&nbsp;&nbsp;<input  name="keyword" type="text" id="keyword" size="20">
 <select name="type" id="type"  ><option value="">请选择文章分类</option>
 <?php makeTypeOption(0,"&nbsp;|&nbsp;",1)?>
 </select>
@@ -75,9 +58,9 @@ if ($n_recycled=="ok") $sqlStr="select d.n_id,d.n_title,d.n_hit,0,d.tid,d.n_addt
 <select  onchange="self.location.href='?type='+this.options[this.selectedIndex].value+'&n_commend='">
 <option value="">按文章分类查看</option>
 <?php makeTypeOption(0,"&nbsp;|&nbsp;",1)?>
-</select></td>
+</select></th></tr>
 </form>
-</tr>
+
 <?php
 if($TotalResult==0){
     if(!empty($keyword)){
@@ -130,6 +113,7 @@ $contentUrl=getArticleLink($tid,$n_id,'');
 </select>
 <input type="submit" value="批量移动" class="rb1" onclick="if($('movetype').value==''){alert('请选择目标分类');return false;};if(confirm('确定要批量移动数据吗')){videolistform.action='?action=psettype'}else{return false;}"/>
 <?php if($n_recycled!='ok'){?><input type="submit" style="width:90px" value="删除分类数据" class="rb1" onclick="if($('movetype').value==''){alert('请选择目标分类');return false;};if(confirm('谨慎操作，数据不可恢复\n确定要删除此分类的所有数据吗')){videolistform.action='?action=deltypedata'}else{return false;}"/><?php }?>
+ <input type="submit" style="width:90px" value="同步新闻图片" class="rb1" onclick="if(confirm('同步图片需要消耗大量服务器资源，请在空闲时间执行。确认同步吗？')){videolistform.action='admin_datarelate.php?action=downnewspic&downtype=all';}else{return false;}"/>
 </td>
 </tr>
 </form>

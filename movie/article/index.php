@@ -1,16 +1,21 @@
 <?php
 require_once(dirname(__FILE__)."/../include/common.php");
+//前置跳转start
+$cs=$_SERVER["REQUEST_URI"];
+if($GLOBALS['cfg_mskin']==3 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost$cs");}
+if($GLOBALS['cfg_mskin']==4 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
+//前置跳转end
 require_once(sea_INC."/main.class.php");
 
-
+ 
 if($GLOBALS['cfg_newsparamset']==0||$GLOBALS['cfg_runmode2']==2){
 	$paras=str_replace(getnewsfileSuffix(),'',$_SERVER['QUERY_STRING']);
 	if(strpos($paras,"-")>0){
 		$parasArray=explode("-",$paras);
-		$id=$parasArray[0];
-		$page=$parasArray[1];
+		$id=intval($parasArray[0]);
+		$page=intval($parasArray[1]);
 	}else{
-		$id=$paras;
+		$id=intval($paras);
 		$page=1;
 	}
 	$id = isset($id) && is_numeric($id) ? $id : 0;
@@ -25,7 +30,7 @@ if($id==0){
 	showmsg('参数丢失，请返回！', -1);
 	exit;
 }
-
+$id=intval($id);
 echoContent($id);
 
 function echoContent($vId)
@@ -40,12 +45,14 @@ function echoContent($vId)
 	$contentTmpName=getContentTemplate($vType,1);
 	$contentTmpName=empty($contentTmpName) ? "news.html" : $contentTmpName;
 	$contentTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/".$contentTmpName;
+	if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+	{$contentTemplatePath = "/templets/".$GLOBALS['cfg_df_mstyle']."/".$GLOBALS['cfg_df_html']."/".$contentTmpName;}
 	if (strpos(" ,".getHideTypeIDS(1).",",",".$vType.",")>0) exit("<font color='red'>该文章被删除或隐藏</font><br>");
 	$typeText = getTypeText($vType,1);
 	$contentLink = getArticleLink($vType,$vId,"link");
 	$currentTypeId=$vType;
 	$typeFlag = "parse_content_" ;
-	$cacheName = $typeFlag.$vType;
+	$cacheName = $typeFlag.$vType.$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 	$vtag=$row['n_keyword'];
 	if($cfg_iscache){
 		if(chkFileCache($cacheName)){
@@ -115,6 +122,8 @@ function echoContent($vId)
 	$content = parseNewsLabelHaveLen($content,$row['n_outline'],"outline");
 	$content = parseNewsLabelHaveLen($content,$row['n_content'],"content");
 	$content = $mainClassObj->paresPreNextNews($content,$vId,$typeFlag,$vType);
+	$content = $mainClassObj->paresPreNews($content,$vId,$typeFlag,$vType);
+	$content = $mainClassObj->paresNextNews($content,$vId,$typeFlag,$vType);
 	$content = $mainClassObj->paresVideoInNews($content);
 	$content = str_replace("{news:textlink}",$typeText."&nbsp;&nbsp;&raquo;&nbsp;&nbsp;".$row['n_title'],$content);
 	$content=$mainClassObj->parseIf($content);

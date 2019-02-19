@@ -3,7 +3,7 @@ if(!defined('sea_INC'))
 {
 	exit('seacms');
 }
-
+ 
 $UC2GBTABLE = $CODETABLE = $BIG5_DATA = $GB_DATA = '';
 $GbkUniDic = null;
 

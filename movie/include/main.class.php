@@ -6,9 +6,12 @@ if (! defined ( 'sea_INC' )) {
 $t1 = ExecTime ();
 class MainClass_Template {
 	function __construct() {
-		global $dsql, $cfg_basedir, $cfg_df_style, $cfg_df_html;
+		global $dsql, $cfg_basedir, $cfg_df_style, $cfg_df_html,$cfg_mskin,$cfg_df_mstyle;
 		$this->dsql = $dsql;
-		$this->templateDir = $cfg_basedir . "templets/" . $cfg_df_style . "/" . $cfg_df_html . "/";
+		if($GLOBALS['cfg_mskin']==0 OR $GLOBALS['cfg_mskin']==3 OR $GLOBALS['cfg_mskin']==4 OR $GLOBALS['isMobile']==0)
+		{$this->templateDir = $cfg_basedir . "templets/" . $cfg_df_style . "/" . $cfg_df_html . "/";}
+		if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+		{$this->templateDir = $cfg_basedir . "templets/" . $cfg_df_mstyle . "/" . $cfg_df_html . "/";}
 	}
 	function parseTopAndFoot($content) {
 		global $cfg_gbookstart;
@@ -23,7 +26,10 @@ class MainClass_Template {
 				}
 			}
 		}
-		$content = str_replace ( "images/", "/" . $GLOBALS ['cfg_cmspath'] . "templets/" . $GLOBALS ['cfg_df_style'] . "/images/", $content );
+		if($GLOBALS['cfg_mskin']==0 OR $GLOBALS['cfg_mskin']==3 OR $GLOBALS['cfg_mskin']==4 OR $GLOBALS['isMobile']==0)
+		{$content = str_replace ( "images/", "/" . $GLOBALS ['cfg_cmspath'] . "templets/" . $GLOBALS ['cfg_df_style'] . "/images/", $content );}
+		if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+		{$content = str_replace ( "images/", "/" . $GLOBALS ['cfg_cmspath'] . "templets/" . $GLOBALS ['cfg_df_mstyle'] . "/images/", $content );}
 		if ($cfg_gbookstart) {
 			$content = str_replace ( "{seacms:gbook}", "/{seacms:sitepath}gbook.php", $content );
 		} else {
@@ -333,7 +339,7 @@ class MainClass_Template {
 			return $content;
 		}
 	}
-	function parseSearchItemList($content, $str = "") {
+	function parseSearchItemList($content, $str = "",$jqupid) {
 		if (strpos ( $content, 'itemlist}' ) === false) {
 			return $content;
 		}
@@ -457,7 +463,7 @@ class MainClass_Template {
 					array_splice ( $rsArray, 0, 0, '全部' );
 					break;
 				case "jq" :
-					$sql = "select tname from sea_jqtype where ishidden=0";
+					$sql = "select tname from sea_jqtype where ishidden=0 AND upid=0";
 					$this->dsql->SetQuery ( $sql );
 					$this->dsql->Execute ( 'zz' );
 					while ( $rowr = $this->dsql->GetObject ( 'zz' ) ) {
@@ -2965,7 +2971,7 @@ class MainClass_Template {
 									case "link" :
 										$fieldAttrarr = explode ( chr ( 61 ), $fieldAttr );
 										$target = empty ( $fieldAttr ) ? "" : $fieldAttrarr [1];
-										$urlStr = getDownUrlList ( $videoUrl, $target );
+										$urlStr = getDownUrlList ( $videoUrl, $target,$k );
 										$loopstrPlaylistNew = str_replace ( $matchfieldvalue, $urlStr, $loopstrPlaylistNew );
 										break;
 									case "linkstr" :
@@ -3098,6 +3104,77 @@ class MainClass_Template {
 			return $content;
 		}
 	}
+	
+	function paresPreVideo($content, $dataId, $typeFlag, $vtype) {
+		$preNextLabel = "{playpage:pre}";
+		if (strpos ( $content, $preNextLabel ) === false) {
+			return $content;
+		} else {
+			$rown = $this->dsql->GetOne ( "select v_id as nextid ,v_name as nextname,v_addtime,v_enname from sea_data where tid='$vtype' and v_id<" . $dataId . " order by v_id desc" );
+			if (is_array ( $rown )) {
+				$nextid = $rown ["nextid"];
+				$nextname = $rown ["nextname"];
+			} else {
+				$nextid = 0;
+			}
+			$rowl = $this->dsql->GetOne ( "select v_id as lastid ,v_name as lastname,v_addtime,v_enname from sea_data where tid='$vtype' and v_id>" . $dataId . " order by v_id asc" );
+			if (is_array ( $rowl )) {
+				$lastid = $rowl ["lastid"];
+				$lastname = $rowl ["lastname"];
+			} else {
+				$lastid = 0;
+			}
+			if ($typeFlag == "parse_play_") {
+				if ($lastid == 0)
+					$mystr = "<span>上一篇:没有了</span> ";
+				else
+					$mystr = "<span>上一篇:<a href=" . getPlayLink2 ( $vtype, $lastid, date ( 'Y-n', $rowl ['v_addtime'] ), $rowl ['v_enname'] ) . ">" . $lastname . "</a></span> ";
+			} else {
+				if ($lastid == 0)
+					$mystr = "<span>上一篇:没有了</span> ";
+				else
+					$mystr = "<span>上一篇:<a href=" . getContentLink ( $vtype, $lastid, "link", date ( 'Y-n', $rowl ['v_addtime'] ), $rowl ['v_enname'] ) . ">" . $lastname . "</a></span> ";
+			}
+			$content = str_replace ( $preNextLabel, $mystr, $content );
+			return $content;
+		}
+	}
+	
+	function paresNextVideo($content, $dataId, $typeFlag, $vtype) {
+		$preNextLabel = "{playpage:next}";
+		if (strpos ( $content, $preNextLabel ) === false) {
+			return $content;
+		} else {
+			$rown = $this->dsql->GetOne ( "select v_id as nextid ,v_name as nextname,v_addtime,v_enname from sea_data where tid='$vtype' and v_id<" . $dataId . " order by v_id desc" );
+			if (is_array ( $rown )) {
+				$nextid = $rown ["nextid"];
+				$nextname = $rown ["nextname"];
+			} else {
+				$nextid = 0;
+			}
+			$rowl = $this->dsql->GetOne ( "select v_id as lastid ,v_name as lastname,v_addtime,v_enname from sea_data where tid='$vtype' and v_id>" . $dataId . " order by v_id asc" );
+			if (is_array ( $rowl )) {
+				$lastid = $rowl ["lastid"];
+				$lastname = $rowl ["lastname"];
+			} else {
+				$lastid = 0;
+			}
+			if ($typeFlag == "parse_play_") {
+				if ($nextid == 0)
+					$mystr .= "<span>下一篇:没有了</span>";
+				else
+					$mystr .= "<span>下一篇:<a href=" . getPlayLink2 ( $vtype, $nextid, date ( 'Y-n', $rown ['v_addtime'] ), $rown ['v_enname'] ) . ">" . $nextname . "</a></span>";
+			} else {
+				if ($nextid == 0)
+					$mystr .= "<span>下一篇:没有了</span>";
+				else
+					$mystr .= "<span>下一篇:<a href=" . getContentLink ( $vtype, $nextid, "link", date ( 'Y-n', $rown ['v_addtime'] ), $rown ['v_enname'] ) . ">" . $nextname . "</a></span>";
+			}
+			$content = str_replace ( $preNextLabel, $mystr, $content );
+			return $content;
+		}
+	}
+	
 	function parseLinkList($content) {
 		global $cfg_issqlcache;
 		if (strpos ( $content, '{seacms:linklist' ) === false) {
@@ -3388,7 +3465,7 @@ class MainClass_Template {
 			$c = empty ( $c ) ? 0 : 1;
 			$content = str_replace ( "{playpage:mark" . $y . "}", "<script type=\"text/javascript\">markVideo({playpage:id},0,0,0," . $l . "," . $c . ");markVideo2({playpage:id}," . $c . "," . $l . ");</script>", $content );
 		}
-		$content = str_replace ( "{playpage:reporterr}", "<a  href=\"javascript:viod()\" onclick=\"reportErr({playpage:id})\">报 错</a>", $content );
+		$content = str_replace ( "{playpage:reporterr}", "<a  href=\"javascript:viod()\" onclick=\"reportErr({playpage:id})\">报错</a>", $content );
 		$content = str_replace ( "{playpage:digg}", "<span id=\"digg_num\">{playpage:diggnum}</span><a  href=\"javascript:viod()\" onclick=\"diggVideo({playpage:id},'digg_num')\">顶一下</a>", $content );
 		$content = str_replace ( "{playpage:tread}", "<span id=\"tread_num\">{playpage:treadnum}</span><a  href=\"javascript:viod()\" onclick=\"treadVideo({playpage:id},'tread_num')\">踩一下</a>", $content );
 		$content = str_replace ( "{playpage:comment}", "<div  id=\"comment_list\">评论加载中...</div><script>viewComment(\"/" . $GLOBALS ['cfg_cmspath'] . "comment.php?id={playpage:id}&type=0\",\"\")</script>", $content );
@@ -3621,6 +3698,64 @@ class MainClass_Template {
 			return $content;
 		}
 	}
+	
+	function paresPreNews($content, $dataId, $typeFlag, $vtype) {
+		$preNextLabel = "{news:pre}";
+		if (strpos ( $content, $preNextLabel ) === false) {
+			return $content;
+		} else {
+			$rown = $this->dsql->GetOne ( "select n_id as nextid ,n_title as nextname from sea_news where tid='$vtype' and n_id<" . $dataId . " order by n_id desc" );
+			if (is_array ( $rown )) {
+				$nextid = $rown ["nextid"];
+				$nextname = $rown ["nextname"];
+			} else {
+				$nextid = 0;
+			}
+			$rowl = $this->dsql->GetOne ( "select n_id as lastid ,n_title as lastname from sea_news where tid='$vtype' and n_id>" . $dataId . " order by n_id asc" );
+			if (is_array ( $rowl )) {
+				$lastid = $rowl ["lastid"];
+				$lastname = $rowl ["lastname"];
+			} else {
+				$lastid = 0;
+			}
+			if ($lastid == 0)
+				$mystr = "<span>上一篇:没有了</span> ";
+			else
+				$mystr = "<span>上一篇:<a href=" . getArticleLink ( $vtype, $lastid, '' ) . ">" . $lastname . "</a></span> ";
+			
+			$content = str_replace ( $preNextLabel, $mystr, $content );
+			return $content;
+		}
+	}
+	
+	function paresNextNews($content, $dataId, $typeFlag, $vtype) {
+		$preNextLabel = "{news:next}";
+		if (strpos ( $content, $preNextLabel ) === false) {
+			return $content;
+		} else {
+			$rown = $this->dsql->GetOne ( "select n_id as nextid ,n_title as nextname from sea_news where tid='$vtype' and n_id<" . $dataId . " order by n_id desc" );
+			if (is_array ( $rown )) {
+				$nextid = $rown ["nextid"];
+				$nextname = $rown ["nextname"];
+			} else {
+				$nextid = 0;
+			}
+			$rowl = $this->dsql->GetOne ( "select n_id as lastid ,n_title as lastname from sea_news where tid='$vtype' and n_id>" . $dataId . " order by n_id asc" );
+			if (is_array ( $rowl )) {
+				$lastid = $rowl ["lastid"];
+				$lastname = $rowl ["lastname"];
+			} else {
+				$lastid = 0;
+			}
+			if ($nextid == 0)
+				$mystr .= "<span>下一篇:没有了</span>";
+			else
+				$mystr .= "<span>下一篇:<a href=" . getArticleLink ( $vtype, $nextid, '' ) . ">" . $nextname . "</a></span>";
+			$content = str_replace ( $preNextLabel, $mystr, $content );
+			return $content;
+		}
+	}
+	
 	function parseNews($content, $title, $color, $txt, $addtime) {
 		$labelRule = buildregx ( "{news:([\s\S]+?)}", "is" );
 		preg_match_all ( $labelRule, $content, $matches );

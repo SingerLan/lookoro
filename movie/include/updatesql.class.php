@@ -3,7 +3,7 @@ if(!defined('sea_INC'))
 {
 	exit("Request Error!");
 }
-//包含函数库
+//包含函数库 
 require_once(  dirname(__FILE__).'/inc/mysql.php' );
 $DBUpdate = new DBManager;
 class DBManager

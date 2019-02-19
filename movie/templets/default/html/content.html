@@ -106,7 +106,7 @@
 															<label><input type="checkbox"  name="checkall" onclick="CheckAll([downlist:i])" id="allcheck[downlist:i]"/> &nbsp; 全选</label>
 												        </td>													    
 												        <td class="text-muted hidden-xs">
-															使用迅雷下载前请<a href="//dl.xunlei.com/" rel="nofollow">《安装迅雷》</a>和查看<a href="//www.seacms.net">《使用帮助》</a>。
+															使用迅雷下载前请<a href="//dl.xunlei.com/" rel="nofollow">《安装迅雷》</a>和查看<a href="#">《使用帮助》</a>。
 														</td>	
 														<td align="right">
 														    <a class="btn btn-sm btn-primary" href="javascript:;" onclick="zhongxz([downlist:i])">迅雷下载选中文件</a>												    																	
@@ -259,6 +259,29 @@
 	    });	 
 	    </script>
         {seacms:foot}
+<!---百度主动推送代码开始--->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!---百度主动推送代码结束--->
+<!---360主动推送代码结束--->
+<script>(function(){
+   var src = document.location.protocol +'//js.passport.qihucdn.com/11.0.1.js?0cafbe109ab248eb7be06d7f99c4009f';
+   document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();</script>
+<!---360主动推送代码结束--->
+
     </body>
 </html>
 {/seacms:strip}

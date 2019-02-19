@@ -3,7 +3,7 @@ if(!defined('sea_INC'))
 {
 	exit("Request Error!");
 }
-
+ 
 $magic_quotes_gpc = ini_get('magic_quotes_gpc');
 function _FilterAll($fk, &$svar)
 {

@@ -161,11 +161,11 @@
               <tr>
               <td>播放地址加密：
                 <input type="radio" name="edit___cfg_playaddr_enc" value="escape" <?php if ($cfg_playaddr_enc=='escape') echo "checked";?> class="radio">
-                加密
-				<!--
+                escape加密
+
                 <input type="radio" name="edit___cfg_playaddr_enc" value="base64" <?php if ($cfg_playaddr_enc=='base64') echo "checked";?> class="radio">
                 base64加密
-				--->
+
                 <input type="radio" name="edit___cfg_playaddr_enc" value="no" <?php if ($cfg_playaddr_enc=='no') echo "checked";?> class="radio">
                 不加密 &nbsp;&nbsp;&nbsp;&nbsp;对播放地址进行加密 </td>
             </tr>
@@ -279,7 +279,7 @@
       <tr>
         <td>网站路径：</td>
         <td ><input type="text" name="edit___cfg_cmspath" size="30" value="<?php echo $cfg_cmspath;?>">
-          1.安装在根目录下这里设置为空 2.安装二级目录填写为:二级目录名/</td>
+          安装在根目录下这里设置为空, 安装二级目录填写为:二级目录名/</td>
       </tr>
       <tr>
         <td>cookie加密码：</td>
@@ -292,20 +292,49 @@
       <tr>
         <td >智能采集设置：</td>
         <td ><label>
-            <input type="checkbox" name="edit___cfg_gatherset[]" value="0" id="gatherset1" <?php if(strpos($cfg_gatherset,'0')!==false)echo 'checked'?> />
-            分类识别</label>
+            <input type="checkbox" name="edit___cfg_gatherset[]" value="0" id="gatherset1" <?php if(strpos($cfg_gatherset,'0')!==false)echo 'checked'?> />分类识别</label>&nbsp;&nbsp;
           <label>
-            <input type="checkbox" name="edit___cfg_gatherset[]" value="1" id="gatherset2" <?php if(strpos($cfg_gatherset,'1')!==false)echo 'checked'?>/>
-            不添加新影片</label>
-          <label>
-            <input type="checkbox" name="edit___cfg_gatherset[]" value="2" id="gatherset3" <?php if(strpos($cfg_gatherset,'2')!==false)echo 'checked'?>/>
-            只更新地址和状态 </label>
-          <label>
-            <input type="checkbox" name="edit___cfg_gatherset[]" value="3" id="gatherset4" <?php if(strpos($cfg_gatherset,'3')!==false)echo 'checked'?>/>
-            按地址判断是否更新 </label>
-			<label>
-            <input type="checkbox" name="edit___cfg_gatherset[]" value="4" id="gatherset4" <?php if(strpos($cfg_gatherset,'4')!==false)echo 'checked'?>/>
-            强制更新图片 </label>
+            <input type="checkbox" name="edit___cfg_gatherset[]" value="1" id="gatherset2" <?php if(strpos($cfg_gatherset,'1')!==false)echo 'checked'?>/>不添加新影片</label>
+		  &nbsp;&nbsp;
+		  <label>
+            <input type="checkbox" name="edit___cfg_gatherset[]" value="3" id="gatherset3" <?php if(strpos($cfg_gatherset,'3')!==false)echo 'checked'?>/>
+            按播放下载地址判断是否更新 </label>
+			&nbsp;&nbsp;
+		  <label>
+            <input type="checkbox" name="edit___cfg_gatherset[]" value="Y" id="gatherset4" <?php if(strpos($cfg_gatherset,'Y')!==false)echo 'checked'?>/>
+            不更新时间</label>
+			</td>
+      </tr>
+	  
+	        <tr>
+        <td >更新项目设置：</td>
+        <td >
+            <label><input type="checkbox" name="edit___cfg_gatherset[]" value="A" id="gatherset1" <?php if(strpos($cfg_gatherset,'A')!==false)echo 'checked'?> />播放地址</label>&nbsp;&nbsp;	
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="B" id="gatherset1" <?php if(strpos($cfg_gatherset,'B')!==false)echo 'checked'?> />下载地址</label>&nbsp;&nbsp;				
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="C" id="gatherset1" <?php if(strpos($cfg_gatherset,'C')!==false)echo 'checked'?> />图片</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="D" id="gatherset1" <?php if(strpos($cfg_gatherset,'D')!==false)echo 'checked'?> />连载状态</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="E" id="gatherset1" <?php if(strpos($cfg_gatherset,'E')!==false)echo 'checked'?> />语言</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="F" id="gatherset1" <?php if(strpos($cfg_gatherset,'F')!==false)echo 'checked'?> />地区</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="G" id="gatherset1" <?php if(strpos($cfg_gatherset,'G')!==false)echo 'checked'?> />年份</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="H" id="gatherset1" <?php if(strpos($cfg_gatherset,'H')!==false)echo 'checked'?> />备注</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="I" id="gatherset1" <?php if(strpos($cfg_gatherset,'I')!==false)echo 'checked'?> />关键词</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="J" id="gatherset1" <?php if(strpos($cfg_gatherset,'J')!==false)echo 'checked'?> />别名</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="K" id="gatherset1" <?php if(strpos($cfg_gatherset,'K')!==false)echo 'checked'?> />更新周期</label>&nbsp;&nbsp;			
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="M" id="gatherset1" <?php if(strpos($cfg_gatherset,'M')!==false)echo 'checked'?> />时光网评分</label><br>
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="L" id="gatherset1" <?php if(strpos($cfg_gatherset,'L')!==false)echo 'checked'?> />豆瓣评分</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="N" id="gatherset1" <?php if(strpos($cfg_gatherset,'N')!==false)echo 'checked'?> />IMDB评分</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="O" id="gatherset1" <?php if(strpos($cfg_gatherset,'O')!==false)echo 'checked'?> />电视台</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="P" id="gatherset1" <?php if(strpos($cfg_gatherset,'P')!==false)echo 'checked'?> />公司</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="Q" id="gatherset1" <?php if(strpos($cfg_gatherset,'Q')!==false)echo 'checked'?> />版本</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="R" id="gatherset1" <?php if(strpos($cfg_gatherset,'R')!==false)echo 'checked'?> />备用说明</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="S" id="gatherset1" <?php if(strpos($cfg_gatherset,'S')!==false)echo 'checked'?> />演员</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="T" id="gatherset1" <?php if(strpos($cfg_gatherset,'T')!==false)echo 'checked'?> />导演</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="U" id="gatherset1" <?php if(strpos($cfg_gatherset,'U')!==false)echo 'checked'?> />影片介绍</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="V" id="gatherset1" <?php if(strpos($cfg_gatherset,'V')!==false)echo 'checked'?> />集数</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="W" id="gatherset1" <?php if(strpos($cfg_gatherset,'W')!==false)echo 'checked'?> />时长</label>&nbsp;&nbsp;
+			<label><input type="checkbox" name="edit___cfg_gatherset[]" value="X" id="gatherset1" <?php if(strpos($cfg_gatherset,'X')!==false)echo 'checked'?> />剧情分类</label>
+			
+
 			</td>
       </tr>
 
@@ -318,6 +347,39 @@
           &nbsp;&nbsp;&nbsp;开启该功能比较消耗系统资源</td>
       </tr>
 	  <tr>
+        <td>采集中随机点击：</td>
+        <td>开启：
+          <input type="radio" name="edit___cfg_cj_rq" value="1" <?php if ($cfg_cj_rq=='1') echo "checked";?> class="radio" onclick="getElementById('cfg_cj_rq').style.display=''"/>
+          关闭：
+          <input type="radio" name="edit___cfg_cj_rq" value="0"  <?php if ($cfg_cj_rq=='0') echo "checked";?> class="radio" onclick="getElementById('cfg_cj_rq').style.display='none'"/>
+          <font id="cfg_cj_rq" <?php if ($cfg_cj_rq=='0') echo "style='display:none'";?>> &nbsp;&nbsp;&nbsp;数值范围：
+          <input type="text" name="edit___cfg_cj_rq_s" size="4" value="<?php echo $cfg_cj_rq_s; ?>" /> -
+		  <input type="text" name="edit___cfg_cj_rq_e" size="4" value="<?php echo $cfg_cj_rq_e; ?>" />
+          </td>
+      </tr>
+	  <tr>
+        <td>采集中随机顶踩：</td>
+        <td>开启：
+          <input type="radio" name="edit___cfg_cj_dc" value="1" <?php if ($cfg_cj_dc=='1') echo "checked";?> class="radio" onclick="getElementById('cfg_cj_dc').style.display=''"/>
+          关闭：
+          <input type="radio" name="edit___cfg_cj_dc" value="0"  <?php if ($cfg_cj_dc=='0') echo "checked";?> class="radio" onclick="getElementById('cfg_cj_dc').style.display='none'"/>
+          <font id="cfg_cj_dc" <?php if ($cfg_cj_dc=='0') echo "style='display:none'";?>> &nbsp;&nbsp;&nbsp;数值范围：
+          <input type="text" name="edit___cfg_cj_dc_s" size="4" value="<?php echo $cfg_cj_dc_s; ?>" /> -
+		  <input type="text" name="edit___cfg_cj_dc_e" size="4" value="<?php echo $cfg_cj_dc_e; ?>" />
+          </td>
+      </tr>
+	  <tr>
+        <td>采集中随机评分：</td>
+        <td>开启：
+          <input type="radio" name="edit___cfg_cj_pf" value="1" <?php if ($cfg_cj_pf=='1') echo "checked";?> class="radio" onclick="getElementById('cfg_cj_pf').style.display=''"/>
+          关闭：
+          <input type="radio" name="edit___cfg_cj_pf" value="0"  <?php if ($cfg_cj_pf=='0') echo "checked";?> class="radio" onclick="getElementById('cfg_cj_pf').style.display='none'"/>
+          <font id="cfg_cj_pf" <?php if ($cfg_cj_pf=='0') echo "style='display:none'";?>> &nbsp;&nbsp;&nbsp;数值范围：
+          <input type="text" name="edit___cfg_cj_pf_s" size="4" value="<?php echo $cfg_cj_pf_s; ?>" /> -
+		  <input type="text" name="edit___cfg_cj_pf_e" size="4" value="<?php echo $cfg_cj_pf_e; ?>" />
+          </td>
+      </tr>
+	  <tr>
         <td>采集时间间隔：</td>
         <td ><input type="text" name="edit___cfg_cjtime" size="3" value="<?php echo $cfg_cjtime;?>"> 秒&nbsp;&nbsp;&nbsp;
           请根据服务器配置性能合理设置，太快可能造成服务器资源耗尽导致中断</td>
@@ -326,7 +388,7 @@
         <td colspan="2"><strong>模板与路径设置</strong></td>
       </tr>
       <tr>
-        <td>模板选择：</td>
+        <td>桌面端模板选择：</td>
         <td><select name="edit___cfg_df_style" style="width:150 ">
             <?php
             $dh = dir($cfg_basedir.$cfg_templets_dir);
@@ -340,6 +402,42 @@
             }
             ?>
           </select> 将模板文件放入templets文件夹下</td>
+      </tr>
+	  <tr>
+        <td>移动端模板选择：</td>
+        <td><select name="edit___cfg_df_mstyle" style="width:150 ">
+            <?php
+            $dh = dir($cfg_basedir.$cfg_templets_dir);
+            while($dirname=$dh->read())
+            {
+            if(!m_ereg("\.",$dirname)){
+            ?>
+            <option value='<?php echo $dirname;?>' <?php if ($dirname==$cfg_df_mstyle) echo "selected";?>><?php echo $dirname;?></option>
+            <?php
+            }
+            }
+            ?>
+          </select> 将模板文件放入templets文件夹下</td>
+      </tr>
+	  <tr>
+        <td>移动端网址：</td>
+        <td><input type="text" name="edit___cfg_mhost" size="30" value="<?php echo $cfg_mhost;?>">
+          如填写:http://m.seacms.net,注意地址最后不要加'/'</td>
+      </tr>
+	  <tr>
+        <td>模板切换设置：</td>
+        <td class="td_border">
+<input type="radio" name="edit___cfg_mskin" value="0" <?php if ($cfg_mskin=='0') echo "checked";?> class="radio" />模式0&nbsp;&nbsp;
+<input type="radio" name="edit___cfg_mskin" value="1" <?php if ($cfg_mskin=='1') echo "checked";?> class="radio" />模式1&nbsp;&nbsp;
+<input type="radio" name="edit___cfg_mskin" value="2" <?php if ($cfg_mskin=='2') echo "checked";?> class="radio" />模式2&nbsp;&nbsp;
+<input type="radio" name="edit___cfg_mskin" value="3" <?php if ($cfg_mskin=='3') echo "checked";?> class="radio" />模式3&nbsp;&nbsp;
+<input type="radio" name="edit___cfg_mskin" value="4" <?php if ($cfg_mskin=='4') echo "checked";?> class="radio" />模式4&nbsp;&nbsp;
+<br>-----------------------------------------------------------<br>
+【模式0】单模板：仅使用桌面端模板，不使用移动端模板，如使用响应式自适应模板时可以选择此项。<br>
+【模式1】动态站：同时使用桌面端和移动端双模板，网站必须为动态或者伪静态访问，不允许静态生成方式。<br>
+【模式2】静态站：同时使用桌面端和移动端双模板，网站必须使用静态生成模式，不允许动态或者伪静态访问。<br>
+【模式3】跳转式：移动端强制跳转到新的网址对应页，必须正确填写上面的移动端网址。<br>
+【模式4】跳转式：移动端强制跳转到新的网址首页，必须正确填写上面的移动端网址。
       </tr>
       <tr>
         <td>模板文件所在文件夹：</td>
@@ -358,8 +456,8 @@
       </tr>
       <tr>
         <td width="103"  align="left" class="td_border">数据备份目录：</td>
-        <td ><input type="text" name="edit___cfg_backup_dir" size="15" value="<?php echo $cfg_backup_dir;?>"/>
-          位于根目录的data文件夹下</td>
+        <td ><input type="text" name="edit___cfg_backup_dir" size="15" readonly value="bdata"/>
+          位于后台管理文件夹/ebak下，禁止修改</td>
       </tr>
       <tr class="thead">
         <td colspan="2"><strong>会员系统/插件设置<a name="chajian" id="chajian"></a></strong></td>
@@ -370,6 +468,22 @@
           <input type="radio" name="edit___cfg_user" value="1" <?php if ($cfg_user=='1') echo "checked";?> class="radio" />
           关闭：
           <input type="radio" name="edit___cfg_user" value="0" <?php if ($cfg_user=='0') echo "checked";?> class="radio" />&nbsp;&nbsp;如不需要会员功能请选择关闭，加快系统运行速度
+      </tr>
+	  <tr>
+        <td width="103"  align="left" class="td_border">注册赠送积分：</td>
+        <td ><input type="text" name="edit___cfg_regpoints" size="5"  value="<?php echo $cfg_regpoints;?>"/> 注册会员时赠送的积分点数，0为不赠送</td>
+      </tr>
+	  <tr>
+        <td width="103"  align="left" class="td_border">网站推广积分：</td>
+        <td ><input type="text" name="edit___cfg_ipoints" size="5"  value="<?php echo $cfg_ipoints;?>"/> 会员专用链接推广增加积分，0为不启用</td>
+      </tr>
+	  <tr>
+        <td width="103"  align="left" class="td_border">用户签到积分：</td>
+        <td ><input type="text" name="edit___cfg_spoints" size="5"  value="<?php echo $cfg_spoints;?>"/> 会员每天签到一次增加积分，0为不启用</td>
+      </tr>
+	  <tr>
+        <td width="103"  align="left" class="td_border">积分个性名称：</td>
+        <td ><input type="text" name="edit___cfg_pointsname" size="10"  value="<?php echo $cfg_pointsname;?>"/> 消费积分个性名称，如金币、影豆、点数等</td>
       </tr>
       <tr>
         <td>留言和报错开关：</td>
@@ -436,12 +550,22 @@
                 <input type="radio" name="edit___cfg_iscache" onclick="selectCache(this.value)" value="0" <?php if ($cfg_iscache=='0') echo "checked";?> class="radio">
           </td>
       </tr>
+	  
+	   <tr>
+        <td>缓存类型：</td>
+        <td class="td_border">文件缓存:
+                <input type="radio" name="edit___cfg_cachetype"  value="file" <?php if ($cfg_cachetype=='file') echo "checked";?> class="radio">
+              &nbsp;&nbsp;&nbsp;&nbsp;Redis缓存:
+                <input type="radio" name="edit___cfg_cachetype"  value="redis" <?php if ($cfg_cachetype=='redis') echo "checked";?> class="radio">
+          &nbsp;Redis需主机支持（可修改include/common.redis.func.php和admin?/admin_ajax.php自定义Redis配置）
+		  </td>
+      </tr>
+	  
       <tr id="sqlcache">
         <td width="103"  align="left" class="td_border">数据库缓存：</td>
-        <td class="td_border"><input type="radio" name="edit___cfg_issqlcache" value="1" <?php if ($cfg_issqlcache=='1') echo "checked";?> class="radio"/>
-          开启
-          <input type="radio" name="edit___cfg_issqlcache"  value="0" <?php if ($cfg_issqlcache=='0') echo "checked";?> class="radio"/>
-          关闭&nbsp;&nbsp;&nbsp;当开启缓存时有效，节约系统资源，提高效率。<font color="red">如感觉数据缓存周期过长请关闭此项</font></td>
+        <td class="td_border">开启： <input type="radio" name="edit___cfg_issqlcache" value="1" <?php if ($cfg_issqlcache=='1') echo "checked";?> class="radio"/>
+          关闭： <input type="radio" name="edit___cfg_issqlcache"  value="0" <?php if ($cfg_issqlcache=='0') echo "checked";?> class="radio"/>
+          &nbsp;&nbsp;&nbsp;当开启缓存时有效，如感觉数据缓存周期过长请关闭此项</td>
       </tr>
       <tr>
         <td class="td_border" width="103"  align="left">缩略图默认宽度：</td>

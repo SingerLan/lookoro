@@ -32,7 +32,7 @@
       </tr>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0"  class="tb_style" bgcolor="#f5fafe">
-<tr height="30" ><td class="td_border">&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="td_border">UID</td><td class="td_border">用户名</td><td class="td_border">邮箱</td><td class="td_border">注册时间</td><td class="td_border">注册IP</td><td class="td_border">用户组</td><td class="td_border">用户点数</td><td class="td_border">会员状态</td><td class="td_border">操作</td></tr>
+<tr height="30" ><td class="td_border">&nbsp;&nbsp;&nbsp;&nbsp;</td><td class="td_border">UID</td><td class="td_border">用户名</td><td class="td_border">邮箱</td><td class="td_border">注册时间</td><td class="td_border">注册IP</td><td class="td_border">用户组</td><td class="td_border">用户积分</td><td class="td_border">会员状态</td><td class="td_border">操作</td></tr>
 
 <?php
 $numPerPage=20;
@@ -63,7 +63,7 @@ $sql="select * from sea_member ORDER BY  id DESC limit $limitstart,$numPerPage";
             <td class="td_border" height="30" ><?php echo $rs['gname'];?></td>
             <td class="td_border" height="30" ><?php echo $row->points;?></td>
             <td class="td_border" height="30" ><?php echo ($row->state?'正常':'禁止');?></td>
-            <td class="td_border" height="30" ><a href="admin_members.php?ac=edit&id=<?php echo $row->id;?>">编辑</a>&nbsp;<a href="admin_members.php?ac=del2&id=<?php echo $row->id;?>" onclick="if(confirm(\'确定删除？操作不可恢复\')){return true;}else{return false;}">删除</a></td>
+            <td class="td_border" height="30" ><a href="admin_members.php?ac=edit&id=<?php echo $row->id;?>">编辑</a>&nbsp;<a href="sendmail.php?smtprmail=<?php echo $row->email; ?>&username=<?php echo $row->username; ?>">发邮件</a>&nbsp;<a href="sendmsg.php?username=<?php echo $row->username; ?>">发消息</a>&nbsp;<a href="admin_members.php?ac=del2&id=<?php echo $row->id;?>" onclick="if(confirm('确定删除？操作不可恢复')){return true;}else{return false;}">删除</a></td>
 	  
 	  
     </TR>
@@ -71,11 +71,11 @@ $sql="select * from sea_member ORDER BY  id DESC limit $limitstart,$numPerPage";
 							
                   
       <tr bgcolor="#FFF" style="background-color:#FFF;">
-      <td class="td_border" colspan="10">
+      <td class="td_border" colspan="10" height="30">
       <input class="checkbox" type="checkbox" onclick="checkAll(this.checked,'input','uidarray[]')" name="chkall">
 删? &nbsp;
 <input id="submit_submit" class="rb1" type="submit" value="提 交" title="按 Enter 键可随时提交你的修改" name="submit">
-      <td></tr>
+      </td></tr>
                   
      </form>
 <tr bgcolor="#FFF" style="background-color:#FFF;">

@@ -17,6 +17,8 @@ if($action=="set")
 	$str.=" ?>";
 	fwrite($open,$str);
 	fclose($open);
+	ShowMsg("成功保存设置!","admin_ping.php");
+	exit;
 }
 
 ?>
@@ -58,6 +60,16 @@ if($action=="set")
 <tr>
 <td width="10%" align="left" height="30" class="td_border">
 <input type="submit" value="确 认" class="btn" >
+</td>
+</tr>
+<tr>
+<td width="90%" align="left" height="30" class="td_border">
+* 在视频添加或编辑页面选中推送项即可主动推送到百度搜索。
+</td>
+</tr>
+<tr>
+<td width="90%" align="left" height="30" class="td_border">
+* 为防止滥用推送导致网站被百度降权，本功能不支持批量推送。
 </td>
 </tr>
 <tr>

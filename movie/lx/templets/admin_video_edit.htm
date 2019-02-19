@@ -2,11 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta name="robots" content="noindex,nofollow">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link  href="img/style1.css" rel="stylesheet" type="text/css" />
+<link  href="img/style.css" rel="stylesheet" type="text/css" />
 <title>影片管理</title>
 <script src="js/common.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
-<script type="text/javascript" src="editor/TQEditor.js" ></script>
+<script charset="utf-8" src="editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="editor/lang/zh-CN.js"></script>
+<script>
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id', {
+                uploadJson : 'editor/php/upload_json.php',
+                fileManagerJson : 'editor/php/file_manager_json.php',
+                allowFileManager : true,
+				afterBlur: function(){this.sync();}
+        });
+        });
+</script>
 </head>
 <body>
 <!--当前导航-->
@@ -20,9 +31,9 @@
             <td colspan="3" class="td_title">&nbsp;修改视频数据</td>
           </tr>
           <tr>
-            <td width="70"  height="30" align="right" class="td_border">&nbsp;<font color="#FF0000">＊</font>名 称:&nbsp;</td>
-            <td class="td_border"><input type="text" name="v_name" id="v_name" autocomplete="off" onChange="checkRepeat();" value="<?php echo $vrow['v_name']?>" size="23" /><span id="v_name_ok"></span>
-              拼 音:<input type="text" size="23" id="v_enname" name="v_enname" value="<?php echo $vrow['v_enname'] ?>"  onchange="this.value=this.value.replace(/[^\w]+/ig,'')">
+            <td width="70"  height="30"  class="td_border">&nbsp;影片名称：</td>
+            <td class="td_border"><input type="text" name="v_name" id="v_name" autocomplete="off" onChange="checkRepeat();" autofocus value="<?php echo $vrow['v_name']?>" size="23" /><span id="v_name_ok"></span>
+              拼音：<input type="text" size="23" id="v_enname" name="v_enname" value="<?php echo $vrow['v_enname'] ?>"  onchange="this.value=this.value.replace(/[^\w]+/ig,'')">
               <input type="hidden" name="isuppingyin" value="1" class="checkbox" style="display:none" />
               颜色：
               <select name="v_color" >
@@ -58,7 +69,7 @@
           </tr>
 		  <tr>
             <td height="30" class="td_border">&nbsp;剧情分类：</td>
-            <td class="td_border"><?php makeTypeOptionSelected_Jq(0,"&nbsp;|&nbsp;&nbsp;","",$vextrajqtype,0);?></td>
+            <td class="td_border"><?php getjqslectEDIT(0,"&nbsp;|&nbsp;&nbsp;","",$vextrajqtype,0);?></td>
           </tr>
           <tr>
             <td width="70" height="30" align="right" class="td_border">&nbsp;图片地址：</td>
@@ -120,7 +131,11 @@
 			  &nbsp;周点击：
               <input type="text" name="v_weekhit" id="v_weekhit" maxlength="9" value="<?php echo $vrow['v_weekhit']?>" size="6" />
 			  &nbsp;日点击：
-              <input type="text" name="v_dayhit" id="v_dayhit" maxlength="9" value="<?php echo $vrow['v_dayhit']?>" size="6" /></td>
+              <input type="text" name="v_dayhit" id="v_dayhit" maxlength="9" value="<?php echo $vrow['v_dayhit']?>" size="6" />
+			  &nbsp;&nbsp;&nbsp;&nbsp;顶：
+              <input type="text" name="v_digg" id="v_digg" maxlength="9" value="<?php echo $vrow['v_digg']?>" size="6" />
+			  &nbsp;踩：
+              <input type="text" name="v_tread" id="v_tread" maxlength="9" value="<?php echo $vrow['v_tread']?>" size="6" /></td>
           </tr>
 		  <tr>
             <td  height="30" class="td_border">&nbsp;更新周期：</td>
@@ -159,11 +174,11 @@
             </tr>
 
           <tr>
-            <td height="30" align="td_border" class="td_border">&nbsp;消费点数：</td>
+            <td height="30" align="td_border" class="td_border">&nbsp;消费积分：</td>
             <td height="30" class="td_border">
               <input name="v_money" type="text" maxlength="9" value="<?php echo $vrow['v_money']?>" size="10"/>
 			  &nbsp; &nbsp; 观看密码：<input name="v_psd" type="text" maxlength="30" value="<?php echo $vrow['v_psd']?>" size="25"/>
-              &nbsp; <font color="#FF0000">&nbsp;＊播放页生成静态后消费点数和观看密码无效</font></td>
+              &nbsp; &nbsp;播放页生成静态后消费点数和观看密码无效</td>
           </tr>
 
           <tr>
@@ -190,13 +205,13 @@
                         <?php echo makePlayerSelect($pstr);?>
                       </select>
                      
-                      &nbsp;&nbsp;<img onclick="var tb=$('playfb<?php echo $j;?>');tb.parentNode.removeChild(tb);" src='img/btn_dec.gif' class='pointer' alt="删除播放来源<?php echo $j;?>" align="absmiddle"/>&nbsp;&nbsp;<font color='red'>＊</font></td>
+         &nbsp;&nbsp;<img onclick="var tb=$('playfb<?php echo $j;?>');tb.parentNode.removeChild(tb);" src='img/btn_dec.gif' class='pointer' alt="删除播放来源<?php echo $j;?>" align="absmiddle"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="//www.seacms.net/doc/player" target="_blank">视频地址填写格式说明</a></td>
                   </tr>
                   <tr>
                     <td width='70' class='td_border'>数据地址<?php echo $j;?>：<br/>
                       <input type='button' value='手动校正' title='一般情况下不需要手动校正，系统会自动进行校正' class='rb1' onclick='repairUrl(<?php echo $j;?>)' /></td>
                     <td align='left' class='td_border' id='border1'><textarea id='v_playurl<?php echo $j;?>' name='v_playurl[<?php echo $j;?>]' rows='8' style="width:695px"><?php echo $purlstr;?></textarea>
-                      &nbsp;&nbsp;<font color='red'>＊</font></td>
+                      </td>
                   </tr>
                 </table>
                 <?php
@@ -229,13 +244,13 @@
                         <?php echo makedownSelect($pstr);?>
                       </select>
                       <!--input type='button' class='rb1' value='WEB采集' onclick='viewGatherWin(<?php echo $j;?>);selectTogg();'/-->
-                      &nbsp;&nbsp;<img onclick="var tb=$('downfb<?php echo $j;?>');tb.parentNode.removeChild(tb);" src='img/btn_dec.gif' class='pointer' alt="删除播放来源<?php echo $j;?>" align="absmiddle"/>&nbsp;&nbsp;<font color='red'>＊</font></td>
+                      &nbsp;&nbsp;<img onclick="var tb=$('downfb<?php echo $j;?>');tb.parentNode.removeChild(tb);" src='img/btn_dec.gif' class='pointer' alt="删除播放来源<?php echo $j;?>" align="absmiddle"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="//www.seacms.net/doc/player" target="_blank">下载地址填写格式说明</a></td>
                   </tr>
                   <tr>
                     <td width='70' class='td_border'>数据地址<?php echo $j;?>：<br/>
                       <input type='button' value='手动校正' title='一般情况下不需要手动校正，系统会自动进行校正' class='rb1' onclick='repairUrl2(<?php echo $j;?>)' /></td>
                     <td align='left' class='td_border'><textarea id='m_downurl<?php echo $j;?>' name='m_downurl[<?php echo $j;?>]' rows='8' style="width:695px"><?php echo $purlstr;?></textarea>
-                      &nbsp;&nbsp;<font color='red'>＊</font></td>
+                      </td>
                   </tr>
                 </table>
                 <?php
@@ -250,14 +265,8 @@
           <tr>
             <td class="td_border">&nbsp;&nbsp;影片介绍：</td>
             <td class="td_border">
-			<textarea id="v_content" name="v_content" style="width:700px;height:300px;"><?php echo $v_content;?></textarea>
-			<script type="text/javascript">
-			new TQEditor('v_content',{imageUploadUrl:'editor/upload.php',imageFileTypes: '*.jpg;*.gif;*.png;*.jpeg',linkUploadUrl: 'editor/upload.php',
-linkFileSize:'2MB'});//必须在表单域后
-			</script>
-
-
-
+			<textarea id="editor_id" name="v_content" style="width:700px;height:300px;"><?php echo $v_content;?></textarea>
+			</td>
           </tr>
           <tr>
             <input type="hidden" name="v_id" value="<?php echo $id;?>">
@@ -265,7 +274,7 @@ linkFileSize:'2MB'});//必须在表单域后
             <td height="40" colspan="2" align="left" class="td_border">&nbsp;
              <input type="submit" name="Submit" value="确认保存" class="rb1" onClick="if($('v_name').value.length==0){alert('请填写名称');return false;};if($('v_type').value.length==0){alert('请选择分类');return false;}"/>
               &nbsp;&nbsp;
-              <input type="reset" name="reset" value="清除重置" class="rb1"/>&nbsp;&nbsp;<input type="checkbox" value="1" name="ping" class="checkbox">百度推送更新内容</td>
+              <input type="reset" name="reset" value="清除重置" class="rb1"/>&nbsp;&nbsp;<input type="checkbox" value="1" name="ping" class="checkbox">百度推送更新</td>
           </tr>
       </table>
         </form>

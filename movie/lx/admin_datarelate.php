@@ -664,6 +664,7 @@ elseif($action=="delByFrom")
         '/uploads/editor',
         '/uploads/litimg',
 		'/js',
+		'/js/player',
 		'/js/ads'
         
     );

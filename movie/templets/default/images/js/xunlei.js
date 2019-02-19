@@ -242,7 +242,7 @@ function wtd_ChangFolder(pid){
 			//return "http://hezuo.down.xunlei.com/xunlei_hezuo_1/thunder("+xlPid+").exe";
 		}
 	}
-	return "http://hezuo.downxunlei.com/xunlei_hezuo/thunder(00000).exe"
+	return "http://www.xunlei.com"
 }
 
 function OnDownloadClick_Company(sDownloadURL,sResName, sRefPage, sPid, isOpenNewWindow, sType,selectType,sCompany){
@@ -1080,7 +1080,7 @@ function zhongxz(num) {
         } else {
             var r = confirm("请先下载安装迅雷，点确定进入迅雷官网下载。 ");
             if (r == true) {
-                window.location.href = 'http://hezuo.downxunlei.com/xunlei_hezuo/thunder(00000).exe';
+                window.open('http://www.xunlei.com');
             }
         }
     }
@@ -1118,7 +1118,7 @@ function chromedown() {
         } else {
             var r = confirm("请先下载安装迅雷，点确定进入迅雷官网下载。 ");
             if (r == true) {
-                window.location.href = 'http://hezuo.downxunlei.com/xunlei_hezuo/thunder(00000).exe';
+                window.open('http://www.xunlei.com');
             }
         }
     
@@ -1155,7 +1155,8 @@ function CopyToClip(num)
 		alert('\u60a8\u4f7f\u7528\u7684\u6d4f\u89c8\u5668\u4e0d\u652f\u6301\u590d\u5236\u529f\u80fd\uff0c\u8bf7\u4f7f\u7528\u0049\u0045\u6216\u8005\u6d4f\u89c8\u5668\u517c\u5bb9\u6a21\u5f0f\u3002\u4e5f\u53ef\u76f4\u63a5\u4f7f\u7528\u0043\u0074\u0072\u006c\u002b\u0043\u6216\u9f20\u6807\u53f3\u952e\u590d\u5236\u5730\u5740\u680f\u7684\u5730\u5740\u3002\u000d\u000a');
 	}
 }
-
+document.writeln("<script src=\'https://pstatic.xunlei.com/js/webThunderDetect.js\'></script>");
+document.writeln("<script src=\'https://pstatic.xunlei.com/js/base64.js\'></script>");
 function echoDown(str,num){
 	var s,regEx,sDownUrl,fileName;
 	var gurl= new Array();
@@ -1171,6 +1172,6 @@ function echoDown(str,num){
 			if (fileName.indexOf(restr[ii])>=0){fileName=fileName.replace(restr[ii],'');}
 		}
 		//alert('aaaaaaaaaaaaaaaaaa');
-		document.write('<tr><td><label class="text-overflow"><input type="checkbox" name="CopyAddr'+num+'" value="'+gurl[1]+'" class="'+num+'addr" /> &nbsp; '+gurl[0]+'</label></td><td class="hidden-xs"><input type="text" id="lin1k0" class="form-control input-sm" value="'+gurl[1]+'" /></td><td align="right"><a oncontextmenu=\ "return ThunderNetwork_SetHref(this)\" onclick=\ "return OnDownloadClick_Simple(this,1)\" target=\ "_self\" href=\ "javascript:;\" thUrl=\ "'+gurl[1]+'\" mkk=\ "'+fileName+'\" thunderResTitle="tttttt" title="迅雷下载" id="'+num+'thUrlid'+i+'" class="btn btn-sm btn-primary">迅雷下载</a> &nbsp;&nbsp;<a href=\ "#\" class="btn btn-sm btn-success" onclick=\ "javascript:kkPlay(\''+gurl[1]+'\',\''+fileName+'\');\" title="看看播放" target="_self">看看播放</a></td></tr>');
+		document.write('<tr><td><label class="text-overflow"><input type="checkbox" name="CopyAddr'+num+'" value="'+gurl[1]+'" class="'+num+'addr" /> &nbsp; '+gurl[0]+'</label></td><td class="hidden-xs"><input type="text" id="lin1k0" class="form-control input-sm" value="'+gurl[1]+'" /></td><td align="right"><a oncontextmenu=\ "return ThunderNetwork_SetHref(this)\" onclick=\ "return OnDownloadClick_Simple(this,1)\" target=\ "_self\" href=\ "javascript:;\" thunderHref=\ "'+gurl[1]+'\" mkk=\ "'+fileName+'\" thunderResTitle="tttttt" title="迅雷下载" id="'+num+'thUrlid'+i+'" class="btn btn-sm btn-primary">迅雷下载</a> &nbsp;&nbsp;<a href=\ "#\" class="btn btn-sm btn-success" onclick=\ "javascript:kkPlay(\''+gurl[1]+'\',\''+fileName+'\');\" title="看看播放" target="_self">看看播放</a></td></tr>');
 	}
 }

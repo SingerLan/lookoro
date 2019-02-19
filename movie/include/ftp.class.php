@@ -2,7 +2,7 @@
 if(!defined('sea_INC'))
 {
 	exit("Request Error!");
-}
+} 
 class AppFtp{
 	var $ftpUrl = "127.0.0.1";
 	var $ftpUser = "seacms";

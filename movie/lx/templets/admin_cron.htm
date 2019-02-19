@@ -13,6 +13,19 @@
 <div class="r_main">
   <div class="r_content">
     <div class="r_content_1">
+<table border="0" cellpadding="0" cellspacing="0" align="center" class="tb" id="tips">
+        <tr class="thead">
+          <th>重要提示</th>
+        </tr>
+        <tr>
+          <td class="tipsblock">
+&nbsp;*&nbsp;&nbsp;本功能为定时任务自动版，访客访问前台页面时即可自动触发，不需要打开后台管理。<br>
+&nbsp;*&nbsp;&nbsp;请谨慎使用本功能，合理设置执行间隔时间，以免造成服务器崩溃。<br>
+&nbsp;*&nbsp;&nbsp;网站前台模板必须调用js/common.js和js/function.js两个系统js文件才可以正常执行。<br>
+&nbsp;*&nbsp;&nbsp;定时生成功能支持多个模块生成，请修改/include/crons/automakehtml.php文件进行配置后使用。					
+			</td>
+        </tr>
+</table>
       <?php
 if($action=="edit")
 {
@@ -178,8 +191,8 @@ echo "<tr><td>".$t[0]."</td><td>".$t[2]."</td><td>".$t[1]."</td><td>".$t[3]."</t
           </div>
           <select style="margin:8px 8px 0px 8px;" on onchange="selecPlan(this.options[this.selectedIndex].value)" name="PlanMode">
             <option value="1">定时生成</option>
-            <!--<option value="3">定时备份</option>-->
-            <!-- <option value="0">定时采集</option> -->
+            <!---<option value="3">定时备份</option>--->
+             <!---<option value="0">定时采集</option>--->
             <option value="2">定时自定义采集</option>
           </select>
           <div style="margin:8px">
@@ -226,7 +239,7 @@ echo "<tr><td>".$t[0]."</td><td>".$t[2]."</td><td>".$t[1]."</td><td>".$t[3]."</t
 				}
                 ?>
                 </select>
-                &nbsp;自动采集的ID,不能为空<br />
+                &nbsp;<font color="red">提示：自定义采集和资源库采集是两个不同模块</font><br />
                 <input name="collectPageNum" value="1" type="text" class="txt"   />
                 &nbsp;每次自动采集多少列表页,0为不采集,不能为空<br />
    	            <input name="autogetconnum" value="10" type="text" class="txt"   />
@@ -274,21 +287,7 @@ echo "<tr><td>".$t[0]."</td><td>".$t[2]."</td><td>".$t[1]."</td><td>".$t[3]."</t
           </div>
         </div>
       </form>
-      <table border="0" cellpadding="0" cellspacing="0" align="center" class="tb" id="tips">
-        <tr class="thead">
-          <th>重要提示</th>
-        </tr>
-        <tr>
-          <td class="tipsblock">
-计划任务是海洋cms 提供的一项使系统在规定时间自动执行某些特定任务的功能，在需要的情况下，您也可以方便的将其用于程序功能的扩展。<br><br>计划任务是与系统核心紧密关联的功能特性，不当的设置可能造成程序功能的隐患，严重时可能导致网站无法正常运行，因此请务必仅在您对计划任务特性十分了解，并明确知道正在做什么、有什么样后果的时候才自行添加或修改任务项目。<br><br>此处和其他功能不同，本功能中完全按照程序系统默认时差对时间进行设定和显示，而不会依据某一用户或管理员的时差设定而改变显示或设置的时间值。<br><br>使用此功能前台模板必须调用系统必须的js文件：<br>{seacms:sitepath}js/common.js<br>{seacms:sitepath}js/function.js<br><br>后台 计划任务 定时生成功能会自动生成的内容包括：首页 地图页 自定义模板页 百度地图 谷歌地图 rss  今日更新视频  专辑首页 专辑内容页 分类列表页。其中： 专辑首页 专辑内容页默认不自动生成，列表页只在当天有视频更新的情况下才会生成。<br>
-系统会自动判断是否需要生成，能实现智能生成，节省服务器资源。<br><br>
-有关联的视频也会自动生成，如相关视频，即使没有更新，但相关数据发生了变化，也会对应更新生成。<br><br>
-修改办法以及进阶开发请修改文件：/include/crons/automakehtml.php<br><br>
-			
-			
-			</td>
-        </tr>
-      </table>
+     
       <?php
 }
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 function makeIndex($by='video')
 {
 	global $mainClassObj;
@@ -26,13 +26,16 @@ function makeIndex($by='video')
 	$content=$mainClassObj->parseIf($content);
 	$content=str_replace("{seacms:runinfo}","",$content);
 	$content=str_replace("{seacms:member}",front_member(),$content);
+	
 	switch ($by){
 		case 'video':
+			$content=str_replace("<head>",'<head><script>var seatype="index"; var seaid=0;</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 			$indexname=sea_ROOT."/index".getfileSuffix();
 			createTextFile($content,$indexname);
 			return "首页生成完毕 <a target='_blank' href='../index".getfileSuffix()."'><font color=red>浏览首页</font></a><br>";
 			break;
 		case 'news':
+			$content=str_replace("<head>",'<head><script>var seatype="newsindex"; var seaid=0;</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 			$indexname=sea_ROOT."/news".getnewsfileSuffix();
 			createTextFile($content,$indexname);
 			return "新闻首页生成完毕 <a target='_blank' href='../news".getnewsfileSuffix()."'><font color=red>浏览首页</font></a><br>";
@@ -69,11 +72,13 @@ function makeAllmovie($by='video')
 	$content=str_replace("{seacms:member}",front_member(),$content);
 	switch ($by){
 		case 'video':
+			$content=str_replace("<head>",'<head><script>var seatype="map"; var seaid=0;</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 			$allmoviename=sea_ROOT."/allmovie".getfileSuffix();
 			createTextFile($content,$allmoviename);
 			return "地图页生成完毕 <a target='_blank' href='../allmovie".getfileSuffix()."'><font color=red>浏览地图页</font></a><br>";
 		break;
 		case 'news':
+			$content=str_replace("<head>",'<head><script>var seatype="newsmap"; var seaid=0;</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 			$allmoviename=sea_ROOT."/allnews".getnewsfileSuffix();
 			createTextFile($content,$allmoviename);
 			return "新闻地图页生成完毕 <a target='_blank' href='../allnews".getnewsfileSuffix()."'><font color=red>浏览地图页</font></a><br>";
@@ -333,15 +338,20 @@ function makeArticleById($vId)
 	$content = parseNewsLabelHaveLen($content,$row['n_outline'],"outline");
 	$content = parseNewsLabelHaveLen($content,$row['n_content'],"content");
 	$content = $mainClassObj->paresPreNextNews($content,$vId,$typeFlag,$vType);
+	$content = $mainClassObj->paresPreNews($content,$vId,$typeFlag,$vType);
+	$content = $mainClassObj->paresNextNews($content,$vId,$typeFlag,$vType);
 	$content = str_replace("{news:textlink}",$typeText."&nbsp;&raquo;&nbsp;".$row['n_title'],$content);
 	$content=$mainClassObj->parseIf($content);
 	$content=str_replace("{news:id}",$row['n_id'],$content);
 	$content=str_replace("{seacms:member}",front_member(),$content);
+	$content=str_replace("<head>",'<head><script>var seatype="news"; var seaid='.$row['n_id'].';var seapage=1;</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 	if (strpos($content,"{news:subcontent}")>0||strpos($content,"{news:subtitle}")>0||strpos($content,"{news:subpagenumber}")>0){	
 		$desarr=explode("#p#",$row['n_content']);
 		for($i=0;$i<count($desarr);$i++)
 		{
 			$tmp=$content;
+			$ii=$i+1;
+			$tmp=str_replace("<head>",'<head><script>var seatype="news"; var seaid='.$row['n_id'].';var seapage='.$ii.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$tmp);
 			if(strpos(" ".$desarr[$i],"#e#")>0)
 			{
 				$y=explode("#e#",$desarr[$i]);
@@ -532,10 +542,13 @@ function makeContentById($vId)
 		$content = parseLabelHaveLen($content,Html2Text($v_des),"des");
 		$content = parseLabelHaveLen($content,$row['v_name'],"name");
 		$content = parseLabelHaveLen($content,$row['v_note'],"note");
-		$content=str_replace("{seacms:member}",front_member(),$content);
+		$content=str_replace("{seacms:member}",front_member(),$content);		
 		switch ($typeFlag) {
 			case "parse_content_":
+				$content=str_replace("<head>",'<head><script>var seatype="video"; var seaid='.$row['v_id'].';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 				$content = $mainClassObj->paresPreNextVideo($content,$vId,$typeFlag,$vType);
+				$content = $mainClassObj->paresPreVideo($content,$vId,$typeFlag,$vType);
+				$content = $mainClassObj->paresNextVideo($content,$vId,$typeFlag,$vType);
 				$content = str_replace("{playpage:textlink}",$typeText."&nbsp;&raquo;&nbsp;".$row['v_name'],$content);
 				$content=$mainClassObj->parseIf($content);
 				createTextFile($content,sea_ROOT.$contentLink,"");
@@ -545,6 +558,7 @@ function makeContentById($vId)
 				global $cfg_playaddr_enc;
 //隐藏的播放地址start
 $str=$row['v_playdata'];
+$str2=$row['v_playdata'];
 $arr1=array();
 $arr2=array();
 $arr1=explode('$$$',$str);
@@ -565,36 +579,67 @@ foreach($arr2 as $player)
 $str=implode('$$$',$arr1); //最终地址
 //隐藏的播放地址end
 				$content = $mainClassObj->paresPreNextVideo($content,$vId,$typeFlag,$vType);
-				if($cfg_playaddr_enc=='escape'){
-					$content = str_replace("{playpage:playurlinfo}","<script>var VideoInfoList=unescape(\"".escape($str)."\")</script>",$content);
-				}elseif($cfg_playaddr_enc=='base64'){
-					$content = str_replace("{playpage:playurlinfo}","<script>var VideoInfoList=base64decode(\"".base64_encode($str)."\")</script>",$content);
-				}else{
-					$content = str_replace("{playpage:playurlinfo}","<script>var VideoInfoList=\"".$str."\"</script>",$content);
-				}
+				$content = $mainClassObj->paresPreVideo($content,$vId,$typeFlag,$vType);
+				$content = $mainClassObj->paresNextVideo($content,$vId,$typeFlag,$vType);
+				
 				$content = str_replace("{playpage:textlink}",$typeText."&nbsp;&raquo;&nbsp;<a href='".$contentLink2."'>".$row['v_name']."</a>",$content);
-				$content = str_replace("{playpage:player}","<script>var paras=getHtmlParas('".$GLOBALS['cfg_filesuffix2']."');_lOlOl10l(paras[2],paras[1])</script><iframe id='cciframe' scrolling='no' frameborder='0' allowfullscreen></iframe>",$content);
+				$content = str_replace("{playpage:player}","<iframe id='cciframe' scrolling='no' frameborder='0' allowfullscreen></iframe><script>var pn=pn;var forcejx1=forcejx;var forcejx2=\"yes\";var forcejx3=\"jiexi\";if(forcejx1==forcejx2 && contains(unforcejxARR,pn)==false){pn=forcejx3;}else{pn=pn;}document.getElementById(\"cciframe\").width = playerw;document.getElementById(\"cciframe\").height = playerh;document.getElementById(\"cciframe\").src = '/js/player/'+ pn + '.html';</script>",$content);
 				$content=$mainClassObj->parseIf($content);
 				$playArr = playData2Ary($row['v_playdata']);
-				makePlayByData($vType,$vId,$playArr,$content,date('Y-n',$row['v_addtime']),$row['v_enname'],$stringecho);
+				makePlayByData($vType,$vId,$playArr,$str2,$content,date('Y-n',$row['v_addtime']),$row['v_enname'],$stringecho);
 			break;
 		}
 	}
 	$dsql->ExecuteNoneQuery("update sea_data set v_ismake='1' where v_id=".$vId);
 	return $stringecho;
 }
+function getPartName($playData,$m,$n){
+	$PartName=array();
+	$playDataarray1=explode("$$$",$playData);
+	if(strpos($playDataarray1[$m],"$$")>0){
+		$playDataarray2=explode("$$",$playDataarray1[$m]);
+		$PartName[0]=$playDataarray2[0];
+			$playDataarray3=explode("#",$playDataarray2[1]);
+			if(strpos($playDataarray3[$n],"$")>0){
+				$playDataarray4=explode("$",$playDataarray3[$n]);
+				$PartName[1]=$playDataarray4[0];
+				$PartName[2]=$playDataarray4[1];
+				$PartName[3]=$playDataarray4[2];
+			}
+	}
 
-function makePlayByData($vType,$vId,$playArr,$content,$sdate,$enname,$stringecho)
+return $PartName;
+}
+function makePlayByData($vType,$vId,$playArr,$str2,$content,$sdate,$enname,$stringecho)
 {
+	global $cfg_playaddr_enc;
 	if($GLOBALS['cfg_ismakeplay']==1){
 		for($i=0;$i<$playArr[0];$i++)
 		{
 			$tmp =$content;
 			$tmp = str_replace("{playpage:from}",$playArr[1][$i],$tmp);
+			$z=count($playArr[2][$i]);
 			foreach ($playArr[2][$i] as $n=>$play){
 				$tmp1 =$tmp;
 				$playLink = str_replace($GLOBALS['cfg_cmspath'],"",getPlayLink2($vType,$vId,$sdate,$enname,$i,$n));
 				$tmp1 = str_replace("{playpage:part}",$play,$tmp1);
+				$tmp1=str_replace("<head>",'<head><script>var seatype="play"; var seaid='.$vId.';var seaplaylink="'.$playLink.'";</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$tmp1);
+				$partName=getPartName($str2,$i,$n);
+				$partNameN=getPartName($str2,$i,$n+1);
+				$nextplaylink = getPlayLink2($vType,$vId,date('Y-n',$sdate),$enname,$i,$n+1>=$z?$n:$n+1);
+				$preplaylink  = getPlayLink2($vType,$vId,date('Y-n',$sdate),$enname,$i,$n-1<=0?0:$n-1);
+				$tmp1=str_replace("{playpage:nextplaylink}",$nextplaylink,$tmp1);
+				$tmp1=str_replace("{playpage:preplaylink}",$preplaylink,$tmp1);
+				$tmp1 = str_replace("{playpage:from}",$partName[0],$tmp1);
+				$tmp1 = str_replace("{playpage:part}",$partName[1],$tmp1);
+				$tmp1 = str_replace("{playpage:dz}",$partName[2],$tmp1);
+				if($cfg_playaddr_enc=='escape'){
+					$tmp1 = str_replace("{playpage:playurlinfo}","<script> var now=unescape(\"".escape($partName[2])."\");var pn=\"".$partName[3]."\";var next=unescape(\"".escape($partNameN[2])."\");var prePage=\"".$preplaylink."\";var nextPage=\"".$nextplaylink."\";</script>",$tmp1);
+				}elseif($cfg_playaddr_enc=='base64'){
+					$tmp1 = str_replace("{playpage:playurlinfo}","<script> var now=base64decode(\"".base64_encode($partName[2])."\");var pn=\"".$partName[3]."\";var next=base64decode(\"".base64_encode($partNameN[2])."\");var prePage=\"".$preplaylink."\";var nextPage=\"".$nextplaylink."\";</script>",$tmp1);
+				}else{
+					$tmp1 = str_replace("{playpage:playurlinfo}","<script>var now=\"".$partName[2]."\";var pn=\"".$partName[3]."\"; var next=\"".$partNameN[2]."\";var prePage=\"".$preplaylink."\";var nextPage=\"".$nextplaylink."\";</script>",$tmp1);
+				}
 				createTextFile($tmp1,sea_ROOT.$playLink,"");
 				$stringecho .= echoEach($play, $i, '..'.$playLink, "play");
 			}
@@ -605,7 +650,7 @@ function makePlayByData($vType,$vId,$playArr,$content,$sdate,$enname,$stringecho
 		$playLink = str_replace($GLOBALS['cfg_cmspath'],"",getPlayLink2($vType,$vId,$sdate,$enname));
 		createTextFile($content,sea_ROOT.$playLink,"");
 	}
-	
+
 }
 
 function echoPartSuspend2($ids,$typeIdIndex,$action3)
@@ -794,6 +839,8 @@ function makeChannelById($typeId)
 	
 	$content = str_replace("{channelpage:order-score-link}",$cfg_basehost."/search.php?page=1&searchtype=5&order=score&tid=".$typeId,$content);
 	$content = str_replace("{channelpage:order-scoreasc-link}",$cfg_basehost."/search.php?page=1&searchtype=5&order=scoreasc&tid=".$typeId,$content);
+	
+	$content=str_replace("<head>",'<head><script>var seatype="list"; var seaid='.$currentTypeId.';var seapage=1;</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 	$tempStr = $content;
 	if (isTypeHide($typeId)){
 		echo "分类<font color=red >".$typename."</font>为隐藏状态";
@@ -818,6 +865,7 @@ function makeChannelById($typeId)
 		$tmp=$content;
 		$channelLink=str_replace($GLOBALS['cfg_cmspath'],"",getChannelPagesLink($currentTypeId,$i));
 		$tmp = str_replace("{channelpage:page}",$i,$tmp);
+		$tmp=str_replace("<head>",'<head><script>var seatype="list"; var seaid='.$currentTypeId.';var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$tmp);
 		$tmp=$mainClassObj->ParsePageList($tmp,$typeIds,$i,$pCount,$TotalResult,"channel",$currentTypeId);
 		$tmp=$mainClassObj->parseIf($tmp);
 		createTextFile($tmp,sea_ROOT.str_replace($GLOBALS['cfg_cmspath'],"",getChannelPagesLink($currentTypeId,$i,'all')));
@@ -886,6 +934,7 @@ function makeNewsChannelById($typeId)
 			$content = str_replace("{newspagelist:description}",getNewsTypeDescription($currentTypeId),$content);
 	}
 	$content=str_replace("{seacms:member}",front_member(),$content);
+	$content=str_replace("<head>",'<head><script>var seatype="newslist"; var seaid='.$currentTypeId.';var seapage=1;</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 	$tempStr = $content;
 	if (isTypeHide($typeId)){
 		echo "分类<font color=red >".$typename."</font>为隐藏状态、跳过生成";
@@ -903,6 +952,7 @@ function makeNewsChannelById($typeId)
 	for($i=1;$i<=$pCount;$i++){
 		$channelLink=str_replace($GLOBALS['cfg_cmspath'],"",getnewspageLink($currentTypeId,$i));
 		$tempStr = str_replace("{channelpage:page}",$i,$tempStr);
+		$tempStr=str_replace("<head>",'<head><script>var seatype="newslist"; var seaid='.$currentTypeId.';var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$tempStr);
 		$content=$tempStr;
 		$content=$mainClassObj->ParseNewsPageList($content,$typeIds,$i,$pCount,"newspage",$currentTypeId);
 		$content=$mainClassObj->parseIf($content);
@@ -1143,9 +1193,10 @@ function makeTopicIndex()
 		$content=$mainClassObj->parseTopicIndexList($content,$i);
 		$content=$mainClassObj->parseIf($content);
 		$topicindexname=sea_ROOT."/".$GLOBALS['cfg_album_name']."/index".($i==1?'':$i).$GLOBALS['cfg_filesuffix2'];
+		$content=str_replace("<head>",'<head><script>var seatype="topiclist"; var seaid=0;var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 		createTextFile($content,$topicindexname);
 		$topicindexname="../".$GLOBALS['cfg_album_name']."/".($i==1?'':'index'.$i.$GLOBALS['cfg_filesuffix2']);
-		echo "专题首页第".$i."页生成完毕 <a target='_blank' href='".$topicindexname."'><font color=red>浏览专题首页</font></a><br>";
+		echo "专题列表第".$i."页生成完毕 <a target='_blank' href='".$topicindexname."'><font color=red>浏览专题列表</font></a><br>";
 	}
 	
 }
@@ -1242,6 +1293,7 @@ function makeTopicById($topicId)
 		$content=$mainClassObj->ParsePageList($content,$topicId,1,$pCount,$TotalResult,"topicpage",$currrent_topic_id);
 		$content=$mainClassObj->parseIf($content);
 		$topiclink=sea_ROOT.str_replace($GLOBALS['cfg_cmspath'],"",getTopicLink($topicEnname,1));
+		$content=str_replace("<head>",'<head><script>var seatype="topic"; var seaid='.$currentTopicId.';var seapage=1;</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 		createTextFile($content,$topiclink);
 		$topiclink='..'.str_replace($GLOBALS['cfg_cmspath'],"",getTopicLink($topicEnname,1));
 		echo "专题<font color='red'>".$topicName."</font>第1页生成完毕&nbsp;<a target='_blank' href='".$topiclink."'><font color=red>".$topiclink."</font></a><br>";
@@ -1251,6 +1303,7 @@ function makeTopicById($topicId)
 			$content=$mainClassObj->ParsePageList($content,$topicId,$i,$pCount,$TotalResult,"topicpage",$currrent_topic_id);
 			$content=$mainClassObj->parseIf($content);
 			$topiclink=sea_ROOT.str_replace($GLOBALS['cfg_cmspath'],"",getTopicLink($topicEnname,$i));
+			$content=str_replace("<head>",'<head><script>var seatype="topic"; var seaid='.$currentTopicId.';var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 			createTextFile($content,$topiclink);
 			$topiclink='..'.str_replace($GLOBALS['cfg_cmspath'],"",getTopicLink($topicEnname,$i));
 			echo "专题<font color='red'>".$topicName."</font>第".$i."页生成完毕&nbsp;<a target='_blank' href='".$topiclink."'><font color=red>".$topiclink."</font></a><br>";
@@ -1375,10 +1428,11 @@ function echoBegin($str,$pType,$mstart='',$mend='')
 
 function echoChannelSuspend($typeIdIndex,$action3,$page=1,$typeId='')
 {
+	include("../data/config.cache.inc.php");
 	global $cfg_stoptime,$action,$ids;
 	@ob_flush();
 	@flush();
-	echo "<br>暂停".$cfg_stoptime."秒后继续生成<script language=\"javascript\">setTimeout(\"makeNextChannel();\",".$cfg_stoptime."000);function makeNextChannel(){location.href='?action=".$action."&index=".$typeIdIndex."&action3=".$action3."&page=".$page."&channel=".$typeId."&ids=".$ids."';}</script>";
+	echo "<br>暂停".$cfg_stoptime."秒后继续生成<script language=\"javascript\">setTimeout(\"makeNextChannel();\",".$cfg_stoptime."000);function makeNextChannel(){location.href='?action=".$action."&index=".$typeIdIndex."&action3=".$action3."&page=".$page."&channel=".$typeId."&ids=".$ids."&password=".$cfg_cookie_encode."';}</script>";
 }
 
 function echoPartSuspend($typeIdIndex,$action3)
@@ -1685,7 +1739,7 @@ function makeBaidux()
 		}
 			
 		$stringEcho = '';
-		$makenum = empty($makenum) ? 1000 : intval($makenum);
+		$makenum = empty($makenum) ? 2000 : intval($makenum);
 		$allmakenum = empty($allmakenum) ? 10000 : intval($allmakenum);
 		$pagesize = $makenum;
 		$pCount = ceil($allmakenum/$pagesize);

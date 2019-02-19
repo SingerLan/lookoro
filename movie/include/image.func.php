@@ -4,7 +4,7 @@ if(!defined('sea_INC'))
 	exit("Request Error!");
 }
 
-//检测用户系统支持的图片格式
+//检测用户系统支持的图片格式 
 global $cfg_photo_type,$cfg_photo_typenames,$cfg_photo_support;
 $cfg_photo_type['gif'] = false;
 $cfg_photo_type['jpeg'] = false;

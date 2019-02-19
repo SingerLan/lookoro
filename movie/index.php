@@ -1,29 +1,26 @@
 <?php
-/*
-	[seacms1.0] (C)2011-2012 seacms.net
-*/
 if(!file_exists("data/common.inc.php"))
 {
     header("Location:install/index.php");
     exit();
 }
 require_once ("include/common.php");
-require_once sea_INC."/main.class.php";
-if($cfg_runmode=='0')
-{
-	header("Location:index".$cfg_filesuffix2);
-}
-//if($cfg_runmode=='0' || file_exists($cfg_cmspath."index".$cfg_filesuffix2)){
-//	 header("Location:/".$cfg_cmspath."index".$cfg_filesuffix2);
-//}else{
 
-	echoIndex();
-//}
+//前置跳转start
+$cs=$_SERVER["REQUEST_URI"];
+if($GLOBALS['cfg_mskin']==3 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
+if($GLOBALS['cfg_mskin']==4 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
+//前置跳转end
+
+require_once sea_INC."/main.class.php";
+echoIndex();
 function echoIndex()
 {
 	global $cfg_iscache,$t1;
-	$cacheName="parsed_index";
+	$cacheName="parsed_index".$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 	$templatePath="/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/index.html";
+	if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+	{$templatePath="/templets/".$GLOBALS['cfg_df_mstyle']."/".$GLOBALS['cfg_df_html']."/index.html";}
 	if($cfg_iscache){
 		if(chkFileCache($cacheName)){
 			$indexStr = getFileCache($cacheName);

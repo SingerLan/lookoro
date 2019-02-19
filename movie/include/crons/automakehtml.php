@@ -4,7 +4,7 @@ if(!defined('sea_INC'))
 	exit("Request Error!");
 }
 @set_time_limit(0);
-if(!class_exists("MainClass_Template")) require_once(sea_INC.'/main.class.php');
+if(!class_exists("MainClass_Template")) require_once(sea_INC.'/main2.class.php');
 
 //清理缓存
 autocache_clear(sea_ROOT.'/data/cache');
@@ -144,6 +144,7 @@ function automakeChannelById($typeId)
 	
 	$content = str_replace("{channelpage:order-score-link}",$cfg_basehost."/search.php?page=1&searchtype=5&order=score&tid=".$typeId,$content);
 	$content = str_replace("{channelpage:order-scoreasc-link}",$cfg_basehost."/search.php?page=1&searchtype=5&order=scoreasc&tid=".$typeId,$content);
+	$content=str_replace("<head>",'<head><script>var seatype="list"; var seaid='.$currentTypeId.';var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 	$tempStr = $content;
 	if (isTypeHide($typeId)){
 		return true;
@@ -159,6 +160,7 @@ function automakeChannelById($typeId)
 	for($i=1;$i<=$pCount;$i++){
 		$channelLink=str_replace($GLOBALS['cfg_cmspath'],"",getChannelPagesLink($currentTypeId,$i));
 		$tempStr2 = str_replace("{channelpage:page}",$i,$tempStr);
+		$tempStr2=str_replace("<head>",'<head><script>var seatype="list"; var seaid='.$currentTypeId.';var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$tempStr2);
 		$content=$tempStr2;
 		$content=$mainClassObj->ParsePageList($content,$typeIds,$i,$pCount,$TotalResult,"channel",$currentTypeId);
 		$content=$mainClassObj->parseIf($content);
@@ -198,6 +200,7 @@ function automakeTopicIndex()
 	for($i=1;$i<=$pCount;$i++)
 	{
 		$content=$tempStr;
+		$content=str_replace("<head>",'<head><script>var seatype="topiclist"; var seaid=0;var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 		$content=$mainClassObj->parseTopicIndexList($content,$i);
 		$content=$mainClassObj->parseIf($content);
 		if($i==1)$topicindexname=sea_ROOT."/".$GLOBALS['cfg_album_name']."/index".$GLOBALS['cfg_filesuffix2'];
@@ -262,6 +265,7 @@ function automakeTopicById($topicId)
 			$content = str_replace("{seacms:currrent_topic_id}",$currrent_topic_id,$content);
 	}
 		$content=str_replace("{seacms:member}",front_member(),$content);
+		$content=str_replace("<head>",'<head><script>var seatype="topic"; var seaid='.$currentTopicId.';var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 	$mystr = $content;
 	if($TotalResult == 0){
 		$content=$mystr;
@@ -272,6 +276,7 @@ function automakeTopicById($topicId)
 	}else{
 		for($i=1;$i<=$pCount;$i++){
 			$content =$mystr;
+			$content=str_replace("<head>",'<head><script>var seatype="topic"; var seaid='.$currentTopicId.';var seapage='.$i.';</script><script src="/'.$GLOBALS['cfg_cmspath'].'js/seajump.js"></script>',$content);
 			$content=$mainClassObj->ParsePageList($content,$topicId,$i,$pCount,$TotalResult,"topicpage",$currrent_topic_id);
 			$content=$mainClassObj->parseIf($content);
 			$topiclink=sea_ROOT.str_replace($GLOBALS['cfg_cmspath'],"",getTopicLink($topicEnname,$i));

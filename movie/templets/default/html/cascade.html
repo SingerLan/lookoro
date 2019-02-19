@@ -19,55 +19,59 @@
     <div class="container">
         <div class="row">
             <div class="hy-cascade clearfix">
-                <div class="left-head hidden-sm hidden-xs">
-                    <ul class="clearfix">
-                        <li class="text"><span class="text-muted">选择频道</span></li>
-                        <li><a class="{if:{searchpage:type}==0} active{end if}" href="/{seacms:sitepath}search.php?searchtype=5&tid=0">全部</a></li>
-                        <li><a {if:{searchpage:type}==1} class="active" {end if} href="/{seacms:sitepath}search.php?searchtype=5&tid=1">电影</a></li>
-                        <li><a {if:{searchpage:type}==2} class="active" {end if} href="/{seacms:sitepath}search.php?searchtype=5&tid=2">电视剧</a></li>
-                        <li><a {if:{searchpage:type}==3} class="active" {end if} href="/{seacms:sitepath}search.php?searchtype=5&tid=3">综艺</a></li>
-                        <li><a {if:{searchpage:type}==4} class="active" {end if} href="/{seacms:sitepath}search.php?searchtype=5&tid=4">动漫</a></li>
-                    </ul>
-                </div>
-                <div class="content-meun clearfix"><a class="head" href="javascript:;" data-toggle="collapse" data-target="#collapse" aria-expanded="false"><span class="text">已选择</span><span>{searchpage:jq}</span><span>{searchpage:typename}</span><span>{searchpage:lang}</span><span>{searchpage:area}</span><span>{searchpage:year}</span><span class="hidden-xs">{searchpage:letter}</span><span class="hidden-xs">{searchpage:state}</span></a>
-                    <div class="item collapse" id="collapse" aria-expanded="false">
-                        <ul class="visible-sm visible-xs clearfix">
-                            <li class="text"><span class="text-muted">按频道</span></li>
-                            <li><a href="/{seacms:sitepath}search.php?searchtype=5&tid=0">全部</a></li>
-                            <li><a href="/{seacms:sitepath}search.php?searchtype=5&tid=1">电影</a></li>
-                            <li><a href="/{seacms:sitepath}search.php?searchtype=5&tid=2">电视剧</a></li>
-                            <li><a href="/{seacms:sitepath}search.php?searchtype=5&tid=3">综艺</a></li>
-                            <li><a href="/{seacms:sitepath}search.php?searchtype=5&tid=4">动漫</a></li>
-                        </ul>
+                <div class="content-meun clearfix">
+				<a class="head" href="javascript:;" data-toggle="collapse" data-target="#collapse" aria-expanded="false"><span class="text">已选择：</span><span>{searchpage:typename}</span><span>{searchpage:jq}</span><span>{searchpage:area}</span><span>{searchpage:year}</span><span>{searchpage:lang}</span><span class="hidden-xs">{searchpage:state}</span><span class="hidden-xs">{searchpage:money}</span><span class="hidden-xs">{searchpage:ver}</span><span class="hidden-xs">{searchpage:letter}</span></a>
+                    <div class="item collapse" id="collapse" aria-expanded="false" >
                         <ul class="clearfix">
-                            <li class="text"><span class="text-muted">按剧情</span></li>
+                            <li class="text"><span class="text-muted">按分类：</span></li>
+                            {seacms:typeitemlist}
+                            <li><a href="[typeitemlist:link]" {if:[typeitemlist:value]=={searchpage:typename}} class="active" {end if}>[typeitemlist:value]</a></li>
+                            {/seacms:typeitemlist}
+                        </ul>
+						<ul class="clearfix">
+                            <li class="text"><span class="text-muted">按剧情：</span></li>
                             {seacms:jqitemlist}
                             <li><a href="[jqitemlist:link]" {if:[jqitemlist:value]=={searchpage:jq}} class="active" {end if}>[jqitemlist:value]</a></li>
                             {/seacms:jqitemlist}
                         </ul>
                         <ul class="clearfix">
-                            <li class="text"><span class="text-muted">按地区</span></li>
+                            <li class="text"><span class="text-muted">按地区：</span></li>
                             {seacms:areaitemlist}
                             <li><a href="[areaitemlist:link]" {if:[areaitemlist:value]=={searchpage:area}} class="active" {end if}>[areaitemlist:value]</a></li>{/seacms:areaitemlist}
                         </ul>
                         <ul class="clearfix">
-                            <li class="text"><span class="text-muted">按年份</span></li>
+                            <li class="text"><span class="text-muted">按年份：</span></li>
                             {seacms:yearitemlist}
                             <li><a href="[yearitemlist:link]" {if:[yearitemlist:value]=={searchpage:year}} class="active" {end if}>{if:[yearitemlist:value]==more}更早{else}[yearitemlist:value]{end if}</a></li>{/seacms:yearitemlist}
                         </ul>
                         <ul class="clearfix">
-                            <li class="text"><span class="text-muted">按语言</span></li>
+                            <li class="text"><span class="text-muted">按语言：</span></li>
                             {seacms:langitemlist}
                             <li><a {if:[langitemlist:value]=={searchpage:lang}} class="active" {else} {end if} target="_self" href="[langitemlist:link]">[langitemlist:value]</a></li>
                             {/seacms:langitemlist}
                         </ul>
-                        <ul class="active clearfix">
-                            <li class="text"><span class="text-muted">按状态</span></li>
+                        <ul class="clearfix">
+                            <li class="text"><span class="text-muted">按状态：</span></li>
                             {seacms:stateitemlist}
-<li><a href="[stateitemlist:link]" {if:"[stateitemlist:value]"=="{searchpage:state}"}  class="active" {else} {end if} target="_self" >[stateitemlist:value]</a></li>
+							<li><a href="[stateitemlist:link]" {if:"[stateitemlist:value]"=="{searchpage:state}"}  class="active" {else} {end if} target="_self" >[stateitemlist:value]</a></li>
                             {/seacms:stateitemlist}
                         </ul>
-                        <ul class="letter hidden-xs clearfix">
+						<ul class="clearfix">
+                            <li class="text"><span class="text-muted">按收费：</span></li>							
+							{seacms:moneyitemlist}
+							<li>{if: [moneyitemlist:value]={searchpage:money}}<a href="[moneyitemlist:link]" class="active">[moneyitemlist:value]</a>{else}<a href="[moneyitemlist:link]">[moneyitemlist:value]</a>{end if} </li>
+							{/seacms:moneyitemlist}
+							
+							
+                        </ul>
+						<ul class="clearfix">
+                            <li class="text"><span class="text-muted">按版本：</span></li>
+                            {seacms:veritemlist}
+							<li><a href="[veritemlist:link]" {if:"[veritemlist:value]"=="{searchpage:ver}"}  class="active" {else} {end if} target="_self" >[veritemlist:value]</a></li>
+                            {/seacms:veritemlist}
+                        </ul>
+                        <ul class="clearfix">
+						<li class="text"><span class="text-muted">按字母：</span></li>
                             {seacms:letteritemlist}
                             <li><a {if:{searchpage:letter}==[letteritemlist:value]} class="active" {end if} href="[letteritemlist:link]">[letteritemlist:value]</a></li>{/seacms:letteritemlist}
                         </ul>

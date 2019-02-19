@@ -1,5 +1,4 @@
 <?php
-
 function lib_replace_end_tag($str)  
 {  
 if (empty($str)) return false;  
@@ -51,6 +50,11 @@ return $array;
 
 
 require_once("include/common.php");
+//前置跳转start
+$cs=$_SERVER["REQUEST_URI"];
+if($GLOBALS['cfg_mskin']==3 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost$cs");}
+if($GLOBALS['cfg_mskin']==4 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
+//前置跳转end
 require_once(sea_INC."/main.class.php");
 require_once(sea_INC."/splitword.class.php");
 $page = (isset($page) && is_numeric($page)) ? $page : 1;
@@ -90,6 +94,8 @@ function echoSearchPage()
 	global $dsql,$cfg_iscache,$mainClassObj,$page,$t1,$cfg_search_time,$searchword,$searchtype;
 	if($cfg_search_time) checkSearchTimes($cfg_search_time);
 	$searchTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/newssearch.html";
+	if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+	{$searchTemplatePath = "/templets/".$GLOBALS['cfg_df_mstyle']."/".$GLOBALS['cfg_df_html']."/newssearch.html";}
 	$pSize = getPageSizeOnCache($searchTemplatePath,"newssearch","");
 	if (empty($pSize)) $pSize=12;
 	switch (intval($searchtype)) {
@@ -123,7 +129,7 @@ function echoSearchPage()
 		$TotalResult = 0;
 	}
 	$pCount = ceil($TotalResult/$pSize);
-	$cacheName="parse_searchnews_";
+	$cacheName="parse_searchnews_".$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 	if($cfg_iscache){
 		if(chkFileCache($cacheName)){
 			$content = getFileCache($cacheName);

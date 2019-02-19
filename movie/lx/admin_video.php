@@ -110,7 +110,9 @@ elseif($action=="save")
 	$v_weektime = $v_addtime;
 	$v_monthtime = $v_addtime;
 	$v_len = cn_substrR($v_len,200);
-	$v_total = cn_substrR($v_total,200);
+	$v_total = cn_substrR($v_total,200);	
+	$v_digg = empty($v_digg) ? 0 : intval($v_digg);
+	$v_tread = empty($v_tread) ? 0 : intval($v_tread);
 	
 	if (substr($v_tags, -1) == ',') {
 		$v_tags = substr($v_tags, 0, strlen($v_tags)-1);
@@ -122,7 +124,7 @@ elseif($action=="save")
 	switch (trim($acttype)) 
 	{
 		case "add":
-			$insertSql = "insert into sea_data(tid,v_name,v_letter,v_state,v_topic,v_hit,v_money,v_rank,v_actor,v_color,v_publishyear,v_publisharea,v_pic,v_spic,v_gpic,v_addtime,v_note,v_tags,v_lang,v_score,v_scorenum,v_director,v_enname,v_commend,v_extratype,v_jq,v_nickname,v_reweek,v_douban,v_mtime,v_imdb,v_tvs,v_company,v_dayhit,v_weekhit,v_monthhit,v_len,v_total,v_daytime,v_weektime,v_monthtime,v_ver,v_psd,v_longtxt) values ('$tid','$v_name','$v_letter','$v_state','$v_topic','$v_hit','$v_money','$v_rank','$v_actor','$v_color','$v_publishyear','$v_publisharea','$v_pic','$v_spic','$v_gpic','$v_addtime','$v_note','$v_tags','$v_lang','$v_score','$v_scorenum','$v_director','$v_enname','$v_commend','$v_extratype','$v_jq','$v_nickname','$v_reweek','$v_douban','$v_mtime','$v_imdb','$v_tvs','$v_company','$v_dayhit','$v_weekhit','$v_monthhit','$v_len','$v_total','$v_daytime','$v_weektime','$v_monthtime','$v_ver','$v_psd','$v_longtxt')";
+			$insertSql = "insert into sea_data(tid,v_name,v_letter,v_state,v_topic,v_hit,v_money,v_rank,v_actor,v_color,v_publishyear,v_publisharea,v_pic,v_spic,v_gpic,v_addtime,v_note,v_tags,v_lang,v_score,v_scorenum,v_director,v_enname,v_commend,v_extratype,v_jq,v_nickname,v_reweek,v_douban,v_mtime,v_imdb,v_tvs,v_company,v_dayhit,v_weekhit,v_monthhit,v_len,v_total,v_daytime,v_weektime,v_monthtime,v_ver,v_psd,v_longtxt,v_digg,v_tread) values ('$tid','$v_name','$v_letter','$v_state','$v_topic','$v_hit','$v_money','$v_rank','$v_actor','$v_color','$v_publishyear','$v_publisharea','$v_pic','$v_spic','$v_gpic','$v_addtime','$v_note','$v_tags','$v_lang','$v_score','$v_scorenum','$v_director','$v_enname','$v_commend','$v_extratype','$v_jq','$v_nickname','$v_reweek','$v_douban','$v_mtime','$v_imdb','$v_tvs','$v_company','$v_dayhit','$v_weekhit','$v_monthhit','$v_len','$v_total','$v_daytime','$v_weektime','$v_monthtime','$v_ver','$v_psd','$v_longtxt','$v_digg','$v_tread')";
 			if($dsql->ExecuteNoneQuery($insertSql))
 			{
 				$v_id = $dsql->GetLastID();
@@ -172,7 +174,7 @@ elseif($action=="save")
 			$v_extratype=implode(",",$v_extratype); //获取扩展分类数组
 			$v_jq=implode(",",$v_extrajqtype); //获取扩展分类数组
 	
-			$updateSql = "tid = '$tid',v_name = '$v_name',v_letter = '$v_letter',v_state = '$v_state',v_topic = '$v_topic',v_hit = '$v_hit',v_money = '$v_money',v_rank = '$v_rank',v_actor = '$v_actor',v_color = '$v_color',v_publishyear = '$v_publishyear',v_publisharea = '$v_publisharea',v_pic = '$v_pic',v_spic = '$v_spic',v_gpic = '$v_gpic',v_note = '$v_note',v_tags = '$v_tags',v_lang='$v_lang',v_director='$v_director',v_enname='$v_enname',v_extratype='$v_extratype',v_jq='$v_jq',v_nickname='$v_nickname',v_reweek='$v_reweek',v_douban='$v_douban',v_mtime='$v_mtime',v_imdb='$v_imdb',v_tvs='$v_tvs',v_company='$v_company',v_dayhit='$v_dayhit',v_weekhit='$v_weekhit',v_monthhit='$v_monthhit',v_len='$v_len',v_total='$v_total',v_score='$v_score',v_scorenum='$v_scorenum',v_ver='$v_ver',v_psd='$v_psd',v_longtxt='$v_longtxt'";
+			$updateSql = "tid = '$tid',v_name = '$v_name',v_letter = '$v_letter',v_state = '$v_state',v_topic = '$v_topic',v_hit = '$v_hit',v_money = '$v_money',v_rank = '$v_rank',v_actor = '$v_actor',v_color = '$v_color',v_publishyear = '$v_publishyear',v_publisharea = '$v_publisharea',v_pic = '$v_pic',v_spic = '$v_spic',v_gpic = '$v_gpic',v_note = '$v_note',v_tags = '$v_tags',v_lang='$v_lang',v_director='$v_director',v_enname='$v_enname',v_extratype='$v_extratype',v_jq='$v_jq',v_nickname='$v_nickname',v_reweek='$v_reweek',v_douban='$v_douban',v_mtime='$v_mtime',v_imdb='$v_imdb',v_tvs='$v_tvs',v_company='$v_company',v_dayhit='$v_dayhit',v_weekhit='$v_weekhit',v_monthhit='$v_monthhit',v_len='$v_len',v_total='$v_total',v_score='$v_score',v_scorenum='$v_scorenum',v_ver='$v_ver',v_psd='$v_psd',v_longtxt='$v_longtxt',v_digg='$v_digg',v_tread='$v_tread'";
 			if(!empty($isupdatetime)) $updateSql .= ",v_addtime='$v_addtime'";
 			$updateSql = "update sea_data set ".$updateSql." where v_id=".$v_id;
 			if(!$dsql->ExecuteNoneQuery($updateSql))
@@ -193,7 +195,7 @@ elseif($action=="save")
 			$v_oldtags = $v_oldtags ? strtolower(addslashes($v_oldtags)) : '';
 			updatetags($v_id, $v_tags, $v_oldtags);
 			
-			//推送新增
+			//推送更新
 				if($ping==1)	
 				{   
 					@include("../data/admin/ping.php");
@@ -803,5 +805,75 @@ function zzget($txt)
 	return $str;
 }
 
+function getjqs($type=0)
+{
+	global $dsql,$cfg_iscache;
+	$sql="select tid,upid,tname,ishidden,-1 as tcount from sea_jqtype group by tname order by upid asc";
+	$rows=array();
+	$dsql->SetQuery($sql);
+	$dsql->Execute('al');
+	while($rowr=$dsql->GetObject('al'))
+	{
+	$rows[]=$rowr;
+	}
+	unset($rowr);
+	return $rows;
+}
 
+function getjqsOnCache($type=0)
+{
+	global $cfg_iscache;
+	static $gadminjqtypelist0;
+	static $gadminjqtypelist1;
+	$cacheName="obj_get_admin_jqtype_list_".$type;
+	if(!is_array(${'gadminjqtypelist'.$type}))
+	{
+		if($cfg_iscache){
+			if (chkFileCache($cacheName)){${'gadminjqtypelist'.$type}=unserialize(getFileCache($cacheName));}else{${'gadminjqtypelist'.$type}=getjqs($type);setFileCache($cacheName,serialize(${'gadminjqtypelist'.$type}));}	
+		}else{
+			${'gadminjqtypelist'.$type}=getjqs($type);
+		}
+	}
+	return ${'gadminjqtypelist'.$type};
+}
+
+function getjqslectADD($type=0)
+{
+	$rows=getjqsOnCache();
+	foreach($rows as $row)
+	{
+		
+			if($row->tptype==$tptype)
+			{
+				echo "<input name=v_jqtype_extra[] type=checkbox value=".$row->tname.">".$row->tname."&nbsp;&nbsp;";
+				
+			}
+		
+	}
+}
+
+function getjqslectEDIT($topId,$separateStr,$span="",$compareValue,$tptype=0)
+{
+	$tlist=getjqsOnCache();
+
+	if($compareValue==""){
+$ids_arr="";}else{
+$ids_arr = preg_split('[,]',$compareValue);}  
+	foreach($tlist as $row)
+	{						
+			for($i=0;$i<count($ids_arr);$i++)
+			{
+				if ($row->tname==$ids_arr[$i]){
+					$selectedStr=" checked=checked";
+					break;
+					}
+					else
+					{
+					$selectedStr="";
+					}
+			}
+			
+			echo "<input name=v_jqtype_extra[] type=checkbox value=".$row->tname." ".$selectedStr.">".$row->tname."&nbsp;&nbsp;";								
+	}	
+}
 ?>

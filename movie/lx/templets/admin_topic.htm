@@ -137,16 +137,14 @@ $sql="select * from sea_topic ORDER BY  id DESC limit $limitstart,$numPerPage";
 </table> 
 <form action="?action=add" method="post">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0"  class="tb_style">
-	  <tr><td colspan="8" class="td_title">添加专题</td></tr>
-	  <tr align="center">
-		<TD height="60" width="6%" bgcolor="#FFFFFF" >&nbsp;</TD>
-		<TD width="18%" bgcolor="#FFFFFF" >名称<font color='red'>＊</font><br><input type="text" size="20" name="name" /></TD>
-		<TD width="20%" bgcolor="#FFFFFF" >模板<br><input type="text" name="template" size="20"/></TD>
-		<TD width="12%" bgcolor="#FFFFFF" >别名<br><input type="text" name="enname"  size="20"/></TD>
-		<TD width="20%" bgcolor="#FFFFFF" >图片<br><input type="text" name="pic"  size="20"/></TD>			
-		<TD width="6%" bgcolor="#FFFFFF" >&nbsp;</td>
-		<TD width="7%" bgcolor="#FFFFFF" >排序<br><input type="text" size="3" name="sort"/></TD>
-		<TD width="11%" bgcolor="#FFFFFF" >&nbsp;<br>&nbsp;<input type="submit" value="添加专题" class="rb1" /></TD>
+	  <tr><td colspan="8" class="td_title">&nbsp;添加专题</td></tr>
+	  <tr>
+		<TD height="30"  bgcolor="#FFFFFF" >&nbsp;名称<font color='red'>＊</font>：<input type="text" size="20" name="name" />&nbsp;&nbsp;&nbsp;
+		模板：<input type="text" name="template" size="20"/>&nbsp;&nbsp;&nbsp;
+		别名：<input type="text" name="enname"  size="20"/>&nbsp;&nbsp;&nbsp;
+		图片：<input type="text" name="pic"  size="20"/>	&nbsp;&nbsp;&nbsp;
+		排序：<input type="text" size="3" name="sort"/>&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;<input type="submit" value="添加专题" class="rb1" /></TD>
 	  </tr>
 	</table>
 </form>

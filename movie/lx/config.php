@@ -59,7 +59,7 @@ if($cuserLogin->getUserID()==-1 OR $_SESSION['hashstr'] !== $hashstr)
 function makeTopicSelect($selectName,$strSelect,$topicId)
 {
 	global $dsql,$cfg_iscache;
-	$sql="select id,name from sea_topic order by sort asc";
+	$sql="select id,name from sea_topic order by id desc limit 0,300";
 	if($cfg_iscache){
 	$mycachefile=md5('array_Topic_Lists_all');
 	setCache($mycachefile,$sql);
@@ -171,6 +171,39 @@ $ids_arr = preg_split('[,]',$compareValue);}
 			makeTypeOptionSelected_Jq($row->tid,$separateStr,$span,$compareValue,$tptype);
 			
 		}
+	}
+	if (!empty($span)){$span=substr($span,(strlen($span)-strlen($separateStr)));}
+	
+}
+
+function makeTypeOptionSelected_Jq2($topId,$separateStr,$span="",$compareValue,$tptype=0)
+{
+	$tlist=getjqTypeListsOnCache($tptype);
+	if ($topId!=0){$span.=$separateStr;}else{$span="";}
+	if($compareValue==""){
+$ids_arr="";}else{
+$ids_arr = preg_split('[,]',$compareValue);}  
+	foreach($tlist as $row)
+	{
+		
+		
+			
+			for($i=0;$i<count($ids_arr);$i++)
+			{
+				if ($row->tname==$ids_arr[$i]){
+					$selectedStr=" checked=checked";
+					break;
+					}
+					else
+					{
+					$selectedStr="";
+					}
+			}
+			
+			echo "<input name=v_jqtype_extra[] type=checkbox value=".$row->tname." ".$selectedStr.">".$row->tname."&nbsp;&nbsp;";
+			
+			
+		
 	}
 	if (!empty($span)){$span=substr($span,(strlen($span)-strlen($separateStr)));}
 	
@@ -526,8 +559,8 @@ function viewFoot()
 	echo "<div align=center>";
 	$starttime = explode(' ', $starttime);
 	$endtime = explode(' ', microtime()); 
-	echo "</div><div class=\"bottom\"><table width=\"100%\" cellspacing=\"5\"><tr><td align=\"center\">本页面用时".
-	($endtime[0]+($endtime[1]-$starttime[1])-$starttime[0])."秒,共执行".$dsql->QueryTimes()."次数据查询</td></tr><tr><td align=\"center\"><a target=\"_blank\" href=\"//www.seacms.net/\">Powered By Seacms</a></td></tr></table></div>\n</body>\n</html>";
+	echo "</div><div class=\"bottom\"><table width=\"100%\" cellspacing=\"5\"><tr><td align=\"center\"><font style=\"color:#666;\">本页面用时".
+	($endtime[0]+($endtime[1]-$starttime[1])-$starttime[0])."秒,共执行".$dsql->QueryTimes()."次数据查询</font></td></tr><tr><td align=\"center\"><a target=\"_blank\" href=\"//www.seacms.net/\"><font style=\"font-size:10px;\">POWER BY SEACMS</font></a></td></tr></table></div>\n</body>\n</html>";
 }
 
 function viewHead($str)

@@ -16,14 +16,46 @@
 <script type="text/javascript" src="images/jquery.min.js"></script>
 <script type="text/javascript" src="images/stui_default.js"></script>
 <script type="text/javascript">var sitePath='{seacms:sitepath}', siteUrl='{seacms:siteurl}', sitepath='{seacms:sitepath}'</script>
+<style type="text/css">
+*{margin:0; padding:0;}
+a{text-decoration: none;}
+img{max-width: 100%; height: auto;}
+.weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;}
+.weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
+</style>
 <!--[if lt IE 9]>
 <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body>
+<div class="weixin-tip">
+	<p>
+		<img src="/templets/aikanV1/html/live_weixin.png" alt="微信打开"/>
+	</p>
+</div>
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+		function is_weixin() {
+		    var ua = navigator.userAgent.toLowerCase();
+		    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
+		var isWeixin = is_weixin();
+		if(isWeixin){
+			$(".weixin-tip").css("height",winHeight);
+            $(".weixin-tip").show();
+			$("#header-top").hide();
+			$(".container").hide();
+		}
+    })
+</script>
 {seacms:top}
-<div class="container">
+<div class="container"><a href="https://jq.qq.com/?_wv=1027&k=5RuLzaJ" style="white-space:nowrap;color: #ff5a5a;">关注公众号【大饼影视】或点击加群：874801718 防止失联！！</a>
 	<div class="row">
 		<!-- D071 by v.shoutu.cn -->
 		<div class="stui-pannel stui-pannel-bg clearfix">
@@ -35,7 +67,7 @@
 							<a href="[videolist:link]" class="stui-vodlist__thumb" title="[videolist:name]" style="background: url([videolist:spic]) no-repeat; background-position:50% 50%; background-size: cover; padding-top: 45%;"><span class="pic-text text-center">[videolist:name]</span></a>
 						</div>
 					{/seacms:videolist}
-                             公众号：大饼影视
+                             
                       <!-- 为了持续发展,望各位网友帮忙宣传下本站,可以去经常上的论坛,微博,QQ群,朋友圈等发下本站网址，小编在此谢谢了,有任何问题可以加群告诉我们.
 本站唯一网址：{seacms:siteurl}-->
                   </div>
@@ -63,7 +95,7 @@
 						{seacms:videolist num=15 order=time type=areatype}<!-- 前面的原版数字是10，我修改了15，修复手机首页显示卡片缺少块问题 -->
 							<li class="col-md-5 col-sm-4 col-xs-3">
 							<div class="stui-vodlist__box">
-								<a class="stui-vodlist__thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]"><span class="play hidden-xs"></span><span class="pic-text text-right">{if:[videolist:state]<1}[videolist:note]{elseif:[videolist:state]<1000 and [videolist:state]>0}更新至第[videolist:state]集{elseif:[videolist:state]>1000}第[videolist:state]期{elseif:[videolist:state]=0 and "[videolist:note]"=""}[videolist:note]{end if}</span></a>
+								<a class="stui-vodlist__thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]"><span class="play hidden-xs"></span><span class="qtag">{if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]集{end if}</span></a>
 								<div class="stui-vodlist__detail">
 									<h4 class="title text-overflow"><a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></h4>
 									<p class="text text-overflow text-muted hidden-xs">[videolist:nolinkactor]</p>

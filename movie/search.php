@@ -49,12 +49,17 @@ return $array;
 
 
 require_once("include/common.php");
+//前置跳转start
+$cs=$_SERVER["REQUEST_URI"];
+if($GLOBALS['cfg_mskin']==3 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost$cs");}
+if($GLOBALS['cfg_mskin']==4 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
+//前置跳转end
 require_once(sea_INC."/main.class.php");
 
 $schwhere = '';
 foreach($_GET as $k=>$v)
 {
-	$$k=_RunMagicQuotes(gbutf8(RemoveXSS($v)));
+	$$k=_RunMagicQuotes(RemoveXSS($v));
 	$schwhere.= "&$k=".urlencode($$k);
 }
 $schwhere = ltrim($schwhere,'&');
@@ -150,19 +155,27 @@ if(check_str($page,$key)){ShowMsg('请勿输入危险字符！','index.php','0',
 	if(intval($searchtype)==5)
 	{
 		$searchTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/cascade.html";
+		if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+		{$searchTemplatePath = "/templets/".$GLOBALS['cfg_df_mstyle']."/".$GLOBALS['cfg_df_html']."/cascade.html";}
 		$typeStr = !empty($tid)?intval($tid).'_':'0_';
 		$yearStr = !empty($year)?PinYin($year).'_':'0_';
 		$letterStr = !empty($letter)?$letter.'_':'0_';
 		$areaStr = !empty($area)?PinYin($area).'_':'0_';
 		$orderStr = !empty($order)?$order.'_':'0_';
-		$jqStr = !empty($jq)?$jq.'_':'0_';
-		$cacheName="parse_cascade_".$typeStr.$yearStr.$letterStr.$areaStr.$orderStr;
+		$jqStr = !empty($jq)?PinYin($jq).'_':'0_';
+		$yuyanStr = !empty($yuyan)?PinYin($yuyan).'_':'0_';
+		$stateStr=!empty($state)?$state.'_':'0_';
+		$moneyStr=!empty($money)?$money.'_':'0_';
+		$verStr=!empty($verStr)?PinYin($verStr).'_':'0_';
+		$cacheName="parse_cascade_".$typeStr.$jqStr.$areaStr.$yearStr.$yuyanStr.$stateStr.$moneyStr.$verStr.$letterStr.$orderStr.$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 		$pSize = getPageSizeOnCache($searchTemplatePath,"cascade","");
 	}else
 	{
 		if($cfg_search_time&&$page==1) checkSearchTimes($cfg_search_time);
 		$searchTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/search.html";
-		$cacheName="parse_search_";
+		if($GLOBALS['cfg_mskin']!=0 AND $GLOBALS['cfg_mskin']!=3 AND $GLOBALS['cfg_mskin']!=4  AND $GLOBALS['isMobile']==1)
+		{$searchTemplatePath = "/templets/".$GLOBALS['cfg_df_mstyle']."/".$GLOBALS['cfg_df_html']."/search.html";}
+		$cacheName="parse_search_".$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 		$pSize = getPageSizeOnCache($searchTemplatePath,"search","");
 	}
 	if (empty($pSize)) $pSize=12;
@@ -285,7 +298,10 @@ if(check_str($page,$key)){ShowMsg('请勿输入危险字符！','index.php','0',
 		$content=$mainClassObj->parseSearchItemList($content,"area");
 		$content=$mainClassObj->parseSearchItemList($content,"letter");
 		$content=$mainClassObj->parseSearchItemList($content,"lang");
-		$content=$mainClassObj->parseSearchItemList($content,"jq");
+		$jqupid=getUpId($tid);
+		if($jqupid==0 OR $jqupid=='0'){$jqupid=$tid;}
+		if($jqupid=='' OR empty($jqupid)){$jqupid='0';}
+		$content=$mainClassObj->parseSearchItemList($content,"jq",$jqupid);
 		$content=$mainClassObj->parseSearchItemList($content,"state");
 		$content=$mainClassObj->parseSearchItemList($content,"ver");
 		$content=$mainClassObj->parseSearchItemList($content,"money");
@@ -322,7 +338,7 @@ function checkSearchTimes($searchtime)
 	if(GetCookie("ssea2_search")=="ok")
 	{
 		ShowMsg('搜索限制为'.$searchtime.'秒一次','index.php','0',$cfg_search_time);
-		//PutCookie("ssea2_search","ok",$searchtime);
+		//PutCookie("ssea2_search","ok",$searchtime); 
 		exit;
 	}else{
 		PutCookie("ssea2_search","ok",$searchtime);
