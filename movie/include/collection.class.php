@@ -134,6 +134,7 @@ class Collect
 				$v_data['v_director'] = str_replace('%', ' ', $v_data['v_director']);
 				
 			    $v_data['v_note']=getAreaValue($loopstr,"note",$html,$listconf["removecode"]);
+				$v_data['v_jq']=getAreaValue($loopstr,"jq",$html,$listconf["removecode"]);
 			    $v_data['v_des']=getAreaValue($loopstr,"des",$html,$listconf["removecode"]);
 			    $v_data['v_des']=$this->filterWord($v_data['v_des'],1);
 				$v_data['v_des'] =  htmlspecialchars($v_data['v_des']);

@@ -144,6 +144,8 @@ function hide(){
                 语言
                 <input type="checkbox" class="checkbox" name="fields[]" value="des" onclick="if(this.checked){show('desbody')}else{hide('desbody')}"<?php if(strpos(' '.$flds,'des')>0) echo " checked"?>/>
                 介绍 
+				<input type="checkbox" class="checkbox" name="fields[]" value="jq" onclick="if(this.checked){show('jqbody')}else{hide('jqbody')}" />
+                剧情分类
                 <input type="checkbox" class="checkbox" name="fields[]" value="down" onclick="if(this.checked){show('downbody')}else{hide('downbody')}"<?php if(strpos(' '.$flds,'down')>0) echo " checked"?>/>
                 下载地址</td>
             </tr>
@@ -375,7 +377,24 @@ function hide(){
               <input type="button" class="rb1" name="button" id="button" value="常用规则" onclick="SelTrim('des_trim')" /></td>
           </tr>
             </tbody>
-            
+          <tbody id="jqbody" style="<?php if(strpos($flds,"jq")===false) echo "display:none";?>">
+          <input type='hidden' name='item[]' checked  value='jq'/>
+          <tr>
+            <td class="label">剧情分类开始代码：</td>
+            <td><textarea name="jqa" rows="4" cols="80" wrap="off"><?php echo getrulevalueh($itemloopstr,"jqa");?></textarea></td>
+          </tr>
+          <tr>
+            <td class="label">剧情分类结束代码：
+              <div class="blue">开始标签 和 结束标签<br />
+                为空不截取剧情分类</div></td>
+            <td><textarea name="jqb" rows="4" cols="80" wrap="off"><?php echo getrulevalueh($itemloopstr,"jqb");?></textarea></td>
+          </tr>
+          <tr>
+            <td class="label">剧情分类替换规则：</td>
+            <td><textarea name="jq_trim" id="jq_trim" rows="3" cols="50" wrap="off"><?php echo getrulevalueh($itemloopstr,"jq_trim");?></textarea>
+              <input type="button" class="rb1" name="button" id="button" value="常用规则" onclick="SelTrim('jq_trim')" /></td>
+          </tr>
+          </tbody>   
           <tbody id="downbody" style="<?php if(strpos($flds,"down")===false) echo "display:none";?>">
           <input type='hidden' name='item[]' checked  value='down'/>
           <tr>

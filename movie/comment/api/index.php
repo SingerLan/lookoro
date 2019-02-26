@@ -17,6 +17,11 @@ if($page<2)
 }
 $h = ReadData($id,$page);
 $rlist = array();
+$rlist = str_replace("_"," ",$rlist);
+$rlist = str_replace("%"," ",$rlist);
+$rlist = str_replace("`"," ",$rlist);
+$rlist = str_replace("("," ",$rlist);
+$rlist = str_replace(")"," ",$rlist);
 if($page<2)
 {
 	createTextFile($h,$jsoncachefile);
@@ -27,6 +32,11 @@ die($h);
 function ReadData($id,$page)
 {
 	global $type,$pCount,$rlist;
+$rlist = str_replace("_"," ",$rlist);
+$rlist = str_replace("%"," ",$rlist);
+$rlist = str_replace("`"," ",$rlist);
+$rlist = str_replace("("," ",$rlist);
+$rlist = str_replace(")"," ",$rlist);
 	$ret = array("","",$page,0,10,$type,$id);
 	if($id>0)
 	{
@@ -45,6 +55,11 @@ function ReadData($id,$page)
 function Readmlist($id,$page,$size)
 {
 	global $dsql,$type,$pCount,$rlist;
+$rlist = str_replace("_"," ",$rlist);
+$rlist = str_replace("%"," ",$rlist);
+$rlist = str_replace("`"," ",$rlist);
+$rlist = str_replace("("," ",$rlist);
+$rlist = str_replace(")"," ",$rlist);
 	$ml=array();
 	if($id>0)
 	{
