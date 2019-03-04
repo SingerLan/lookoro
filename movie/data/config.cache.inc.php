@@ -94,7 +94,7 @@ $cfg_isfromsort = '0';
 $cfg_search_time = '3';
 $cfg_iscache = '1';
 $cfg_cachetime = '20';
-$cfg_cachemark = 'E20190228095306';
+$cfg_cachemark = 'E20190228161636';
 $cfg_cachetype = 'file';
 $cfg_issqlcache = '0';
 $cfg_ddimg_width = '300';
@@ -118,4 +118,4 @@ var _hmt = _hmt || [];
 $cfg_description = '大饼影视_大饼影视网站_大饼影视在线_影视_电视剧_电影_影院_VIP电影电视剧免费在线播放';
 $cfg_site_notice = '大饼影视,大饼影视网站,大饼影视在线,免费在线播放,VIP电影,VIP电视剧,综艺,高清,视频,在线观看,P2P';
 $cfg_powerby = 'Copyright © 2015-2019  All Rights Reserved';
-?><script src="/data/cache/sitemap.js"></script>
+?>

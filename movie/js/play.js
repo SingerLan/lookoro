@@ -1,7 +1,7 @@
 var zzid=0;
 var pisea_Player_File="play2.swf";//已无效参数
 var playerw='100%';//电脑端播放器宽度
-var playerh='502';//电脑端播放器高度
+var playerh='503';//电脑端播放器高度
 var mplayerw='100%';//手机端播放器宽度
 var mplayerh='100%';//手机端播放器高度
 var adsPage="";//视频播放前广告页路径

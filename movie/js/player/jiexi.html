@@ -54,7 +54,7 @@ a:visited{text-decoration:none;color:#aaa;}
 </head>
 <body style="margin:0px;padding:0px;">
 <div id="sponsorAdDiv" style="visibility:hidden; z-index:999; height:105%; width:100%;">
-<iframe id="zzzif" name="zzzif" src="" scrolling="no" frameborder="0"></iframe>
+<iframe id="zzzif" name="zzzif" src="" scrolling="no" frameborder="0" allowfullscreen></iframe>
 </div>
 <div id="player"></div>
 
@@ -114,7 +114,7 @@ var playerh=parent.playerh-25;
 if(parent.playerh=='100%'){
 playerh = '88%';
 }
-document.getElementById('player').innerHTML  = '<div style="height:26px; background-color:#2E2E2E; line-height:26px; color:#aaa;">   线路切换：   <a  id="jx0"  target="zzapi"  href="'+parent.jxAapi+parent.now+'&next='+parent.nextPage+'" onclick="col(0);"><font style="color:#aaa">'+parent.jxAname+'</font></a>    <a id="jx1" target="zzapi"  href="'+parent.jxBapi+parent.now+'" onclick="col(1);" ><font style="color:#aaa">'+parent.jxBname+'</font></a>   <a id="jx2" target="zzapi"  href="'+parent.jxCapi+parent.now+'" onclick="col(2);" ><font style="color:#aaa">'+parent.jxCname+'</font></a>    <a id="jx3" target="zzapi"  href="'+parent.jxDapi+parent.now+'" onclick="col(3);"><font style="color:#aaa">'+parent.jxDname+'</font></a>    <a id="jx4" target="zzapi"  href="'+parent.jxEapi+parent.now+'" onclick="col(4);" ><font style="color:#aaa">'+parent.jxEname+'</font></a> </div><iframe name="zzapi" id="zzapi" src="'+jxapi[jxnum]+parent.now+'&next='+parent.nextPage+'" scrolling="0" frameborder="0" width="100%" height="'+playerh+'" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>';
+document.getElementById('player').innerHTML  = '<div style="height:26px; background-color:#2E2E2E; line-height:26px; color:#aaa;">   线路切换：   <a  id="jx0"  target="zzapi"  href="'+parent.jxAapi+parent.now+'&next='+parent.nextPage+'" onclick="col(0);"><font style="color:#aaa">'+parent.jxAname+'</font></a>    <a id="jx1" target="zzapi"  href="'+parent.jxBapi+parent.now+'" onclick="col(1);" ><font style="color:#aaa">'+parent.jxBname+'</font></a>   <a id="jx2" target="zzapi"  href="'+parent.jxCapi+parent.now+'" onclick="col(2);" ><font style="color:#aaa">'+parent.jxCname+'</font></a>    <a id="jx3" target="zzapi"  href="'+parent.jxDapi+parent.now+'" onclick="col(3);"><font style="color:#aaa">'+parent.jxDname+'</font></a>    <a id="jx4" target="zzapi"  href="'+parent.jxEapi+parent.now+'" onclick="col(4);" ><font style="color:#aaa">'+parent.jxEname+'</font></a> </div><iframe name="zzapi" id="zzapi" src="'+jxapi[jxnum]+parent.now+'&next='+parent.nextPage+'" scrolling="0" frameborder="0" width="100%" height="'+playerh+'" allowfullscreen="true" webkit-playsinline="true" x-webkit-airplay="true"  x5-video-player-type="h5" x5-video-player-fullscreen="true" playsinline></iframe>';
 var x=document.getElementById("jx"+jxnum);x.innerHTML=jxname[jxnum]+ontext;x.style.color=oncolor;
 </script>   
 </body>

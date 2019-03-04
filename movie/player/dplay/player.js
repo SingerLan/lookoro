@@ -60,9 +60,6 @@ var vfed = {
 						}
 					}
 				},
-                 //danmaku: {
-            //id: '神马影院',
-          //api: 'http://139.199.156.243:1207/' }
             });
 			player.on('loadstart', function() {
 				$('video').attr('playsinline', 'true');
