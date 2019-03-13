@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{seacms:strip}
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="shortcut icon" href="/favicon.ico" />
@@ -40,7 +41,8 @@
 					<li class="col-md-6 col-sm-4 col-xs-3">
 						<div class="stui-vodlist__box">
 							<a class="stui-vodlist__thumb lazyload" href="[topicpagelist:link]" title="[topicpagelist:name]" data-original="[topicpagelist:pic]">
-							<span class="play hidden-xs"></span><span class="pic-text text-right">{if:[topicpagelist:state]<1}[topicpagelist:note]{elseif:[topicpagelist:state]<1000 and [topicpagelist:state]>0}更新至第[topicpagelist:state]集{elseif:[topicpagelist:state]>1000}第[topicpagelist:state]期{elseif:[topicpagelist:state]=0 and "[topicpagelist:note]"=""}[topicpagelist:note]{end if}</span></a>
+							<span class="play hidden-xs"></span>
+							<span class="qtag">{if:[topicpagelist:state]==0}[topicpagelist:ver]{else}更新至[topicpagelist:state]集{end if}</span></a>
 							<div class="stui-vodlist__detail">
 							<h4 class="title text-overflow"><a href="[topicpagelist:link]" title="[topicpagelist:name]">[topicpagelist:name]</a></h4>
 							<p class="text text-overflow text-muted hidden-xs">[topicpagelist:actor]</p>
@@ -67,3 +69,4 @@
 {seacms:foot}
 </body>
 </html>
+{/seacms:strip}
