@@ -165,7 +165,49 @@
 			时光网<input size="3" name="v_mtime" value="<?php echo $vrow['v_mtime']?>"  />&nbsp;
 			IMDB<input size="3" name="v_imdb" value="<?php echo $vrow['v_imdb']?>"  />&nbsp;
 			站内<input size="3" name="v_score" value="<?php echo $vrow['v_score']?>"  />&nbsp;
-			评分次数<input size="3" name="v_scorenum" value="<?php echo $vrow['v_scorenum']?>"  />&nbsp;当前评分：<?php echo number_format($vrow['v_score']/$vrow['v_scorenum'],1); ?>（评分 = 站内分数/评分次数）
+			评分次数<input size="3" name="v_scorenum" value="<?php echo $vrow['v_scorenum']?>"  />&nbsp;当前评分：<?php echo number_format($vrow['v_score']/$vrow['v_scorenum'],1); ?>（评分 = 站内分数/评分次数）&nbsp;
+      <input id="douban" placeholder="输入电影id"/>
+      <input type="button" value="获取" class="rb1" onclick="ajax_methodId();"/>
+      <input type="button" value="直接获取" class="rb1" onclick="ajax_method();"/>
+      <input type="button" value="时光网评分" class="rb1" onclick="ajax_method_mtime();"/>
+      <script type="text/javascript">
+        function ajax_method() {
+          var douban = document.getElementById('v_name').value;
+          var url = 'http://www.lookoro.cn/data/index.php?name='+douban;
+          var xhr = new XMLHttpRequest();
+          xhr.open("get", url);
+          xhr.send();
+          xhr.onreadystatechange = function(){
+              if(xhr.readyState == 4 && xhr.status == 200){
+                  var json = JSON.parse(xhr.responseText)
+                  document.addform.v_content.value = json.subjects[0].summary;
+                  document.addform.v_pic.value     = json.subjects[0].images.large;
+                  document.addform.v_douban.value  = json.subjects[0].rating.average;
+                  alert('电影名：' + json.subjects[0].title + '\n分类：' + json.subjects[0].genres);
+              }
+          }
+        }
+        function ajax_methodId() {
+          var douban = document.getElementById('douban').value;
+          var url = 'http://www.lookoro.cn/data/index.php?id='+douban;
+          var xhr = new XMLHttpRequest();
+          xhr.open("get", url);
+          xhr.send();
+          xhr.onreadystatechange = function(){
+              if(xhr.readyState == 4 && xhr.status == 200){
+                  var json = JSON.parse(xhr.responseText)
+                  document.addform.v_content.value = json.summary;
+                  document.addform.v_pic.value     = json.images.large;
+                  document.addform.v_douban.value  = json.rating.average;
+                  alert('电影名：' + json.subjects[0].title + '\n分类：' + json.subjects[0].genres);
+              }
+          }
+        }
+        function ajax_method_mtime() {
+          var douban = document.getElementById('v_name').value;
+          window.open("http://search.mtime.com/search/?q="+douban);
+        }
+      </script>
 			</td>
 			<tr><td  height="30" class="td_border">&nbsp;备用说明：</td>
 			<td height="30" class="td_border">
