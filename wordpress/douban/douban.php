@@ -1,5 +1,5 @@
 <?php  
-
+ini_set('max_execution_time','0');
 class DoubanAPI
 {
     /**
@@ -16,9 +16,11 @@ class DoubanAPI
         if(!$UserID) return json_encode(array());
         $expired = self::__isCacheExpired(__DIR__.'/cache/movie.json',$ValidTimeSpan);
         if($expired!=0){
-            $data=self::__getMovieRawData($UserID);
+			$oldData=json_decode(file_get_contents(__DIR__.'/cache/movie.json'))->data;
+            $data=self::__getMovieRawData($UserID, $oldData[0]->name);
+			array_splice($oldData,0,0,$data);
             $file=fopen(__DIR__.'/cache/movie.json',"w");
-            fwrite($file,json_encode(array('time'=>time(),'data'=>$data)));
+            fwrite($file,json_encode(array('time'=>time(),'data'=>$oldData)));
             fclose($file);
             return self::updateMovieCacheAndReturn($UserID,$PageSize,$From,$ValidTimeSpan);
         }else{
@@ -46,7 +48,11 @@ class DoubanAPI
      */
     private static function __isCacheExpired($FilePath,$ValidTimeSpan){
         $file=fopen($FilePath,"r");
-        if(!$file) return -1;
+        if(!$file) {
+			$file=fopen($FilePath,"w");
+			fwrite($file, json_encode(array('time'=>'946656000','data'=>array(array("name" => "", "img" => "".$movie_img, "url" => "")))));
+			return -1;
+		}
         $content=json_decode(fread($file,filesize($FilePath)));
         fclose($file);
         if(!$content->time || $content->time<1) return -1;
@@ -61,12 +67,12 @@ class DoubanAPI
      * @param   string    $UserID     豆瓣ID
      * @return  array     返回格式化 array
      */
-    private static function __getMovieRawData($UserID){
+    private static function __getMovieRawData($UserID, $oldData){
         $api='https://movie.douban.com/people/'.$UserID.'/collect';
         $data=array();
         while($api!=null){
             $raw=file_get_contents($api);
-            if($raw==null || $raw=="") break;
+            if($raw==null || $raw=="" || !$raw) break;
             $doc = new ParserDom($raw); 
             $itemArray = $doc->find("div.item");
             foreach ($itemArray as $v) {
@@ -76,6 +82,7 @@ class DoubanAPI
                                           array("", "", "", "", ""),$t->getPlainText()));
                 $movie_img  = $v->find("div.pic a img", 0)->getAttr("src");
                 $movie_url  = $t->find("a", 0)->getAttr("href");
+				if ($oldData == $movie_name) return $data;
                 $data[] = array("name" => $movie_name, "img" => 'https://images.weserv.nl/?url='.$movie_img, "url" => $movie_url);
             }
             $url = $doc->find("span.next a", 0);
