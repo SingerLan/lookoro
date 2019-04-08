@@ -180,9 +180,9 @@
           xhr.onreadystatechange = function(){
               if(xhr.readyState == 4 && xhr.status == 200){
                   var json = JSON.parse(xhr.responseText)
-                  document.addform.v_content.value = json.subjects[0].summary;
-                  document.addform.v_pic.value     = json.subjects[0].images.large;
-                  document.addform.v_douban.value  = json.subjects[0].rating.average;
+                  document.addform.v_pic.value            = json.subjects[0].images.large;
+                  document.addform.v_douban.value         = json.subjects[0].rating.average;
+				  document.getElementById('douban').value = json.subjects[0].id;
                   alert('电影名：' + json.subjects[0].title + '\n分类：' + json.subjects[0].genres);
               }
           }
@@ -199,7 +199,7 @@
                   document.addform.v_content.value = json.summary;
                   document.addform.v_pic.value     = json.images.large;
                   document.addform.v_douban.value  = json.rating.average;
-                  alert('电影名：' + json.subjects[0].title + '\n分类：' + json.subjects[0].genres);
+                  alert('电影名：' + json.title + '\n分类：' + json.genres);
               }
           }
         }
