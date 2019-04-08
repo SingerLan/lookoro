@@ -462,11 +462,11 @@ class DB_MySQL
 	//显示数据链接错误信息
 	function DisplayError($msg)
 	{
-		$errorTrackFile = dirname(__FILE__).'/../data/mysql_error_trace.inc';
-		if( file_exists(dirname(__FILE__).'/../data/mysql_error_trace.php') )
-		{
-			@unlink(dirname(__FILE__).'/../data/mysql_error_trace.php');
-		}
+		$errorTrackFile = dirname(__FILE__).'/../data/mysql_error_trace.php';
+		//if( file_exists(dirname(__FILE__).'/../data/mysql_error_trace.php') )
+		//{
+		//	@unlink(dirname(__FILE__).'/../data/mysql_error_trace.php');
+		//}
 		$emsg = '';
 		$emsg .= "<div><h3>seacms Error Warning!</h3>\r\n";
 		$emsg .= "<div><a href='http://www.seacms.net/ 
@@ -478,11 +478,11 @@ class DB_MySQL
 		
 		echo $emsg;
 		
-		$savemsg = '发生了一个错误，但为了系统安全，错误系统已经隐藏，打开办法：删除include/sql.class.php文件第476行的两个反斜杠 / 注释';
-		//$savemsg = 'Page: '.$this->GetCurUrl()."\r\nError: ".$msg;
+		
+		$savemsg = 'Page: '.$this->GetCurUrl()."\r\nError: ".$msg;
 		//保存MySql错误日志
 		$fp = @fopen($errorTrackFile, 'a');
-		@fwrite($fp, "\r\n/*\r\n{$savemsg}\r\n*/\r\n\r\n");
+		@fwrite($fp, "\r\n<?php /*\r\n {$savemsg} \r\n*/  ?>\r\n\r\n");
 		@fclose($fp);
 	}
 	
@@ -548,11 +548,30 @@ function CheckSql($db_string,$querytype='select')
 		$notallow1 = "[^0-9a-z@\._-]{1,}(union|sleep|benchmark|load_file|outfile)[^0-9a-z@\.-]{1,}";
 
 		//$notallow2 = "--|/\*";
-		if(m_eregi($notallow1,$db_string))
-		{
-			fputs(fopen($log_file,'a+'),"$userIP||$getUrl||$db_string||SelectBreak\r\n");
-			exit("<font size='5' color='red'>Safe Alert: Request Error step 1 !</font>");
-		}
+		if(m_eregi($notallow1,$db_string)){exit('1');}
+		if(m_eregi('@',$db_string)){exit('2');}
+		if(m_eregi('0x',$db_string)){exit('3');}
+		if(m_eregi('updatexml',$db_string)){exit('3');}
+		if(m_eregi('extractvalue',$db_string)){exit('5');}
+		if(m_eregi('<script',$db_string)){exit('6');}
+		if(m_eregi('/script',$db_string)){exit('7');}
+		if(m_eregi('script>',$db_string)){exit('8');}
+		if(m_eregi('if:',$db_string)){exit('9');}
+		if(m_eregi('#',$db_string)){exit('a');}
+		if(m_eregi('--',$db_string)){exit('b');}
+		if(m_eregi('%22',$db_string)){exit('c');}
+		if(m_eregi('%27',$db_string)){exit('d');}
+		if(m_eregi('%24',$db_string)){exit('e');}
+		if(m_eregi('%28',$db_string)){exit('f');}
+		if(m_eregi('%29',$db_string)){exit('g');}
+		if(m_eregi('%3A',$db_string)){exit('h');}
+		if(m_eregi('%3B',$db_string)){exit('i');}
+		if(m_eregi('%5B',$db_string)){exit('j');}
+		if(m_eregi('%5D',$db_string)){exit('k');}
+		if(m_eregi('%7B',$db_string)){exit('l');}
+		if(m_eregi('%7D',$db_string)){exit('m');}
+		if(m_eregi('%3C',$db_string)){exit('n');}
+		if(m_eregi('%3E',$db_string)){exit('u');}
 	}
 
 	//完整的SQL检查

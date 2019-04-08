@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 function lib_replace_end_tag($str)  
 {  
 if (empty($str)) return false;  
@@ -31,6 +32,15 @@ return $str;
 } 
 $_GET = stripslashes_array($_GET);  
 $_POST = stripslashes_array($_POST);  
+$_COOKIE = stripslashes_array($_COOKIE);  
+$_REQUEST = stripslashes_array($_REQUEST); 
+$GLOBALS = stripslashes_array($GLOBALS); 
+$_SERVER = stripslashes_array($_SERVER); 
+$_SESSION = stripslashes_array($_SESSION); 
+$_FILES = stripslashes_array($_FILES); 
+$_ENV = stripslashes_array($_ENV); 
+$HTTP_RAW_POST_DATA = stripslashes_array($HTTP_RAW_POST_DATA); 
+$http_response_header = stripslashes_array($http_response_header);  
   
 function stripslashes_array(&$array) {  
 while(list($key,$var) = each($array)) {  

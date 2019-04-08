@@ -2,7 +2,6 @@
 session_start();
 require_once("include/common.php");
 require_once(sea_INC.'/main.class.php');
-
  
 AjaxHead();
 header('Content-Type:text/html;charset=UTF-8');

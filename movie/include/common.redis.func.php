@@ -2300,26 +2300,35 @@ function cget($url,$isref){
 	if($isref=='1'){return getRemoteContent($url);}else{return get($url);}
 }
 
-function getRemoteContent($url,$conall=null)
+function curl_get_contents($url,$conall=false,$timeout = 30) {  
+    $user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36";  
+	$curl = curl_init();                                         //初始化 curl
+    curl_setopt($curl, CURLOPT_URL, $url);                       //要访问网页 URL 地址
+	curl_setopt($curl, CURLOPT_USERAGENT,$user_agent);		    //模拟用户浏览器信息 
+    curl_setopt($curl, CURLOPT_REFERER,$url) ;                 //伪装网页来源 URL
+    curl_setopt($curl, CURLOPT_AUTOREFERER, 1);                //当Location:重定向时，自动设置header中的Referer:信息                   
+    curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);             //数据传输的最大允许时间 
+    curl_setopt($curl, CURLOPT_HEADER, $conall);                     //不返回 header 部分
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);            //返回字符串，而非直接输出到屏幕上
+	curl_setopt($curl, CURLOPT_FOLLOWLOCATION,1);             //跟踪爬取重定向页面
+	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, '0');        //不检查 SSL 证书来源
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, '0');        //不检查 证书中 SSL 加密算法是否存在
+	curl_setopt($curl, CURLOPT_ENCODING, '');	          //解决网页乱码问题
+    $data = curl_exec($curl);
+	curl_close($curl);
+    return $data;
+}
+
+
+function getRemoteContent($url,$conall=false)
 {
 	$content = "";
-	if(!empty($url)) {
+	if(!empty($url)) { 
 		if( function_exists('curl_init') ){			
-			$ch = @curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; )');
-			curl_setopt($ch, CURLOPT_HEADER, !$conall==null);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_COOKIE, 'domain=www.baidu.com');
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
-			$content = @curl_exec($ch);
-			curl_close($ch);		  		
+              $content =curl_get_contents($url,$conall);
 		}
-		else if( ini_get('allow_url_fopen')==1 ){
-			$content = @file_get_contents($url);
+		else if( ini_get('allow_url_fopen')==1){
+			$content = file_get_contents($url);
 		}
 		else{
 		  return false;
@@ -2329,6 +2338,7 @@ function getRemoteContent($url,$conall=null)
 	
 	return $content;
 }
+
 
 
 function getRemoteContentBAK($url,$conall=null)
