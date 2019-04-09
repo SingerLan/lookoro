@@ -10,7 +10,6 @@ if ($_GET['name'] != null)
 if ($_GET['id'] != null)
 {
 	$douban = $_GET['id'];
-	$api='https://api.douban.com/v2/movie/subject/'.$douban;
-	$raw=file_get_contents($api);
-	echo $raw;
+	$api='http://feifeicms.tianqi.cc/douban/?id='.$douban;
+	echo(file_get_contents($api));
 }

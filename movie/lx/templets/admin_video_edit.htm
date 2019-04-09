@@ -171,7 +171,7 @@
       <input type="button" value="直接获取" class="rb1" onclick="ajax_method();"/>
       <input type="button" value="时光网评分" class="rb1" onclick="ajax_method_mtime();"/>
       <script type="text/javascript">
-        function ajax_method() {
+		function ajax_method() {
           var douban = document.getElementById('v_name').value;
           var url = 'http://www.lookoro.cn/data/index.php?name='+douban;
           var xhr = new XMLHttpRequest();
@@ -195,11 +195,28 @@
           xhr.send();
           xhr.onreadystatechange = function(){
               if(xhr.readyState == 4 && xhr.status == 200){
-                  var json = JSON.parse(xhr.responseText)
-                  document.addform.v_content.value = json.summary;
-                  document.addform.v_pic.value     = json.images.large;
-                  document.addform.v_douban.value  = json.rating.average;
-                  alert('电影名：' + json.title + '\n分类：' + json.genres);
+                  var json = JSON.parse(xhr.responseText);
+				  if (json.status == 200) {
+					document.addform.v_nickname.value    = json.data.vod_title;
+					var actor = json.data.vod_actor.split(","); 
+					if (actor.length > 4) {
+						document.addform.v_actor.value = actor[0] + ',' + actor[1] + ',' + actor[2] + ',' + actor[3];
+					} else {
+						document.addform.v_actor.value = json.data.vod_actor;
+					}
+					document.addform.v_director.value    = json.data.vod_director;
+					document.addform.v_name.value        = json.data.vod_name;
+					document.addform.v_publishyear.value = json.data.vod_year;
+					document.getElementsByClassName('ke-edit-iframe')[0].contentDocument.getElementsByClassName('ke-content')[0].innerHTML = json.data.vod_content;
+					document.addform.v_pic.value         = json.data.vod_pic;
+					document.addform.v_douban.value      = json.data.vod_douban_score;
+					document.addform.v_total.value       = json.data.vod_total;
+					document.addform.v_len.value         = json.data.vod_length;
+					document.addform.v_lang.value        = json.data.vod_language;
+					document.addform.v_publisharea.value = json.data.vod_area;
+					alert('分类：' + json.data.vod_type);
+				  }
+
               }
           }
         }
