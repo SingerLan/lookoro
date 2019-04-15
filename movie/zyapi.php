@@ -4,7 +4,6 @@
 功能：资源发布zyAPI模块
 版本：1.0
 开发：海洋
-致谢：该模块参考了MacCms的设计
 ******************************/
 require_once("include/common.php");
 require_once("include/main.class.php");

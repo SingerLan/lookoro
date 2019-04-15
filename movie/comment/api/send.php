@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once("../../include/common.php");
 require_once(sea_INC.'/main.class.php');
 require_once(sea_INC."/filter.inc.php");

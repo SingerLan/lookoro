@@ -51,7 +51,8 @@ if($cfg_feedback_ck=='1')
 	$msg = trimMsg(cn_substrR($m_content, 1024), 1);
 	
 	if(!preg_match("/[".chr(0xa1)."-".chr(0xff)."]/",$msg)){
-		
+		showMsg('你必需输入中文才能发表!','-1');
+		exit();
 	}
 	
 	$reid = empty($reid) ? 0 : intval($reid);

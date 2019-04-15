@@ -21,6 +21,54 @@
 </head>
 <?php
 session_start();
+error_reporting(0);
+function lib_replace_end_tag($str)  
+{  
+if (empty($str)) return false;  
+$str = htmlspecialchars($str);  
+$str = str_replace('/', "", $str);  
+$str = str_replace('\\',"", $str);  
+$str = str_replace('>', "", $str);  
+$str = str_replace('<', "", $str);  
+$str = str_replace('?', "", $str);
+$str = str_replace('&', "", $str);
+$str = str_replace('(', "", $str);
+$str = str_replace(')', "", $str);
+$str = str_replace('{', "", $str);
+$str = str_replace('}', "", $str);
+$str = str_replace('%', "", $str);
+$str = str_replace('=', "", $str);
+$str = str_replace(',', "", $str);
+$str = str_replace(':', "", $str);
+$str = str_replace(';', "", $str);
+$str = str_replace('*', "", $str);
+return $str;
+} 
+$_GET = stripslashes_array($_GET);  
+$_POST = stripslashes_array($_POST);  
+$_COOKIE = stripslashes_array($_COOKIE);  
+$_REQUEST = stripslashes_array($_REQUEST); 
+$GLOBALS = stripslashes_array($GLOBALS); 
+$_SERVER = stripslashes_array($_SERVER); 
+$_SESSION = stripslashes_array($_SESSION); 
+$_FILES = stripslashes_array($_FILES); 
+$_ENV = stripslashes_array($_ENV); 
+$HTTP_RAW_POST_DATA = stripslashes_array($HTTP_RAW_POST_DATA); 
+$http_response_header = stripslashes_array($http_response_header);  
+  
+function stripslashes_array(&$array) {  
+while(list($key,$var) = each($array)) {  
+    if ($key != 'argc' && $key != 'argv' && (strtoupper($key) != $key || ''.intval($key) == "$key")) {  
+      if (is_string($var)) {  
+         $array[$key] = lib_replace_end_tag($var);  
+}  
+if (is_array($var))  {  
+     $array[$key] = stripslashes_array($var);  
+}  
+}  
+}  
+return $array;  
+} 
 require_once("include/common.php");
 require_once(sea_INC.'/main.class.php');
 if($cfg_user==0)
@@ -129,7 +177,7 @@ if($mod=='repsw2'){
 	require_once('data/admin/smtp.php');
 
 		
-	$smtprmail= $repswemail;
+	$smtprmail= str_replace('|||||','@',$repswemail);
 	$smtprtitle = '【'.$cfg_webname.'】Email 找回密码操作邮件';
 $smtprbody = '<strong>Email 找回密码操作邮件</strong><br><br>尊敬的：'.$repswname.'<br>这封信是由 '.$cfg_webname.' 发送的。<br>您收到这封邮件，是由于在 '.$cfg_webname.' 进行了找回密码操作。如果您并没有访问过 '.$cfg_webname.'，或没有进行上述操作，请忽略这封邮件。您不需要退订或进行其他进一步的操作。<br><br>如果您是 '.$cfg_webname. '的用户并且正在进行找回密码操作，我们需要对您的信息的有效性进行验证以避免密码被盗用。<br>您只需点击下面的链接即可重置您的密码：<br><a target="_blank" href="'.$cfg_basehost.'/member.php?mod=repsw3&repswcode='.$repswcode.'&repswname='.$repswname.'">'.$cfg_basehost.'/member.php?mod=repsw3&repswcode='.$repswcode.'&repswname='.$repswname.'</a><br>(如果上面不是链接形式，请将该地址手工粘贴到浏览器地址栏再访问)<br>此链接只允许访问一次！<br><br>感谢您的访问，祝您使用愉快！<br><br>此致<br>'.$cfg_webname.'管理团队.<br>'.$cfg_basehost.'<br>';
 
@@ -340,7 +388,8 @@ elseif($action=='cancelfav')
 }
 elseif($action=='cz')
 {
-	$key=mysql_real_escape_string($_POST['cckkey'],$dsql->linkID);
+	
+	$key=$_POST['cckkey'];
 	$key = RemoveXSS(stripslashes($key));
 	$key = addslashes(cn_substr($key,200));
 	if($key==""){showMsg("没有输入充值卡号","-1");exit;}
@@ -405,6 +454,7 @@ elseif($action=='cc')
 	$cc2=$dsql->GetOne("select * from sea_member where id=$ccuid");
 	$ccjifen=$cc2['points'];
 	$ccemail=$cc2['email'];
+	$ccemail= str_replace('|||||','@',$ccemail);
 	$ccvipendtime=$cc2['vipendtime'];
 	if($ccgid==2){$ccvipendtime='无限期';}else{$ccvipendtime=date('Y-m-d H:i:s',$ccvipendtime);}
 	$cclog=$cc2['logincount'];
@@ -533,6 +583,7 @@ EOT;
 						$row1=$dsql->GetOne("select * from sea_member where id='$uid'");
 							$oldpwd=$row1['password'];
 							$oldemail=$row1['email'];
+							$oldemail= str_replace('|||||','@',$oldemail);
 							$oldnickname=$row1['nickname'];
 							echo "<form id=\"f_Activation\"   action=\"?action=chgpwdsubmit\" method=\"post\">".
 								"<li><input type=\"password\" name=\"oldpwd\" value=\"$oldpwd\" class=\"form-control\" placeholder=\"输入旧密码\" /></li>".    

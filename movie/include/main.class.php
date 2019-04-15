@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (! defined ( 'sea_INC' )) {
 	exit ( "Request Error!" );
 }
@@ -3287,6 +3287,7 @@ class MainClass_Template {
 						'mysqli_',
 						'mysql_',
 						'socket_',
+						'char',
 						'curl_',
 						'base64_',
 						'putenv',
@@ -3308,7 +3309,7 @@ class MainClass_Template {
 						'exec(',
 						'system(',
 						'shell_' 
-				), '@.@', $v );
+				), '', $v);
 			}
 			$iar = $iarok;
 			$arlen = count ( $iar [0] );
@@ -3379,6 +3380,8 @@ class MainClass_Template {
 						'mysqli_',
 						'mysql_',
 						'socket_',
+						'char',
+						'script',
 						'curl_',
 						'base64_',
 						'putenv',
@@ -3400,7 +3403,7 @@ class MainClass_Template {
 						'exec(',
 						'system(',
 						'shell_' 
-				), '@.@', $v );
+				), '', $v);
 			}
 			$iar = $iarok;
 			$arlen = count ( $iar [0] );

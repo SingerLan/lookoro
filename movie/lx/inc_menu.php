@@ -109,7 +109,7 @@ $menu=array (
 		15=>"<a target='I2' href='ebak/ChangeDb.php'>数据库修复优化</a>",
 	),
 	'gathersoft'=>array (
-		'link'=>"admin_collect.php?action=apizy",
+		'link'=>"admin_collect.php?action=main",
 		0=>"采集",
 		1=>"<a target='I2' href='api.php'>资源库列表</a>",
 		2=>"<a target='I2' href='admin_zyk.php'>资源库管理</a>",

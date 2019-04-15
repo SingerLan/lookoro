@@ -66,10 +66,7 @@ class DB_MySQL
 		$this->dbPrefix = $dbprefix;
 		$this->result["me"] = 0;
 	}
-	function SelectDB($dbname)
-	{
-		my_select_db($this->linkID,$dbname);
-	}
+	
 
 	//设置SQL里的参数
 	function SetParameter($key,$value)
@@ -90,11 +87,11 @@ class DB_MySQL
 		{
 			if(!$pconnect)
 			{
-				$this->linkID  = @mysql_connect($this->dbHost,$this->dbUser,$this->dbPwd);
+				$this->linkID  = @mysqli_connect($this->dbHost,$this->dbUser,$this->dbPwd,$this->dbName);
 			}
 			else
 			{
-				$this->linkID = @mysql_pconnect($this->dbHost,$this->dbUser,$this->dbPwd);
+				$this->linkID  = @mysqli_connect($this->dbHost,$this->dbUser,$this->dbPwd,$this->dbName);
 			}
 
 			//复制一个对象副本
@@ -107,12 +104,12 @@ class DB_MySQL
 			$this->DisplayError("seacms错误警告：<font color='red'>连接数据库失败，可能数据库密码不对或数据库服务器出错！</font>");
 			exit();
 		}
-		$this->SelectDB($this->dbName);
+
 		$mysqlver = explode('.',$this->GetVersion());
 		$mysqlver = $mysqlver[0].'.'.$mysqlver[1];
 		if($mysqlver>4.0)
 		{
-			@mysql_query("SET NAMES '".$GLOBALS['cfg_db_language']."', character_set_client=binary, sql_mode='' ;", $this->linkID);
+			@mysqli_query( $this->linkID,"SET NAMES '".$GLOBALS['cfg_db_language']."', character_set_client=binary, sql_mode='' ;");
 		}
 		return true;
 	}
@@ -120,13 +117,13 @@ class DB_MySQL
 	//为了防止采集等需要较长运行时间的程序超时，在运行这类程序时设置系统等待和交互时间
 	function SetLongLink()
 	{
-		@mysql_query("SET interactive_timeout=3600, wait_timeout=3600 ;", $this->linkID);
+		@mysqli_query($this->linkID,"SET interactive_timeout=3600, wait_timeout=3600 ;" );
 	}
 
 	//获得错误描述
 	function GetError()
 	{
-		$str = mysql_error($this->linkID);
+		$str = mysqli_error($this->linkID);
 		return $str;
 	}
 
@@ -138,7 +135,7 @@ class DB_MySQL
 		$this->FreeResultAll();
 		if($isok)
 		{
-			mysql_close($this->linkID);
+			mysqli_close($this->linkID);
 			$this->isClose = true;
 			$GLOBALS['dsql'] = null;
 		}
@@ -152,7 +149,7 @@ class DB_MySQL
 	//关闭指定的数据库连接
 	function CloseLink($dblink)
 	{
-		@mysql_close($dblink);
+		@mysqli_close($dblink);
 	}
 
 	//执行一个不返回结果的SQL语句，如update,delete,insert等
@@ -179,7 +176,7 @@ class DB_MySQL
 
 		//SQL语句安全检查
 		if($this->safeCheck) CheckSql($this->queryString,'update');
-		return mysql_query($this->queryString,$this->linkID);
+		return mysqli_query($this->linkID,$this->queryString);
 	}
 
 
@@ -205,8 +202,8 @@ class DB_MySQL
 				$this->queryString = str_replace("@".$key,"'$value'",$this->queryString);
 			}
 		}
-		mysql_query($this->queryString,$this->linkID);
-		return mysql_affected_rows($this->linkID);
+		mysqli_query($this->linkID,$this->queryString);
+		return mysqli_affected_rows($this->linkID);
 	}
 	
 	function realescape($string)
@@ -215,7 +212,7 @@ class DB_MySQL
 		{
 			$string = stripslashes($string);
 		}
-		return mysql_real_escape_string($string,$this->linkID);	
+		return mysqli_real_escape_string($this->linkID,$string);	
 	}
 
 	function ExecNoneQuery($sql='')
@@ -246,7 +243,7 @@ class DB_MySQL
     
     $t1 = ExecTime();
 		
-		$this->result[$id] = mysql_query($this->queryString,$this->linkID);
+		$this->result[$id] = mysqli_query($this->linkID,$this->queryString);
 		
 		//查询性能测试
 		//$queryTime = ExecTime() - $t1;
@@ -256,7 +253,7 @@ class DB_MySQL
 		
 		if($this->result[$id]===false)
 		{
-			$this->DisplayError(mysql_error()." <br />Error sql: <font color='red'>".$this->queryString."</font>");
+			$this->DisplayError(mysqli_error()." <br />Error sql: <font color='red'>".$this->queryString."</font>");
 		}
 	}
 
@@ -287,7 +284,7 @@ class DB_MySQL
 		}
 		else
 		{
-			@mysql_free_result($this->result["one"]); return($arr);
+			@mysqli_free_result($this->result["one"]); return($arr);
 		}
 	}
 	
@@ -306,11 +303,11 @@ class DB_MySQL
 			$this->Open(false);
 			$dsql->isClose = false;
 		}
-		$this->result[$id] = @mysql_query($sql,$this->linkID);
+		$this->result[$id] = @mysqli_query($this->linkID,$sql);
 	}
 
 	//返回当前的一条记录并把游标移向下一记录
-	// MYSQL_ASSOC、MYSQL_NUM、MYSQL_BOTH
+	// mysqli_ASSOC、mysqli_NUM、mysqli_BOTH
 	function GetArray($id="me" )
 	{
 		if($this->result[$id]==0)
@@ -319,7 +316,7 @@ class DB_MySQL
 		}
 		else
 		{
-			return mysql_fetch_array($this->result[$id]);
+			return mysqli_fetch_array($this->result[$id]);
 		}
 	}
 	
@@ -331,7 +328,7 @@ class DB_MySQL
 		}
 		else
 		{
-			return mysql_fetch_assoc($this->result[$id]);
+			return mysqli_fetch_assoc($this->result[$id]);
 		}
 	}
 
@@ -344,28 +341,28 @@ class DB_MySQL
 		}
 		else
 		{
-			return mysql_fetch_object($this->result[$id]);
+			return mysqli_fetch_object($this->result[$id]);
 		}
 	}
 
 	//检测是否存在某数据表
 	function IsTable($tbname)
 	{
-            if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '". $tbname."'"))==1) {
+            if(mysqli_num_rows(mysqli_query("SHOW TABLES LIKE '". $tbname."'"))==1) {
 				return true;
             } else {
                  return false;
 			}
-//		$this->result[0] = mysql_list_tables($this->dbName,$this->linkID);
-//		while ($row = mysql_fetch_array($this->result[0]))
+//		$this->result[0] = mysqli_list_tables($this->dbName,$this->linkID);
+//		while ($row = mysqli_fetch_array($this->result[0]))
 //		{
 //			if(strtolower($row[0])==strtolower($tbname))
 //			{
-//				mysql_freeresult($this->result[0]);
+//				mysqli_freeresult($this->result[0]);
 //				return true;
 //			}
 //		}
-//		mysql_freeresult($this->result[0]);
+//		mysqli_freeresult($this->result[0]);
 //		return false;
 	}
 
@@ -378,28 +375,31 @@ class DB_MySQL
 			$this->Open(false);
 			$dsql->isClose = false;
 		}
-		$rs = mysql_query("SELECT VERSION();",$this->linkID);
-		$row = mysql_fetch_array($rs);
-		$mysql_version = $row[0];
-		mysql_free_result($rs);
+		$rs = mysqli_query($this->linkID,"SELECT VERSION();");
+		$row = mysqli_fetch_array($rs);
+		$mysqli_version = $row[0];
+		mysqli_free_result($rs);
 		if($isformat)
 		{
-			$mysql_versions = explode(".",trim($mysql_version));
-			$mysql_version = number_format($mysql_versions[0].".".$mysql_versions[1],2);
+			$mysqli_versions = explode(".",trim($mysqli_version));
+			$mysqli_version = number_format($mysqli_versions[0].".".$mysqli_versions[1],2);
 		}
-		return $mysql_version;
+		return $mysqli_version;
 	}
 
 	//获取特定表的信息
 	function GetTableFields($tbname,$id="me")
 	{
-		$this->result[$id] = mysql_list_fields($this->dbName,$tbname,$this->linkID);
+		
+		$this->result[$id]=mysqli_query($this->linkID,"SHOW COLUMNS FROM table [LIKE '".$tbname."']"); 
+		
+		//$this->result[$id] = mysqli_list_fields($this->dbName,$tbname,$this->linkID);
 	}
 
 	//获取字段详细信息
 	function GetFieldObject($id="me")
 	{
-		return mysql_fetch_field($this->result[$id]);
+		return mysqli_fetch_field($this->result[$id]);
 	}
 
 	//获得查询的总记录数
@@ -411,25 +411,25 @@ class DB_MySQL
 		}
 		else
 		{
-			return mysql_num_rows($this->result[$id]);
+			return mysqli_num_rows($this->result[$id]);
 		}
 	}
 
 	//获取上一步INSERT操作产生的ID
 	function GetLastID()
 	{
-		//如果 AUTO_INCREMENT 的列的类型是 BIGINT，则 mysql_insert_id() 返回的值将不正确。
+		//如果 AUTO_INCREMENT 的列的类型是 BIGINT，则 mysqli_insert_id() 返回的值将不正确。
 		//可以在 SQL 查询中用 MySQL 内部的 SQL 函数 LAST_INSERT_ID() 来替代。
-		//$rs = mysql_query("Select LAST_INSERT_ID() as lid",$this->linkID);
-		//$row = mysql_fetch_array($rs);
+		//$rs = mysqli_query("Select LAST_INSERT_ID() as lid",$this->linkID);
+		//$row = mysqli_fetch_array($rs);
 		//return $row["lid"];
-		return mysql_insert_id($this->linkID);
+		return mysqli_insert_id($this->linkID);
 	}
 
 	//释放记录集占用的资源
 	function FreeResult($id="me")
 	{
-		@mysql_free_result($this->result[$id]);
+		@mysqli_free_result($this->result[$id]);
 	}
 	function FreeResultAll()
 	{
@@ -441,7 +441,7 @@ class DB_MySQL
 		{
 			if($vv)
 			{
-				@mysql_free_result($vv);
+				@mysqli_free_result($vv);
 			}
 		}
 	}
@@ -462,10 +462,10 @@ class DB_MySQL
 	//显示数据链接错误信息
 	function DisplayError($msg)
 	{
-		$errorTrackFile = dirname(__FILE__).'/../data/mysql_error_trace.php';
-		//if( file_exists(dirname(__FILE__).'/../data/mysql_error_trace.php') )
+		$errorTrackFile = dirname(__FILE__).'/../data/mysqli_error_trace.php';
+		//if( file_exists(dirname(__FILE__).'/../data/mysqli_error_trace.php') )
 		//{
-		//	@unlink(dirname(__FILE__).'/../data/mysql_error_trace.php');
+		//	@unlink(dirname(__FILE__).'/../data/mysqli_error_trace.php');
 		//}
 		$emsg = '';
 		$emsg .= "<div><h3>seacms Error Warning!</h3>\r\n";
@@ -541,7 +541,8 @@ function CheckSql($db_string,$querytype='select')
 	$log_file = sea_INC.'/../data/'.md5($cfg_cookie_encode).'_safe.txt';
 	$userIP = GetIP();
 	$getUrl = GetCurUrl();
-
+	$db_string = str_replace('@', "|*|*|", $db_string);
+	$db_string = str_replace('char(', "", $db_string);
 	//如果是普通查询语句，直接过滤一些特殊语法
 	if($querytype=='select')
 	{
@@ -572,12 +573,13 @@ function CheckSql($db_string,$querytype='select')
 		if(m_eregi('%7D',$db_string)){exit('m');}
 		if(m_eregi('%3C',$db_string)){exit('n');}
 		if(m_eregi('%3E',$db_string)){exit('u');}
+		if(m_eregi('char(',$db_string)){exit('v');}
 	}
 
 	//完整的SQL检查
 	while (true)
 	{
-		$pos = strpos($db_string, '\'', $pos + 1);
+		$pos = stripos($db_string, '\'', $pos + 1);
 		if ($pos === false)
 		{
 			break;
@@ -585,8 +587,8 @@ function CheckSql($db_string,$querytype='select')
 		$clean .= substr($db_string, $old_pos, $pos - $old_pos);
 		while (true)
 		{
-			$pos1 = strpos($db_string, '\'', $pos + 1);
-			$pos2 = strpos($db_string, '\\', $pos + 1);
+			$pos1 = stripos($db_string, '\'', $pos + 1);
+			$pos2 = stripos($db_string, '\\', $pos + 1);
 			if ($pos1 === false)
 			{
 				break;
@@ -604,37 +606,53 @@ function CheckSql($db_string,$querytype='select')
 	$clean .= substr($db_string, $old_pos);
 	$clean = trim(strtolower(preg_replace(array('~\s+~s' ), array(' '), $clean)));
 
+	if (stripos($clean, '@') !== FALSE  OR stripos($clean,'char(')!== FALSE  OR stripos($clean,'script>')!== FALSE   OR stripos($clean,'<script')!== FALSE  OR stripos($clean,'"')!== FALSE OR stripos($clean,'$s$$s$')!== FALSE)
+        {
+            $fail = TRUE;
+            if(preg_match("#^create table#i",$clean)) $fail = FALSE;
+            $error="unusual character";
+        }
 	//老版本的Mysql并不支持union，常用的程序里也不使用union，但是一些黑客使用它，所以检查它
-	if (strpos($clean, 'union') !== false && preg_match('~(^|[^a-z])union($|[^[a-z])~s', $clean) != 0)
+	if (stripos($clean, 'union') !== false && preg_match('~(^|[^a-z])union($|[^[a-z])~s', $clean) != 0)
 	{
 		$fail = true;
 		$error="union detect";
 	}
 
 	//发布版本的程序可能比较少包括--,#这样的注释，但是黑客经常使用它们
-	elseif (strpos($clean, '/*') > 2 || strpos($clean, '--') !== false || strpos($clean, '#') !== false)
+	elseif (stripos($clean, '/*') > 2 || stripos($clean, '--') !== false || stripos($clean, '#') !== false)
 	{
 		$fail = true;
 		$error="comment detect";
 	}
 
 	//这些函数不会被使用，但是黑客会用它来操作文件，down掉数据库
-	elseif (strpos($clean, 'sleep') !== false && preg_match('~(^|[^a-z])sleep($|[^[a-z])~s', $clean) != 0)
+	elseif (stripos($clean, 'sleep') !== false && preg_match('~(^|[^a-z])sleep($|[^[a-z])~s', $clean) != 0)
 	{
 		$fail = true;
-		$error="slown down detect";
+		$error="sleep detect";
 	}
-	elseif (strpos($clean, 'benchmark') !== false && preg_match('~(^|[^a-z])benchmark($|[^[a-z])~s', $clean) != 0)
+	elseif (stripos($clean, 'updatexml') !== false && preg_match('~(^|[^a-z])updatexml($|[^[a-z])~s', $clean) != 0)
 	{
 		$fail = true;
-		$error="slown down detect";
+		$error="updatexml  detect";
 	}
-	elseif (strpos($clean, 'load_file') !== false && preg_match('~(^|[^a-z])load_file($|[^[a-z])~s', $clean) != 0)
+	elseif (stripos($clean, 'extractvalue') !== false && preg_match('~(^|[^a-z])extractvalue($|[^[a-z])~s', $clean) != 0)
+	{
+		$fail = true;
+		$error="extractvalue  detect";
+	}
+	elseif (stripos($clean, 'benchmark') !== false && preg_match('~(^|[^a-z])benchmark($|[^[a-z])~s', $clean) != 0)
+	{
+		$fail = true;
+		$error="benchmark detect";
+	}
+	elseif (stripos($clean, 'load_file') !== false && preg_match('~(^|[^a-z])load_file($|[^[a-z])~s', $clean) != 0)
 	{
 		$fail = true;
 		$error="file fun detect";
 	}
-	elseif (strpos($clean, 'into outfile') !== false && preg_match('~(^|[^a-z])into\s+outfile($|[^[a-z])~s', $clean) != 0)
+	elseif (stripos($clean, 'into outfile') !== false && preg_match('~(^|[^a-z])into\s+outfile($|[^[a-z])~s', $clean) != 0)
 	{
 		$fail = true;
 		$error="file fun detect";

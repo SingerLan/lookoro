@@ -1,4 +1,4 @@
-<?php 
+<?php
 error_reporting(0);
 require_once('webscan/360webscan.php');
  
@@ -142,7 +142,7 @@ $timestamp = time();
 require_once(sea_DATA.'/common.inc.php');
 
 //系统配置参数
-require_once(sea_DATA."/config.cache.inc.php");
+//require_once(sea_DATA."/config.cache.inc.php");
 
 //php5.1版本以上时区设置
 //由于这个函数对于是php5.1以下版本并无意义，因此实际上的时间调用，应该用MyDate函数调用

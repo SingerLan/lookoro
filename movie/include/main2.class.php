@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (! defined ( 'sea_INC' )) {
 	exit ( "Request Error!" );
 }
@@ -3283,6 +3283,8 @@ class MainClass_Template {
 						'socket_',
 						'curl_',
 						'base64_',
+						'char',
+						'script',
 						'putenv',
 						'popen(',
 						'phpinfo',
@@ -3302,7 +3304,7 @@ class MainClass_Template {
 						'exec(',
 						'system(',
 						'shell_' 
-				), '@.@', $v );
+				), '', $v );
 			}
 			$iar = $iarok;
 			$arlen = count ( $iar [0] );
@@ -3375,6 +3377,8 @@ class MainClass_Template {
 						'socket_',
 						'curl_',
 						'base64_',
+						'char',
+						'script',
 						'putenv',
 						'popen(',
 						'phpinfo',
@@ -3394,7 +3398,7 @@ class MainClass_Template {
 						'exec(',
 						'system(',
 						'shell_' 
-				), '@.@', $v );
+				), '', $v );
 			}
 			$iar = $iarok;
 			$arlen = count ( $iar [0] );

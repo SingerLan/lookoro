@@ -5,7 +5,7 @@ require_once(sea_INC."/main.class.php");
 
 $i=$cfg_ipoints;
 if($i==0){showmsg('系统已经关闭积分推广系统', 'index.php');exit;}
-
+$i=intval($i);
 $u=addslashes($_GET['uid']);
 if(empty($u) OR !is_numeric($u)){showmsg('无法获取目标用户ID', 'index.php');exit;}
 

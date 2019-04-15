@@ -14,7 +14,7 @@ elseif($action=="add")
 	for($i=0;$i<$num;$i++)
 	{
 		$md5=uniqid()."-".rand();
-		$key=$limit."#".md5($md5);
+		$key=$limit."-".md5($md5);
 		$addsql="INSERT INTO `sea_cck`(id,ckey,climit,maketime,usetime,uname,status) VALUES (NULL, '$key', '$limit', NOW(), NULL, NULL, '0')";
 		$dsql->ExecuteNoneQuery($addsql);
 	}

@@ -10,6 +10,10 @@ if ($_GET['name'] != null)
 if ($_GET['id'] != null)
 {
 	$douban = $_GET['id'];
-	$api='http://feifeicms.tianqi.cc/douban/?id='.$douban;
-	echo(file_get_contents($api));
+	$api1='https://api.douban.com/v2/movie/subject/'.$douban;
+	$api1='http://feifeicms.tianqi.cc/douban/?id='.$douban;
+	$raw[0]=json_decode(file_get_contents($api1));
+	$api2='https://api.douban.com/v2/movie/'.$douban;
+	$raw[1]=json_decode(file_get_contents($api1));
+	echo(file_get_contents($api1));
 }

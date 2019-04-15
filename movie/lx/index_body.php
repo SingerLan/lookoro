@@ -1,6 +1,8 @@
 <?php
 require_once(dirname(__FILE__)."/config.php");
 require(sea_INC.'/image.func.php');
+require_once("../include/common.php");
+$mysqlver=$dsql->GetOne("select VERSION()");
 	//require(sea_INC.'/inc/inc_fun_funAdmin.php');
 	//$verLockFile = sea_ROOT.'/data/admin/ver.txt';
 	//$fp = fopen($verLockFile,'r');

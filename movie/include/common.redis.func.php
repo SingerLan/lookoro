@@ -1702,7 +1702,19 @@ function RemoveXSS($val) {
             $found = false;  
          }  
       }  
-   }  
+   } 
+    $val = str_replace('<','',$val);
+    $val = str_replace('>','',$val);
+	$val = str_replace('(','',$val);
+	$val = str_replace(')','',$val);
+	$val = str_replace(';','',$val);
+	$val = str_replace('?','',$val);
+	$val = str_replace('=','',$val);
+	$val = str_replace('#','',$val);
+	$val = str_replace('$','',$val);
+	$val = str_replace('@','',$val);
+	$val = str_replace('*','',$val);
+	$val = str_replace('%','',$val);   
    return $val;  
 }   
 

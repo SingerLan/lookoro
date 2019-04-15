@@ -1,6 +1,6 @@
-<?php 
+<?php
 /*******************************
-//带词性标志的算法，使用方法： 
+//带词性标志的算法，使用方法：
 //普通分词 tryNumName，识别数量词及人名，$tryDiff 岐义处理
 //$strok = $sp->SplitRMM(string $str,bool $tryNumName,bool $tryDiff)
 //本文件必须保持ASCII编码 

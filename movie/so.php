@@ -26,8 +26,9 @@ $str = str_replace('-', "", $str);
 $str = str_replace('_', "", $str);
 $str = str_replace('+', "", $str);
 $str = str_replace('.', "", $str);
-$str = str_replace('if', "", $str);
-$str = str_replace('script', "", $str);
+$str = str_ireplace('if', "", $str);
+$str = str_ireplace('char', "", $str);
+$str = str_ireplace('script', "", $str);
 return $str;
 } 
 $_GET = stripslashes_array($_GET);  
@@ -55,7 +56,6 @@ if (is_array($var))  {
 }  
 return $array;  
 } 
-
 
 
 
