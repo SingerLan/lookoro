@@ -172,7 +172,7 @@
       <input type="button" value="时光网评分" class="rb1" onclick="ajax_method_mtime();"/>
       <script type="text/javascript">
 		function ajax_method() {
-          var douban = document.getElementById('v_name').value;
+          var douban = (document.getElementById('v_name').value).replace(/\s+/g,"");
           var url = 'http://www.lookoro.cn/data/index.php?name='+douban;
           var xhr = new XMLHttpRequest();
           xhr.open("get", url);
@@ -208,18 +208,38 @@
 					document.addform.v_name.value        = json.data.vod_name;
 					document.addform.v_publishyear.value = json.data.vod_year;
 					document.getElementsByClassName('ke-edit-iframe')[0].contentDocument.getElementsByClassName('ke-content')[0].innerHTML = json.data.vod_content;
-					document.addform.v_pic.value         = json.data.vod_pic;
 					document.addform.v_douban.value      = json.data.vod_douban_score;
 					document.addform.v_total.value       = json.data.vod_total;
 					document.addform.v_len.value         = json.data.vod_length;
 					document.addform.v_lang.value        = json.data.vod_language;
 					document.addform.v_publisharea.value = json.data.vod_area;
+					url_upload(json.data.vod_pic);
 					alert('分类：' + json.data.vod_type);
 				  }
 
               }
           }
         }
+		var url_upload = function(urls) {
+			if(urls == "" || urls == null) {
+				alert('请贴入需要上传的网络图片地址.');
+				return
+			}
+			var url = 'https://api.oioweb.cn/sinaimg.php?img='+urls;
+			var xhr = new XMLHttpRequest();
+			xhr.open("get", url);
+			xhr.send();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					var json = JSON.parse(xhr.responseText);
+					if(json.pid != 'undefined') {
+						document.addform.v_pic.value = 'https://ww1.sinaimg.cn/large/' + json.pid + '.jpg';
+					} else {
+						document.addform.v_pic.value = urls;
+					}
+				}
+			}
+		}
         function ajax_method_mtime() {
           var douban = document.getElementById('v_name').value;
           window.open("http://search.mtime.com/search/?q="+douban);

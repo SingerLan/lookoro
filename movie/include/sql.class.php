@@ -541,8 +541,78 @@ function CheckSql($db_string,$querytype='select')
 	$log_file = sea_INC.'/../data/'.md5($cfg_cookie_encode).'_safe.txt';
 	$userIP = GetIP();
 	$getUrl = GetCurUrl();
-	$db_string = str_replace('@', "|*|*|", $db_string);
-	$db_string = str_replace('char(', "", $db_string);
+	$db_string = str_replace('@', "|||||", $db_string);	
+	$db_string = str_replace('--', "", $db_string);
+	$db_string = str_replace('/*', "", $db_string);
+	$db_string = str_replace('*/', "", $db_string);
+	$db_string = str_replace('*!', "", $db_string);
+	$db_string = str_replace('//', "", $db_string);
+	$db_string = str_replace('\\', "", $db_string);
+	$db_string = str_replace('#', "", $db_string);
+	$db_string = str_replace('%00', "", $db_string);
+	$db_string = str_replace('0x', "", $db_string);
+	$db_string = str_replace('%0b', "", $db_string);
+	$db_string = str_replace('%23', "", $db_string);
+	$db_string = str_replace('hex', "", $db_string);	
+	$db_string = str_ireplace('updatexml', "", $db_string);
+	$db_string = str_ireplace('extractvalue', "", $db_string);
+	$db_string = str_ireplace('union', "", $db_string);
+	$db_string = str_ireplace('benchmark', "", $db_string);
+	$db_string = str_ireplace('sleep', "", $db_string);
+	$db_string = str_ireplace('load_file', "", $db_string);
+	$db_string = str_ireplace('outfile', "", $db_string);
+	$db_string = str_ireplace('ascii', "", $db_string);	
+	$db_string = str_ireplace('char(', "", $db_string);	
+	$db_string = str_replace('substr', "", $db_string);
+	$db_string = str_replace('substring', "", $db_string);
+	$db_string = str_replace('<script', "", $db_string);
+	$db_string = str_replace('/script', "", $db_string);
+	$db_string = str_replace('script>', "", $db_string);
+	$db_string = str_replace('information_schema', "", $db_string);
+	$db_string = str_replace('exp', "", $db_string);
+	$db_string = str_replace('information_schema', "", $db_string);
+	$db_string = str_replace('GeometryCollection', "", $db_string);
+	$db_string = str_replace('polygon', "", $db_string);
+	$db_string = str_replace('multipoint', "", $db_string);
+	$db_string = str_replace('multilinestring', "", $db_string);
+	$db_string = str_replace('linestring', "", $db_string);
+	$db_string = str_replace('multipolygon', "", $db_string);
+	$db_string = str_replace('@', "|||||", $db_string);	
+	$db_string = str_replace('--', "", $db_string);
+	$db_string = str_replace('/*', "", $db_string);
+	$db_string = str_replace('*/', "", $db_string);
+	$db_string = str_replace('*!', "", $db_string);
+	$db_string = str_replace('//', "", $db_string);
+	$db_string = str_replace('\\', "", $db_string);
+	$db_string = str_replace('#', "", $db_string);
+	$db_string = str_replace('%00', "", $db_string);
+	$db_string = str_replace('0x', "", $db_string);
+	$db_string = str_replace('%0b', "", $db_string);
+	$db_string = str_replace('%23', "", $db_string);
+	$db_string = str_replace('hex', "", $db_string);	
+	$db_string = str_ireplace('updatexml', "", $db_string);
+	$db_string = str_ireplace('extractvalue', "", $db_string);
+	$db_string = str_ireplace('union', "", $db_string);
+	$db_string = str_ireplace('benchmark', "", $db_string);
+	$db_string = str_ireplace('sleep', "", $db_string);
+	$db_string = str_ireplace('load_file', "", $db_string);
+	$db_string = str_ireplace('outfile', "", $db_string);
+	$db_string = str_ireplace('ascii', "", $db_string);	
+	$db_string = str_ireplace('char(', "", $db_string);	
+	$db_string = str_replace('substr', "", $db_string);
+	$db_string = str_replace('substring', "", $db_string);
+	$db_string = str_replace('<script', "", $db_string);
+	$db_string = str_replace('/script', "", $db_string);
+	$db_string = str_replace('script>', "", $db_string);
+	$db_string = str_replace('exp', "", $db_string);
+	$db_string = str_replace('information_schema', "", $db_string);
+	$db_string = str_replace('GeometryCollection', "", $db_string);
+	$db_string = str_replace('polygon', "", $db_string);
+	$db_string = str_replace('multipoint', "", $db_string);
+	$db_string = str_replace('multilinestring', "", $db_string);
+	$db_string = str_replace('linestring', "", $db_string);
+	$db_string = str_replace('multipolygon', "", $db_string);
+
 	//如果是普通查询语句，直接过滤一些特殊语法
 	if($querytype=='select')
 	{
@@ -671,6 +741,7 @@ function CheckSql($db_string,$querytype='select')
 	}
 	else
 	{
+
 		return $db_string;
 	}
 }

@@ -24,6 +24,7 @@ $str = str_replace('#', "", $str);
 $str = str_replace('@', "", $str);
 $str = str_replace('-', "", $str);
 $str = str_replace('_', "", $str);
+$str = str_replace('0x', "", $str);
 $str = str_replace('+', "", $str);
 $str = str_replace('.', "", $str);
 $str = str_ireplace('if', "", $str);

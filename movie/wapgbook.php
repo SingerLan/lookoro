@@ -90,12 +90,12 @@ if($cfg_feedback_ck=='1')
 	$dsql->ExecuteNoneQuery($query);
 	if($needCheck==1)
 	{
-		ShowMsg('感谢您的留言，我们会尽快回复您！','gbook.php',0,3000);
+		ShowMsg('感谢您的留言，我们会尽快回复您！','wapgbook.php',0,3000);
 		exit();	
 	}
 	else
 	{
-		ShowMsg('成功发送一则留言，但需审核后才能显示！','gbook.php',0,3000);
+		ShowMsg('成功发送一则留言，但需审核后才能显示！','wapgbook.php',0,3000);
 		exit();
 	}
 }
@@ -153,7 +153,7 @@ function viewLeaveWord(){
 	$mystr=
 "<div class=\"col-md-9 col-sm-12 hy-main-content\"><div class=\"hy-layout clearfix\"><div class=\"hy-video-head\"><h4 class=\"margin-0\">留言板</h4></div><div class=\"hy-common\">".leaveWordList($_GET['page'])."</div></div></div>".	
 "<div class=\"col-md-3 col-sm-12 hy-main-side\"><div class=\"hy-layout clearfix\"><div class=\"hy-video-head\"><h4 class=\"margin-0\">我要留言</h4></div>".
-"<form id=\"f_leaveword\" class=\"form-horizontal\"  action=\"/".$GLOBALS['cfg_cmspath']."gbook.php?action=add\" method=\"post\">".
+"<form id=\"f_leaveword\" class=\"form-horizontal\"  action=\"/".$GLOBALS['cfg_cmspath']."wapgbook.php?action=add\" method=\"post\">".
 "<input type=\"hidden\" value=\"$userid\" name=\"userid\" />".
 "<input type=\"hidden\" value=\"$uname\" name=\"m_author\" />".
 "<ul class=\"hy-common-text\">".
@@ -186,7 +186,7 @@ function viewLeaveWord2(){
 "<img src=\"templets/id97/html/images/1.jpg\" / >".
 "</div>".
 "<div class=\"content\" style=\"height: auto;\">".
-"<form id=\"f_leaveword\" class=\"form-horizontal\"  action=\"/".$GLOBALS['cfg_cmspath']."gbook.php?action=add\" method=\"post\">".
+"<form id=\"f_leaveword\" class=\"form-horizontal\"  action=\"/".$GLOBALS['cfg_cmspath']."wapgbook.php?action=add\" method=\"post\">".
 "<div class=\"cont-box\" style=\"height: auto;width:auto;margin-bottom: 3px;border: 1px solid #07a7e1;border-radius: 5px;\">".
 "<input value=\"匿名\" placeholder=\"输入昵称\"  name=\"m_author\" id=\"m_author\" size=\"20\" />".
 "</div>".

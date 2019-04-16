@@ -27,6 +27,7 @@ $str = str_replace('+', "", $str);
 $str = str_replace('.', "", $str);
 $str = str_ireplace('if', "", $str);
 $str = str_replace('--', "", $str);
+$str = str_replace('0x', "", $str);
 $str = str_ireplace('char', "", $str);
 $str = str_ireplace('script', "", $str);
 return $str;

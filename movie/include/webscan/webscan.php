@@ -101,18 +101,14 @@ class webscan_http {
 
 }
 
-/**
- *   关闭用户错误提示
- */
+
 function webscan_error() {
   if (ini_get('display_errors')) {
     ini_set('display_errors', '0');
   }
 }
 
-/**
- *  验证是否是官方发出的请求
- */
+
 function webscan_cheack() {
   if($_POST['webscan_rkey']==WEBSCAN_U_KEY){
     return true;
@@ -152,9 +148,7 @@ function webscan_arr_foreach($arr) {
   }
   return implode($str);
 }
-/**
- *  新版文件md5值效验
- */
+
 function webscan_updateck($ve) {
   if($ve!=WEBSCAN_MD5)
   {
@@ -163,23 +157,12 @@ function webscan_updateck($ve) {
   return false;
 }
 
-/**
- *  防护提示页
- */
+
 function webscan_pape(){
-  $pape=<<<HTML
-  <html>
-  <body style="margin:0; padding:0">
-  <center><iframe width="100%" align="center" height="870" frameborder="0" scrolling="no" src="http://safe.webscan.360.cn/stopattack.html"></iframe></center>
-  </body>
-  </html>
-HTML;
-  echo $pape;
+  echo 'XSS:ERR!';
 }
 
-/**
- *  攻击检查拦截
- */
+
 function webscan_StopAttack($StrFiltKey,$StrFiltValue,$ArrFiltReq,$method) {
   $StrFiltValue=webscan_arr_foreach($StrFiltValue);
   if (preg_match("/".$ArrFiltReq."/is",$StrFiltValue)==1){
@@ -192,98 +175,28 @@ function webscan_StopAttack($StrFiltKey,$StrFiltValue,$ArrFiltReq,$method) {
   }
 
 }
-/**
- *  拦截目录白名单
- */
+
 function webscan_white($webscan_white_name,$webscan_white_url=array()) {
-  $url_path=$_SERVER['SCRIPT_NAME'];
-  //拼接获取
-  foreach($_GET as $key=>$value){
-    $url_var.=$key."=".$value."&";
-  }
-
-  if (preg_match("/".$webscan_white_name."/is",$url_path)==1&&!empty($webscan_white_name)) {
-    return false;
-  }
+  $url_path=$_SERVER['SCRIPT_NAME']; 
   foreach ($webscan_white_url as $key => $value) {
-    if(!empty($url_var)&&!empty($value)){
-      if (stristr($url_path,$key)&&stristr($url_var,$value)) {
-        return false;
-      }
+    if(!empty($value)){
+      if (stristr($url_path,$value)) { return false; }
     }
-    elseif (empty($url_var)&&empty($value)) {
-      if (stristr($url_path,$key)) {
-        return false;
-      }
-    }
-
   }
-
   return true;
 }
 
-/**
- *  curl方式提交
- */
+
 function webscan_curl($url , $postdata = array()){
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_HEADER, 0);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-  curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-  curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
-  $response = curl_exec($ch);
-  $httpcode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
-  curl_close($ch);
-  return array('httpcode'=>$httpcode,'response'=>$response);
+
 }
 
 if($webscan_action=='update') {
-  //文件更新操作
-  $webscan_update_md5=md5(@file_get_contents(WEBSCAN_UPDATE_FILE));
-  if (webscan_updateck($webscan_update_md5))
-  {
-    if (!file_exists(dirname(__FILE__).'/caches_webscan'))
-    {
-      if (@mkdir(dirname(__FILE__).'/caches_webscan',755)) {
-      }
-      else{
-        exit("file_failed");
-      }
-    }
-    @file_put_contents(dirname(__FILE__).'/caches_webscan/'."update_360.dat", @file_get_contents(WEBSCAN_UPDATE_FILE));
 
-    if(copy(__FILE__,dirname(__FILE__).'/caches_webscan/'."bak_360.dat")&&filesize(dirname(__FILE__).'/caches_webscan/'."update_360.dat")>500&&md5(@file_get_contents(dirname(__FILE__).'/caches_webscan/'."update_360.dat"))==$webscan_update_md5)
-    {
-      if (!copy(dirname(__FILE__).'/caches_webscan/'."update_360.dat",__FILE__))
-      {
-        copy(dirname(__FILE__).'/caches_webscan/'."bak_360.dat",__FILE__);
-        exit("copy_failed");
-      }
-      unlink(dirname(__FILE__).'/caches_webscan/'."update_360.dat");
-      exit("update_success");
-    }
-    unlink(dirname(__FILE__).'/caches_webscan/'."update_360.dat");
-    exit("failed");
-  }
-  else{
-    exit("news");
-  }
 
 }
 
 elseif($webscan_action=="ckinstall") {
-  //验证安装与版本信息
-  if(! function_exists('curl_init')){
-    $web_code=new webscan_http();
-    $httpcode=$web_code->request("http://safe.webscan.360.cn");
-  }
-  else{
-    $web_code=webscan_curl("http://safe.webscan.360.cn");
-    $httpcode=$web_code['httpcode'];
-  }
 
   exit("1".":".WEBSCAN_VERSION.":".WEBSCAN_MD5.":".WEBSCAN_U_KEY.":".$httpcode);
 }
@@ -310,5 +223,4 @@ if ($webscan_switch&&webscan_white($webscan_white_directory,$webscan_white_url))
     }
   }
 }
-
 ?>

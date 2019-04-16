@@ -3283,6 +3283,12 @@ class MainClass_Template {
 			foreach ( $iar as $v ) {
 				$iarok [] = str_ireplace ( array (
 						'unlink',
+						'x0',
+						'x1',
+						'\0',
+						'%00',
+						'\r',
+						'passthru',
 						'opendir',
 						'mysqli_',
 						'mysql_',
@@ -3291,7 +3297,7 @@ class MainClass_Template {
 						'curl_',
 						'base64_',
 						'putenv',
-						'popen(',
+						'popen',
 						'phpinfo',
 						'pfsockopen',
 						'proc_',
@@ -3303,11 +3309,11 @@ class MainClass_Template {
 						'_SESSION',
 						'_SERVER',
 						'assert',
-						'eval(',
+						'eval',
 						'file_',
-						'passthru(',
-						'exec(',
-						'system(',
+						'passthru',
+						'exec',
+						'system',
 						'shell_' 
 				), '', $v);
 			}
@@ -3376,16 +3382,21 @@ class MainClass_Template {
 			foreach ( $iar as $v ) {
 				$iarok [] = str_ireplace ( array (
 						'unlink',
+						'x0',
+						'x1',
+						'\0',
+						'%00',
+						'\r',
+						'passthru',
 						'opendir',
 						'mysqli_',
 						'mysql_',
 						'socket_',
 						'char',
-						'script',
 						'curl_',
 						'base64_',
 						'putenv',
-						'popen(',
+						'popen',
 						'phpinfo',
 						'pfsockopen',
 						'proc_',
@@ -3397,11 +3408,11 @@ class MainClass_Template {
 						'_SESSION',
 						'_SERVER',
 						'assert',
-						'eval(',
+						'eval',
 						'file_',
-						'passthru(',
-						'exec(',
-						'system(',
+						'passthru',
+						'exec',
+						'system',
 						'shell_' 
 				), '', $v);
 			}
