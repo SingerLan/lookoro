@@ -3277,8 +3277,6 @@ class MainClass_Template {
 			foreach ( $iar as $v ) {
 				$iarok [] = str_ireplace ( array (
 						'unlink',
-						'x0',
-						'x1',
 						'\0',
 						'%00',
 						'\r',
@@ -3376,8 +3374,6 @@ class MainClass_Template {
 			foreach ( $iar as $v ) {
 				$iarok [] = str_ireplace ( array (
 						'unlink',
-						'x0',
-						'x1',
 						'\0',
 						'%00',
 						'\r',

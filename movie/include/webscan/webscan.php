@@ -1,20 +1,20 @@
 <?php
 webscan_error();
-//ÒıÓÃÅäÖÃÎÄ¼ş
+//å¼•ç”¨é…ç½®æ–‡ä»¶
 require_once('webscan_cache.php');
-//·À»¤½Å±¾°æ±¾ºÅ
+//é˜²æŠ¤è„šæœ¬ç‰ˆæœ¬å·
 define("WEBSCAN_VERSION", '0.1.3.4');
-//·À»¤½Å±¾MD5Öµ
+//é˜²æŠ¤è„šæœ¬MD5å€¼
 define("WEBSCAN_MD5", md5(@file_get_contents(__FILE__)));
-//getÀ¹½Ø¹æÔò
+//getæ‹¦æˆªè§„åˆ™
 $getfilter = "\\<.+javascript:window\\[.{1}\\\\x|<.*=(&#\\d+?;?)+?>|<.*(data|src)=data:text\\/html.*>|\\b(alert\\(|confirm\\(|expression\\(|prompt\\(|benchmark\s*?\(.*\)|sleep\s*?\(.*\)|\\b(group_)?concat[\\s\\/\\*]*?\\([^\\)]+?\\)|\bcase[\s\/\*]*?when[\s\/\*]*?\([^\)]+?\)|load_file\s*?\\()|<[a-z]+?\\b[^>]*?\\bon([a-z]{4,})\s*?=|^\\+\\/v(8|9)|\\b(and|or)\\b\\s*?([\\(\\)'\"\\d]+?=[\\(\\)'\"\\d]+?|[\\(\\)'\"a-zA-Z]+?=[\\(\\)'\"a-zA-Z]+?|>|<|\s+?[\\w]+?\\s+?\\bin\\b\\s*?\(|\\blike\\b\\s+?[\"'])|\\/\\*.*\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT\s*(\(.+\)\s*|@{1,2}.+?\s*|\s+?.+?|(`|'|\").*?(`|'|\")\s*)|UPDATE\s*(\(.+\)\s*|@{1,2}.+?\s*|\s+?.+?|(`|'|\").*?(`|'|\")\s*)SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE)@{0,2}(\\(.+\\)|\\s+?.+?\\s+?|(`|'|\").*?(`|'|\"))FROM(\\(.+\\)|\\s+?.+?|(`|'|\").*?(`|'|\"))|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
-//postÀ¹½Ø¹æÔò
+//postæ‹¦æˆªè§„åˆ™
 $postfilter = "<.*=(&#\\d+?;?)+?>|<.*data=data:text\\/html.*>|\\b(alert\\(|confirm\\(|expression\\(|prompt\\(|benchmark\s*?\(.*\)|sleep\s*?\(.*\)|\\b(group_)?concat[\\s\\/\\*]*?\\([^\\)]+?\\)|\bcase[\s\/\*]*?when[\s\/\*]*?\([^\)]+?\)|load_file\s*?\\()|<[^>]*?\\b(onerror|onmousemove|onload|onclick|onmouseover)\\b|\\b(and|or)\\b\\s*?([\\(\\)'\"\\d]+?=[\\(\\)'\"\\d]+?|[\\(\\)'\"a-zA-Z]+?=[\\(\\)'\"a-zA-Z]+?|>|<|\s+?[\\w]+?\\s+?\\bin\\b\\s*?\(|\\blike\\b\\s+?[\"'])|\\/\\*.*\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT\s*(\(.+\)\s*|@{1,2}.+?\s*|\s+?.+?|(`|'|\").*?(`|'|\")\s*)|UPDATE\s*(\(.+\)\s*|@{1,2}.+?\s*|\s+?.+?|(`|'|\").*?(`|'|\")\s*)SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE)(\\(.+\\)|\\s+?.+?\\s+?|(`|'|\").*?(`|'|\"))FROM(\\(.+\\)|\\s+?.+?|(`|'|\").*?(`|'|\"))|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
-//cookieÀ¹½Ø¹æÔò
+//cookieæ‹¦æˆªè§„åˆ™
 $cookiefilter = "benchmark\s*?\(.*\)|sleep\s*?\(.*\)|load_file\s*?\\(|\\b(and|or)\\b\\s*?([\\(\\)'\"\\d]+?=[\\(\\)'\"\\d]+?|[\\(\\)'\"a-zA-Z]+?=[\\(\\)'\"a-zA-Z]+?|>|<|\s+?[\\w]+?\\s+?\\bin\\b\\s*?\(|\\blike\\b\\s+?[\"'])|\\/\\*.*\\*\\/|<\\s*script\\b|\\bEXEC\\b|UNION.+?SELECT\s*(\(.+\)\s*|@{1,2}.+?\s*|\s+?.+?|(`|'|\").*?(`|'|\")\s*)|UPDATE\s*(\(.+\)\s*|@{1,2}.+?\s*|\s+?.+?|(`|'|\").*?(`|'|\")\s*)SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE)@{0,2}(\\(.+\\)|\\s+?.+?\\s+?|(`|'|\").*?(`|'|\"))FROM(\\(.+\\)|\\s+?.+?|(`|'|\").*?(`|'|\"))|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
-//»ñÈ¡Ö¸Áî
+//è·å–æŒ‡ä»¤
 $webscan_action  = isset($_POST['webscan_act'])&&webscan_cheack() ? trim($_POST['webscan_act']) : '';
-//referer»ñÈ¡
+//refererè·å–
 $webscan_referer = empty($_SERVER['HTTP_REFERER']) ? array() : array('HTTP_REFERER'=>$_SERVER['HTTP_REFERER']);
 
 class webscan_http {
@@ -116,7 +116,7 @@ function webscan_cheack() {
   return false;
 }
 /**
- *  Êı¾İÍ³¼Æ»Ø´«
+ *  æ•°æ®ç»Ÿè®¡å›ä¼ 
  */
 function webscan_slog($logs) {
   if(! function_exists('curl_init')) {
@@ -128,7 +128,7 @@ function webscan_slog($logs) {
   }
 }
 /**
- *  ²ÎÊı²ğ·Ö
+ *  å‚æ•°æ‹†åˆ†
  */
 function webscan_arr_foreach($arr) {
   static $str;
@@ -159,7 +159,22 @@ function webscan_updateck($ve) {
 
 
 function webscan_pape(){
-  echo 'XSS:ERR!';
+echo <<<EOT
+<html>
+<head>
+<title>ç³»ç»Ÿæç¤º</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<base target='_self'/>
+<style>body{background:#f9fafd;color:#818181}.mac_msg_jump{width:90%;max-width:624px;min-height:60px;padding:20px 50px 50px;margin:5% auto 0;font-size:14px;line-height:24px;border:1px solid #cdd5e0;border-radius:10px;background:#fff;box-sizing:border-box;text-align:center}.mac_msg_jump .title{margin-bottom:11px}.mac_msg_jump .text{margin-bottom:11px}.msg_jump_tit{width:100%;height:35px;margin:25px 0 10px;text-align:center;font-size:25px;color:#0099CC;letter-spacing:5px}</style></head>
+<body leftmargin='0' topmargin='0'>
+<center>
+<br><div class='mac_msg_jump'><div class='msg_jump_tit'>ç³»ç»Ÿæç¤º</div><div class='text'>
+è¯·å‹¿æäº¤ä¸å®‰å…¨çš„å†…å®¹ï¼
+<br><br><a href="#" onclick="javascript:history.back(-1);"><font style='color:#777777;'>è¿”å›</font></a><br/></div></div>
+</center>
+</body>
+</html 
+EOT;
 }
 
 
@@ -178,11 +193,7 @@ function webscan_StopAttack($StrFiltKey,$StrFiltValue,$ArrFiltReq,$method) {
 
 function webscan_white($webscan_white_name,$webscan_white_url=array()) {
   $url_path=$_SERVER['SCRIPT_NAME']; 
-  foreach ($webscan_white_url as $key => $value) {
-    if(!empty($value)){
-      if (stristr($url_path,$value)) { return false; }
-    }
-  }
+  if (stristr($url_path,'/admin_')) { return false; }
   return true;
 }
 

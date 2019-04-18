@@ -9,11 +9,5 @@ $webscan_cookie=1;
 $webscan_referre=1;
 $webscan_white_directory='';
 $webscan_white_url = 
-array(
-'admin_config.php',
-'admin_ads.php',
-'admin_collect.php',
-'admin_collect_news.php',
-'admin_datarelate.php'
-);
+array();
 ?>
