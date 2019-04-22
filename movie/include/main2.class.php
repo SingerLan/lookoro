@@ -3286,8 +3286,9 @@ class MainClass_Template {
 						'mysql_',
 						'socket_',
 						'char',
+						'chr',
 						'curl_',
-						'base64_',
+						'base64',
 						'putenv',
 						'popen',
 						'phpinfo',
@@ -3305,9 +3306,16 @@ class MainClass_Template {
 						'file_',
 						'passthru',
 						'exec',
+						'fopen',
+						'chmod',
+						'dir',
+						'fread',
+						'fclose',
+						'fwrite',
+						'file',
 						'system',
-						'shell_' 
-				), '', $v );
+						'shell_'
+				), 'Not-Allowed-Words', $v );
 			}
 			$iar = $iarok;
 			$arlen = count ( $iar [0] );
@@ -3383,8 +3391,9 @@ class MainClass_Template {
 						'mysql_',
 						'socket_',
 						'char',
+						'chr',
 						'curl_',
-						'base64_',
+						'base64',
 						'putenv',
 						'popen',
 						'phpinfo',
@@ -3402,9 +3411,16 @@ class MainClass_Template {
 						'file_',
 						'passthru',
 						'exec',
+						'fopen',
+						'chmod',
+						'dir',
+						'fread',
+						'fclose',
+						'fwrite',
+						'file',
 						'system',
-						'shell_' 
-				), '', $v );
+						'shell_'
+				), 'Not-Allowed-Words', $v );
 			}
 			$iar = $iarok;
 			$arlen = count ( $iar [0] );

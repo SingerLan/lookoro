@@ -3,33 +3,68 @@ error_reporting(0);
 function lib_replace_end_tag($str)  
 {  
 if (empty($str)) return false;  
-$str = htmlspecialchars($str);  
-$str = str_replace('/', "", $str);  
-$str = str_replace('\\',"", $str);  
-$str = str_replace('>', "", $str);  
-$str = str_replace('<', "", $str);  
-$str = str_replace('?', "", $str);
-$str = str_replace('&', "", $str);
-$str = str_replace('(', "", $str);
-$str = str_replace(')', "", $str);
-$str = str_replace('{', "", $str);
-$str = str_replace('}', "", $str);
-$str = str_replace('%', "", $str);
-$str = str_replace('=', "", $str);
-$str = str_replace(',', "", $str);
-$str = str_replace(':', "", $str);
-$str = str_replace(';', "", $str);
-$str = str_replace('*', "", $str);
-$str = str_replace('#', "", $str);
-$str = str_replace('@', "", $str);
-$str = str_replace('_', "", $str);
-$str = str_replace('+', "", $str);
-$str = str_replace('.', "", $str);
-$str = str_ireplace('if', "", $str);
-$str = str_replace('--', "", $str);
-$str = str_replace('0x', "", $str);
-$str = str_ireplace('char', "", $str);
-$str = str_ireplace('script', "", $str);
+	$str = htmlspecialchars($str);  
+	$str = str_ireplace('/', "", $str);
+	$str = str_ireplace('[', "", $str);
+	$str = str_ireplace(']', "", $str);	
+	$str = str_ireplace('>', "", $str);  
+	$str = str_ireplace('<', "", $str);  
+	$str = str_ireplace('?', "", $str);
+	$str = str_ireplace('&', "", $str);
+	$str = str_ireplace('|', "", $str);
+	$str = str_ireplace('(', "", $str);
+	$str = str_ireplace(')', "", $str);
+	$str = str_ireplace('{', "", $str);
+	$str = str_ireplace('}', "", $str);
+	$str = str_ireplace('%', "", $str);
+	$str = str_ireplace('=', "", $str);
+	$str = str_ireplace(',', "", $str);
+	$str = str_ireplace(':', "", $str);
+	$str = str_ireplace(';', "", $str);
+	$str = str_ireplace('*', "", $str);
+	$str = str_ireplace('if', "i", $str);
+	$str = str_ireplace('0x', "", $str);
+    $str = str_ireplace('@', "", $str);	
+	$str = str_ireplace('--', "", $str);
+	$str = str_ireplace('/*', "", $str);
+	$str = str_ireplace('*/', "", $str);
+	$str = str_ireplace('*!', "", $str);
+	$str = str_ireplace('//', "", $str);
+	$str = str_ireplace('\\', "", $str);
+	$str = str_ireplace('#', "", $str);
+	$str = str_ireplace('%00', "", $str);
+	$str = str_ireplace('0x', "", $str);
+	$str = str_ireplace('%0b', "", $str);
+	$str = str_ireplace('%23', "", $str);
+	$str = str_ireplace('%26', "", $str);
+	$str = str_ireplace('%7c', "", $str);
+	$str = str_ireplace('hex', "he", $str);
+	$str = str_ireplace('file_', "fil", $str);
+	$str = str_ireplace('updatexml', "update", $str);
+	$str = str_ireplace('extractvalue', "extract", $str);
+	$str = str_ireplace('union', "unio", $str);
+	$str = str_ireplace('benchmark', "bench", $str);
+	$str = str_ireplace('sleep', "slee", $str);
+	$str = str_ireplace('load_file', "", $str);
+	$str = str_ireplace('outfile', "out", $str);
+	$str = str_ireplace('ascii', "asc", $str);	
+	$str = str_ireplace('char', "cha", $str);
+	$str = str_ireplace('chr', "ch", $str);	
+	$str = str_ireplace('substr', "sub", $str);
+	$str = str_ireplace('substring', "sub", $str);
+	$str = str_ireplace('script', "scri", $str);
+	$str = str_ireplace('frame', "fra", $str);
+	$str = str_ireplace('information_schema', "infor", $str);
+	$str = str_ireplace('exp', "ex", $str);
+	$str = str_ireplace('information_schema', "infor", $str);
+	$str = str_ireplace('GeometryCollection', "Geomet", $str);
+	$str = str_ireplace('polygon', "poly", $str);
+	$str = str_ireplace('multipoint', "multi", $str);
+	$str = str_ireplace('multilinestring', "multi", $str);
+	$str = str_ireplace('linestring', "lines", $str);
+	$str = str_ireplace('multipolygon', "multi", $str);
+	$str = str_ireplace('base64', "bas", $str);
+
 return $str;
 }
  
@@ -87,31 +122,31 @@ $searchword = addslashes(cn_substr($searchword,20));
 $searchword = trim($searchword);
 
 $jq = RemoveXSS(stripslashes($jq));
-$jq = addslashes(cn_substr($jq,20));
+$jq = addslashes(cn_substr($jq,10));
 
 $area = RemoveXSS(stripslashes($area));
-$area = addslashes(cn_substr($area,20));
+$area = addslashes(cn_substr($area,10));
 
 $year = RemoveXSS(stripslashes($year));
-$year = addslashes(cn_substr($year,20));
+$year = addslashes(cn_substr($year,4));
 
 $yuyan = RemoveXSS(stripslashes($yuyan));
-$yuyan = addslashes(cn_substr($yuyan,20));
+$yuyan = addslashes(cn_substr($yuyan,10));
 
 $letter = RemoveXSS(stripslashes($letter));
-$letter = addslashes(cn_substr($letter,20));
+$letter = addslashes(cn_substr($letter,2));
 
 $state = RemoveXSS(stripslashes($state));
-$state = addslashes(cn_substr($state,20));
+$state = addslashes(cn_substr($state,2));
 
 $ver = RemoveXSS(stripslashes($ver));
-$ver = addslashes(cn_substr($ver,20));
+$ver = addslashes(cn_substr($ver,10));
 
 $money = RemoveXSS(stripslashes($money));
-$money = addslashes(cn_substr($money,20));
+$money = addslashes(cn_substr($money,2));
 
 $order = RemoveXSS(stripslashes($order));
-$order = addslashes(cn_substr($order,20));
+$order = addslashes(cn_substr($order,16));
 
 if($cfg_notallowstr !='' && m_eregi($cfg_notallowstr,$searchword))
 {
@@ -180,7 +215,7 @@ if(check_str($page,$key)){ShowMsg('请勿输入危险字符！','index.php','0',
 		$stateStr=!empty($state)?$state.'_':'0_';
 		$moneyStr=!empty($money)?$money.'_':'0_';
 		$verStr=!empty($verStr)?PinYin($verStr).'_':'0_';
-		$cacheName="parse_cascade_".$typeStr.$jqStr.$areaStr.$yearStr.$yuyanStr.$stateStr.$moneyStr.$verStr.$letterStr.$orderStr.$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
+		$cacheName="parse_cascade_".$typeStr.$GLOBALS['cfg_mskin'].$GLOBALS['isMobile'];
 		$pSize = getPageSizeOnCache($searchTemplatePath,"cascade","");
 	}else
 	{

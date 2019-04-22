@@ -17,11 +17,6 @@ if($page<2)
 }
 $h = ReadData($id,$page);
 $rlist = array();
-$rlist = str_replace("_"," ",$rlist);
-$rlist = str_replace("%"," ",$rlist);
-$rlist = str_replace("`"," ",$rlist);
-$rlist = str_replace("("," ",$rlist);
-$rlist = str_replace(")"," ",$rlist);
 if($page<2)
 {
 	createTextFile($h,$jsoncachefile);
@@ -32,11 +27,6 @@ die($h);
 function ReadData($id,$page)
 {
 	global $type,$pCount,$rlist;
-$rlist = str_replace("_"," ",$rlist);
-$rlist = str_replace("%"," ",$rlist);
-$rlist = str_replace("`"," ",$rlist);
-$rlist = str_replace("("," ",$rlist);
-$rlist = str_replace(")"," ",$rlist);
 	$ret = array("","",$page,0,10,$type,$id);
 	if($id>0)
 	{
@@ -55,11 +45,49 @@ $rlist = str_replace(")"," ",$rlist);
 function Readmlist($id,$page,$size)
 {
 	global $dsql,$type,$pCount,$rlist;
-$rlist = str_replace("_"," ",$rlist);
-$rlist = str_replace("%"," ",$rlist);
-$rlist = str_replace("`"," ",$rlist);
-$rlist = str_replace("("," ",$rlist);
-$rlist = str_replace(")"," ",$rlist);
+	$rlist = str_ireplace('@', "", $rlist);	
+	$rlist = str_ireplace('/*', "", $rlist);
+	$rlist = str_ireplace('*/', "", $rlist);
+	$rlist = str_ireplace('*!', "", $rlist);
+	$rlist = str_ireplace('%00', "", $rlist);
+	$rlist = str_ireplace('0x', "", $rlist);
+	$rlist = str_ireplace('%0b', "", $rlist);
+	$rlist = str_ireplace('%23', "", $rlist);
+	$rlist = str_ireplace('hex', "", $rlist);	
+    $rlist = str_ireplace('@', "", $rlist);	
+	$rlist = str_ireplace('/*', "", $rlist);
+	$rlist = str_ireplace('*/', "", $rlist);
+	$rlist = str_ireplace('*!', "", $rlist);
+	$rlist = str_ireplace('%00', "", $rlist);
+	$rlist = str_ireplace('0x', "", $rlist);
+	$rlist = str_ireplace('%0b', "", $rlist);
+	$rlist = str_ireplace('%23', "", $rlist);
+    $rlist = str_ireplace('hex', "he", $rlist);	
+	$rlist = str_ireplace('updatexml', "update", $rlist);
+	$rlist = str_ireplace('extractvalue', "extract", $rlist);
+	$rlist = str_ireplace('union', "unio", $rlist);
+	$rlist = str_ireplace('benchmark', "bench", $rlist);
+	$rlist = str_ireplace('sleep', "slee", $rlist);
+	$rlist = str_ireplace('load_file', "", $rlist);
+	$rlist = str_ireplace('outfile', "out", $rlist);
+	$rlist = str_ireplace('ascii', "asc", $rlist);	
+	$rlist = str_ireplace('char(', "cha", $rlist);	
+	$rlist = str_ireplace('substr', "sub", $rlist);
+	$rlist = str_ireplace('substring', "sub", $rlist);
+	$rlist = str_ireplace('script', "scri", $rlist);
+	$rlist = str_ireplace('frame', "", $rlist);
+	$rlist = str_ireplace('%26', "", $rlist);
+	$rlist = str_ireplace('%7c', "", $rlist);
+	$rlist = str_ireplace('file_', "fil", $rlist);
+	$rlist = str_ireplace('information_schema', "infor", $rlist);
+	$rlist = str_ireplace('exp', "ex", $rlist);
+	$rlist = str_ireplace('information_schema', "infor", $rlist);
+	$rlist = str_ireplace('GeometryCollection', "Geomet", $rlist);
+	$rlist = str_ireplace('polygon', "poly", $rlist);
+	$rlist = str_ireplace('multipoint', "multi", $rlist);
+	$rlist = str_ireplace('multilinestring', "multi", $rlist);
+	$rlist = str_ireplace('linestring', "lines", $rlist);
+	$rlist = str_ireplace('multipolygon', "multi", $rlist);
 	$ml=array();
 	if($id>0)
 	{
@@ -97,6 +125,46 @@ function Readrlist($ids,$page,$size)
 function ReadReplyID($gid,$cmid,&$rlist)
 {
 	global $dsql;
+	$rlist = str_ireplace('@', "", $rlist);	
+	$rlist = str_ireplace('/*', "", $rlist);
+	$rlist = str_ireplace('*/', "", $rlist);
+	$rlist = str_ireplace('*!', "", $rlist);
+	$rlist = str_ireplace('%00', "", $rlist);
+	$rlist = str_ireplace('0x', "", $rlist);
+	$rlist = str_ireplace('%0b', "", $rlist);
+	$rlist = str_ireplace('%23', "", $rlist);
+	$rlist = str_ireplace('hex', "", $rlist);	
+    $rlist = str_ireplace('@', "", $rlist);	
+	$rlist = str_ireplace('/*', "", $rlist);
+	$rlist = str_ireplace('*/', "", $rlist);
+	$rlist = str_ireplace('*!', "", $rlist);
+	$rlist = str_ireplace('%00', "", $rlist);
+	$rlist = str_ireplace('0x', "", $rlist);
+	$rlist = str_ireplace('%0b', "", $rlist);
+	$rlist = str_ireplace('%23', "", $rlist);
+    $rlist = str_ireplace('hex', "he", $rlist);	
+	$rlist = str_ireplace('updatexml', "update", $rlist);
+	$rlist = str_ireplace('extractvalue', "extract", $rlist);
+	$rlist = str_ireplace('union', "unio", $rlist);
+	$rlist = str_ireplace('benchmark', "bench", $rlist);
+	$rlist = str_ireplace('sleep', "slee", $rlist);
+	$rlist = str_ireplace('load_file', "", $rlist);
+	$rlist = str_ireplace('outfile', "out", $rlist);
+	$rlist = str_ireplace('ascii', "asc", $rlist);	
+	$rlist = str_ireplace('char(', "cha", $rlist);	
+	$rlist = str_ireplace('substr', "sub", $rlist);
+	$rlist = str_ireplace('substring', "sub", $rlist);
+	$rlist = str_ireplace('script', "scri", $rlist);
+	$rlist = str_ireplace('frame', "fra", $rlist);
+	$rlist = str_ireplace('information_schema', "infor", $rlist);
+	$rlist = str_ireplace('exp', "ex", $rlist);
+	$rlist = str_ireplace('information_schema', "infor", $rlist);
+	$rlist = str_ireplace('GeometryCollection', "Geomet", $rlist);
+	$rlist = str_ireplace('polygon', "poly", $rlist);
+	$rlist = str_ireplace('multipoint', "multi", $rlist);
+	$rlist = str_ireplace('multilinestring', "multi", $rlist);
+	$rlist = str_ireplace('linestring', "lines", $rlist);
+	$rlist = str_ireplace('multipolygon', "multi", $rlist);
 	if($cmid>0)
 	{
 		if(!in_array($cmid,$rlist))$rlist[]=$cmid;

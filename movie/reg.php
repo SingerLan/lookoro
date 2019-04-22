@@ -45,37 +45,8 @@ if(trim($m_pwd)<>trim($m_pwd2) || trim($m_pwd)=='')
 	}	
 	
 $username = $m_user;
-
-if(stripos($username,'/')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}  
-if(stripos($username,'\\')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'>')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}  
-if(stripos($username,'<')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}  
-if(stripos($username,'?')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'&')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'(')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,')')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'{')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'}')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'%')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'=')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,',')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,':')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,';')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'*')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'#')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'@')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'_')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'+')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'.')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'if')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'--')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'char')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-if(stripos($username,'script')){ShowMsg('用户名禁止使用特殊字符','-1');exit();	}
-
-
 $username = RemoveXSS(stripslashes($username));
 $username = addslashes(cn_substr($username,200));
-
 
 
 $row1=$dsql->GetOne("select username  from sea_member where username='$username'");

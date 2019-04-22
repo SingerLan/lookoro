@@ -309,6 +309,10 @@ if($action=='chgpwdsubmit')
 		ShowMsg('两次输入密码不一致','-1');	
 		exit();	
 	}
+	$email = str_ireplace('base64', "", $email);
+	$email = str_ireplace('(', "", $email);
+	$email = str_ireplace(')', "", $email);
+	$email = str_ireplace('%', "", $email);
 	if(!empty($newpwd)||!empty($email)||!empty($nickname))
 	{
 	if(empty($newpwd)){$pwd = $oldpwd;} else{$pwd = substr(md5($newpwd),5,20);};

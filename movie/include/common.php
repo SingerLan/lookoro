@@ -4,7 +4,8 @@ require_once('webscan/webscan.php');
 define('sea_INC', preg_replace("|[/\\\]{1,}|",'/',dirname(__FILE__) ) );
 define('sea_ROOT', preg_replace("|[/\\\]{1,}|",'/',substr(sea_INC,0,-8) ) );
 define('sea_DATA', sea_ROOT.'/data');
-require_once( sea_INC.'/inc/mysql.php' );
+require_once(sea_INC.'/inc/mysql.php' );
+require_once(sea_INC."/filter.inc.php");
 if(PHP_VERSION < '4.1.0') {
 	$_GET = &$HTTP_GET_VARS;
 	$_POST = &$HTTP_POST_VARS;
@@ -110,11 +111,18 @@ function _RunMagicQuotes(&$svar)
 	return $svar;
 }
 
+
 foreach(Array('_GET','_POST','_COOKIE') as $_request)
 {
-	foreach($$_request as $_k => $_v) ${$_k} = _RunMagicQuotes($_v);
+         foreach($$_request as $_k => $_v) {
+                    if( strlen($_k)>0 && preg_match("/cfg_|GLOBALS/i",$_k) ){
+                            exit('Request var not allow!');
+                   }
+                    ${$_k} = _RunMagicQuotes($_v);
+    }
 }
 
+ 
 //系统相关变量检测
 if(!isset($needFilter))
 {
