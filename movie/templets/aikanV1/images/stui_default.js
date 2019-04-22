@@ -46,7 +46,7 @@ var stui = {
 			})
 		},
 		slide: function() {
-			$.getScript("https://cdn.bootcss.com/flickity/2.0.10/flickity.pkgd.min.js", function() {
+			$.getScript("https://cdn.bootcss.com/flickity/2.2.0/flickity.pkgd.min.js", function() {
 				$(".type-slide").each(function(a) {
 					$index = $(this).find('.active').index()*1;
 					if($index > 3){
@@ -77,7 +77,7 @@ var stui = {
 	},
 	flickity: {
 		carousel: function() {
-			$.getScript("https://cdn.bootcss.com/flickity/2.0.10/flickity.pkgd.min.js", function() {
+			$.getScript("https://cdn.bootcss.com/flickity/2.2.0/flickity.pkgd.min.js", function() {
 				$('.carousel_default').flickity({
 				  	cellAlign: 'left',
 				  	contain: true,

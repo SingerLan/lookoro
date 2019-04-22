@@ -35,7 +35,7 @@
 					<div class="col-md-wide-75 col-xs-1">
 						<div class="stui-content clearfix">
 							<div class="stui-content__thumb">
-								<a class="stui-vodlist__thumb v-thumb lazyload" href="{playpage:playlink}" title="{playpage:name}" data-original="{playpage:pic}"><span class="play active hidden-xs"></span></a>
+								<a class="stui-vodlist__thumb v-thumb lazyload" href="{playpage:playlink}" title="{playpage:name}" data-original="{playpage:pic}"><span class="play active hidden-xs"></span><span style="font-family: Verdana;font-size: 16px; color: #de93a2;position: absolute; top: 5px; left: 5px;">{playpage:douban}</span></a>
 							</div>
 							<div class="stui-content__detail detail">
 								<h3 class="title">{playpage:name}</h3>
@@ -51,7 +51,7 @@
 							<div class="stui-player__detail detail" style="margin-top: 0px;">
 								<div class="detail-content" style="display: none;">
 									<p class="desc margin-0">
-										<span class="left text-muted">简介：</span><span style="font-size:12px">{playpage:des}</span>
+										<span class="left text-muted" style="padding-right: 6px;">简介：</span><span style="font-size:12px">{playpage:des}</span>
 									</p>
 								</div>
 							</div>
@@ -92,9 +92,10 @@
 						<li class="col-md-6 col-sm-4 col-xs-3">
 						<div class="stui-vodlist__box">
 							<a class="stui-vodlist__thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]">
-                                                               <span class="play hidden-xs"></span>
-                                                               <span class="qtag">{if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]集{end if}</span>
-                                                        </a>
+							   <span class="play hidden-xs"></span>
+							   <span class="qtag">{if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]集{end if}</span>
+							   <span style="font-family: Verdana;font-size: 16px; color: #de93a2;position: absolute; top: 5px; left: 5px;">[videolist:douban]</span>
+							</a>
 							<div class="stui-vodlist__detail padding-0">
 								<h4 class="title text-overflow"><a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></h4>
 								<p class="text text-overflow text-muted hidden-xs">[videolist:nolinkactor]</p>

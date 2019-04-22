@@ -83,7 +83,10 @@
 					{seacms:cascadelist size=30 order=time}
 						<li class="col-md-6 col-sm-4 col-xs-3">
 						<div class="stui-vodlist__box">
-							<a class="stui-vodlist__thumb lazyload" href="[cascadelist:link]" title="[cascadelist:name]" data-original="[cascadelist:pic]"><span class="play hidden-xs"></span><span class="qtag">{if:[cascadelist:state]==0}[cascadelist:ver]{else}更新至[cascadelist:state]集{end if}</span></a>
+							<a class="stui-vodlist__thumb lazyload" href="[cascadelist:link]" title="[cascadelist:name]" data-original="[cascadelist:pic]"><span class="play hidden-xs"></span>
+								<span class="qtag">{if:[cascadelist:state]==0}[cascadelist:ver]{else}更新至[cascadelist:state]集{end if}</span>
+								<span style="font-family: Verdana;font-size: 16px; color: #de93a2;position: absolute; top: 5px; left: 5px;">[cascadelist:douban]</span>
+							</a>
 							<div class="stui-vodlist__detail">
 								<h4 class="title text-overflow"><a href="[cascadelist:link]" title="[cascadelist:name]">[cascadelist:name]</a></h4>
 								<p class="text text-overflow text-muted hidden-xs">[cascadelist:nolinkactor]</p>

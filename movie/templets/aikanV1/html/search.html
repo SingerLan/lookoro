@@ -45,7 +45,10 @@
 						{seacms:searchlist size=11 order=time}
 							<li class="active top-line-dot clearfix">
 							<div class="thumb">
-								<a class="v-thumb stui-vodlist__thumb lazyload" href="[searchlist:playlink]" title="[searchlist:name]" data-original="[searchlist:pic]"><span class="play hidden-xs"></span><span class="qtag">{if:[searchlist:state]==0}[searchlist:ver]{else}更新至[searchlist:state]集{end if}</span></a>
+								<a class="v-thumb stui-vodlist__thumb lazyload" href="[searchlist:playlink]" title="[searchlist:name]" data-original="[searchlist:pic]"><span class="play hidden-xs"></span>
+									<span class="qtag">{if:[searchlist:state]==0}[searchlist:ver]{else}更新至[searchlist:state]集{end if}</span>
+									<span style="font-family: Verdana;font-size: 16px; color: #de93a2;position: absolute; top: 5px; left: 5px;">[searchlist:douban]</span>
+								</a>
 							</div>
 							<div class="detail">
 								<h3 class="title"><a href="[searchlist:link]">[searchlist:name]</a></h3>
