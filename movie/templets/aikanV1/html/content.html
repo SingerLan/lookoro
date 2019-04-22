@@ -37,33 +37,24 @@
 							<div class="stui-content__thumb">
 								<a class="stui-vodlist__thumb v-thumb lazyload" href="{playpage:playlink}" title="{playpage:name}" data-original="{playpage:pic}"><span class="play active hidden-xs"></span></a>
 							</div>
-							<div class="stui-content__detail">
+							<div class="stui-content__detail detail">
 								<h3 class="title">{playpage:name}</h3>
 								<p class="data"><span class="text-muted">主演：</span>{playpage:actor}</p>
 								<p class="data"><span class="text-muted">导演：</span>{playpage:director}</p>
 								<p class="data">
 									<span class="text-muted">类型：</span>{playpage:jqtype}<span class="split-line"></span><span class="text-muted hidden-xs">地区：</span>{playpage:publisharea}<span class="split-line"></span><span class="text-muted hidden-xs">年份：</span>{playpage:publishtime}
 								</p>
-								<p class="desc detail hidden-xs">
-									<span class="left text-muted">简介：</span><span class="detail-sketch">{playpage:des len=100}</span><span class="detail-content" style="display: none;"><span style="font-size:12px">{playpage:des}</span></span><a class="detail-more" href="javascript:;">详情 <i class="icon iconfont icon-moreunfold"></i></a>
-								</p>
 								<div class="play-btn clearfix">
-									<div class="share bdsharebuttonbox hidden-sm hidden-xs pull-right">
-										<span class="bds_shere"></span><a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a class="bds_bdhome" data-cmd="bdhome" title="分享到百度新首页"></a><a class="bds_tqf" data-cmd="tqf" title="分享到腾讯朋友"></a><a class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a class="bds_more" data-cmd="more" title="更多"></a>
-									</div>
-									<a class="btn btn-primary" href="{playpage:playlink}">立即播放</a>
+									<a class="btn btn-primary" href="{playpage:playlink}">立即播放</a><span class="split-line"></span><a class="detail-more" href="javascript:;">详情 <i class="icon iconfont icon-moreunfold"></i></a>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-md-wide-25 hidden-md hidden-sm hidden-xs">
-						<div class="text-center" style="padding: 45px;">
-							<p>
-								<img class="qrcode" width="180" height="180"/>
-							</p>
-							<p class="font-12">
-								扫码用手机观看
-							</p>
+							<div class="stui-player__detail detail" style="margin-top: 0px;">
+								<div class="detail-content" style="display: none;">
+									<p class="desc margin-0">
+										<span class="left text-muted">简介：</span><span style="font-size:12px">{playpage:des}</span>
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
