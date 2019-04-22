@@ -23,6 +23,14 @@ foreach($_FILES as $_key=>$_value)
 			exit('Request Error!');
 		}
 	}
+if(!filter_var($_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP)){$_SERVER['HTTP_CLIENT_IP']='0.0.0.0';}
+if(!filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP)){$_SERVER['REMOTE_ADDR']='0.0.0.0';}	
+if(!filter_var($_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)){$_SERVER['HTTP_X_FORWARDED_FOR']='0.0.0.0';}		
+$fskey=array('(',')','<','>','%','0x','|',';','{','}','$','&','*','#','@','[',']');
+$_FILES[$_key]['name']=str_ireplace($fskey,'',$_FILES[$_key]['name']);
+$_FILES[$_key]['tmp_name']=str_ireplace($fskey,'',$_FILES[$_key]['tmp_name']);
+$_SERVER['HTTP_COOKIE']=str_ireplace($fskey,'',$_SERVER['HTTP_COOKIE']);
+	
 	$$_key = $_FILES[$_key]['tmp_name'] = str_replace("\\\\","\\",$_FILES[$_key]['tmp_name']);
 	${$_key.'_name'} = $_FILES[$_key]['name'];
 	${$_key.'_type'} = $_FILES[$_key]['type'] = m_eregi_replace('[^0-9a-z\./]','',$_FILES[$_key]['type']);

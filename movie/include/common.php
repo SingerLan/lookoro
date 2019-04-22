@@ -114,12 +114,7 @@ function _RunMagicQuotes(&$svar)
 
 foreach(Array('_GET','_POST','_COOKIE') as $_request)
 {
-         foreach($$_request as $_k => $_v) {
-                    if( strlen($_k)>0 && preg_match("/cfg_|GLOBALS/i",$_k) ){
-                            exit('Request var not allow!');
-                   }
-                    ${$_k} = _RunMagicQuotes($_v);
-    }
+	foreach($$_request as $_k => $_v) ${$_k} = _RunMagicQuotes($_v);
 }
 
  
