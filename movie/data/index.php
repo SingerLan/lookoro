@@ -11,7 +11,7 @@ if ($_GET['id'] != null)
 {
 	$douban = $_GET['id'];
 	$api1='https://api.douban.com/v2/movie/subject/'.$douban;
-	$api1='http://feifeicms.tianqi.cc/douban/?id='.$douban;
+	$api1='https://api.daicuo.cc/douban/feifeicms/?id='.$douban;
 	$raw[0]=json_decode(file_get_contents($api1));
 	$api2='https://api.douban.com/v2/movie/'.$douban;
 	$raw[1]=json_decode(file_get_contents($api1));
