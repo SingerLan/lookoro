@@ -16,7 +16,8 @@
 		<form class="navbar-form pull-right" accept-charset="utf-8" action="/{seacms:sitepath}search.php" method="POST" role="search">
             <div class="form-group">
 				<input type="text" class="form-control" id="keyword" name="searchword" placeholder="请输入电影名字">
-            </div><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+            </div>
+			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 搜索</button>
         </form>
     </div>
 </div>
@@ -33,9 +34,15 @@
         </ul>
 		<div class="pull-right">
 			<ul class="nav navbar-nav">
-                <li><a href="#">注册</a></li>
-                <li><a href="#">登录</a></li>
+				<li onmouseout="document.getElementById('allhis').style.display='none';" onmouseover="document.getElementById('allhis').style.display='block';">
+					<a><i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;看过<span class="caret"></span></a>
+				</li>
+                <li><a href="/{seacms:sitepath}member.php" class="ilogin"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;会员</a></li>
 			</ul>
+			<div class="dropdown-menu right history clearfix" id="allhis" style="width:281px;overflow:hidden;padding: 15px 15px 0px 15px;border:1px solid #ccc;margin-top:0px;right: auto;" onmouseout="document.getElementById('allhis').style.display='none';" onmouseover="document.getElementById('allhis').style.display='block';">
+				<div style="margin-bottom: 10px;padding-bottom: 10px;border-bottom: 1px solid #e2e2e2;color: #999;">观看历史</div>
+				<script type="text/javascript ">$MH.limit = 10;$MH.WriteHistoryBox(200, 170, 'font');$MH.recordHistory({name: '{playpage:name}',link: '{playpage:url}',pic: '{playpage:pic}'})</script>
+			</div>	
 		</div>
     </div>
 </nav>

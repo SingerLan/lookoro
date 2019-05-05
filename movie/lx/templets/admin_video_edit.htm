@@ -180,9 +180,9 @@
           xhr.onreadystatechange = function(){
               if(xhr.readyState == 4 && xhr.status == 200){
                   var json = JSON.parse(xhr.responseText)
-                  document.addform.v_pic.value            = json.subjects[0].images.large;
+                  document.addform.v_pic.value            = 'http://lab.eming.li/dou/'+ json.subjects[0].id +'.jpg';
                   document.addform.v_douban.value         = json.subjects[0].rating.average;
-				  document.getElementById('douban').value = json.subjects[0].id;
+				          document.getElementById('douban').value = json.subjects[0].id;
                   alert('电影名：' + json.subjects[0].title + '\n分类：' + json.subjects[0].genres);
               }
           }
@@ -213,7 +213,7 @@
 					document.addform.v_len.value         = json.data.vod_length;
 					document.addform.v_lang.value        = json.data.vod_language;
 					document.addform.v_publisharea.value = json.data.vod_area;
-					document.addform.v_pic.value         = json.data.vod_pic;
+					document.addform.v_pic.value         = 'http://lab.eming.li/dou/'+ douban +'.jpg';
 					alert('分类：' + json.data.vod_type);
 				  }
 
