@@ -172,20 +172,8 @@
       <input type="button" value="时光网评分" class="rb1" onclick="ajax_method_mtime();"/>
       <script type="text/javascript">
 		function ajax_method() {
-          var douban = (document.getElementById('v_name').value).replace(/\s+/g,"");
-          var url = 'http://www.lookoro.cn/data/index.php?name='+douban;
-          var xhr = new XMLHttpRequest();
-          xhr.open("get", url);
-          xhr.send();
-          xhr.onreadystatechange = function(){
-              if(xhr.readyState == 4 && xhr.status == 200){
-                  var json = JSON.parse(xhr.responseText)
-                  document.addform.v_pic.value            = 'http://lab.eming.li/dou/'+ json.subjects[0].id +'.jpg';
-                  document.addform.v_douban.value         = json.subjects[0].rating.average;
-				          document.getElementById('douban').value = json.subjects[0].id;
-                  alert('电影名：' + json.subjects[0].title + '\n分类：' + json.subjects[0].genres);
-              }
-          }
+          var douban = document.getElementById('v_name').value;
+          window.open("https://movie.douban.com/subject_search?search_text="+douban);
         }
         function ajax_methodId() {
           var douban = document.getElementById('douban').value;
@@ -213,7 +201,7 @@
 					document.addform.v_len.value         = json.data.vod_length;
 					document.addform.v_lang.value        = json.data.vod_language;
 					document.addform.v_publisharea.value = json.data.vod_area;
-					document.addform.v_pic.value         = 'http://lab.eming.li/dou/'+ douban +'.jpg';
+					document.addform.v_pic.value         = json.data.vod_pic;
 					alert('分类：' + json.data.vod_type);
 				  }
 
