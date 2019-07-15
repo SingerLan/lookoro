@@ -19,7 +19,7 @@ require_once(sea_INC.'/common.func.php');
 //检查和注册外部提交的变量
 foreach($_REQUEST as $_k=>$_v)
 {
-	if( strlen($_k)>0 && m_eregi('^(cfg_|GLOBALS)',$_k) && !isset($_COOKIE[$_k]) )
+	if( strlen($_k)>0 && m_eregi('^(cfg_|GLOBALS|_)',$_k) && !isset($_COOKIE[$_k]) )
 	{
 		exit('Request var not allow!');
 	}

@@ -17,7 +17,7 @@
       <span class="line"></span>
     </div>
     <link rel="stylesheet" type="text/css" href="dplay/dplayer.css" />
-    <script src="https://cdn.jsdelivr.net/npm/cdnbye@latest/dist/hlsjs-p2p-engine.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="dplay/hlsjs-p2p-engine.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="dplay/hls.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="dplay/dplayer.js" type="text/javascript" charset="utf-8"></script>
     <script>var urls = '<?php echo $_GET['url'];?>';

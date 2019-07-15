@@ -3314,6 +3314,7 @@ class MainClass_Template {
 						'fwrite',
 						'file',
 						'system',
+						'GLOBAL',
 						'shell_'
 				), 'Not-Allowed-Words', $v );
 			}
@@ -3419,6 +3420,7 @@ class MainClass_Template {
 						'fwrite',
 						'file',
 						'system',
+						'GLOBAL',
 						'shell_'
 				), 'Not-Allowed-Words', $v );
 			}

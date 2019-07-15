@@ -184,7 +184,7 @@
           xhr.onreadystatechange = function(){
               if(xhr.readyState == 4 && xhr.status == 200){
                   var json = JSON.parse(xhr.responseText);
-				  if (json.status == 200) {
+				  if (json.code == 200) {
 					document.addform.v_nickname.value    = json.data.vod_title;
 					var actor = json.data.vod_actor.split(","); 
 					if (actor.length > 4) {
