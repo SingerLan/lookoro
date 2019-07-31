@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{seacms:strip}
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{playpage:name}在线播放-{playpage:typename}-{seacms:sitename}</title>
+	<meta name="keywords" content="{playpage:name}免费在线观看,{playpage:name}剧情介绍,{playpage:name}电影海报">
+	<meta name="description" content="{playpage:name}剧情:{playpage:des len=50}">
+	<link rel="stylesheet" href="images/css/font_825484_n0b1kv9obl.css" />
+    <link href="images/css/app.9eb223f9f62280ad2e915b067f42709d.css" rel="stylesheet" />
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="images/js/index.js"></script>
+	<script>var sitePath='{seacms:sitepath}'</script>
+	<script type="text/javascript" src="/{seacms:sitepath}js/common.js"></script>
+	<script type="text/javascript" src="/{seacms:sitepath}js/function.js"></script>
+	<script src="/{seacms:sitepath}js/play.js"></script>
+	<script>var playn='{playpage:name}', playp='{playpage:part}';</script>
+  </head>
+  
+  <body style="">
+    <div class="mobile">
+		{seacms:top}
+      <div data-v-539b8744="" class="container">
+        <div data-v-539b8744="" class="play-main">
+          <div data-v-14a49eab="" data-v-539b8744="" class="play">
+            <div data-v-14a49eab="" class="play-con">
+              {playpage:playurlinfo}{playpage:player}
+            </div>
+          </div>
+        </div>
+        <div data-v-539b8744="" class="ainfo-eposide">
+          <div data-v-4013c189="" data-v-539b8744="" class="eposide">
+            <div data-v-4013c189="" class="eposide-header">
+              <span data-v-4013c189="">{if:{playpage:state}==0}{playpage:ver}{else}更新至{playpage:state}集{end if}</span>
+			  <DIV ID="zhankai" style="margin-right: .6rem;">
+              <i data-v-2827ece4="" class="iconfont icon-dianshiyouxiandianshishuzidianshimianxing"></i> 
+			  <span data-v-2827ece4="" id="zhankaitext">展开</span></div></div>
+            <div data-v-4013c189="" class="eposide-con">
+              <div data-v-4013c189="" class="eposide-scroll">
+				{playpage:playlist}
+				<ul id="zhedie" style="display:flex;">[playlist:link target=_self]</ul>
+				{/playpage:playlist}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-v-539b8744="" class="animate-info">
+          <div data-v-539b8744="" class="ainfo-cover" style="background-image: url(&quot;{playpage:pic} &quot;);"></div>
+          <div data-v-539b8744="" class="ainfo-main" url="{playpage:url}">
+            <div data-v-539b8744="" class="ainfo-name">
+              <span data-v-539b8744="">{playpage:name} </span></div>
+            <div data-v-539b8744="" class="ainfo-icon">
+              <div data-v-539b8744="" class="ainfo-icon-list">
+                <i data-v-539b8744="" class="iconfont icon-youtube"></i>
+                <span data-v-539b8744="">{playpage:hit} </span></div>
+              <div data-v-539b8744="" class="ainfo-icon-list">
+                <i data-v-539b8744="" class="iconfont icon-star"></i>
+                <span data-v-539b8744="">{playpage:douban}</span></div>
+			<a href="{seacms:sitepath}../gbook.php" style="color: #515a6e;" data-v-539b8744="" class="ainfo-icon-list ainfo-icon-list-report" title="留言">
+              <div>
+                <i data-v-539b8744="" class="iconfont icon-jubao"></i>
+                <span data-v-539b8744="">问题反馈</span></div></a>
+            </div>
+            <div data-v-539b8744="" class="ainfo-desc"></div>
+          </div>
+        </div>
+      </div>
+{seacms:foot}
+	</div>
+  </body>
+{/seacms:strip}
+</html>

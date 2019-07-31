@@ -51,7 +51,8 @@ if($cfg_feedback_ck=='1')
 	$msg = trimMsg(cn_substrR($m_content, 1024), 1);
 	
 	if(!preg_match("/[".chr(0xa1)."-".chr(0xff)."]/",$msg)){
-		
+		showMsg('你必需输入中文才能发表!','-1');
+		exit();
 	}
 	
 	$reid = empty($reid) ? 0 : intval($reid);
@@ -90,12 +91,12 @@ if($cfg_feedback_ck=='1')
 	$dsql->ExecuteNoneQuery($query);
 	if($needCheck==1)
 	{
-		ShowMsg('感谢您的留言，我们会尽快回复您！','wapgbook.php',0,3000);
+		ShowMsg('感谢您的留言，我们会尽快回复您！','gbook.php',0,3000);
 		exit();	
 	}
 	else
 	{
-		ShowMsg('成功发送一则留言，但需审核后才能显示！','wapgbook.php',0,3000);
+		ShowMsg('成功发送一则留言，但需审核后才能显示！','gbook.php',0,3000);
 		exit();
 	}
 }
@@ -153,7 +154,7 @@ function viewLeaveWord(){
 	$mystr=
 "<div class=\"col-md-9 col-sm-12 hy-main-content\"><div class=\"hy-layout clearfix\"><div class=\"hy-video-head\"><h4 class=\"margin-0\">留言板</h4></div><div class=\"hy-common\">".leaveWordList($_GET['page'])."</div></div></div>".	
 "<div class=\"col-md-3 col-sm-12 hy-main-side\"><div class=\"hy-layout clearfix\"><div class=\"hy-video-head\"><h4 class=\"margin-0\">我要留言</h4></div>".
-"<form id=\"f_leaveword\" class=\"form-horizontal\"  action=\"/".$GLOBALS['cfg_cmspath']."wapgbook.php?action=add\" method=\"post\">".
+"<form id=\"f_leaveword\" class=\"form-horizontal\"  action=\"/".$GLOBALS['cfg_cmspath']."gbook.php?action=add\" method=\"post\">".
 "<input type=\"hidden\" value=\"$userid\" name=\"userid\" />".
 "<input type=\"hidden\" value=\"$uname\" name=\"m_author\" />".
 "<ul class=\"hy-common-text\">".
@@ -186,15 +187,15 @@ function viewLeaveWord2(){
 "<img src=\"templets/id97/html/images/1.jpg\" / >".
 "</div>".
 "<div class=\"content\" style=\"height: auto;\">".
-"<form id=\"f_leaveword\" class=\"form-horizontal\"  action=\"/".$GLOBALS['cfg_cmspath']."wapgbook.php?action=add\" method=\"post\">".
+"<form id=\"f_leaveword\" class=\"form-horizontal\"  action=\"/".$GLOBALS['cfg_cmspath']."gbook.php?action=add\" method=\"post\">".
 "<div class=\"cont-box\" style=\"height: auto;width:auto;margin-bottom: 3px;border: 1px solid #07a7e1;border-radius: 5px;\">".
 "<input value=\"匿名\" placeholder=\"输入昵称\"  name=\"m_author\" id=\"m_author\" size=\"20\" />".
 "</div>".
 "<div class=\"cont-box\" style=\"border-radius: 5px;margin-bottom: 3px;\">".
 "<textarea name=\"m_content\" style=\"width: 100%;height: 100%;\" id=\"m_content\" class=\"text\" placeholder=\"请输入留言...\"></textarea>".
 "</div>".
-"<div class=\"cont-box\" style=\"height: auto;width:auto;border: 0px;display: flex;\">".
-"<input name=\"validate\" class=\"form-control\" type=\"text\" style=\"border: 1px solid #07a7e1;\" id=\"vdcode\" placeholder=\"验证码\" style=\"width:50%;text-transform:uppercase;\" class=\"text\" tabindex=\"3\"/><img id=\"vdimgck\" class=\"pull-right\" style=\"margin-left: 30px;margin-top: 1px;\"  src=\"include/vdimgck.php\" alt=\"看不清？点击更换\"  align=\"absmiddle\"  style=\"cursor:pointer\" onClick=\"this.src=this.src+'?get=' + new Date()\"/>".
+"<div class=\"cont-box\" style=\"height: auto;width:auto;border: 0px;\">".
+"<img id=\"vdimgck\" class=\"pull-right\" style=\"width:70px; height:32px;margin-top: 1px;\"  src=\"include/vdimgck.php\" alt=\"看不清？点击更换\"  align=\"absmiddle\"  style=\"cursor:pointer\" onClick=\"this.src=this.src+'?get=' + new Date()\"/><input name=\"validate\" class=\"form-control\" type=\"text\" id=\"vdcode\" placeholder=\"验证码\" style=\"width:50%;text-transform:uppercase;\" class=\"text\" tabindex=\"3\"/>".
 "</div>".
 "<div class=\"tools-box\" style=\"margin-top: 3px;border-radius: 5px;height: 32px;\" >".
 "<div class=\"operator-box-btn\"><span class=\"face-icon\">☺</span><span class=\"img-icon\">▧</span></div>".
@@ -248,21 +249,12 @@ function leaveWordList($currentPage){
 	$txt.="</ul></div></div></div>";
 	if($TotalResult>10) {
 	unset($i);
-	$txt.="</div></div><ul class=\"stui-page text-center cleafix\">";
-	if($currentPage==1) {
-	$txt.="<li><a>首页</a></li><li><a>上一页</a></li>";
-	} else {
-	$txt.="<li><a title='首页' href=\"/".$GLOBALS['cfg_cmspath']."wapgbook.php?page=1\">首页</a></li><li><a title='前一页' href=\"/".$GLOBALS['cfg_cmspath']."wapgbook.php?page=".($currentPage-1)."\">上一页</a></li>";
-	}
-	
-	$txt.="<li class=\"active visible-xs\"><span class=\"num\">".$currentPage."/".ceil($TotalResult/10)."</span></li>";
-	
-	if($currentPage==$TotalPage){
-		$txt.="<li><a>下一页</a></li><li><a>尾页</a></li>";
-	} else {
-		$txt.="<li><a href=\"/".$GLOBALS['cfg_cmspath']."wapgbook.php?page=".($currentPage+1)."\">下一页</a></li> <li><a href=\"/".$GLOBALS['cfg_cmspath']."wapgbook.php?page=".$TotalPage."\">尾页</a></li>";
-	}
-	 return $txt."</ul>";
+	$txt.="<div style=\"text-align:center;\"><nav role=\"navigation\"><ul class=\"cd-pagination no-space\" style=\"margin-bottom: 0px;\">";
+	if($currentPage==1)$txt.="<li class=\"button\"><a class=\"disabled\" href=\"#\">首页</a></li><li class=\"button\"><a class=\"disabled\" href=\"#\">上一页</a></li>";
+	else $txt.="<li class=\"button\"><a title='首页' href=\"/".$GLOBALS['cfg_cmspath']."gbook.php?page=1\">首页</a></li><li class=\"button\"><a title='前一页' href=\"/".$GLOBALS['cfg_cmspath']."gbook.php?page=".($currentPage-1)."\">上一页</a></li>";
+	if($currentPage==$TotalPage)$txt.="<li class=\"button\"><a class=\"disabled\" href=\"#\">下一页</a></li><li class=\"button\"><a class=\"disabled\" href=\"#\">尾页</a></li>";
+	else $txt.="<li class=\"button\"><a href=\"/".$GLOBALS['cfg_cmspath']."gbook.php?page=".($currentPage+1)."\">下一页</a></li> <li class=\"button\"><a href=\"/".$GLOBALS['cfg_cmspath']."gbook.php?page=".$TotalPage."\">尾页</a></li>";
+	return $txt."</nav></ul></div>";
 	} else {
 		return $txt;
 	}

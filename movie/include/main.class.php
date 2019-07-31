@@ -463,7 +463,7 @@ class MainClass_Template {
 					array_splice ( $rsArray, 0, 0, '全部' );
 					break;
 				case "jq" :
-					$sql = "select tname from sea_jqtype where ishidden=0 AND upid='$jqupid'";
+					$sql = "select tname from sea_jqtype where ishidden=0 AND upid=0";
 					$this->dsql->SetQuery ( $sql );
 					$this->dsql->Execute ( 'zz' );
 					while ( $rowr = $this->dsql->GetObject ( 'zz' ) ) {
