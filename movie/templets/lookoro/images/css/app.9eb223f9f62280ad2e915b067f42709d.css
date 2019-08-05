@@ -9,3 +9,4 @@
 .weixin{max-width: 100%; height: auto;}
 .weixin-tip{display: none; position: fixed; left:0; top:0; bottom:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80);  height: 100%; width: 100%; z-index: 100;}
 .weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
+.small-right[data-v-df0430a2]{position: absolute;bottom: 16.34%;right: 0;background-color: rgba(249, 120, 120, 0.5);color: #fff;padding: .1rem .6rem;display: inline-block;border-radius: 5px 0 5px 0;

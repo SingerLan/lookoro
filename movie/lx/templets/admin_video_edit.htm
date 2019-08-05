@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link  href="img/style.css" rel="stylesheet" type="text/css" />
 <title>影片管理</title>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
 <script src="js/common.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
 <script charset="utf-8" src="editor/kindeditor-min.js"></script>
@@ -170,6 +171,11 @@
       <input type="button" value="获取" class="rb1" onclick="ajax_methodId();"/>
       <input type="button" value="直接获取" class="rb1" onclick="ajax_method();"/>
       <input type="button" value="时光网评分" class="rb1" onclick="ajax_method_mtime();"/>
+		<form action="https://img.yyhy.me/upload.php?type=Sougou" Method="POST" enctype="multipart/form-data">
+			<button type="button" onclick="fileupload.click();" class="btn btn-default" id="toUploaded">选择图片</button>
+			<input type="file" name="fileupload" id="fileupload" style="display:none" accept="image/*" multiple="multiple">
+			<input type="button" value="提交" onclick="doUpload();return false;"/>
+		</form>
       <script type="text/javascript">
 		function ajax_method() {
           var douban = document.getElementById('v_name').value;
@@ -193,7 +199,6 @@
 						document.addform.v_actor.value = json.data.vod_actor;
 					}
 					document.addform.v_director.value    = json.data.vod_director;
-					document.addform.v_name.value        = json.data.vod_name;
 					document.addform.v_publishyear.value = json.data.vod_year;
 					document.getElementsByClassName('ke-edit-iframe')[0].contentDocument.getElementsByClassName('ke-content')[0].innerHTML = json.data.vod_content;
 					document.addform.v_douban.value      = json.data.vod_douban_score;
@@ -208,7 +213,8 @@
               }
           }
         }
-		var url_upload = function(urls) {
+		function url_upload_file() {
+			var a = document.getElementById(url_upload).value;
 			if(urls == "" || urls == null) {
 				alert('请贴入需要上传的网络图片地址.');
 				return
@@ -232,6 +238,42 @@
           var douban = document.getElementById('v_name').value;
           window.open("http://search.mtime.com/search/?q="+douban);
         }
+		function doUpload() {
+			var formData = new FormData();
+			var files = jQuery("#fileupload")[0].files;
+			if (files.length == 0) {
+				alert("请选择文件后再上传！");
+				return;
+			}
+			
+			var flag = 0;
+			for (var i = 0; i < files.length; i++) {
+				formData.append("fileupload", files[i]);
+				jQuery("#toUploaded").html("<span style='color: green;'>努力上传中，请稍候...</span>");
+				
+				jQuery.ajax({
+					url: "https://img.yyhy.me/upload.php?type=Sohu",
+					type: "post",
+					data: formData,
+					cache: false,
+					processData: false,
+					contentType: false,
+					async: true,
+					dataType: "json",
+					success: function (data) {
+						if (++flag == files.length) {
+							jQuery("#toUploaded").html("上传完成");
+						}
+						
+						document.addform.v_pic.value = data.msg;
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert('图片上传失败 - ' + XMLHttpRequest.status);
+						console.error(XMLHttpRequest + textStatus + errorThrown);
+					}
+				})
+			}
+		};
       </script>
 			</td>
 			<tr><td  height="30" class="td_border">&nbsp;备用说明：</td>
