@@ -48,7 +48,7 @@
      </div>
     </div> 
     <div data-v-df0430a2="" class="list">
-		{seacms:videolist type=all num=6 order=hit}
+		{seacms:videolist type=all num=6 order=time commend=1}
 		 <div data-v-df0430a2="" class="item-list">
 		  <div data-v-df0430a2="" class="list-cover">
 		   <a href="[videolist:link]" title="[videolist:name]">
@@ -60,6 +60,9 @@
 			[videolist:name]
 		   </a>
 		  </div>
+			<div data-v-df0430a2="" class="small-right">
+			  {if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]{end if}
+			</div> 
 		 </div>
 		{/seacms:videolist}
     </div> 
@@ -88,6 +91,9 @@
 			   [videolist:name]
 		      </a>
 			</div>
+			<div data-v-df0430a2="" class="small-right">
+			  {if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]{end if}
+			</div> 
 		   </div>   
 		  {/seacms:videolist}	   
       </div>
@@ -96,15 +102,17 @@
     <div data-v-cd1aa6b0="" class="section">
      <div data-v-cd1aa6b0="" class="section-header">
       <div data-v-cd1aa6b0="" class="header-title" style="color: rgb(0, 158, 253);">
-        站长推荐 
+        热播排行 
       </div> 
-      <div data-v-cd1aa6b0="" class="header-link" style="background-color: rgb(0, 158, 253);">
-        查看更多 
-      </div>
+	  <a href="/search.php?searchtype=5&order=hit" title="查看更多">
+		  <div data-v-cd1aa6b0="" class="header-link" style="background-color: rgb(0, 158, 253);">
+			查看更多 
+		  </div>
+	  </a>
      </div> 
      <div data-v-cd1aa6b0="" class="section-main">
       <div data-v-df0430a2="" data-v-cd1aa6b0="" class="list">
-		{seacms:videolist type=all num=6 order=time commend=1}
+		{seacms:videolist type=all num=6 order=hit}
 		   <div data-v-df0430a2="" class="item-list">
 			<div data-v-df0430a2="" class="list-cover">
 			 <a href="[videolist:link]" title="[videolist:name]">
@@ -116,6 +124,9 @@
 			   [videolist:name]
 		      </a>
 			</div>
+			<div data-v-df0430a2="" class="small-right">
+			  {if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]{end if}
+			</div> 
 		   </div>
 	    {/seacms:videolist}
       </div>
@@ -126,7 +137,7 @@
       <div data-v-cd1aa6b0="" class="header-title" style="color: rgb(123, 114, 233);">
         评分排行 
       </div> 
-	  <a href="/search.php?searchtype=5" title="查看更多">
+	  <a href="/search.php?searchtype=5&order=douban" title="查看更多">
 		  <div data-v-cd1aa6b0="" class="header-link" style="background-color: rgb(123, 114, 233);">
 			查看更多 
 		  </div>
@@ -149,6 +160,9 @@
 			<div data-v-df0430a2="" class="small-left">
 			  [videolist:douban]
 			</div> 
+			<div data-v-df0430a2="" class="small-right">
+			  {if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]{end if}
+			</div> 
 		   </div>
 		{/seacms:videolist}
       </div>
@@ -166,7 +180,8 @@
     pagination: '.pagination',
     paginationClickable: true,
 	autoplay: 3000,
-    mode: 'vertical'
+    mode: 'vertical',
+	loop: true
   })
   </script>
   <script type="text/javascript">
