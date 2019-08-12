@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{playpage:name}在线播放-{playpage:typename}-{seacms:sitename}</title>
+	<meta name="keywords" content="{playpage:name}免费在线观看,{playpage:name}剧情介绍,{playpage:name}电影海报">
+	<meta name="description" content="{playpage:name}剧情:{playpage:des len=50}">
+	<link href="images/static/css/style.css" rel="stylesheet">
+    <script>var sitePath = ''</script>
+    <script type="text/javascript" src="images/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="images/static/js/e8d5ae70ab2940a3a002ced2c0d1dd22.js"></script>
+    <script type="text/javascript" src="images/static/js/0a775a3e3236404fba95e0f6e2c4f034.js"></script>
+    <script type="text/javascript" src="images/static/js/82ebb2e5333d409fb4b4fefca58d1df5.js"></script>
+    <link href="/favicon.ico" type="image/x-icon" rel="icon"></head>
+  
+  <body>
+    <div class="menu">
+	  {seacms:top}
+      <div class="wrap">
+        <div class="row">
+          <div class="detail clearfix">
+            <div class="img">
+              <i class="pic" style="background-image:url({playpage:pic});"></i>
+              <a class="alink" href="{playpage:url}" title="{playpage:name}"></a>
+            </div>
+            <div class="text">
+              <h1 class="name">{playpage:name}</h1>
+              <p>
+                <span>更新：</span>{playpage:addtime}</p>
+              <p>
+                <span>状态：</span>{if:{playpage:state}==0}{playpage:ver}{else}更至{playpage:state}集{end if}</p>
+              <p>
+                <span>类型：</span>
+                {playpage:jqtype}</p>
+              <p>
+                <span>地区：</span>
+                {playpage:publisharea}</p>
+              <p>
+                <span>语言：</span>
+                {playpage:lang}</p>
+              <p>
+                <span>豆瓣：</span>{playpage:douban}</p>
+              <p class="actors">
+                <span>主演：</span>
+                {playpage:actor}</p></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="jieshao">
+            <div class="stit clearfix">
+              <i class="ico iline"></i>
+              <span class="sname">剧情介绍</span></div>
+            <div class="jieshao_down">
+              <span style="color: rgb(48, 48, 48); font-family: 微软雅黑; font-size: 14px; background-color: rgb(255, 255, 255);">　时局动荡妖祸横行，上古之妖一目五屠杀整个村庄，降妖僧大痴法师将其收入“点妖录”镇封五面佛头之下。并救下一名男童，取名仁义。二十年后，仁义私自下山“降妖”，路遇花妖莲心、斜眼术士方不正，入妖集了解降妖僧乃达摩坐下沙门所化，对妖只渡不灭。凡是甘愿落入点妖录的，皆会听命于降妖僧号令。另一边，一目五法杖化为万法天尊，伺机让一目五出世。此时等待仁义的将会是一段人生的转折，和此生难释怀的记忆……</span></div>
+          </div>
+        </div>
+        <div id="nucms_downlist">
+		{playpage:playlist}
+		<div class="row">
+		  <div class="playfrom">
+			<i class="iline"></i>
+			<span>[playlist:from]</span></div>
+		  <div class="tablist">
+			<div class="playlist1">
+			  <ul class="ulli clearfix">
+				[playlist:link target=_self]
+			  </ul>
+			</div>
+		  </div>
+		</div>
+		{/playpage:playlist}
+		{playpage:downlist}
+          <div class="row">
+            <div class="playfrom">
+              <i class="iline"></i>
+              <span>[downlist:from]</span></div>[downlist:link]</div>{/playpage:downlist}
+        </div>
+        <div class="row">
+          <div class="xg">
+            <div class="stit clearfix">
+              <i class="ico iline"></i>
+              <span class="sname">你可能也喜欢</span></div>
+            <ul class="ul clearfix">
+			{seacms:videolist type=current order=time num=5}
+              <li>
+                <div class="img">
+                  <i class="pic" style="background-image:url([videolist:pic]);"></i>
+                  <a class="alink" href="[videolist:link]" title="[videolist:name]"></a></div>
+                <div class="text">
+                  <p class="name">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></p>
+                  <p>
+                    <em>主演：</em>[videolist:actor]</p>
+                  <p>
+                    <em>类型：</em>[videolist:nolinkjqtype]</p>
+                  <p>
+                    <em>地区：</em>[videolist:publisharea] </p>
+                  <p>
+                    <em>年代：</em>[videolist:publishtime]</p></div>
+              </li>
+			  {/seacms:videolist}	
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer clearfix">
+        <div class="wrap">
+          <p>免责声明：本站提供的内容均来源于互联网抓取，仅供测试和学习交流,请购买正版以支持您喜欢的影视作品。</p>
+          <p>如有侵权或不愿您的版权作品出现在本站索引结果中，请联系我们。</p>Copyright ©2015-2016
+          <a href="http://m.btbtdy.me">BT电影天堂</a>All Rights Reserved.</div></div>
+      <div class="gotop">
+        <a class="ico gotopbg" href="javascript:;" title="返回顶部"></a>
+      </div>
+    </div>
+    <script src="images/static/js/d37ac82889234a7aa0c3998121393885.js"></script>
+    <script>$('.jieshao_down').readmore({
+        maxHeight: 60,
+        moreLink: '<a href="#" style="color:#337ab7">...展开阅读</a>',
+        lessLink: '<a href="#" style="color:#337ab7">收起</a>',
+        afterToggle: function(trigger, element, expanded) {
+          if (!expanded) { // The "Close" link was clicked
+            $('html, body').animate({
+              scrollTop: element.offset().top
+            },
+            {
+              duration: 100
+            });
+          }
+        }
+      });
+      getVideodown('17056');
+      getVideoHit('17056');</script>
+  </body>
+
+</html>

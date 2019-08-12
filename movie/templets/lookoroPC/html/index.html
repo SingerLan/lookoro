@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<title>{seacms:sitename}</title>
+	<meta name="keywords" content="{seacms:sitenotice}">
+	<meta name="description" content="{seacms:des}">	
+	<link rel="stylesheet" type="text/css" href="images/static/css/css.css" />
+    <script type="text/javascript" src="images/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="images/static/js/compress.js"></script>
+    <script type="text/javascript" src="images/static/js/common.js"></script>
+    <script type="text/javascript" src="images/static/js/function.js"></script>
+	<script>var sitePath='{seacms:sitepath}'</script>
+    <link rel="shortcut icon" type="image/x-ico" href="favicon.ico" />
+  </head>  
+  <body>
+    {seacms:top}
+    <div class="focusBox">
+      <ul class="pic">
+	  {seacms:videolist type=all commend=5 num=5 }
+        <li>
+          <a href="[videolist:link]" target="_blank" title="[videolist:name]">
+            <img src="[videolist:spic]" />
+            <div class="title">
+              <p class="title1">[videolist:name]</p></div>
+          </a>
+        </li>
+	  {/seacms:videolist}
+      </ul>
+      <a class="prev" href="javascript:void(0)"></a>
+      <a class="next" href="javascript:void(0)"></a>
+      <div class="switch">
+        <ul class="hd">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript">jQuery(".focusBox").hover(function() {
+        jQuery(this).find(".prev,.next").stop(true, true).fadeTo("show", 0.2)
+      },
+      function() {
+        jQuery(this).find(".prev,.next").fadeOut()
+      });
+      jQuery(".focusBox").slide({
+        mainCell: ".pic",
+        effect: "fold",
+        autoPlay: true,
+        delayTime: 200,
+        trigger: "click"
+      });</script>
+    <div class="index_ui">
+      <p align="center">
+        <font color="#FF0000" size="4">
+          <span style="font-weight: 700; background-color: #FFFF00">公告：&nbsp;由于原&nbsp;btbtdy.com&nbsp;用于跳转，请大家访问，收藏 &nbsp;btbtdy.net&nbsp; btbtdy.me&nbsp; btbtdy.tv &nbsp;谢谢！</span></font>
+      </p>
+      <div class="index_ui_2">
+        <div class="cts">
+          <div class="cts_a01">
+            <h2>
+              <a href="/hot/" title="今日热门">今日热门</a></h2>
+            <ul class="cts_a01_1 hd">
+              <li class="on">电影</li>
+              <li>电视剧</li>
+              <li>动漫</li></ul>
+            <ul class="rt cts_a01_2">
+			{seacms:videolist type=all commend=1 num=5 }
+              <li>
+                <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></li>
+			{/seacms:videolist}
+            </ul>
+          </div>
+          <div class="cts_a02 bd">
+            <ul class="cts_list list_lis">
+			{seacms:videolist type=1 num=10 order=dayhit }
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img src="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+			{seacms:videolist type=2 num=10 order=dayhit }
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img src="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+			{seacms:videolist type=4 num=10 order=dayhit }
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img src="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+          </div>
+        </div>
+        <div class="side rt">
+          <h2>
+            <a href="/new/" target="_blank">最近更新</a></h2>　
+          <ul>
+		  {seacms:videolist type=all num=11 order=time }
+            <li>
+              <div class="img">
+                <a href="[videolist:link]" class="preview" rel="[videolist:pic]" title="[videolist:name]">
+                  <img width="30" height="42" src="[videolist:pic]" alt="[videolist:name]"></a></div>
+              <div class="title">
+                <a href="[videolist:link]" title="[videolist:name]">
+                  <p style="color:green;">[videolist:name]</p>
+                  <p class="star">
+					<script type="text/javascript">
+						var arr = [videolist:douban]+'';
+						arr=arr.substring(0,1);
+						document.writeln('<span class="star'+ arr +'"></span>[videolist:douban]');
+					</script>
+                  </p>
+                </a>
+              </div>
+            </li>
+		  {/seacms:videolist}
+          </ul>
+        </div>
+      </div>
+      <div class="index_ui_2">
+        <div class="cts">
+          <div class="cts_a01">
+            <h2>
+              <a href="/btfl/dy1.html" title="电影资源">电影资源</a></h2>
+            <ul class="cts_a01_1 hd">
+              <li class="on">欧美</li>
+              <li>大陆</li>
+              <li>日韩</li>
+              <li>港台</li></ul>
+            <ul class="rt cts_a01_2">
+			{seacms:videolist type=1 num=5 commend=1 order=hit }
+              <li>
+                <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></li>
+			{/seacms:videolist}
+            </ul>
+          </div>
+          <div class="cts_a02 bd">
+            <ul class="cts_list list_lis">
+			{seacms:videolist type=1 num=10 order=time area=欧美}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+              {seacms:videolist type=1 num=10 order=time area=大陆}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+            {seacms:videolist type=1 num=10 order=time area=日本,韩国}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+            {seacms:videolist type=1 num=10 order=time area=香港,台湾}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+          </div>
+        </div>
+        <div class="side rt">
+          <h2>
+            <a href="/new/dianying/" target="_blank">最新电影</a></h2>
+          <ul>
+		  {seacms:videolist type=1 num=11 order=time }
+			<li>
+              <div class="img">
+                <a href="[videolist:link]" class="preview" rel="[videolist:pic]" title="[videolist:name]">
+                  <img width="30" height="42" src="[videolist:pic]" alt="[videolist:name]"></a></div>
+              <div class="title">
+                <a href="[videolist:link]" title="[videolist:name]">
+                  <p style="color:green;">[videolist:name]</p>
+                  <p class="star">
+					<script type="text/javascript">
+						var arr = [videolist:douban]+'';
+						arr=arr.substring(0,1);
+						document.writeln('<span class="star'+ arr +'"></span>[videolist:douban]');
+					</script>
+                  </p>
+                </a>
+              </div>
+            </li>
+		  {/seacms:videolist}
+          </ul>
+        </div>
+      </div>
+      <div class="index_ui_2">
+        <div class="cts">
+          <div class="cts_a01">
+            <h2>
+              <a href="/btfl/dy30.html" title="电视剧资源">电视剧资源</a></h2>
+            <ul class="cts_a01_1 hd">
+              <li class="on">欧美</li>
+              <li>大陆</li>
+              <li>日韩</li>
+              <li>港台</li></ul>
+           <ul class="rt cts_a01_2">
+			{seacms:videolist type=2 num=5 commend=1 order=hit }
+              <li>
+                <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></li>
+			{/seacms:videolist}
+            </ul>
+          </div>
+          <div class="cts_a02 bd">
+            <ul class="cts_list list_lis">
+			{seacms:videolist type=15 num=10 order=time}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+             {seacms:videolist type=13 num=10 order=time}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+            {seacms:videolist type=16 num=10 order=time}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+              {seacms:videolist type=14 num=10 order=time}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+          </div>
+        </div>
+        <div class="side rt">
+          <h2>
+            <a href="/new/dianshiju/" target="_blank">最新电视剧</a></h2>
+          <ul>
+		  {seacms:videolist type=2 num=11 order=time }
+			<li>
+              <div class="img">
+                <a href="[videolist:link]" class="preview" rel="[videolist:pic]" title="[videolist:name]">
+                  <img width="30" height="42" src="[videolist:pic]" alt="[videolist:name]"></a></div>
+              <div class="title">
+                <a href="[videolist:link]" title="[videolist:name]">
+                  <p style="color:green;">[videolist:name]</p>
+                  <p class="star">
+					<script type="text/javascript">
+						var arr = [videolist:douban]+'';
+						arr=arr.substring(0,1);
+						document.writeln('<span class="star'+ arr +'"></span>[videolist:douban]');
+					</script>
+                  </p>
+                </a>
+              </div>
+            </li>
+		  {/seacms:videolist}
+          </ul>
+        </div>
+      </div>
+      <div class="index_ui_2">
+        <div class="cts">
+          <div class="cts_a01">
+            <h2>
+              <a href="/btfl/dy34.html" title="动漫资源">动漫资源</a></h2>
+            <ul class="cts_a01_1 hd">
+              <li class="on">日本</li>
+              <li>大陆</li>
+              <li>欧美</li></ul>
+            <ul class="rt cts_a01_2">
+			{seacms:videolist type=4 num=5 commend=1 order=hit }
+              <li>
+                <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></li>
+			{/seacms:videolist}
+            </ul>
+          </div>
+		<div class="cts_a02 bd">
+            <ul class="cts_list list_lis">
+			{seacms:videolist type=4 num=10 order=time area=日本}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+            {seacms:videolist type=4 num=10 order=time area=大陆}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+            <ul class="cts_list list_lis">
+              {seacms:videolist type=4 num=10 order=time area=欧美}
+              <li>
+                <div class="liimg">
+                  <a class="pic_link" href="[videolist:link]" title="[videolist:name]">
+                    <i>
+                    </i>
+                    <img class="lazy" data-original="[videolist:pic]" alt="[videolist:name]" />
+                    <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+                </div>
+                <div class="cts_ms">
+                  <p class="title">
+                    <a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a>
+                    <span>[videolist:douban]</span></p>
+                  <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+              </li>
+			{/seacms:videolist}
+            </ul>
+          </div>
+        </div>
+        <div class="side rt">
+          <h2>
+            <a href="/new/dongman/" target="_blank">最新动漫</a></h2>
+          <ul>
+		  	{seacms:videolist type=4 num=11 order=time }
+			<li>
+              <div class="img">
+                <a href="[videolist:link]" class="preview" rel="[videolist:pic]" title="[videolist:name]">
+                  <img width="30" height="42" src="[videolist:pic]" alt="[videolist:name]"></a></div>
+              <div class="title">
+                <a href="[videolist:link]" title="[videolist:name]">
+                  <p style="color:green;">[videolist:name]</p>
+                  <p class="star">
+					<script type="text/javascript">
+						var arr = [videolist:douban]+'';
+						arr=arr.substring(0,1);
+						document.writeln('<span class="star'+ arr +'"></span>[videolist:douban]');
+					</script>
+                  </p>
+                </a>
+              </div>
+            </li>
+		  {/seacms:videolist}
+          </ul>
+        </div>
+      </div>
+      <!--友链-->
+      <h3 class="margin-0">友情链接：
+        <a target="_blank" href="http://btbtdy.net/">BT电影天堂</a>|&nbsp;
+        <a target="_blank" href="http://www.btjia.com/">bt之家</a>|&nbsp;
+        <a target="_blank" href="http://pianyuan.net/">片源网</a>|&nbsp;
+        <a target="_blank" href="https://www.zimuku.cn/">字幕库</a>|&nbsp;
+        <a target="_blank" href="http://www.80s.la/">80s电影网</a></h3>
+      <!--end 友链 --></div>
+	{seacms:foot}
+  </body>
+
+</html>

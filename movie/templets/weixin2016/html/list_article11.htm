@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="applicable-device" content="pc,mobile">
+<title>{channelpage:typename}第{channelpage:page}页 - {channelpage:title} - {seacms:sitename}</title>
+<meta name="keywords" content="{channelpage:keywords}" />
+<meta name="description" content="{channelpage:typename}第{channelpage:page}页 - {channelpage:description}" />
+<link href="images/style.css" rel="stylesheet">
+<link href="images/xunlei.css" rel="stylesheet"  />
+<script src="images/js/xunlei.js"></script>
+<script>var sitePath=''</script>
+<script>
+function nofind(e){ 
+ return e.src='images/default.png';
+}
+</script>
+<script src="images/js/jquery-1.4.4.min.js"></script>
+<script src="images/js/common.js"></script>
+<script src="images/js/function.js"></script>
+<script src="images/js/jquery.lazyload.js"></script>
+<!--[if lt IE 9]>
+<script src="images/js/html5shiv.min.js"></script>
+<script src="images/js/respond.min.js"></script>
+<![endif]-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?763b453655aee8bbb29937aa654d7965";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+{seacms:top}
+<div class="main"><h1 class="title">{channelpage:typetext}</h1><div class="sy-all mb clearfix"><div class="sy-title clearfix"><p class="type"><span class="type">{channelpage:typename}</span></p><p class="chg sbtn" _s_nav="sj-gjsy">筛选<i class="sjbgs"></i><i class="sjbgx"></i></p></div><div class="sy-nav-down clearfix"><div id="sj-gjsy" class="sy clearfix" _s_nav="sj-gjsy" style="display:none;"><dl class="clearfix"><dt><span>按分类</span></dt>{seacms:typecaslist}<dd><a href="[typecaslist:link]"{if:[typecaslist:value]={channelpage:typename}} class="on"{end if}>[typecaslist:value]</a></dd>{/seacms:typecaslist}</dl><dl class="clearfix"><dt><span>按年代</span></dt>{seacms:yearcaslist}<dd><a href="[yearcaslist:link]">[yearcaslist:value]
+</a></dd>{/seacms:yearcaslist}</dl><dl class="clearfix"><dt><span>按地区</span></dt>{seacms:areacaslist}<dd><a href="[areacaslist:link]">[areacaslist:value]
+</a></dd>{/seacms:areacaslist}</dl></div></div></div><div class="sy-jg mb"><p class="px"><a class="time on" href="{channelpage:order-time-link}"><em></em>最新</a><a class="rq" href="{channelpage:order-hit-link}"><em></em>人气</a><a class="tj" href="{channelpage:order-commend-link}"><em></em>推荐</a></p><p class="jg">共<span class="count">{channellist:recordcount}</span>个筛选结果</p></div><div class="index-area clearfix"><ul>
+{seacms:channellist size=30 order=time}<li class="p1 m1{if:[channellist:i]% 6==0} mmr0 pmr0{end if}"><a class="link-hover" href="[channellist:link]" title="[channellist:name]"><img onerror="nofind(this)"   class="lazy" data-original="[channellist:pic]" src="/pic/load.gif" alt="[channellist:name]"><span class="video-bg"></span><span class="lzbz"><p class="name">[channellist:name]</p><p class="actor"></p><p class="actor">[channellist:typename]</p><p class="actor">[channellist:publishtime]/[channellist:publisharea]</p></span><p class="other"><i>[channellist:note]</i></p></a></li>{/seacms:channellist}</ul></div><div class="page mb clearfix">[channellist:pagenumber len=10]</div></div>
+{seacms:foot}
+</body></html>

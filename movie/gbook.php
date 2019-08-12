@@ -1,14 +1,9 @@
 <?php
 session_start();
 require_once("include/common.php");
-//前置跳转start
-$cs=$_SERVER["REQUEST_URI"];
-if($GLOBALS['cfg_mskin']==3 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost$cs");}
-if($GLOBALS['cfg_mskin']==4 AND $GLOBALS['isMobile']==1){header("location:$cfg_mhost");}
-//前置跳转end
 require_once(sea_INC."/filter.inc.php");
 require_once(sea_INC.'/main.class.php');
- 
+
 if($cfg_feedbackstart=='0'){
 	showMsg('对不起，留言暂时关闭','-1');
 	exit();
@@ -23,7 +18,7 @@ if($action=='add')
 	$ip = GetIP();
 	$dtime = time();
 	
-	//检查验证码是否正确 
+	//检查验证码是否正确
 if($cfg_feedback_ck=='1')
 {	
 	$validate = empty($validate) ? '' : strtolower(trim($validate));

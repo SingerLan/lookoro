@@ -1,0 +1,26 @@
+<div class="footer clearfix">
+  <p>时代影视内容均来源于网络相关站点，已注明来源如乐视、爱奇艺、优酷土豆、西瓜影音、吉吉影音等。</p>
+  <p> {seacms:sitename}每日更新2016最新电视剧及好看的电影推荐，好看的电视剧大全及最新电影、微电影在线观看。</p>
+  </div>
+<div class="ct-r">
+  <script type="text/javascript">
+//平台、设备和操作系统
+ var system ={
+ win : false,
+ mac : false,
+ xll : false
+ };
+ //检测平台
+ var p = navigator.platform;
+ system.win = p.indexOf("Win") == 0;
+ system.mac = p.indexOf("Mac") == 0;
+ system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+ //跳转语句
+ if(system.win||system.mac||system.xll){
+ document.writeln('<script type="text/javascript" src="images/js/allduilian-pc.js"><\/script>');
+ }else{
+ document.writeln('<script type="text/javascript" src="images/js/dibu-shouji.js"><\/script>');
+ }
+</script>
+</div>
+<div class="gotop"><a class="gotopbg" href="javascript:;" title="返回顶部"></a></div>

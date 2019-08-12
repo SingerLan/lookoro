@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="applicable-device" content="pc,mobile">
+	<title>{seacms:sitename}-高级搜索</title>
+	<meta name="keywords" content="{seacms:sitenotice}">
+	<meta name="description" content="{seacms:des}">
+    <link href="images/static/css/style.css" rel="stylesheet">
+    <script>var sitePath = ''</script>
+    <script type="text/javascript" src="images/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="images/static/js/e8d5ae70ab2940a3a002ced2c0d1dd22.js"></script>
+    <script type="text/javascript" src="images/static/js/0a775a3e3236404fba95e0f6e2c4f034.js"></script>
+    <script type="text/javascript" src="images/static/js/82ebb2e5333d409fb4b4fefca58d1df5.js"></script>
+    <link href="/favicon.ico" type="image/x-icon" rel="icon"></head>
+  <div class="menu">
+     {seacms:top}
+    <div class="wrap">
+      <div class="row">
+        <div class="case clearfix">
+          <div class="px">
+			<a {if:{searchpage:ordername}=="time"} class="on"{end if} href="{searchpage:order-time-link}">最新</a>
+			<a {if:{searchpage:ordername}=="hit"} class="on"{end if} href="{searchpage:order-hit-link}">热门</a>
+			<a {if:{searchpage:ordername}=="score"} class="on"{end if} href="{searchpage:order-score-link}">评分</a>
+			</div>
+          <div class="sx zk">
+            <span class="sx_name">＋展开筛选</span>
+            <!-- <i class="ico sx_bg"></i> --></div>
+        </div>
+        <div id="select" class="select">
+          <div class="selectlist clearfix">
+            <div class="ico l">
+              <span>栏目</span></div>
+            <div class="r">
+				{seacms:typeitemlist type=top}
+				<a {if:[typeitemlist:tid]=={searchpage:type}}class="on"{end if} href="[typeitemlist:link]">
+				<em>[typeitemlist:value]</em>
+				</a>
+				{/seacms:typeitemlist}
+            </div>
+          </div>
+          <div class="selectlist clearfix">
+            <div class="ico l">
+              <span>剧情</span></div>
+            <div class="r">
+			  {seacms:jqitemlist}
+              <a {if:[jqitemlist:value]=={searchpage:jq}}class="on"{end if} href="[jqcaslist:link]"><em>[jqitemlist:value]</em></a>
+			  {/seacms:jqitemlist}
+            </div>
+          </div>
+          <div class="selectlist clearfix">
+            <div class="ico l">
+              <span>地区</span></div>
+            <div class="r">
+              {seacms:areaitemlist}
+			  <a {if:[areaitemlist:value]=={searchpage:area}}class="on"{end if} href="[areaitemlist:link]"><em>[areaitemlist:value]</em></a>
+			  {/seacms:areaitemlist}
+            </div>
+          </div>
+          <div class="selectlist clearfix">
+            <div class="ico l">
+              <span>年代</span></div>
+            <div class="r">
+              {seacms:yearitemlist}
+			  <a {if:[yearitemlist:value]=={searchpage:year}}class="on"{end if} href="[yearcaslist:link]"><em>[yearitemlist:value]</em></a>
+			  {/seacms:yearitemlist}
+            </div>
+          </div>
+        </div>
+        <div class="list">
+          <ul class="ul clearfix">
+		  {seacms:cascadelist num=36 size=36 order=time type=current}
+            <li>
+              <div class="img">
+                <i class="pic" style="background-image:url([cascadelist:pic]);"></i>
+                <span class="rgba1">{if:[cascadelist:state]==0}[cascadelist:ver]{else}更至[cascadelist:state]集{end if}</span></div>
+              <div class="text">
+                <p class="name">[cascadelist:name]</p>
+                <p class="actor">主演：[videolist:nolinkactor]</p></div>
+              <a class="alink" href="[cascadelist:link]" title="[cascadelist:name]"></a>
+            </li>
+		  {/seacms:cascadelist}
+          </ul>
+        </div>
+      </div>
+      <div class="page clearfix">
+	  	 {if:1<>{cascadelist:page}}
+		  <a class="on" href="{cascadelist:firstlink}">1..</a>
+		  <a class="on" href="{cascadelist:backlink}">◀</a>
+		 {end if}
+		 {cascadelist:pagenumber len=8}
+			{if:{cascadelist:page}<>[pagenumber:page]}
+		  <a href="[pagenumber:link]">[pagenumber:page]</a>
+			{else}
+		  <em class="on">[pagenumber:page]</em>
+			{end if}
+		 {/cascadelist:pagenumber}
+		 {if:{cascadelist:pagecount}<>{cascadelist:page}}
+		  <a class="on" href="{cascadelist:nextlink}">▶</a>
+		  <a class="on" href="{cascadelist:lastlink}">..{cascadelist:pagecount}</a>{end if}</div>
+    </div>
+    <div class="footer clearfix">
+      <div class="wrap">
+        <p>免责声明：本站提供的内容均来源于互联网抓取，仅供测试和学习交流,请购买正版以支持您喜欢的影视作品。</p>
+        <p>如有侵权或不愿您的版权作品出现在本站索引结果中，请联系我们。</p>Copyright ©2015-2016
+        <a href="http://m.btbtdy.me">BT电影天堂</a>All Rights Reserved.</div></div>
+    <div class="gotop">
+      <a class="ico gotopbg" href="javascript:;" title="返回顶部"></a>
+    </div>
+  </div>
+  </body>
+
+</html>

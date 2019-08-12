@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <meta charset="UTF-8">
+	<title>用户登录-{seacms:sitename}</title>
+	<meta name="keywords" content="用户登录-{seacms:sitename}">
+	<meta name="description" content="用户登录-{seacms:sitename}">	
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <script>var sitePath='{seacms:sitepath}'</script>
+    <link rel="stylesheet" type="text/css" href="images/static/css/css.css" />
+    <script type="text/javascript" src="images/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="images/static/js/compress.js"></script>
+    <script type="text/javascript" src="images/static/js/common.js"></script>
+    <script type="text/javascript" src="images/static/js/function.js"></script>
+    <link rel="shortcut icon" type="image/x-ico" href="favicon.ico" />
+    <style>#login{width:1170px;margin:0 auto;padding:40px 0 80px 0;}#login img {padding-top:10px;}#login input{font-size:14px;padding:8px 12px;border:1px solid #ccc;border-radius:4px;}#login input{margin-bottom:15px;}#login .btn{cursor:pointer;color:#fff;background-color:#1278f6;margin-top:30px;}#login .a2{width:100px;margin-left:5px;padding:2px;background:#ccc;}#login .righta{background:#ccc url(images/static/images/righta.gif)no-repeat;padding-left:25px;padding-right:3px;}#login .error{background:#ccc url(images/static/images/error.gif)no-repeat;padding-left:25px;padding-right:3px;}</style></head>
+  
+  <body>
+    {seacms:top}
+    <div id="login">
+      <form id="f_login" action="/login.php" method="post">
+        <input type="hidden" value="login" name="dopost" />
+        <div height="25" style="font-weight:700;margin-bottom:5px;font-size:12px;">用户名</div>
+        <div>
+          <input type="input" name="userid" id="login_m_user" placeholder="请输入用户名或邮箱" style="width:450px" /></div>
+        <div height="25" style="font-weight:700;margin-bottom:5px;font-size:12px;">密码</div>
+        <div>
+          <input type="password" id="password" placeholder="请输入密码" name="pwd" style="width:450px" /></div>
+        <div height="25" style="font-weight:700;margin-bottom:5px;font-size:12px;">验证码</div>
+        <div class="vdcode">
+          <input name="validate" name="validate" id="vdcode" placeholder="请输入验证码" autocomplete="off" type="text" style='width:450px;text-transform:uppercase;' class="text" /></div>
+        <div>
+          <img id="vdimgck" src="/include/vdimgck.php" alt="看不清？点击更换" align="absmiddle" style="cursor:pointer" onClick="this.src=this.src+'?'" /></div>
+        <div style="padding-top:20px;">
+          <input type="checkbox" name="remember" value="on" style="vertical-align:middle;margin-bottom:0px;">七天自动登录</div>
+        <div height="30"></div>
+        <div>
+          <input type="submit" id="send" value="立即登录" class="btn" style="margin-top:20px;" /></div>
+      </form>
+    </div>
+    {seacms:foot}
+  </body>
+
+</html>

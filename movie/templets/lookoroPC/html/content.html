@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>{playpage:name}在线播放-{playpage:typename}-{seacms:sitename}</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<meta name="keywords" content="{playpage:name}免费在线观看,{playpage:name}剧情介绍,{playpage:name}电影海报">
+	<meta name="description" content="{playpage:name}剧情:{playpage:des len=50}">
+    <link rel="stylesheet" type="text/css" href="images/static/css/css.css" />
+    <script type="text/javascript" src="images/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="images/static/js/compress.js"></script>
+    <script type="text/javascript" src="images/static/js/common.js"></script>
+    <script type="text/javascript" src="images/static/js/function.js"></script>
+    <link rel="shortcut icon" type="image/x-ico" href="/favicon.ico" />
+	<script>var sitePath='{seacms:sitepath}'</script>
+	</head>
+  
+  <body>
+	{seacms:top}
+    <div class="topur">
+      <div class="play">
+        <div class="daohang">当前位置：
+          <a href='/index.html'>首页</a>»
+          <a href="{playpage:typelink}">{playpage:typename}</a>»
+          <a href="{playpage:url}">{playpage:name} </a></div>
+        <div class="vod">
+          <div class="vod_img lf">
+            <img src="{playpage:pic}" alt="{playpage:name}" /></div>
+          <div class="vod_intro rt">
+            <h1>{playpage:name} 
+              <span class="year">({playpage:publishtime})</span></h1>
+            <dl>
+              <dt>更新:</dt>
+              <dd>{playpage:addtime}</dd>
+              <dt>状态:</dt>
+              <dd>{if:{playpage:state}==0}{playpage:ver}{else}共{playpage:vodtotal}集,更至{playpage:state}集{end if}</dd>
+              <dt>类型:</dt>
+              <dd>
+                <a href="{playpage:typelink}">{playpage:typename}</a>&nbsp;&nbsp;
+				{playpage:jqtype}</dd>
+              <dt>地区:</dt>
+              <dd>
+                {playpage:publisharea}</dd>
+              <dt>语言:</dt>
+              <dd>
+                {playpage:lang}</dd>
+              <dt>豆瓣:</dt>
+              <dd>{playpage:douban}</dd>
+              <dt>主演:</dt>
+              <dd class="zhuyan">
+                {playpage:actor}
+			  </dd>
+            </dl>
+            <div id="bdshare" style="z-index:1;" class="bdshare_t bds_tools_24 get-codes-bdshare">
+              <a class="bds_qzone"></a>
+              <a class="bds_tqq"></a>
+              <a class="bds_tsina"></a>
+              <a class="bds_renren"></a>
+              <a class="bds_douban"></a>
+              <span class="bds_more"></span>
+              <a class="shareCount"></a>
+            </div>
+            <script type="text/javascript">markVideo(16921, 0, 0, 0, 5, 0); //markVideo2(16921,0,5);
+              </script>
+            <div class="des">
+              <div class="c05">
+                <strong>剧情介绍：</strong>
+                <p style="margin: 4px 0px 0px; padding: 0px; color: rgb(48, 48, 48); font-family: 微软雅黑; font-size: 14px; background-color: rgb(255, 255, 255);">{playpage:des}</p></div>
+			</div>
+          </div>
+        </div>
+        <div id="nucms_downlist">
+		{playpage:playlist}
+          <div class="p_list">
+            <h2>[playlist:from]</h2>
+            <ul class="p_list_03">
+				[playlist:link target=_self]
+			</ul>
+		  </div>
+		{/playpage:playlist}
+          <a name="download"></a>
+		{playpage:downlist}
+          <div class="p_list">
+            <h2>[downlist:from]</h2>
+            <ul class="p_list_02">
+              [downlist:link]
+            </ul>
+          </div>
+		{/playpage:downlist}
+        </div>
+        <div class="p_list">
+          <h3>随机推荐</h3>
+          <ul class="c_t list_lis cts_list">
+		  {seacms:videolist type=current order=time num=10}
+            <li>
+              <div class="liimg">
+                <a class="pic_link" href="[videolist:link]" title="[videolist:name]" target="_blank">
+                  <i>
+                  </i>
+                  <img src="[videolist:pic]" alt="[videolist:name]" />
+                  <span>{if:[videolist:state]==0}[videolist:ver]{else}共[videolist:vodtotal]集,更至[videolist:state]集{end if}</span></a>
+              </div>
+              <div class="cts_ms">
+                <p class="title">
+                  <a href="[videolist:link]" title="[videolist:name]" target="_blank">[videolist:name]</a>
+                  <span>[videolist:douban]</span></p>
+                <p class="des">[videolist:publishtime]年 [videolist:publisharea] [videolist:nolinkjqtype]</p></div>
+            </li>
+		  {/seacms:videolist}	
+          </ul>
+        </div>
+        <a name="comment"></a>
+        <div class="p_list" style="margin-bottom:12px;">
+          <div style="padding:10px;">
+            <div id="comment_list">评论加载中...</div>
+            <script>viewComment("/comment.php?id=16921&type=0", "")</script></div>
+        </div>
+      </div>
+      <div class="rt tp">
+        <div class="side">
+          <h3>最近更新</h3>
+          <ul>
+		  {seacms:videolist type=all num=11 order=time }
+            <li>
+              <div class="img">
+                <a href="[videolist:link]" class="preview" rel="[videolist:pic]" title="[videolist:name]">
+                  <img width="30" height="42" src="[videolist:pic]" alt="[videolist:name]"></a></div>
+              <div class="title">
+                <a href="[videolist:link]" title="[videolist:name]">
+                  <p style="color:green;">[videolist:name]</p>
+                  <p class="star">
+					<script type="text/javascript">
+						var arr = [videolist:douban]+'';
+						arr=arr.substring(0,1);
+						document.writeln('<span class="star'+ arr +'"></span>[videolist:douban]');
+					</script>
+                  </p>
+                </a>
+              </div>
+            </li>
+		  {/seacms:videolist}
+          </ul>
+        </div>
+        <div class="side tp1" id="top_rt">
+          <h3>本周热门</h3>
+          <ul>
+		  {seacms:videolist type=all num=11 order=weekhit }
+            <li>
+              <div class="img">
+                <a href="[videolist:link]" class="preview" rel="[videolist:pic]" title="[videolist:name]">
+                  <img width="30" height="42" src="[videolist:pic]" alt="[videolist:name]"></a></div>
+              <div class="title">
+                <a href="[videolist:link]" title="[videolist:name]">
+                  <p style="color:green;">[videolist:name]</p>
+                  <p class="star">
+					<script type="text/javascript">
+						var arr = [videolist:douban]+'';
+						arr=arr.substring(0,1);
+						document.writeln('<span class="star'+ arr +'"></span>[videolist:douban]');
+					</script>
+                  </p>
+                </a>
+              </div>
+            </li>
+		  {/seacms:videolist}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {seacms:foot}
+  </body>
+
+</html>

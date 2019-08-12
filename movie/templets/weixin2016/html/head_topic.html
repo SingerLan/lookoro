@@ -1,0 +1,58 @@
+<div id="container">
+<div id="ttl">
+  <div class="ttlr"> <a href="#" onClick="setHome(this,'http://{seacms:siteurl}')">设为首页</a> | <a href="javascript:void(0)" onClick="addFavorite('http://{seacms:siteurl}','{seacms:sitename}');">加入收藏</a> | <a href="/{seacms:sitepath}help.html">网站帮助</a> | <a href="/{seacms:sitepath}gbook.php" target="_blank">留言求片</a></div>
+  <div class="ttll">{seacms:member}</div>
+</div>
+<div id="news_nav">
+  <div class="logoNav">
+	<div class="logo"><a href="http://{seacms:siteurl}"><img src="images/logo.jpg" /></a></div>
+	
+	<div class="search">
+	  <form name="formsearch" id="formsearch" action='/{seacms:sitepath}search.php' method="post"  target="_blank">
+		<div class="input">
+		  <input name="searchword" type="text" id="searchword"/>
+		</div>
+		<div class="imgbt">
+		  <input type="image" src="images/but1.gif" value=""/>
+		</div>
+	  </form>
+	  <span><a href="/{seacms:sitepath}top/new.html" target="_blank" class="red">最新排行榜</a>
+      <a href="/{seacms:sitepath}top/rank.html" target="_blank" class="red">热门排行榜</a>
+      <a href="/{seacms:sitepath}top/commend.html" target="_blank" class="red">推荐排行榜</a></span>
+	</div>
+	<div class="vote">
+		<div class="key">热门：{seacms:keywords}</div>
+	</div>
+	<div class="space"></div>
+  </div>
+  <div class="nav">
+	<ul>
+	  <li><span><a href="{seacms:indexlink}">首　　页</a></span></li>
+	   <li class="sep"></li>
+	  {seacms:menulist type=top} <li{if:[menulist:typeid]={seacms:currenttypeid}} class="current"{end if}><a href="[menulist:link]">[menulist:typename]</a>
+	  </li>
+	  <li class="sep"></li>
+	  {/seacms:menulist}
+	  <li><a href="{seacms:topiclink}">专辑</a></li>
+	</ul>
+  </div>
+  <div class="newmenu">
+  <ul>
+  <li><a href="{seacms:newslink}">资讯首页</a></li>
+  {seacms:menulist by=news type=top}
+		<li><a href="[menulist:link]">[menulist:typename]</a></b></li>
+  {/seacms:menulist}
+  </ul>
+  </div>
+</div>
+
+<div class="flsearch">
+  <div class="hottitle">
+    <b>按分类查询：</b> {seacms:typecaslist} <a href='[typecaslist:link]' target="_blank"> [typecaslist:value]</a>| {/seacms:typecaslist}<br />
+    <b>按地区查询：</b> {seacms:areacaslist} <a href='[areacaslist:link]' target="_blank"> [areacaslist:value]</a>| {/seacms:areacaslist}<br />
+    <b>按年份查询：</b> {seacms:yearcaslist} <a href='[yearcaslist:link]' target="_blank"> [yearcaslist:value]</a>| {/seacms:yearcaslist}<br />
+    <b>按字母查询：</b> {seacms:lettercaslist} <a href='[lettercaslist:link]' target="_blank"> [lettercaslist:value]</a>| {/seacms:lettercaslist}<br />
+    <b>按语言查询：</b> {seacms:langcaslist} <a href='[langcaslist:link]' target="_blank"> [langcaslist:value]</a>| {/seacms:langcaslist}<br />
+	<b>按剧情查询：</b> {seacms:jqcaslist} <a href='[jqcaslist:link]' target="_blank"> [jqcaslist:value]</a>| {/seacms:jqcaslist}
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<title>{playpage:name}在线播放-{playpage:typename}-{seacms:sitename}</title>
+	<meta name="keywords" content="{playpage:name}免费在线观看,{playpage:name}剧情介绍,{playpage:name}电影海报">
+	<meta name="description" content="{playpage:name}剧情:{playpage:des len=50}">
+    <link rel="stylesheet" type="text/css" href="images/static/css/css.css" />
+    <script type="text/javascript" src="images/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="images/static/js/compress.js"></script>
+    <script type="text/javascript" src="images/static/js/common.js"></script>
+    <script type="text/javascript" src="images/static/js/function.js"></script>
+    <script type="text/javascript" src="images/static/js/jquery.lazyload.js"></script>
+    <script type="text/javascript" src="images/static/js/aknew.js"></script>
+    <script type="text/javascript" src="images/static/js/offlights.js"></script>
+    <link rel="shortcut icon" type="image/x-ico" href="/favicon.ico" />
+	<script>var sitePath='{seacms:sitepath}'</script>
+    <script src="/{seacms:sitepath}js/play.js"></script>
+	</head>
+  <body>
+    {seacms:top}
+    <div class="play1">
+      <div class="topur">
+        <div class="dh">
+          <a href='/index.html'>首页</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;
+          <a href="{playpage:typelink}">{playpage:typename}</a>»&nbsp;&nbsp;&raquo;&nbsp;&nbsp;
+          <a href="{playpage:url}">{playpage:name} </a></div>
+        <div class="player">
+          <div class="player_rghit rt" id="play_right" style="display: block;">
+            <div class="slide_playBox">
+              <div class="hd">
+                <ul>
+                  <li class="on">播放列表</li>
+                  <li>热门视频</li></ul>
+              </div>
+			  {playpage:playlist}
+              <div class="bd">
+                <ul class="play_box1">
+                  <div class="tab_box">
+                    <div class="showbox">
+                      <div class="box_tt_tab">
+                        <span>[playlist:from]</span></div>
+                      <div class="box_con">
+                        <ul class="showplayul">
+                          [playlist:link target=_self]
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <ul class="play_box2">
+                  <div class="tab_box">暂无热门视频</div></ul>
+              </div>
+			  {/playpage:playlist}
+            </div>
+          </div>
+          <script type="text/javascript">jQuery(".slide_playBox").slide({
+              switchLoad: "_src",
+              trigger: "click",
+              easing: "easeInQuint"
+            });</script>
+          <div id="playzgs" onclick="playzgs()" class="nextBtn rt"></div>
+          <div class="p_movie">
+            {playpage:playurlinfo}{playpage:player}	
+          </div>
+        </div>
+        <div class="p_title">
+          <h1>正在播放{playpage:name}{playpage:part}</h1>
+          <div class="p_title_right">
+            <ul>
+              <li>
+                <a class="zan" href="javascript:viod()" onclick="diggVideo(16348,'digg_num',document.getElementById('count').innerHTML++)">
+                  <b>顶
+                    <span id="count">{playpage:diggnum}</span>次</b></a>
+              </li>
+              <li class="l">
+                <a class="cai" href="javascript:viod()" onclick="treadVideo(16348,'tread_num',document.getElementById('count1').innerHTML++)">
+                  <b>踩
+                    <span id="count1">{playpage:treadnum}</span>次</b></a>
+              </li>
+              <li class="l">
+                <a href="javascript:viod()" onclick="reportErr(16348)">报 错</a></li>
+              <li class="l">
+                <a href="#respond">评论</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="topur">
+      <!-- 评论安装代码 -->
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM2Ny80OTM5">
+        <script type="text/javascript">window.livereOptions = {
+            refer: '(dy16348)'
+          }; (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+
+            if (typeof LivereTower === 'function') {
+              return;
+            }
+
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+
+            e.parentNode.insertBefore(j, e);
+          })(document, 'script');
+          getVideoHit('16348');</script>
+        <noscript>为正常使用评论功能请激活JavaScript</noscript></div>
+      <!-- 评论安装代码结束 --></div>
+    {seacms:foot}
+  </body>
+
+</html>
