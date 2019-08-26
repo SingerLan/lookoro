@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>{seacms:sitename}</title>
+		<meta name="keywords" content="{seacms:sitenotice}">
+		<meta name="description" content="{seacms:des}">{seacms:load inc_header.html}
+	</head>
+	<body>
+		<div class="hot_banner">
+		{seacms:top}
+			<div class="hot_list">
+				<div class="hot_banner_box">
+					<div class="banner-top">
+						<ul class="swiper-wrapper vodlist clearfix">
+						{seacms:videolist type=all num=9 commend=5 order=time}
+							<li class="balist_item swiper-slide">
+								<a class="balist_thumb swiper-lazy" href="[videolist:link]" title="[videolist:name]" data-background="[videolist:pic]">
+									<span class="play hidden_xs"></span>
+									<div class="balist_titbox pic_text">
+										<p class="vodlist_title">[videolist:name]</p>
+										<p class="vodlist_sub">{if:[videolist:note]==""}[videolist:nolinkactor]{else}[videolist:note]{end if}</p></div>
+									<span class="balist_bg"></span>
+								</a>
+							</li>
+						{/seacms:videolist}
+						</ul>
+					</div>
+					<div class="banner-arrow">
+						<a class="swiper-button-prev" href="javascript:;">
+							<i class="iconfont">&#xe625;</i></a>
+						<a class="swiper-button-next" href="javascript:;">
+							<i class="iconfont">&#xe623;</i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row hidden_mb">
+				<div class="pannel">
+					<ul class="hom_mob_list">
+						{seacms:menulist type=top}
+						<li>
+							<a class="mob_btn mob_btn[menulist:typeid]" href="[menulist:link]">
+								<i class="iconfont">
+									{if:[menulist:typeid]=1}&#xe64a;{end if}
+									{if:[menulist:typeid]=2}&#xe649;{end if}
+									{if:[menulist:typeid]=3}&#xe64b;{end if}
+									{if:[menulist:typeid]=4}&#xe648;{end if}
+								</i>
+								<span class="mob_font">[menulist:typename]</span></a>
+						</li>
+						{/seacms:menulist}
+						<li>
+							<a class="mob_btn mob_btn5" href="{seacms:topiclink}">
+								<i class="iconfont">&#xe630;</i>
+								<span class="mob_font">专题</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="pannel">
+					<ul class="hom_sm_list vodlist_wi">
+						<li class="notice">
+							<div class="smlist_box">
+								<marquee scrollamount="4" behavior="scroll" onmouseover=this.stop() onmouseout=this.start()>欢迎来到{seacms:sitename},QQ2189154548</marquee>
+								<i class="iconfont nico">&#xe62d;</i></div>
+						</li>
+						<li class="hidden_xs">
+							<div class="smlist_box list_m">
+							{seacms:menulist type=1}
+								<a class="text_muted" href="[menulist:link]" title="[menulist:typename]">[menulist:typename]</a>
+								{seacms:smallmenulist type=[menulist:typeid]}
+									<a href="[smallmenulist:link]" title="[smallmenulist:typename]">[smallmenulist:typename]</a>
+								{/seacms:smallmenulist}
+							{/seacms:menulist}
+							</div>
+						</li>
+						<li class="hidden_xs">
+							<div class="smlist_box list_m">
+								{seacms:menulist type=2}
+									<a class="text_muted" href="[menulist:link]" title="[menulist:typename]">[menulist:typename]</a>
+									{seacms:smallmenulist type=[menulist:typeid]}
+										<a href="[smallmenulist:link]" title="[smallmenulist:typename]">[smallmenulist:typename]</a>
+									{/seacms:smallmenulist}
+								{/seacms:menulist}
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="vod_row">
+				<div class="pannel">
+					<div class="pannel_head clearfix">
+						<span class="text_muted pull_right">
+							<a href="{seacms:siteurl}/new.html">最近更新</a></span>
+						<span class="text_muted pull_right">今日更新
+							<em>{seacms:daycount}</em>部影片
+							<span class="split_line"></span></span>
+						<h2 class="title">
+							<i class="iconfont">&#xe631;</i>热播推荐</h2></div>
+					<ul class="vodlist vodlist_wi clearfix">
+					{seacms:videolist type=all num=12 order=hid}
+						<li class="vodlist_item">
+							<a class="vodlist_thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]">
+								<span class="play hidden_xs"></span>
+								<span class="pic_text text_right">{if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]集{end if}</span></a>
+							<div class="vodlist_titbox">
+								<p class="vodlist_title">
+									<a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></p>
+								<p class="vodlist_sub">{if:[videolist:note]==""}[videolist:nolinkactor]{else}[videolist:note]{end if}</p></div>
+						</li>
+					{/seacms:videolist}
+					</ul>
+				</div>
+			</div>
+			<div class="vod_row">
+				<div class="pannel">
+					<div class="pannel_head clearfix">
+					{seacms:menulist type=1}
+						<a class="text_muted pull_right" href="[menulist:link]">更多
+					{/seacms:menulist}
+							<i class="iconfont more_i">&#xe623;</i></a>
+						<span class="hidden_xs pull_right">
+							{seacms:menulist type=1}
+								{seacms:smallmenulist type=[menulist:typeid]}
+									<a href="[smallmenulist:link]" class="text_muted">[smallmenulist:typename]</a>
+									<span class="split_line"></span>
+								{/seacms:smallmenulist}
+							{/seacms:menulist}
+						</span>
+						<h2 class="title">
+							<i class="iconfont">&#xe64a;</i>电影</h2></div>
+					<ul class="vodlist vodlist_wi vodlist_id1 list_v2 clearfix">
+					{seacms:videolist type=1 num=12 order=time}
+						<li class="vodlist_item">
+							<a class="vodlist_thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]">
+								<span class="play hidden_xs"></span>
+								<span class="pic_text text_right text_dy">[videolist:score]</span></a>
+							<div class="vodlist_titbox">
+								<p class="vodlist_title">
+									<a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></p>
+								<p class="vodlist_sub">{if:[videolist:note]==""}[videolist:nolinkactor]{else}[videolist:note]{end if}</p></div>
+						</li>
+					{/seacms:videolist}
+					</ul>
+				</div>
+				<div class="pannel">
+					<div class="pannel_head clearfix">
+					{seacms:menulist type=2}
+						<a class="text_muted pull_right" href="[menulist:link]">更多
+					{/seacms:menulist}
+							<i class="iconfont more_i">&#xe623;</i></a>
+						<span class="hidden_xs pull_right">
+							{seacms:menulist type=2}
+								{seacms:smallmenulist type=[menulist:typeid]}
+									<a href="[smallmenulist:link]" class="text_muted">[smallmenulist:typename]</a>
+									<span class="split_line"></span>
+								{/seacms:smallmenulist}
+							{/seacms:menulist}
+						</span>
+						<h2 class="title">
+							<i class="iconfont">&#xe649;</i>连续剧</h2></div>
+					<ul class="vodlist vodlist_wi vodlist_id2 list_v2 clearfix">
+					{seacms:videolist type=2 num=6 order=time}
+						<li class="vodlist_item">
+							<a class="vodlist_thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]">
+								<span class="play hidden_xs"></span>
+								<span class="pic_text text_right text_dy">{if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]集{end if}</span></a>
+							<div class="vodlist_titbox">
+								<p class="vodlist_title">
+									<a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></p>
+								<p class="vodlist_sub">{if:[videolist:note]==""}[videolist:nolinkactor]{else}[videolist:note]{end if}</p></div>
+						</li>
+					{/seacms:videolist}
+					</ul>
+				</div>
+				<div class="pannel">
+					<div class="pannel_head clearfix">
+					{seacms:menulist type=3}
+						<a class="text_muted pull_right" href="[menulist:link]">更多
+					{/seacms:menulist}
+							<i class="iconfont more_i">&#xe623;</i></a>
+						<span class="hidden_xs pull_right">
+							{seacms:menulist type=3}
+								{seacms:smallmenulist type=[menulist:typeid]}
+									<a href="[smallmenulist:link]" class="text_muted">[smallmenulist:typename]</a>
+									<span class="split_line"></span>
+								{/seacms:smallmenulist}
+							{/seacms:menulist}
+						</span>
+						<h2 class="title">
+							<i class="iconfont">&#xe64b;</i>综艺</h2></div>
+					<ul class="vodlist vodlist_wi vodlist_id3 list_v2 clearfix">
+					{seacms:videolist type=3 num=6 order=time}
+						<li class="vodlist_item">
+							<a class="vodlist_thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]">
+								<span class="play hidden_xs"></span>
+								<span class="pic_text text_right text_dy">{if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]集{end if}</span></a>
+							<div class="vodlist_titbox">
+								<p class="vodlist_title">
+									<a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></p>
+								<p class="vodlist_sub">{if:[videolist:note]==""}[videolist:nolinkactor]{else}[videolist:note]{end if}</p></div>
+						</li>
+					{/seacms:videolist}
+					</ul>
+				</div>
+				<div class="pannel">
+					<div class="pannel_head clearfix">
+					{seacms:menulist type=4}
+						<a class="text_muted pull_right" href="[menulist:link]">更多
+					{/seacms:menulist}
+							<i class="iconfont more_i">&#xe623;</i></a>
+						<span class="hidden_xs pull_right">
+							{seacms:menulist type=4}
+								{seacms:smallmenulist type=[menulist:typeid]}
+									<a href="[smallmenulist:link]" class="text_muted">[smallmenulist:typename]</a>
+									<span class="split_line"></span>
+								{/seacms:smallmenulist}
+							{/seacms:menulist}
+						</span>
+						<h2 class="title">
+							<i class="iconfont">&#xe648;</i>动漫</h2></div>
+					<ul class="vodlist vodlist_wi vodlist_id4 list_v2 clearfix">
+					{seacms:videolist type=4 num=6 order=time}
+						<li class="vodlist_item">
+							<a class="vodlist_thumb lazyload" href="[videolist:link]" title="[videolist:name]" data-original="[videolist:pic]">
+								<span class="play hidden_xs"></span>
+								<span class="pic_text text_right text_dy">{if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]集{end if}</span></a>
+							<div class="vodlist_titbox">
+								<p class="vodlist_title">
+									<a href="[videolist:link]" title="[videolist:name]">[videolist:name]</a></p>
+								<p class="vodlist_sub">{if:[videolist:note]==""}[videolist:nolinkactor]{else}[videolist:note]{end if}</p></div>
+						</li>
+					{/seacms:videolist}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="pannel">
+					<div class="pannel_head clearfix">
+						<a class="text_muted pull_right" href="{seacms:topiclink}">更多
+							<i class="iconfont more_i">&#xe623;</i></a>
+						<h2 class="title">
+							<i class="iconfont">&#xe64c;</i>影视专题</h2></div>
+					<ul class="topiclist topic_hom list_v2 clearfix">
+						{seacms:topiclist id=all num=6 }
+						<li class="topiclist_item">
+							<a class="topiclist_thumb lazyload" href="[topiclist:link]" title="[topiclist:name]" data-original="[topiclist:pic]" style="background-image: url(&quot;[topiclist:pic]&quot;);">
+								<span class="play hidden_xs"></span>
+								<span class="pic_text text_right">
+									<i class="iconfont"></i>&nbsp;[topiclist:count]个影片</span></a>
+							<div class="topiclist_title">
+								<a href="/topicdetail-3.html" title="[topiclist:name]">[topiclist:name]</a>
+								<p class="topiclist_blurb">[topiclist:des]</p></div>
+						</li>
+						{/seacms:topiclist}
+</ul>
+				</div>
+			</div>
+			<!-- 友链 -->
+			<div class="link_row">
+				<div class="pannel clearfix">
+					<div class="pannel_head clearfix">
+						<h3 class="title">友情链接</h3></div>
+					<ul class="link_text list_scroll clearfix">
+						{seacms:linklist type=font}
+						<li>
+							<a class="text_muted" href="[linklist:link]" title="[linklist:name]" target="_blank">[linklist:name]</a></li>
+						{/seacms:linklist}
+					</ul>
+				</div>
+			</div>
+			<!-- end 友链 --></div>
+		{seacms:foot}
+	</body>
+
+</html>

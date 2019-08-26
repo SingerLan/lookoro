@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html data-dpr="1" style="font-size: 76.8px;">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		{seacms:load inc_header.html}
+		<title>{seacms:searchword}-{seacms:sitename}</title>
+		<meta name="keywords" content="{seacms:searchword},{seacms:sitename}">
+		<meta name="description" content="{seacms:searchword},{seacms:sitename}"></head>
+	<body>
+		{seacms:top}
+		<div class="container">
+			<div class="left_row fl">
+				<div class="pannel search_box clearfix">
+					<div class="pannel_head clearfix">
+						<h3 class="title">搜索到与“
+							<em>{seacms:searchword}</em>”相关的
+							<em class="mac_total">{seacms:searchnum}</em>条结果</h3></div>
+					<!-- 列表 -->
+					<ul class="vodlist clearfix">
+					{seacms:searchlist size=20 order=time}
+						<li class="searchlist_item">
+							<div class="searchlist_img">
+								<a class="vodlist_thumb lazyload" href="[searchlist:link]" title="[searchlist:name]" data-original="[searchlist:pic]" style="background-image: url(&quot;[searchlist:pic]&quot;);">
+									<span class="play hidden_xs"></span>
+									<span class="pic_text text_right">{if:[searchlist:state]==0}[searchlist:ver]{else}更新至[searchlist:state]集{end if}</span></a>
+							</div>
+							<div class="searchlist_titbox">
+								<h4 class="vodlist_title">
+									<a href="[searchlist:link]" title="[searchlist:name]">
+										<span class="info_right">[searchlist:typename]</span>[searchlist:name]</a></h4>
+								<p class="vodlist_sub">
+									<span>主演：</span>
+									[searchlist:actor len=60]</p>
+								<p class="vodlist_sub">
+									<span>导演：</span>
+									[searchlist:director]</p>
+								<p class="vodlist_sub hidden_xs">
+									<span>简介：</span>[searchlist:des]</p>
+								<div class="seebtn">
+									<a href="[searchlist:link]">查看详情&nbsp;
+										<i class="iconfont"></i></a>
+								</div>
+							</div>
+						</li>
+					{/seacms:searchlist}
+					</ul>
+					<!-- end 列表 -->
+						<ul class="page text_center cleafix">
+							<li>
+								<a href="{searchlist:firstlink}" {if:{searchlist:page}==1}class="btns_disad"{end if}>首页</a></li>
+							<li>
+								<a href="{searchlist:backlink}" {if:{searchlist:page}==1}class="btns_disad"{end if}>上一页</a></li>
+							{searchlist:pagenumber len=5}
+							<li class="hidden_xs {if:{searchlist:page}==[pagenumber:page]}active{end if}">
+								<a href="[pagenumber:link]">[pagenumber:page]</a></li>
+							{/searchlist:pagenumber}
+							<li>
+								<a href="{searchlist:nextlink}" {if:{searchlist:page}=={searchlist:pagecount}}class="btns_disad"{end if}>下一页</a></li>
+							<li>
+								<a href="{searchlist:lastlink}" {if:{searchlist:page}=={searchlist:pagecount}}class="btns_disad"{end if}>尾页</a></li>
+						</ul>
+						<div class="page_tips hidden_mb">当前
+							<span>第{searchlist:page}页</span>&nbsp;/&nbsp;共有{searchlist:pagecount}页</div>
+					<!-- 翻页--></div>
+			</div>
+			<div class="right_row fr pa_left hidden_xs hidden_mi">
+				<!-- 侧边栏 -->
+				<div class="pannel clearfix">
+					<div class="pannel_head clearfix">
+						<h3 class="title">热播影视</h3></div>
+					<ul class="ranklist_r clearfix">
+					{seacms:videolist type=all num=10 order=hit} 
+						<li class="part_eone">
+							<a href="[videolist:link]">
+								<span class="part_nums part_num[videolist:i]">[videolist:i]</span>
+								<span class="info_right">[videolist:typename]</span>[videolist:name]</a></li>
+					{/seacms:videolist} 
+					</ul>
+				</div>
+				<!-- end 侧边栏 -->
+				</div>
+		</div>
+		<script type="text/javascript">$('.mac_total').html('{seacms:searchnum}');</script>{seacms:foot}
+		</body>
+
+</html>
