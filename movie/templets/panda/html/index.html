@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+		<title>{seacms:sitename}</title>
+		<meta name="keywords" content="{seacms:sitenotice}">
+		<meta name="description" content="{seacms:des}">{seacms:load inc_header.html}
+  {seacms:load inc_header.html}
+ </head>
+ <body class="black-color">
+  <div id="wrapper" class="wordpress y2019 m08 d23 h14 home blog niRvana">
+   <div class="main-nav">
+    <div class="container">
+     <div class="row">
+      {seacms:top}
+   <div id="main">
+    <div class="container coverflow-wrapper">
+     <div pandaslider="" id="coverflow" prev-text="&lt;i class=&quot;fas fa-arrow-left&quot;&gt;&lt;/i&gt;" next-text="&lt;i class=&quot;fas fa-arrow-right&quot;&gt;&lt;/i&gt;" view="3" class="unfull" allow-anchor-click="" interval-time="5000" hover-disable-interval="" show-anchor="" allow-keyboard="" allow-swipe="">
+      
+	  {seacms:videolist type=all num=5 commend=5 order=time}
+	  <div class="page">
+       <div class="container flex-row-middle coverflow">
+        <div class="content flex-column-middle">
+         <div class="category">
+          [videolist:typename]
+         </div>
+         <h2>[videolist:name]</h2>
+         <div class="read-more">
+          <a href="[videolist:link]"><i class="fa fa-arrow-right" aria-hidden="true"></i> 点击播放</a>
+         </div>
+        </div>
+        <div class="image flex-center">
+         <a class="card" href="[videolist:link]" style="background-image: url([videolist:spic]);"></a>
+        </div>
+       </div>
+      </div>
+	  {/seacms:videolist}
+     </div>
+    </div>
+	
+    <div class="container postListsModel">
+     <div class="row">
+      <div class="col-md-9 col-lg-9_5">
+       <div class="categoryNav-wrapper">
+        <div pandatab="" class="categoryNav" active-class=".current-menu-item,.current-menu-ancestor" sub-class=".sub-menu" prev-text="&lt;i class=&quot;fa fa-angle-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;" next-text="&lt;i class=&quot;fa fa-angle-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;" sub-trigger="" auto-scrolling="">
+         <ul id="menu-cattab" class="menu">
+          <li id="menu-item-4519" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-4519 active"><a href="http://panda.panda-studio.cn" aria-current="page"><i class="fas fa-lightbulb"></i> 智能推荐</a></li> 
+          <li id="menu-item-5141" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5141"><a href="http://panda.panda-studio.cn/blog/"><i class="fas fa-folder-open"></i> 全部文章</a></li> 
+          <li id="menu-item-5030" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5030"><a href="#"><i class="fas fa-palette"></i> 设计类</a> 
+           <ul class="sub-menu"> 
+            <li id="menu-item-4512" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4512"><a href="http://panda.panda-studio.cn/category/icons/"><i class="fas fa-leaf"></i> 图标</a></li> 
+            <li id="menu-item-4513" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4513"><a href="http://panda.panda-studio.cn/category/skins/"><i class="fas fa-tree"></i> 皮肤</a></li> 
+            <li id="menu-item-4515" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4515"><a href="http://panda.panda-studio.cn/category/wallpapper/"><i class="far fa-image"></i> 壁纸</a></li> 
+           </ul> </li> 
+          <li id="menu-item-5032" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5032"><a href="#"><i class="fas fa-wrench"></i> 开发类</a> 
+           <ul class="sub-menu"> 
+            <li id="menu-item-4516" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4516"><a href="http://panda.panda-studio.cn/category/workflow/"><i class="fas fa-cubes"></i> 工具</a></li> 
+            <li id="menu-item-4518" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4518"><a href="http://panda.panda-studio.cn/category/develop/"><i class="fas fa-cogs"></i> 开发</a></li> 
+           </ul> </li> 
+          <li id="menu-item-4514" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4514"><a href="http://panda.panda-studio.cn/category/teach/"><i class="fas fa-torah"></i> 教程</a></li> 
+          <li id="menu-item-4672" class="menu-item menu-item-type-taxonomy menu-item-object-gallery-category menu-item-4672"><a href="http://panda.panda-studio.cn/gallery-category/all/"><i class="fas fa-images"></i> 设计杂记</a></li> 
+         </ul>
+        </div>
+       </div>
+       <div class="display-switcher-wrapper">
+        <div pandatab="" class="display-switcher" active-class=".active" sub-trigger="click" sub-class=".sub-menu">
+         <ul class="menu">
+          <li class="card active"><a data-toggle="tooltip" data-placement="auto top" title="卡片"><i class="fas fa-th"></i></a></li>
+          <li class="list "><a data-toggle="tooltip" data-placement="auto top" title="列表"><i class="fas fa-list"></i></a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="col-xs-12">
+        <div class="row">
+         <div class="row postLists cards " height-to="sidebar">
+		 {seacms:videolist type=all num=12 order=time}
+          <div class="col-xxs-6 col-xs-4 col-lg-3 post-card-wrapper">
+           <div class="card">
+            <a href="[videolist:link]" class="cover" style="background-image: url([videolist:pic]);" showas="padding"></a>
+            <a href="[videolist:link]" showas="img"><img src="[videolist:pic]" class="cover" alt="" /></a>
+            <div class="meta">
+             <div class="date">
+              {if:[videolist:state]==0}[videolist:ver]{else}更新至[videolist:state]{end if}
+             </div>
+             <h2><a href="[videolist:link]">[videolist:name]</a></h2>
+             <div class="tags">
+			  <a class="color-8">[videolist:typename]</a> 
+			  [videolist:jqtype]
+              <!--<a class="color-1">[videolist:jqtype]</a> 
+              <a class="color-8">[videolist:typename]</a> 
+              <a class="color-4">开发</a> -->
+             </div>
+             <div class="summary">
+              <span class="views"><i class="fas fa-book-reader"></i> [videolist:hit]</span> 
+              <span class="likes"><i class="fas fa-heart"></i> [videolist:douban]</span> 
+              <span class="comments"><i class="fas fa-comments"></i> 0</span> 
+             </div>
+             <article class="description">
+              [videolist:des]
+             </article>
+            </div>
+           </div>
+          </div>
+		  {/seacms:videolist}
+         </div>
+        </div>
+        <div class="row postLists">
+         <div class="col-xs-12 readMore">
+          <a href="http://panda.panda-studio.cn/blog/"> 全部文章 <i class="fas fa-chevron-down"></i></a>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="col-md-3 col-lg-2_5 hidden-xs hidden-sm">
+       <div class="row">
+        <div class="sidebar">
+         <div manual-template="sidebarMenu"></div>
+         <div manual-template="sidebar" height-from="postLists"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="long-model-wrapper">
+     <div class="long-model posts-">
+      <div class="container">
+       <span class="model-title">图标</span>
+       <a class="more" href="http://panda.panda-studio.cn/category/icons/">More<i class="fas fa-angle-right"></i></a>
+       <div class="row postLists cards">
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/%e9%a3%9e%e6%9c%ba%e7%a8%bf-x-2/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/04/category@2x.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/%e9%a3%9e%e6%9c%ba%e7%a8%bf-x-2/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/04/category@2x.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            4月4日 &middot; 2017年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/%e9%a3%9e%e6%9c%ba%e7%a8%bf-x-2/">飞机稿 &times; 2</a></h2>
+           <div class="tags">
+            <a class="color-4">box</a> 
+            <a class="color-5">tools</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 214</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 24</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 4</span> 
+           </div>
+           <article class="description">
+            两个飞机稿图标，工作上用不到的就发出来了。...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/jidian-tabbar-redesign/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/11/category@2x.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/jidian-tabbar-redesign/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/11/category@2x.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            11月26日 &middot; 2018年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/jidian-tabbar-redesign/">第三方App(奇点)在iOS12的tabBar设计</a></h2>
+           <div class="tags">
+            <a class="color-2">iOS</a> 
+            <a class="color-8">奇点</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 519</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 29</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 5</span> 
+           </div>
+           <article class="description">
+            自扁平化风格以来，线性图标一直是很多设计师的最爱。从iOS7开始，系统...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/%e6%8b%9f%e7%89%a9%e6%89%ac%e5%a3%b0%e5%99%a8%e5%9b%be%e6%a0%87%e7%bb%83%e4%b9%a0/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/12/speaker2_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/%e6%8b%9f%e7%89%a9%e6%89%ac%e5%a3%b0%e5%99%a8%e5%9b%be%e6%a0%87%e7%bb%83%e4%b9%a0/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/12/speaker2_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            12月26日 &middot; 2015年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/%e6%8b%9f%e7%89%a9%e6%89%ac%e5%a3%b0%e5%99%a8%e5%9b%be%e6%a0%87%e7%bb%83%e4%b9%a0/">拟物扬声器 &middot; 图标练习</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 214</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 9</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 7</span> 
+           </div>
+           <article class="description">
+            这个图标的原型是办公室同事柜子里一个电脑音箱低音炮的样子。有一天下午无...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/orgrar/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/rar.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/orgrar/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/rar.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            11月20日 &middot; 2015年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/orgrar/">OrgRar &middot; WinRAR主题</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-7">UI设计</a> 
+            <a class="color-2">WinRAR</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 6322</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 132</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 144</span> 
+           </div>
+           <article class="description">
+            简要说明这个主题实际上是4年前Panda刚工作那会儿制造的，之所以把...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/desktophider/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/05/desktophider-category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/desktophider/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/05/desktophider-category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            5月2日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/desktophider/">Desktop Hider</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 530</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 30</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 22</span> 
+           </div>
+           <article class="description">
+            在截图、录视频的时候你有没有遇到不想给别人看你桌面文件的情况？这是...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/football%e6%89%8b%e6%9c%ba%e4%b8%bb%e9%a2%98%e5%9b%be%e6%a0%87%e4%bd%9c%e5%93%81%e6%a1%88%e4%be%8b/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/03/football_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/football%e6%89%8b%e6%9c%ba%e4%b8%bb%e9%a2%98%e5%9b%be%e6%a0%87%e4%bd%9c%e5%93%81%e6%a1%88%e4%be%8b/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/03/football_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            3月27日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/football%e6%89%8b%e6%9c%ba%e4%b8%bb%e9%a2%98%e5%9b%be%e6%a0%87%e4%bd%9c%e5%93%81%e6%a1%88%e4%be%8b/">Football 手机主题图标作品案例</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-7">UI设计</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 298</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 4</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 4</span> 
+           </div>
+           <article class="description">
+            博客改版了，需要将一些作品案例搜集到新的博客中做成作品集。故发此文这...
+           </article>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="long-model posts-">
+      <div class="container">
+       <span class="model-title">开发 &amp; 工具</span>
+       <a class="more" href="http://panda.panda-studio.cn/category/wallpapper, workflow/">More<i class="fas fa-angle-right"></i></a>
+       <div class="row postLists lists">
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/designerscards/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/10/dc-category@2x.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/designerscards/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/10/dc-category@2x.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            10月16日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/designerscards/">WordPress原创主题</a></h2>
+           <div class="tags">
+            <a class="color-8">WordPress</a> 
+            <a class="color-2">主题</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 1596</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 20</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 25</span> 
+           </div>
+           <article class="description">
+            此主题已不再销售，最新主题请联系博主购买Designer\'s Ca...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/text-coder-converter/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/07/tc_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/text-coder-converter/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/07/tc_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            7月22日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/text-coder-converter/">Text Code Converter</a></h2>
+           <div class="tags">
+            <a class="color-0">无标签</a>
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 337</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 18</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 12</span> 
+           </div>
+           <article class="description">
+            作为 Mac User 已经好几年了，前不久找到了N年前从PC拷贝过来以...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/aliyun-ddns-nas-client/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/05/storage-category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/aliyun-ddns-nas-client/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/05/storage-category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            5月1日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/aliyun-ddns-nas-client/">自己的同步盘——群辉Nas的阿里云DDNS动态解析客户端</a></h2>
+           <div class="tags">
+            <a class="color-0">无标签</a>
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 766</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 15</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 5</span> 
+           </div>
+           <article class="description">
+            上个月月底，快盘停止服务了，有人说是因为它自己早就想关闭了，趁着这个审查...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/waterfall/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/07/waterfall_cat.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/waterfall/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/07/waterfall_cat.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            7月2日 &middot; 2017年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/waterfall/">WaterFall &middot; WordPress相册主题</a></h2>
+           <div class="tags">
+            <a class="color-0">无标签</a>
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 352</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 13</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 10</span> 
+           </div>
+           <article class="description">
+            此主题已不再销售，最新主题请参考本博客自用主题“reBorn”...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/workflow-buy/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/choose-category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/workflow-buy/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/choose-category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            11月29日 &middot; 2015年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/workflow-buy/">买哪个划算 &middot; Workflow小工具</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 2057</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 12</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 16</span> 
+           </div>
+           <article class="description">
+            Workflow小工具它是基于iOS上一款名为Wordflow的软件...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/shinemate/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/01/shinemate_cat.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/shinemate/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/01/shinemate_cat.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            1月6日 &middot; 2017年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/shinemate/">ShineMate品牌网站设计</a></h2>
+           <div class="tags">
+            <a class="color-2">Web设计</a> 
+            <a class="color-3">建站案例</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 1922</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 7</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 3</span> 
+           </div>
+           <article class="description">
+            ShineMate（炫美）是汽车抛光系统品牌，2016年底，我们为它设计...
+           </article>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="long-model posts-">
+      <div class="container">
+       <span class="model-title">壁纸</span>
+       <a class="more" href="http://panda.panda-studio.cn/category/wallpapper/">More<i class="fas fa-angle-right"></i></a>
+       <div class="row postLists cards">
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/lostwallpaper/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/04/lostwall_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/lostwallpaper/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/04/lostwall_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            4月16日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/lostwallpaper/">私藏壁纸一张</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 4071</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 67</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 262</span> 
+           </div>
+           <article class="description">
+            一张壁纸，压箱底的好货。自己做了自己用，私藏很久了。前几天提到一个很久以...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/football%e6%89%8b%e6%9c%ba%e5%a3%81%e7%ba%b8/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/04/football_wall_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/football%e6%89%8b%e6%9c%ba%e5%a3%81%e7%ba%b8/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/04/football_wall_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            4月22日 &middot; 2017年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/football%e6%89%8b%e6%9c%ba%e5%a3%81%e7%ba%b8/">Football手机壁纸</a></h2>
+           <div class="tags">
+            <a class="color-1">壁纸</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 2142</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 22</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 31</span> 
+           </div>
+           <article class="description">
+            以前在魅族MX3手机上做过一款手机主题（图标及效果详见：《Footbal...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/aibt/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/06/aibt_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/aibt/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/06/aibt_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            6月25日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/aibt/">Aibt</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-1">壁纸</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 2385</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 69</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 112</span> 
+           </div>
+           <article class="description">
+            &amp;nbsp;对illustrator一直不感冒，长期的主要工具是Ph...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/missing_page_404_design/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/11/category@2x.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/missing_page_404_design/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/11/category@2x.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            11月26日 &middot; 2017年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/missing_page_404_design/">页面消失了 &middot; 404设计</a></h2>
+           <div class="tags">
+            <a class="color-7">UI设计</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 1058</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 66</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 51</span> 
+           </div>
+           <article class="description">
+            最近尝试做了两个404页面的设计，看起来感觉很像某种很好吃的moon c...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/%e9%9b%aa%e5%b1%b1%e4%b8%8b%e7%9a%84%e9%9c%b2%e8%90%a5/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/08/category_snowMountain.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/%e9%9b%aa%e5%b1%b1%e4%b8%8b%e7%9a%84%e9%9c%b2%e8%90%a5/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/08/category_snowMountain.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            8月26日 &middot; 2017年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/%e9%9b%aa%e5%b1%b1%e4%b8%8b%e7%9a%84%e9%9c%b2%e8%90%a5/">雪山下的露营</a></h2>
+           <div class="tags">
+            <a class="color-1">壁纸</a> 
+            <a class="color-7">插画</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 564</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 46</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 48</span> 
+           </div>
+           <article class="description">
+            原本是参加魅族的一个活动，做了类似插画一样的东东。然后觉得做成壁...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/wildfields_wallpaper/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/01/WildFields_cat.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/wildfields_wallpaper/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/01/WildFields_cat.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            1月28日 &middot; 2018年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/wildfields_wallpaper/">WildFields &middot; 卡通壁纸</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-1">壁纸</a> 
+            <a class="color-7">插画</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 760</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 47</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 38</span> 
+           </div>
+           <article class="description">
+            这是一款可爱的卡通壁纸，呆呆的狮子和萌萌的鳄鱼，让你的手机也呆萌起来吧！...
+           </article>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="long-model posts-">
+      <div class="container">
+       <span class="model-title">教程</span>
+       <a class="more" href="http://panda.panda-studio.cn/category/teach/">More<i class="fas fa-angle-right"></i></a>
+       <div class="row postLists cards">
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/how-to-creat-custom-format-type-in-gutenberg/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2019/08/Gutenberg.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/how-to-creat-custom-format-type-in-gutenberg/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2019/08/Gutenberg.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            8月10日 &middot; 2019年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/how-to-creat-custom-format-type-in-gutenberg/">WordPress编辑器Gutenberg创建Format格式工具</a></h2>
+           <div class="tags">
+            <a class="color-1">Gutenberg</a> 
+            <a class="color-8">WordPress</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 115</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 3</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 0</span> 
+           </div>
+           <article class="description">
+            WordPress新的Gutenberg编辑器是一个完全使用现代前端技...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/%e5%93%8d%e5%ba%94%e5%bc%8f%e8%8f%9c%e5%8d%95%ef%bc%88%e5%90%ab%e4%ba%8c%e7%ba%a7%e8%8f%9c%e5%8d%95%ef%bc%89%e7%9a%84%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/09/navsample.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/%e5%93%8d%e5%ba%94%e5%bc%8f%e8%8f%9c%e5%8d%95%ef%bc%88%e5%90%ab%e4%ba%8c%e7%ba%a7%e8%8f%9c%e5%8d%95%ef%bc%89%e7%9a%84%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/09/navsample.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            9月3日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/%e5%93%8d%e5%ba%94%e5%bc%8f%e8%8f%9c%e5%8d%95%ef%bc%88%e5%90%ab%e4%ba%8c%e7%ba%a7%e8%8f%9c%e5%8d%95%ef%bc%89%e7%9a%84%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%ae%9e%e7%8e%b0/">响应式菜单（含二级菜单）的设计与实现</a></h2>
+           <div class="tags">
+            <a class="color-3">CSS</a> 
+            <a class="color-7">JavaScript</a> 
+            <a class="color-2">Web设计</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 457</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 17</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 9</span> 
+           </div>
+           <article class="description">
+            摘要：本文讲述了在响应式网页开发中，页面主菜单及二级菜单在桌面设备及...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/2016-520/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/05/520_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/2016-520/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/05/520_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            5月20日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/2016-520/">火龙果盆栽教程</a></h2>
+           <div class="tags">
+            <a class="color-0">无标签</a>
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 402</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 12</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 5</span> 
+           </div>
+           <article class="description">
+            前几个星期用别人结婚送喜糖的金属盒子种了一些心形的火龙果盆栽，这两天长得...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/%e6%95%99%e7%a8%8b-%c2%b7-%e4%bb%8b%e7%bb%8d%e4%b8%80%e7%a7%8d%e7%bb%98%e5%88%b6%e6%96%b9%e6%b3%95/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/cloud_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/%e6%95%99%e7%a8%8b-%c2%b7-%e4%bb%8b%e7%bb%8d%e4%b8%80%e7%a7%8d%e7%bb%98%e5%88%b6%e6%96%b9%e6%b3%95/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/cloud_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            11月28日 &middot; 2015年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/%e6%95%99%e7%a8%8b-%c2%b7-%e4%bb%8b%e7%bb%8d%e4%b8%80%e7%a7%8d%e7%bb%98%e5%88%b6%e6%96%b9%e6%b3%95/">教程 &middot; 介绍一种绘制方法</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 324</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 17</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 25</span> 
+           </div>
+           <article class="description">
+            半年没写博客了，一直在筹划搬迁的问题。现在已经从极限社区的服务器上搬迁到...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/css-animation/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/01/category@2x.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/css-animation/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/01/category@2x.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            1月3日 &middot; 2017年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/css-animation/">Alpha通道帧动画在Web上的实现</a></h2>
+           <div class="tags">
+            <a class="color-3">CSS</a> 
+            <a class="color-2">Web设计</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 779</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 35</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 24</span> 
+           </div>
+           <article class="description">
+            问题：长期与图形打交道的朋友应该很清楚支持动画的格式目前只有GI...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/aliyun-ddns-nas-client/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/05/storage-category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/aliyun-ddns-nas-client/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/05/storage-category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            5月1日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/aliyun-ddns-nas-client/">自己的同步盘——群辉Nas的阿里云DDNS动态解析客户端</a></h2>
+           <div class="tags">
+            <a class="color-0">无标签</a>
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 766</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 15</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 5</span> 
+           </div>
+           <article class="description">
+            上个月月底，快盘停止服务了，有人说是因为它自己早就想关闭了，趁着这个审查...
+           </article>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="long-model posts-">
+      <div class="container">
+       <span class="model-title">UI &amp; 皮肤</span>
+       <a class="more" href="http://panda.panda-studio.cn/category/skins/">More<i class="fas fa-angle-right"></i></a>
+       <div class="row postLists cards">
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/%e6%89%8b%e6%9c%ba%e4%b8%bb%e9%a2%98%e8%ae%be%e8%ae%a1/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/flyme4.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/%e6%89%8b%e6%9c%ba%e4%b8%bb%e9%a2%98%e8%ae%be%e8%ae%a1/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/flyme4.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            11月20日 &middot; 2015年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/%e6%89%8b%e6%9c%ba%e4%b8%bb%e9%a2%98%e8%ae%be%e8%ae%a1/">flyme手机主题</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-7">UI设计</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 2587</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 2234</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 0</span> 
+           </div>
+           <article class="description">
+            ...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/%e6%b5%aa%e8%8a%b1%e5%8a%a8%e6%80%81%e7%9a%ae%e8%82%a4-%c2%b7-%e6%90%9c%e7%8b%97%e8%be%93%e5%85%a5%e6%b3%95/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/01/lhydd_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/%e6%b5%aa%e8%8a%b1%e5%8a%a8%e6%80%81%e7%9a%ae%e8%82%a4-%c2%b7-%e6%90%9c%e7%8b%97%e8%be%93%e5%85%a5%e6%b3%95/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/01/lhydd_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            1月3日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/%e6%b5%aa%e8%8a%b1%e5%8a%a8%e6%80%81%e7%9a%ae%e8%82%a4-%c2%b7-%e6%90%9c%e7%8b%97%e8%be%93%e5%85%a5%e6%b3%95/">浪花动态皮肤 &middot; 搜狗输入法</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-7">UI设计</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 1342</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 68</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 131</span> 
+           </div>
+           <article class="description">
+            Mac版很久没有做过搜狗输入法的皮肤了，前段时间突然发现它竟然出了M...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/orgrar/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/rar.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/orgrar/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/rar.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            11月20日 &middot; 2015年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/orgrar/">OrgRar &middot; WinRAR主题</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-7">UI设计</a> 
+            <a class="color-2">WinRAR</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 6322</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 132</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 144</span> 
+           </div>
+           <article class="description">
+            简要说明这个主题实际上是4年前Panda刚工作那会儿制造的，之所以把...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/missing_page_404_design/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/11/category@2x.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/missing_page_404_design/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/11/category@2x.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            11月26日 &middot; 2017年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/missing_page_404_design/">页面消失了 &middot; 404设计</a></h2>
+           <div class="tags">
+            <a class="color-7">UI设计</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 1058</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 66</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 51</span> 
+           </div>
+           <article class="description">
+            最近尝试做了两个404页面的设计，看起来感觉很像某种很好吃的moon c...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/20110326_ztoon/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/10/ztoon.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/20110326_ztoon/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/10/ztoon.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            10月31日 &middot; 2015年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/20110326_ztoon/">zToon &middot; Windows光标</a></h2>
+           <div class="tags">
+            <a class="color-4">Photoshop</a> 
+            <a class="color-7">UI设计</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 2054</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 72</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 100</span> 
+           </div>
+           <article class="description">
+            简要说明zToon，是为Windows系统设计的一套鼠标光标。...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/login-screen/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/04/login-screen_category.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/login-screen/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/04/login-screen_category.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            4月23日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/login-screen/">网页登录框动画效果的实现</a></h2>
+           <div class="tags">
+            <a class="color-3">CSS</a> 
+            <a class="color-7">JavaScript</a> 
+            <a class="color-2">Web设计</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 452</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 13</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 10</span> 
+           </div>
+           <article class="description">
+            见过很多动图，大都叫“攻城尸追着砍系列”。因此，作为一具“射鸡尸”，要想...
+           </article>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="long-model posts-">
+      <div class="container">
+       <span class="model-title">其它</span>
+       <a class="more" href="http://panda.panda-studio.cn/category/others,uncategorized,life/">More<i class="fas fa-angle-right"></i></a>
+       <div class="row postLists lists">
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/%e6%97%a9%e6%9c%9f%e7%9a%84%e5%8d%9a%e5%ae%a2%e6%96%87%e7%ab%a0/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/05/333.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/%e6%97%a9%e6%9c%9f%e7%9a%84%e5%8d%9a%e5%ae%a2%e6%96%87%e7%ab%a0/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/05/333.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            5月9日 &middot; 2015年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/%e6%97%a9%e6%9c%9f%e7%9a%84%e5%8d%9a%e5%ae%a2%e6%96%87%e7%ab%a0/">早期的博客文章</a></h2>
+           <div class="tags">
+            <a class="color-0">无标签</a>
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 149</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 0</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 0</span> 
+           </div>
+           <article class="description">
+            跳转中……若挑选失败请点击：http://oldblog.panda...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/designerscards/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/10/dc-category@2x.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/designerscards/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/10/dc-category@2x.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            10月16日 &middot; 2016年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/designerscards/">WordPress原创主题</a></h2>
+           <div class="tags">
+            <a class="color-8">WordPress</a> 
+            <a class="color-2">主题</a> 
+            <a class="color-4">开发</a> 
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 1596</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 20</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 25</span> 
+           </div>
+           <article class="description">
+            此主题已不再销售，最新主题请联系博主购买Designer\'s Ca...
+           </article>
+          </div>
+         </div>
+        </div>
+        <div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper">
+         <div class="card">
+          <a href="http://panda.panda-studio.cn/download-sample/" class="cover" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2019/01/未标题-1.jpg);" showas="padding"></a>
+          <a href="http://panda.panda-studio.cn/download-sample/" showas="img"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2019/01/未标题-1.jpg" class="cover" alt="" /></a>
+          <div class="meta">
+           <div class="date">
+            1月26日 &middot; 2019年
+           </div>
+           <h2><a href="http://panda.panda-studio.cn/download-sample/">钓鱼高手 &middot; 下载站示例</a></h2>
+           <div class="tags">
+            <a class="color-0">无标签</a>
+           </div>
+           <div class="summary">
+            <span class="views"><i class="fas fa-book-reader"></i> 797</span> 
+            <span class="likes"><i class="fas fa-heart"></i> 29</span> 
+            <span class="comments"><i class="fas fa-comments"></i> 9</span> 
+           </div>
+           <article class="description">
+            软件介绍《钓鱼高手》是一款操作简单的休闲游戏。轻松有趣，奖...
+           </article>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <footer id="footer">
+     <div class="container">
+      <div class="copyright silver-color">
+       版权所有 &copy; 2018 PANDA Studio | 刘欢 All Rights Reserved
+      </div>
+      <div class="beian " :template="beian"></div>
+      <script></script>
+      <style> {display:inline !important;font-size: 0 !important;line-height: 0 !important;float: left;}p+,h2+,h3+, {display: none !important;}</style>
+     </div>
+    </footer>
+   </div>
+   <div class="mobile_sidebar visible-xs visible-sm">
+    <div manual-template="sidebarMenu"></div>
+    <div manual-template="sidebar"></div>
+   </div>
+  </div>
+  <div class="fullscreen_search"></div>
+  <div class="footer-scripts">
+   <script type="text/html" jqvue-template="sidebarMenu"><div pandaTab class="sidebarMenu" active-class=".active" sub-trigger="click" sub-class=".sub-menu"><ul class="menu"><li data-id="sidebar-1"  show-on-home show-on-single show-on-archive show-on-page><a data-toggle="tooltip" data-placement="auto top" title="关于我"><i class="fas fa-user"></i></a></li><li data-id="sidebar-2"  show-on-page show-on-archive show-on-single show-on-home><a data-toggle="tooltip" data-placement="auto top" title="文章推荐"><i class="fas fa-fire"></i></a></li></ul></div></script>
+   <script type="text/html" jqvue-template="sidebar"><aside data-id="sidebar-1" class="sidebar" style="display: none;"><ul class="widget-list"><li id="pf_user_info-widget-2" class="widget pf_user_info"><div class="authorImg" style="background-image: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2017/03/2013_new.jpg);"></div><div class="meta"><div class="name">Panda</div><div class="description">Designer & Developer</div></div></li><li id="pf_tag_cloud-widget-3" class="widget pf_tag_cloud"><h2 class="widgettitle">My Tags</h2><ul class="tag"><li><a href="http://panda.panda-studio.cn/tag/css/" target="_self">CSS</a></li><li><a href="http://panda.panda-studio.cn/tag/ui%e8%ae%be%e8%ae%a1/" target="_self">UI设计</a></li><li><a href="http://panda.panda-studio.cn/tag/web%e8%ae%be%e8%ae%a1/" target="_self">Web设计</a></li><li><a href="http://panda.panda-studio.cn/tag/photoshop/" target="_self">Photoshop</a></li><li><a href="http://panda.panda-studio.cn/tag/javascript/" target="_self">Javascript</a></li></ul></li><li id="pf_tag_cloud-widget-2" class="widget pf_tag_cloud"><h2 class="widgettitle">关注我</h2><ul class="link"><li><a href="https://dribbble.com/pandadesign" target="_blank"><i class="fab fa-dribbble"></i>dribbble</a></li><li><a href="https://weibo.com/pandastudio" target="_blank"><i class="fab fa-weibo"></i>新浪微博</a></li><li><a href="http://panda.panda-studio.cn/post-board/" target="_self"><i class="fas fa-pen-nib"></i>留言板</a></li><li><a href="http://panda.panda-studio.cn/links/" target="_self"><i class="fas fa-link"></i>友情链接</a></li></ul></li><li id="pf_tag_cloud-widget-4" class="widget pf_tag_cloud"><h2 class="widgettitle">导航</h2><ul class="navigator"><li><a href="http://panda.panda-studio.cn/category/icons/" target="_self">图标 · Icon</a></li><li><a href="http://panda.panda-studio.cn/category/wallpapper/" target="_self">壁纸 · Wallpaper</a></li><li><a href="http://panda.panda-studio.cn/category/skins/" target="_self">皮肤 · Skins & UI</a></li><li><a href="http://panda.panda-studio.cn/category/teach/" target="_self">教程 · Teach</a></li><li><a href="http://panda.panda-studio.cn/category/workflow/" target="_self">工具 · Tools</a></li><li><a href="http://panda.panda-studio.cn/category/develop/" target="_self">开发 · Develop</a></li></ul></li><li id="pf_microblog-widget-2" class="widget pf_microblog"><h2 class="widgettitle">轻博客</h2><ul><li><div class="date silver-color"><span>2019-7-15 22:03</span></div><div class="main"><p><p thumbnail="post"><img src="" /></p><p>由于最近网站受攻击严重，因此开启了全站缓存。评论后可能无法正常下载，敬请谅解。</p>
+</p></div></li><li><div class="date silver-color"><span>2018-12-5 23:01</span></div><div class="main"><p><p thumbnail="post"><img src="" /></p><p>建立了一个设计杂记相册，用来展示近期工作中的作品。版权归所属企业所有，本人仅保留署名权。</p>
+</p></div></li><li><div class="date silver-color"><span>2018-10-4 20:30</span></div><div class="main"><p><p thumbnail="post"><img src="" /></p><p>博客用上新niRvana主题了，开发了几个月，挺喜欢这种轻拟物风格的</p>
+</p></div></li><li><div class="date silver-color"><span>2018-9-7 10:36</span></div><div class="main"><p><p thumbnail="post"><img src="" /></p><p>主题完全支持 WordPress 5.0 啦：已将所有的短代码全部重写成了 Gutenberg 模块，体验很棒！</p>
+</p></div></li></ul></li></ul></aside><aside data-id="sidebar-2" class="sidebar" style="display: none;"><ul class="widget-list"><li id="pf_hotposts-widget-2" class="widget pf_hotposts"><h2 class="widgettitle">大家喜欢</h2><ul><li><div class='single-wrapper clearfix'><a class='cover' style='background-image:url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/flyme4.jpg)' href='http://panda.panda-studio.cn/%e6%89%8b%e6%9c%ba%e4%b8%bb%e9%a2%98%e8%ae%be%e8%ae%a1/'></a><div class='meta'><a class='post-title' href='http://panda.panda-studio.cn/%e6%89%8b%e6%9c%ba%e4%b8%bb%e9%a2%98%e8%ae%be%e8%ae%a1/'><h4>flyme手机主题</h4></a><div class='summary'><span class='likes'><i class='fas fa-heart'></i>2234</span><span class='comments'><i class='fas fa-comments'></i>0</span></div></div></div></li><li><div class='single-wrapper clearfix'><a class='cover' style='background-image:url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/11/nirvana_category@2x.jpg)' href='http://panda.panda-studio.cn/wordpress-theme-nirvana/'></a><div class='meta'><a class='post-title' href='http://panda.panda-studio.cn/wordpress-theme-nirvana/'><h4>niRvana · 轻拟物WordPress主题</h4></a><div class='summary'><span class='likes'><i class='fas fa-heart'></i>635</span><span class='comments'><i class='fas fa-comments'></i>96</span></div></div></div></li><li><div class='single-wrapper clearfix'><a class='cover' style='background-image:url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/rar.jpg)' href='http://panda.panda-studio.cn/orgrar/'></a><div class='meta'><a class='post-title' href='http://panda.panda-studio.cn/orgrar/'><h4>OrgRar · WinRAR主题</h4></a><div class='summary'><span class='likes'><i class='fas fa-heart'></i>132</span><span class='comments'><i class='fas fa-comments'></i>144</span></div></div></div></li></ul></li><li id="pf_hotposts-widget-3" class="widget pf_hotposts"><h2 class="widgettitle">最多评论</h2><ul><li><div class='single-wrapper clearfix'><a class='cover' style='background-image:url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/04/lostwall_category.jpg)' href='http://panda.panda-studio.cn/lostwallpaper/'></a><div class='meta'><a class='post-title' href='http://panda.panda-studio.cn/lostwallpaper/'><h4>私藏壁纸一张</h4></a><div class='summary'><span class='likes'><i class='fas fa-heart'></i>67</span><span class='comments'><i class='fas fa-comments'></i>262</span></div></div></div></li><li><div class='single-wrapper clearfix'><a class='cover' style='background-image:url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2015/11/rar.jpg)' href='http://panda.panda-studio.cn/orgrar/'></a><div class='meta'><a class='post-title' href='http://panda.panda-studio.cn/orgrar/'><h4>OrgRar · WinRAR主题</h4></a><div class='summary'><span class='likes'><i class='fas fa-heart'></i>132</span><span class='comments'><i class='fas fa-comments'></i>144</span></div></div></div></li><li><div class='single-wrapper clearfix'><a class='cover' style='background-image:url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2016/01/lhydd_category.jpg)' href='http://panda.panda-studio.cn/%e6%b5%aa%e8%8a%b1%e5%8a%a8%e6%80%81%e7%9a%ae%e8%82%a4-%c2%b7-%e6%90%9c%e7%8b%97%e8%be%93%e5%85%a5%e6%b3%95/'></a><div class='meta'><a class='post-title' href='http://panda.panda-studio.cn/%e6%b5%aa%e8%8a%b1%e5%8a%a8%e6%80%81%e7%9a%ae%e8%82%a4-%c2%b7-%e6%90%9c%e7%8b%97%e8%be%93%e5%85%a5%e6%b3%95/'><h4>浪花动态皮肤 · 搜狗输入法</h4></a><div class='summary'><span class='likes'><i class='fas fa-heart'></i>68</span><span class='comments'><i class='fas fa-comments'></i>131</span></div></div></div></li></ul></li></ul></aside></script>
+   <script type="text/html" jqvue-template="fullscreen_search"><div class="container"><div class="close_btn" @click="this.hide_global_search()"><i class="fas fa-times"></i></div><div class="global_search_form"><div class="searchbox clearfix"><input type="search" v-model="global_search_query" placeholder="请输入..."><span class="button" @click="this.global_search()"><span class="icon"><i class="fas fa-search"></i></span></span></div><p class="advanced"><span @click="this.global_search_toggle_advanced()">高级选项 <i class="fas fa-angle-down"></i></span></p><p class="checkbox-group" style="display: none;"><input type="checkbox" v-model="global_search_post" class="jv-checkbox" label="文章"><input type="checkbox" v-model="global_search_gallery" class="jv-checkbox" label="相册"><input type="checkbox" v-model="global_search_prod_title" class="jv-checkbox" label="仅检索标题"></p></div></div><div class="container" style="max-width: 1170px !important;"><div class="waterfall postLists cards row"></div></div></script>
+   <script type="text/html" jqvue-template="beian"><a href='http://www.miitbeian.gov.cn/' target='_blank'><span>滇ICP备15007660号</span></a></script>
+   <script type="text/html" jqvue-template="post_list">
+{{#data}}<div class="col-xxs-6 col-xs-4 col-md-3 post-card-wrapper"><div class="card">
+{{#thumbnail}}<a href="{{href}}" class="cover" style="background-image: url({{thumbnail}});" showas='padding'></a><a href="{{href}}" showas='img'><img src="{{thumbnail}}" class="cover" alt=""></a>
+{{/thumbnail}}<div class="meta"><div class="date">{{date}}</div><h2><a href="{{href}}">{{title}}</a></h2><div class="tags">
+{{#tags}}<a class="color-{{color}}">{{tag}}</a>
+{{/tags}}</div><div class="summary"><span class="likes"><i class="fas fa-heart"></i>
+{{like}}</span><span class="comments"><i class="fas fa-comments"></i>
+{{comment}}</span></div></div></div></div>
+{{/data}}{{^data}}<p class="nodata">未找到相关内容！</p>
+{{/data}}</script>
+   <script type="text/html" jqvue-template="dashang"><div class="modal fade" id="dashang" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">感谢您的支持！</h4></div><div class="modal-body"><p>感谢您喜欢我的内容！
+
+您可以给我买一杯咖啡或一碗炒饭来支持我：</p><div><ul class="nav nav-tabs" role="tablist"><li role="presentation" class="active"><a href="#dashang_0" aria-controls="dashang_0" role="tab" data-toggle="tab">支付宝钱包</a></li><li role="presentation"><a href="#dashang_1" aria-controls="dashang_1" role="tab" data-toggle="tab">微信钱包</a></li></ul><div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="dashang_0"><p class="dashangImg_wrapper"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/10/140286DEEDACA296BBFF5E26CE88E525.jpg" class="dashangImg"></p></div>
+
+<div role="tabpanel" class="tab-pane" id="dashang_1"><p class="dashangImg_wrapper"><img src="https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/10/69B773AB391373E1EF8255F90ACE637E.jpg" class="dashangImg"></p></div>
+</div></div></div><div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button></div></div></div></div></script>
+   <script type="text/html" jqvue-template="chatTemplate"><div class="chatList clearfix server"><div class="headimg"></div><div class="chat_pop">欢迎使用FAQ检索，您可以输入问题检索，或点击查看常见问题：<ol><li><span @click="this.send_chat_message('如何购买主题')">如何购买主题</span></li><li><span @click="this.send_chat_message('主题价格')">主题价格</span></li><li><span @click="this.send_chat_message('博主的QQ')">博主的QQ</span></li></ol></div></div>
+{{#chat_msg}}<div class="chatList clearfix {{user}}"><div class="headimg"></div><div class="chat_pop">
+{{content}}</div></div>
+{{/chat_msg}}</script>
+   <script type="text/html" jqvue-template="floatTools"><div class="floatTools"><div class="tool-button backToTop unavailable" @click="this.backToTop()"><i class="fas fa-rocket"></i></div><div class="tool-button assistance" @click="this.showAssistance()"><i class="fas fa-headset"></i></div></div></script>
+   <script type="text/html" jqvue-template="assistance_wrapper"><div id="chatTemplate"></div><div class="clearfix chat_form"><input type="text" class="chat_input" v-model="chat_input" placeholder="请输入检索关键词..."><button @click="this.send_chat_message()">搜索</button></div></script>
+   <script type="text/html" jqvue-template="wechatCoverWrapper"><div class="container"><div class="close_btn" @click="this.hide_wechat_cover()"><i class="fas fa-times"></i></div></div><div class="wechat-cover"><div class="renderCoverImg"><div class="cover"><img src="{{thumbImg}}"><div class="title">{{title}}</div></div><div class="meta"><div class="description">{{description}}</div><div class="qrcode"></div><div class="muted">扫描二维码阅读更多内容</div></div></div><div class="wait"><span>封面生成中...</span></div></div></script>
+
+   <style>#wrapper {
+background: url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/11/bl.png) no-repeat fixed bottom left,
+url(https://dsm.panda-studio.cn:82/aliyun-wordpress/uploads/sites/7/2018/11/tr.png) no-repeat fixed top right,
+#f0f2f7
+}
+.main-nav.flat {
+background: rgba(240,242,247,.3)
+}
+.border-radius img {
+border-radius:13px;
+}
+.box-shadow img {
+box-shadow: 0 10px 13px rgba(31,45,62,.1);
+}
+.text-indent-2em,.shsj2 {
+text-indent:2em;
+}
+
+.gallery #coverflow > .anchor {
+	background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.3));
+}
+.gallery #coverflow img {
+    box-shadow: 0 5px 20px rgba(0,0,0,.3);
+    border-radius: 10px;
+    max-height: calc(100% - 30px) !important;
+    max-width: calc(100% - 30px) !important
+}</style>
+  </div>
+  <div class="pageLoader flex-row-middle flex-center">
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+  </div>
+  <div :template="dashang"></div>
+  <div id="assistance" class="unavailable"></div>
+ </body>
+</html>

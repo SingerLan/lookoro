@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html data-dpr="1" style="font-size: 76.8px;">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+				{seacms:load inc_header.html}		
+		<title>{seacms:topicname}_第{topicpagelist:page}页_{seacms:sitename}</title>
+		<meta name="keywords" content="{seacms:sitename}">
+		<meta name="description" content="{seacms:topicdes}">	
+	</head>
+	<body>
+		<div id="topic_page">
+			<div class="hot_banner">
+				{seacms:top}
+			<div class="hot_list">
+				<div class="topic_fm">
+					<div class="topiclist_con">
+						<span class="topiclist_thumb lazyload" title="{seacms:topicname}" data-original="{seacms:topicpic}" style="background-image: url(&quot;{seacms:topicpic}&quot;);"></span>
+					</div>
+					<div class="topiclist_text">
+						<h3 class="title">{seacms:topicname}</h3>
+						<div class="tpcon_box">
+							<p>
+							</p>
+							<p>{seacms:topicdes}</p>
+							<p>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="container">
+				<div class="vod_row">
+					<div class="pannel clearfix">
+						<!-- 列表 -->
+						<div class="pannel_head clearfix">
+							<h3 class="title">本专题共收录
+								<strong style="color:#ff5f00">{topicpagelist:recordcount}</strong>部影片</h3></div>
+						<ul class="vodlist vodlist_wi clearfix">
+							{seacms:topicpagelist size=12 order=time}
+							<li class="vodlist_item">
+								<a class="vodlist_thumb lazyload" href="[topicpagelist:link]" title="[topicpagelist:name]" data-original="[topicpagelist:pic]" style="background-image: url(&quot;[topicpagelist:pic]&quot;);">
+									<span class="play hidden_xs"></span>
+									<span class="pic_text text_right">{if:[topicpagelist:state]==0}[topicpagelist:ver]{else}更新至[topicpagelist:state]集{end if}</span></a>
+								<div class="vodlist_titbox">
+									<p class="vodlist_title">
+										<a href="[topicpagelist:link]" title="[topicpagelist:name]">[topicpagelist:name]</a></p>
+									<p class="vodlist_sub">{if:[topicpagelist:note]==""}[topicpagelist:nolinkactor]{else}[topicpagelist:note]{end if}</p></div>
+							</li>
+							{/seacms:topicpagelist}	
+						</ul>
+						<!-- end 列表 -->
+						<ul class="page text_center cleafix">
+							<li>
+								<a href="{topicpagelist:firstlink}" {if:{topicpagelist:page}==1}class="btns_disad"{end if}>首页</a></li>
+							<li>
+								<a href="{topicpagelist:backlink}" {if:{topicpagelist:page}==1}class="btns_disad"{end if}>上一页</a></li>
+							{topicpagelist:pagenumber len=5}
+							<li class="hidden_xs {if:{topicpagelist:page}==[pagenumber:page]}active{end if}">
+								<a href="[pagenumber:link]">[pagenumber:page]</a></li>
+							{/topicpagelist:pagenumber}
+							<li>
+								<a href="{topicpagelist:nextlink}" {if:{topicpagelist:page}=={topicpagelist:pagecount}}class="btns_disad"{end if}>下一页</a></li>
+							<li>
+								<a href="{topicpagelist:lastlink}" {if:{topicpagelist:page}=={topicpagelist:pagecount}}class="btns_disad"{end if}>尾页</a></li>
+						</ul>
+						<div class="page_tips hidden_mb">当前
+							<span>第{topicpagelist:page}页</span>&nbsp;/&nbsp;共有{topicpagelist:pagecount}页</div>
+					<!-- 翻页--></div>
+				</div>
+			</div>{seacms:foot}
+			</div>
+	</body>
+
+</html>

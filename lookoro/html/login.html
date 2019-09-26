@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{seacms:strip}
+<html lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>用户登录-{seacms:sitename}</title>
+    <meta name="keywords" content="用户登录-{seacms:sitename}">
+    <meta name="description" content="用户登录-{seacms:sitename}">
+	<link rel="stylesheet" href="images/css/font_825484_n0b1kv9obl.css" />
+    <link href="images/css/app.9eb223f9f62280ad2e915b067f42709d.css" rel="stylesheet" />
+	<meta name="x5-orientation" content="portrait">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="browsermode" content="application">
+	<style>
+		ul {    list-style-type: none;}
+		.pull-right {   
+				width: 70px;
+				height: 32px;
+				float: right;
+				margin-top: 1.5rem;
+			}
+		.btn-warning {
+			    background-color: rgba(0,0,0,.8);
+				color: #fff;
+				letter-spacing: .5rem;
+				font-size: 1rem;
+				line-height: 2.25rem;
+				border-radius: 3px;
+		}
+		.text-center {
+			text-align: center;
+			margin-top: 2rem;
+			font-size: .9rem;
+		}
+	</style>
+</head>
+
+<body>
+  <div class="mobile">
+	{seacms:top}
+    <div data-v-1ee15c1f="" data-v-6c72a738="" class="secnav">
+     <div data-v-1ee15c1f="" class="secnav-list">
+      <a href="{seacms:indexlink}">主页</a>
+     </div>
+     <div data-v-1ee15c1f="" class="secnav-list">
+      <a href="/{seacms:sitepath}member.php">订阅</a>
+     </div>
+     <div data-v-1ee15c1f="" class="secnav-list active">
+      <a href="/{seacms:sitepath}list/?1.html">分类</a>
+     </div>
+     <div data-v-1ee15c1f="" class="secnav-list">
+      <a href="/{seacms:sitepath}gbook.php">动态</a>
+     </div>
+    </div> 
+	<div class="auth-bg" style="display: block;">
+	<div class="auth-model">
+	 <div class="model-container">
+	  <div class="model-header">
+	   <p>登录账号才能使用哦</p>
+      </div> 
+      <div class="model-middle">
+		{login:viewLogin}
+	  </div>
+     </div>
+    </div>
+   </div>
+	</div>
+	{seacms:sitevisitjs}
+</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="images/js/index.js"></script>
+</html>
+{/seacms:strip}

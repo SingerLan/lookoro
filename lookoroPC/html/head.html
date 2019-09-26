@@ -1,0 +1,44 @@
+<div class="head">
+      <div class="head_inner">
+        <div class="head00">
+          <h1 style="margin-bottom: 0;">
+            <a href="{seacms:indexlink}" title="BT电影天堂-迅雷BT种子下载|高清电影下载" class="head01 lf">BT电影天堂</a></h1>
+          <div class="lf head_so">
+            <form name="formsearch" class="searchform" id="formsearch" action='/{seacms:sitepath}search.php' method="post" autocomplete="off">
+              <input class="searchinput lf" style="line-height: normal;" class="input" placeholder="输入影片关键词..." name="searchword" type="text" id="keyword" required="">
+			  <input type="submit" id="searchbtn" value="搜索" class="searchbtn lf">
+			</form>
+          </div>
+          <div class="head_rt">
+            <ul>
+              <li>
+                <a href="/gbook.php">
+                  <i class="i1"></i>留言</a>
+              </li>
+              <li>
+                <a href="/help.html">
+                  <i class="i2"></i>帮助</a>
+              </li>
+              <li style="border:1px;">
+                <a id="translateLink" href="javascript:translatePage();" title="点击切换简繁语言">
+                  <i class="i3"></i>繁體</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="head_inner2">
+        <div class="head02 lf">
+          <ul>
+            <li>
+              <a href="{seacms:indexlink}">首页</a></li>
+			{seacms:menulist type=1,2,4}					
+			<li><a href="[menulist:link]">[menulist:typename]</a></li>						  
+			{/seacms:menulist}
+            <li>
+              <a href="{seacms:topiclink}">专题</a></li>
+          </ul>
+          <span id="seacms_member"></span>
+          <script>member()</script></div>
+      </div>
+    </div>

@@ -171,7 +171,7 @@
       <input type="button" value="获取" class="rb1" onclick="ajax_methodId();"/>
       <input type="button" value="直接获取" class="rb1" onclick="ajax_method();"/>
       <input type="button" value="时光网评分" class="rb1" onclick="ajax_method_mtime();"/>
-		<form action="https://img.yyhy.me/upload.php?type=Sougou" Method="POST" enctype="multipart/form-data">
+		<form action="https://img.yyhy.me/upload.php?type=Vim" Method="POST" enctype="multipart/form-data">
 			<button type="button" onclick="fileupload.click();" class="btn btn-default" id="toUploaded">选择图片</button>
 			<input type="file" name="fileupload" id="fileupload" style="display:none" accept="image/*" multiple="multiple">
 			<input type="button" value="提交" onclick="doUpload();return false;"/>
@@ -252,7 +252,7 @@
 				jQuery("#toUploaded").html("<span style='color: green;'>努力上传中，请稍候...</span>");
 				
 				jQuery.ajax({
-					url: "https://img.yyhy.me/upload.php?type=Sohu",
+					url: "https://img.yyhy.me/upload.php?type=Sougou",
 					type: "post",
 					data: formData,
 					cache: false,
@@ -383,7 +383,7 @@
             <td height="40" colspan="2" align="left" class="td_border">&nbsp;
              <input type="submit" name="Submit" value="确认保存" class="rb1" onClick="if($('v_name').value.length==0){alert('请填写名称');return false;};if($('v_type').value.length==0){alert('请选择分类');return false;}"/>
               &nbsp;&nbsp;
-              <input type="reset" name="reset" value="清除重置" class="rb1"/>&nbsp;&nbsp;<input type="checkbox" value="1" name="ping" class="checkbox">百度推送更新</td>
+              <input type="reset" name="reset" value="清除重置" class="rb1"/>&nbsp;&nbsp;<input type="checkbox" value="1" name="ping" checked="checked" class="checkbox">百度推送更新</td>
           </tr>
       </table>
         </form>

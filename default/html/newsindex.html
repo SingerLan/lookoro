@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>娱乐资讯_花边八卦_影视资讯 - {seacms:sitename}</title>
+<meta name="keywords" content="最新影视资讯,电影资讯,娱乐资讯" />
+<meta name="description" content="本站提供最新电影,电视剧,综艺,动漫的资讯信息,一览无遗" />  
+{seacms:load block/inc_header.html}
+	</head>
+	<body>
+{seacms:load newshead.html}
+	    <div class="container min">
+	        <div class="row">
+	        	<div class="myui-layout clearfix">
+	<div class="myui-layout-box col-lg-2">
+		<div class="myui-panel myui-panel-bg clearfix hiddex-xs">	
+			<div class="myui-panel-box clearfix">
+				<div class="myui-panel_hd">
+					<div class="myui-panel__head active bottom-line clearfix">	
+						<h3 class="title">
+							最新资讯						</h3>	
+<a class="more text-muted pull-left" href="[menulist:link]">更多 <i class="fa fa-angle-right"></i></a>
+					</div>																			
+				</div>	
+				<div class="myui-panel_bd clearfix">								
+					<ul class="myui-newslist__text clearfix">
+{seacms:newslist num=10 order=time type=all}
+												<li class="col-md-2 col-sm-2 col-xs-1">
+							<h3 class="title text-overflow"><a href="[newslist:link]"><span class="text-muted"> • </span>[newslist:name]</a></h3>			
+						</li>	
+{/seacms:newslist}
+											</ul>															
+				</div>						
+			</div>
+		</div>
+	</div>
+	<div class="myui-layout-box col-lg-2">
+		<div class="myui-panel myui-panel-bg clearfix">	
+			<div class="myui-panel-box clearfix">
+				<div class="myui-panel_hd">
+					<div class="myui-panel__head active bottom-line clearfix">		
+						<h3 class="title">
+							最热资讯						</h3>
+<a class="more text-muted pull-left" href="{seacms:newslink}">更多 <i class="fa fa-angle-right"></i>
+					</div>																			
+				</div>	
+				<div class="myui-panel_bd clearfix">								
+					<ul class="myui-newslist__text clearfix">
+{seacms:newslist num=10 order=hit type=all}
+												<li class="col-md-2 col-sm-2 col-xs-1">
+							<h3 class="title text-overflow"><a href="[newslist:link]"><span class="text-muted"> • </span>[newslist:name]</a></h3>			
+						</li>	
+{/seacms:newslist}
+											</ul>	
+					</ul>															
+				</div>						
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	        	<div class="myui-panel myui-panel-bg clearfix">
+	<div class="myui-panel-box clearfix">
+		<div class="myui-panel_hd">
+			<div class="myui-panel__head clearfix">
+				<h3 class="title">
+					今日推荐				</h3>	
+				<a class="more text-muted" href="{seacms:newslink}">更多 <i class="fa fa-angle-right"></i></a>
+			</div>																		
+		</div>
+		<div class="myui-panel_bd clearfix">															
+			<ul class="myui-vodlist clearfix">
+{seacms:newslist num=10 order=dayhit type=all}
+								<li class="col-lg-5  col-md-5 col-sm-3 col-xs-2">
+					<div class="myui-vodlist__box myui-panel_bg">
+						<a class="myui-vodlist__thumb wide lazyload" href="[newslist:link]" title="[newslist:name]" data-original="[newslist:pic]">							
+						</a>
+						<div class="myui-vodlist__detail">
+							<h4 class="title text-center text-overflow"><a href="[newslist:link]" title="[newslist:name]">[newslist:name]</a></h4>
+						</div>												
+					</div>												
+				</li>
+{/seacms:newslist}
+		      </ul>	
+		</div>	
+	</div>
+</div>
+
+
+{seacms:menulist type=top by=news}		
+				<div class="myui-panel myui-panel-bg clearfix">					
+					<div class="myui-panel-box clearfix">
+				<div class="myui-panel_hd">
+					<div class="myui-panel__head active bottom-line clearfix">	
+						<h3 class="title">
+							[menulist:typename]						</h3>	
+<a class="more text-muted pull-left" href="[menulist:link]">更多 <i class="fa fa-angle-right"></i></a>
+					</div>																			
+				</div>
+						<div class="myui-panel_bd clearfix">											
+							<ul class="myui-newslist col-pd clearfix">
+{seacms:newslist num=3 order=time type=[menulist:typeid]}
+																<li class="top-line-dot">
+									<h3 class="title"><a href="[newslist:newslink]">[newslist:title]</a></h3>
+<p class="desc">[newslist:content len=150]</p>
+<p class="time margin-0"><span class="hidden-xs">分类：</span><a href="[newslist:typelink]">[newslist:typename]</a><span class="split-line"></span><span class="text-muted">时间：</span>[newslist:time style=yyyy-mm-dd]<span class="split-line"></span><span class="text-muted">浏览：</span>[newslist:hit]</p>																	
+								</li>
+{/seacms:newslist}
+															</ul>
+						</div>
+					</div>
+				</div>
+{/seacms:menulist}				
+			</div>
+	    </div>
+ {seacms:foot}
+	</body>
+</html>

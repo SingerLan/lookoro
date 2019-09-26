@@ -1,0 +1,50 @@
+<header style="background:#FFF;">
+
+<div style="padding:5px 0;border-bottom:1px solid #DDD;">
+    <div class="container">
+        <span class="header-help">欢迎来到{seacms:sitename}，我们因为电影而相聚。</span>
+        <div class="pull-right">
+            <a class="header-help" href="javascript:alert('快捷键Ctrl+D可以快速添加到收藏夹。');">Ctrl+D 加入收藏夹</a> -
+            <a class="header-help" style="color:red;" href="/desktop.php?url={seacms:siteurl}&name={seacms:sitename}">保存到桌面</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-top:15px;padding-bottom:15px;padding-right:0;">
+	<a class="logo pull-left" href="{seacms:indexlink}"></a>
+    <div class="pull-right" style="margin-top:8px;">
+		<form class="navbar-form pull-right" accept-charset="utf-8" action="/{seacms:sitepath}search.php" method="POST" role="search">
+            <div class="form-group">
+				<input type="text" class="form-control" id="keyword" name="searchword" placeholder="请输入电影名字">
+            </div>
+			<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+        </form>
+    </div>
+</div>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <ul class="nav navbar-nav">
+			<li id="index1" {if:{seacms:currenttypeid}<0}class="active"{end if}><a href="{seacms:indexlink}">首页</a></li>
+			{seacms:menulist type=top}
+			<li {if:[menulist:typeid]=={seacms:currenttypeid}}class="active"{end if}><a target="_self" href="[menulist:link]">[menulist:typename]</a></li>
+			{/seacms:menulist}
+			<li id="index2"><a target="_self" href="/wapgbook.php">留言</a></li>
+			<li id="index3"><a href="{seacms:topiclink}">专题</a></li>
+        </ul>
+		<div class="pull-right">
+			<ul class="nav navbar-nav">
+				<li onmouseout="document.getElementById('allhis').style.display='none';" onmouseover="document.getElementById('allhis').style.display='block';">
+					<a><i class="glyphicon glyphicon-eye-open"></i>&nbsp;&nbsp;看过<span class="caret"></span></a>
+				</li>
+                <li><a href="/{seacms:sitepath}member.php" class="ilogin"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;会员</a></li>
+			</ul>
+			<div class="dropdown-menu right history clearfix" id="allhis" style="width:281px;overflow:hidden;padding: 15px 15px 0px 15px;border:1px solid #ccc;margin-top:0px;right: auto;" onmouseout="document.getElementById('allhis').style.display='none';" onmouseover="document.getElementById('allhis').style.display='block';">
+				<div style="margin-bottom: 10px;padding-bottom: 10px;border-bottom: 1px solid #e2e2e2;color: #999;">观看历史</div>
+				<script type="text/javascript ">$MH.limit = 10;$MH.WriteHistoryBox(200, 170, 'font');$MH.recordHistory({name: '{playpage:name}',link: '{playpage:url}',pic: '{playpage:pic}'})</script>
+			</div>	
+		</div>
+    </div>
+</nav>
+
+</header>

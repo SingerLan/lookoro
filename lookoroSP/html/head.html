@@ -1,0 +1,47 @@
+<div id="search_back">
+        <div class="search_back"></div>
+      </div>
+      <div id="search_hot">
+        <div class="search_hot">
+          <a href='/search.php?searchword='></a>
+        </div>
+      </div>
+      <div class="head cleaarfix">
+        <div class="logo">
+          <a class="logobg" href="/"></a>
+        </div>
+        <div class="ico menu_btn"></div>
+        <div class="ico search_btn"></div>
+        <div class="search" id="search">
+          <div class="shall">
+            <form name="formsearch" id="formsearch" action='/{seacms:sitepath}search.php' method="post" target="_self" autocomplete="off">
+              <div class="shall1">
+                <div class="inall clearfix">
+                  <div class="inall1">
+                    <input class="input" name="searchword" type="text" id="keyword" placeholder="输入关键词" /></div>
+                  <div class="inall2">
+                    <input class="ico imgbt" type="submit" value="" /></div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="shclose">关闭</div></div>
+      </div>
+      <div id="grey_back">
+        <div class="grey_back"></div>
+      </div>
+      <div id="menu_smartphone">
+        <div class="menu_smartphone">
+          <div class="head cleaarfix">
+            <div class="ico user_btn">
+              <a href="/member.php"></a>
+            </div>
+          </div>
+		  {seacms:menulist type=1,2,4}	
+          <div class="nav cleaarfix">
+            <div class="nav_title">
+              <a href="[menulist:link]">[menulist:typename]</a></div>
+          </div>
+		  {/seacms:menulist}	
+        </div>
+      </div>

@@ -1,5 +1,3 @@
-var zzid=0;
-var pisea_Player_File="play2.swf";//已无效参数
 var playerw='100%';//电脑端播放器宽度
 var playerh='503';//电脑端播放器高度
 var mplayerw='100%';//手机端播放器宽度
@@ -16,8 +14,8 @@ var jxBapi="http://www.lookoro.cn/player/P2P-DPlayer.php?url=";
 var jxCapi="http://www.lookoro.cn/player/TCPlayer.php?url=";
 var jxDapi="https://z1.m1907.cn/?jx=";
 var jxEapi="http://www.lookoro.cn/player/spare.php?url=";
-var forcejx="yes";
-var unforcejx="yunpan#swf#iframe#url#xigua#ffhd#jjvod#ck#dp";
+var forcejx="jiexi";
+var unforcejx="yunpan#swf#iframe#url#xigua#ffhd#jjvod";
 var unforcejxARR = unforcejx.split('#');
 
 

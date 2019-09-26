@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="applicable-device" content="pc,mobile">
+	<title>{playpage:name}在线播放-{playpage:typename}-{seacms:sitename}</title>
+	<meta name="keywords" content="{playpage:name}免费在线观看,{playpage:name}剧情介绍,{playpage:name}电影海报">
+	<meta name="description" content="{playpage:name}剧情:{playpage:des len=50}">
+    <link href="images/static/css/style.css" rel="stylesheet">
+    <script>var sitePath = ''</script>
+    <script type="text/javascript" src="images/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="images/static/js/e8d5ae70ab2940a3a002ced2c0d1dd22.js"></script>
+    <script type="text/javascript" src="images/static/js/0a775a3e3236404fba95e0f6e2c4f034.js"></script>
+    <script type="text/javascript" src="images/static/js/82ebb2e5333d409fb4b4fefca58d1df5.js"></script>
+    <link href="/favicon.ico" type="image/x-icon" rel="icon">
+    <script src="/{seacms:sitepath}js/play.js"></script>
+  </head>
+  
+  <body>
+    <div class="menu">
+		{seacms:top}
+      <div class="wrap">
+        <div class="row">
+          <div class="playerall">
+            <div class="player">
+              {playpage:playurlinfo}{playpage:player}	
+            </div>
+          </div>
+        </div>
+		{playpage:playlist}
+        <div class="row">
+          <div class="playfrom tab1 clearfix">
+            <ul class="ul ul_out">
+              <li id="tab11" class="on" onclick="setTab('tab1','stab1',1,1)">
+                <i class="ico iline"></i>[playlist:from]</li>
+            </ul>
+          </div>
+          <div class="tablist">
+            <div id="stab11" class="playlist1">
+              <ul class="ulli clearfix">
+				[playlist:link target=_self]
+              </ul>
+            </div>
+          </div>
+        </div>
+		{/playpage:playlist}
+        <div class="row">
+          <div class="player_des clearfix">
+            <div class="img">
+              <i class="pic" style="background-image:url({playpage:pic});"></i>
+              <a class="alink" href="{playpage:url}" title="{playpage:name}"></a>
+            </div>
+            <div class="text">
+              <p class="name">{playpage:name}</p>
+              <p>
+                <em>主演：</em>
+                {playpage:actor}</p>
+              <p>
+                <em>类型：</em>
+				<a href="{playpage:typelink}">{playpage:typename}</a>&nbsp;&nbsp;
+				{playpage:jqtype}</p>
+              <div class="pdes">
+                <em>剧情：</em>{playpage:des}
+                <span class="more">＋展开</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer clearfix">
+        <div class="wrap">
+          <p>免责声明：本站提供的内容均来源于互联网抓取，仅供测试和学习交流,请购买正版以支持您喜欢的影视作品。</p>
+          <p>如有侵权或不愿您的版权作品出现在本站索引结果中，请联系我们。</p>Copyright ©2015-2016
+          <a href="http://m.btbtdy.me">BT电影天堂</a>All Rights Reserved.</div></div>
+      <div class="gotop">
+        <a class="ico gotopbg" href="javascript:;" title="返回顶部"></a>
+      </div>
+    </div>
+  </body>
+
+</html>
