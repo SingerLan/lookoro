@@ -1,1 +1,0 @@
-<?php $weburl = "www.lookoro.cn"; $token = "qJCFTwsQp8rJNYEZ";  ?>
